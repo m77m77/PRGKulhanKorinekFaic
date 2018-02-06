@@ -56,3 +56,9 @@ F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\obj\Debug\REST_API.csprojResolveAss
 F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\obj\Debug\REST_API.csproj.CoreCompileInputs.cache
 F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\obj\Debug\REST_API.dll
 F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\obj\Debug\REST_API.pdb
+F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\bin\EntityFramework.dll
+F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\bin\EntityFramework.SqlServer.dll
+F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\bin\MySql.Data.dll
+F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\bin\MySql.Data.Entity.EF6.dll
+F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\bin\EntityFramework.xml
+F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\bin\EntityFramework.SqlServer.xml
