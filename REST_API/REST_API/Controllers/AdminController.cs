@@ -11,9 +11,9 @@ namespace REST_API.Controllers
     public class AdminController : ApiController
     {
         // GET api/admin
-        public string GetAll()
+        public string[] GetAll()
         {
-            return JsonConvert.SerializeObject(new string[] { "value1", "value2" });
+            return new string[] { "value1", "value2" };
         }
 
         [Route("api/admin/{token}")]
