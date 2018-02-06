@@ -1,0 +1,2092 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Net.Http.Formatting</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.Http.ByteRangeStreamContent">
+      <summary>Implementace objektu <see cref="T:System.Net.Http.HttpContent" />, která poskytuje zobrazení rozsahu bajtů v rámci datového proudu pro vygenerování odpovědí rozsahu bajtů HTTP 206 (částečný obsah).Objekt <see cref="T:System.Net.Http.ByteRangeStreamContent" /> podporuje jeden nebo více rozsahů bajtů, bez ohledu na to, zda tyto rozsahy následují za sebou nebo ne.V případě jediného rozsahu je vytvořen jeden dílčí text odpovědi obsahující hlavičku Content-Range.V případě více rozsahů je vytvořena odpověď typu multipart/byteranges, kde každá část textu odpovědi obsahuje rozsah indikovaný přidruženým polem hlavičky Content-Range.</summary>
+    </member>
+    <member name="M:System.Net.Http.ByteRangeStreamContent.#ctor(System.IO.Stream,System.Net.Http.Headers.RangeHeaderValue,System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary>Implementace objektu <see cref="T:System.Net.Http.HttpContent" />, která poskytuje zobrazení rozsahu bajtů v rámci datového proudu pro vygenerování odpovědí rozsahu bajtů HTTP 206 (částečný obsah).Pokud se žádný z požadovaných rozsahů nepřekrývá s aktuálním rozšířením vybraného prostředku reprezentovaného parametrem content, je vyvolána výjimka <see cref="T:System.Net.Http.InvalidByteRangeException" /> udávající platnou hlavičku Content-Range obsahu.</summary>
+      <param name="content">Datový proud, v jehož rámci má být vytvořeno zobrazení rozsahu bajtů.</param>
+      <param name="range">Rozsah nebo rozsahy, obvykle získané z pole hlavičky požadavku Range HTTP.</param>
+      <param name="mediaType">Typ média datového proudu obsahu.</param>
+    </member>
+    <member name="M:System.Net.Http.ByteRangeStreamContent.#ctor(System.IO.Stream,System.Net.Http.Headers.RangeHeaderValue,System.Net.Http.Headers.MediaTypeHeaderValue,System.Int32)">
+      <summary>Implementace objektu <see cref="T:System.Net.Http.HttpContent" />, která poskytuje zobrazení rozsahu bajtů v rámci datového proudu pro vygenerování odpovědí rozsahu bajtů HTTP 206 (částečný obsah).Pokud se žádný z požadovaných rozsahů nepřekrývá s aktuálním rozšířením vybraného prostředku reprezentovaného parametrem content, je vyvolána výjimka <see cref="T:System.Net.Http.InvalidByteRangeException" /> udávající platnou hlavičku Content-Range obsahu.</summary>
+      <param name="content">Datový proud, v jehož rámci má být vytvořeno zobrazení rozsahu bajtů.</param>
+      <param name="range">Rozsah nebo rozsahy, obvykle získané z pole hlavičky požadavku Range HTTP.</param>
+      <param name="mediaType">Typ média datového proudu obsahu.</param>
+      <param name="bufferSize">Velikost vyrovnávací paměti používané ke kopírování datového proudu obsahu.</param>
+    </member>
+    <member name="M:System.Net.Http.ByteRangeStreamContent.#ctor(System.IO.Stream,System.Net.Http.Headers.RangeHeaderValue,System.String)">
+      <summary>Implementace objektu <see cref="T:System.Net.Http.HttpContent" />, která poskytuje zobrazení rozsahu bajtů v rámci datového proudu pro vygenerování odpovědí rozsahu bajtů HTTP 206 (částečný obsah).Pokud se žádný z požadovaných rozsahů nepřekrývá s aktuálním rozšířením vybraného prostředku reprezentovaného parametrem content, je vyvolána výjimka <see cref="T:System.Net.Http.InvalidByteRangeException" /> udávající platnou hlavičku Content-Range obsahu.</summary>
+      <param name="content">Datový proud, v jehož rámci má být vytvořeno zobrazení rozsahu bajtů.</param>
+      <param name="range">Rozsah nebo rozsahy, obvykle získané z pole hlavičky požadavku Range HTTP.</param>
+      <param name="mediaType">Typ média datového proudu obsahu.</param>
+    </member>
+    <member name="M:System.Net.Http.ByteRangeStreamContent.#ctor(System.IO.Stream,System.Net.Http.Headers.RangeHeaderValue,System.String,System.Int32)">
+      <summary>Implementace objektu <see cref="T:System.Net.Http.HttpContent" />, která poskytuje zobrazení rozsahu bajtů v rámci datového proudu pro vygenerování odpovědí rozsahu bajtů HTTP 206 (částečný obsah).Pokud se žádný z požadovaných rozsahů nepřekrývá s aktuálním rozšířením vybraného prostředku reprezentovaného parametrem content, je vyvolána výjimka <see cref="T:System.Net.Http.InvalidByteRangeException" /> udávající platnou hlavičku Content-Range obsahu.</summary>
+      <param name="content">Datový proud, v jehož rámci má být vytvořeno zobrazení rozsahu bajtů.</param>
+      <param name="range">Rozsah nebo rozsahy, obvykle získané z pole hlavičky požadavku Range HTTP.</param>
+      <param name="mediaType">Typ média datového proudu obsahu.</param>
+      <param name="bufferSize">Velikost vyrovnávací paměti používané ke kopírování datového proudu obsahu.</param>
+    </member>
+    <member name="M:System.Net.Http.ByteRangeStreamContent.Dispose(System.Boolean)">
+      <summary>Uvolní prostředky používané aktuální instancí třídy <see cref="T:System.Net.Http.ByteRangeStreamContent" />.</summary>
+      <param name="disposing">Hodnota true slouží k uvolnění spravovaných i nespravovaných prostředků; hodnota false slouží k uvolnění pouze nespravovaných prostředků.</param>
+    </member>
+    <member name="M:System.Net.Http.ByteRangeStreamContent.SerializeToStreamAsync(System.IO.Stream,System.Net.TransportContext)">
+      <summary>Asynchronně serializuje a zapíše rozsah bajtů do datového proudu obsahu HTTP.</summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="stream">Cílový datový proud.</param>
+      <param name="context">Informace o přenosu.</param>
+    </member>
+    <member name="M:System.Net.Http.ByteRangeStreamContent.TryComputeLength(System.Int64@)">
+      <summary>Určuje, zda bajtové pole má platnou délku v bajtech.</summary>
+      <returns>Hodnota true, pokud je délka platná, jinak hodnota false.</returns>
+      <param name="length">Délka bajtového pole v bajtech.</param>
+    </member>
+    <member name="T:System.Net.Http.HttpClientExtensions">
+      <summary>Poskytuje rozšiřující metody, které pomáhají při vytváření formátovaných požadavků pomocí třídy <see cref="T:System.Net.Http.HttpClient" />. </summary>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.String,``0)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Threading.CancellationToken)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.Uri,``0)">
+      <summary> Odešle požadavek POST jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou jako JSON. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsJsonAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Threading.CancellationToken)">
+      <summary> Odešle požadavek POST jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou jako JSON. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="cancellationToken">Token zrušení, který mohou jiné objekty nebo vlákna používat k příjmu upozornění na zrušení.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsXmlAsync``1(System.Net.Http.HttpClient,System.String,``0)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsXmlAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Threading.CancellationToken)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsXmlAsync``1(System.Net.Http.HttpClient,System.Uri,``0)">
+      <summary> Odešle požadavek POST jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou jako XML. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsXmlAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Threading.CancellationToken)">
+      <summary> Odešle požadavek POST jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou jako XML. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="cancellationToken">Token zrušení, který mohou jiné objekty nebo vlákna používat k příjmu upozornění na zrušení.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,System.Threading.CancellationToken)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.String)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.String,System.Threading.CancellationToken)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.Threading.CancellationToken)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary> Odešle požadavek POST jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou podle parametru formatter. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="formatter">Formátování použité k serializaci hodnoty.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,System.Threading.CancellationToken)">
+      <summary> Odešle požadavek POST jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou podle parametru formatter. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="formatter">Formátování použité k serializaci hodnoty.</param>
+      <param name="mediaType">Autoritativní hodnota záhlaví Content-Type obsahu žádosti. Může být null. V takovém případě se použije výchozí typ obsahu parametru <paramref name="formatter" />.</param>
+      <param name="cancellationToken">Token zrušení, který mohou jiné objekty nebo vlákna používat k příjmu upozornění na zrušení.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.String)">
+      <summary> Odešle požadavek POST jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou podle parametru formatter. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="formatter">Formátování použité k serializaci hodnoty.</param>
+      <param name="mediaType">Autoritativní hodnota záhlaví Content-Type obsahu žádosti. Může být null. V takovém případě se použije výchozí typ obsahu parametru <paramref name="formatter" />.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.String,System.Threading.CancellationToken)">
+      <summary> Odešle požadavek POST jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou podle parametru formatter. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="formatter">Formátování použité k serializaci hodnoty.</param>
+      <param name="mediaType">Autoritativní hodnota záhlaví Content-Type obsahu žádosti. Může být null. V takovém případě se použije výchozí typ obsahu parametru <paramref name="formatter" />.</param>
+      <param name="cancellationToken">Token zrušení, který mohou jiné objekty nebo vlákna používat k příjmu upozornění na zrušení.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PostAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.Threading.CancellationToken)">
+      <summary> Odešle požadavek POST jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou podle parametru formatter. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="formatter">Formátování použité k serializaci hodnoty.</param>
+      <param name="cancellationToken">Token zrušení, který mohou jiné objekty nebo vlákna používat k příjmu upozornění na zrušení.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsJsonAsync``1(System.Net.Http.HttpClient,System.String,``0)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsJsonAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Threading.CancellationToken)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsJsonAsync``1(System.Net.Http.HttpClient,System.Uri,``0)">
+      <summary> Odešle požadavek PUT jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou jako JSON. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsJsonAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Threading.CancellationToken)">
+      <summary> Odešle požadavek PUT jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou jako JSON. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="cancellationToken">Token zrušení, který mohou jiné objekty nebo vlákna používat k příjmu upozornění na zrušení.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsXmlAsync``1(System.Net.Http.HttpClient,System.String,``0)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsXmlAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Threading.CancellationToken)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsXmlAsync``1(System.Net.Http.HttpClient,System.Uri,``0)">
+      <summary> Odešle požadavek PUT jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou jako XML. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsXmlAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Threading.CancellationToken)">
+      <summary> Odešle požadavek PUT jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou jako XML. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="cancellationToken">Token zrušení, který mohou jiné objekty nebo vlákna používat k příjmu upozornění na zrušení.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,System.Threading.CancellationToken)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.String)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.String,System.Threading.CancellationToken)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsync``1(System.Net.Http.HttpClient,System.String,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.Threading.CancellationToken)">
+      <typeparam name="T"></typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary> Odešle požadavek PUT jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou podle parametru formatter. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="formatter">Formátování použité k serializaci hodnoty.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,System.Threading.CancellationToken)">
+      <summary> Odešle požadavek PUT jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou podle parametru formatter. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="formatter">Formátování použité k serializaci hodnoty.</param>
+      <param name="mediaType">Autoritativní hodnota záhlaví Content-Type obsahu žádosti. Může být null. V takovém případě se použije výchozí typ obsahu parametru <paramref name="formatter" />.</param>
+      <param name="cancellationToken">Token zrušení, který mohou jiné objekty nebo vlákna používat k příjmu upozornění na zrušení.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.String)">
+      <summary> Odešle požadavek PUT jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou podle parametru formatter. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="formatter">Formátování použité k serializaci hodnoty.</param>
+      <param name="mediaType">Autoritativní hodnota záhlaví Content-Type obsahu žádosti. Může být null. V takovém případě se použije výchozí typ obsahu parametru <paramref name="formatter" />.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.String,System.Threading.CancellationToken)">
+      <summary> Odešle požadavek PUT jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou podle parametru formatter. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="formatter">Formátování použité k serializaci hodnoty.</param>
+      <param name="mediaType">Autoritativní hodnota záhlaví Content-Type obsahu žádosti. Může být null. V takovém případě se použije výchozí typ obsahu parametru <paramref name="formatter" />.</param>
+      <param name="cancellationToken">Token zrušení, který mohou jiné objekty nebo vlákna používat k příjmu upozornění na zrušení.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpClientExtensions.PutAsync``1(System.Net.Http.HttpClient,System.Uri,``0,System.Net.Http.Formatting.MediaTypeFormatter,System.Threading.CancellationToken)">
+      <summary> Odešle požadavek PUT jako asynchronní operaci na zadaný identifikátor URI s hodnotou danou parametrem value serializovanou podle parametru formatter. </summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="client">Klient použitý k vytvoření žádosti.</param>
+      <param name="requestUri">Identifikátor URI, na který je žádost odeslána.</param>
+      <param name="value">Hodnota, která bude umístěna do textu entity žádosti.</param>
+      <param name="formatter">Formátování použité k serializaci hodnoty.</param>
+      <param name="cancellationToken">Token zrušení, který mohou jiné objekty nebo vlákna používat k příjmu upozornění na zrušení.</param>
+      <typeparam name="T">Typ hodnoty.</typeparam>
+    </member>
+    <member name="T:System.Net.Http.HttpClientFactory">
+      <summary>Představuje objekt factory pro vytvoření nové instance položky <see cref="T:System.Net.Http.HttpClient" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.HttpClientFactory.Create(System.Net.Http.DelegatingHandler[])">
+      <summary>Vytvoří novou instanci položky <see cref="T:System.Net.Http.HttpClient" />.</summary>
+      <returns>Nová instance položky <see cref="T:System.Net.Http.HttpClient" />.</returns>
+      <param name="handlers">Seznam obslužné rutiny HTTP, která deleguje zpracování zpráv HTTP odpovědí na jinou obslužnou rutinu.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpClientFactory.Create(System.Net.Http.HttpMessageHandler,System.Net.Http.DelegatingHandler[])">
+      <summary>Vytvoří novou instanci položky <see cref="T:System.Net.Http.HttpClient" />.</summary>
+      <returns>Nová instance položky <see cref="T:System.Net.Http.HttpClient" />.</returns>
+      <param name="innerHandler">Vnitřní obslužná rutina, která je zodpovědná za zpracování zpráv odpovědí HTTP.</param>
+      <param name="handlers">Seznam obslužné rutiny HTTP, která deleguje zpracování zpráv HTTP odpovědí na jinou obslužnou rutinu.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpClientFactory.CreatePipeline(System.Net.Http.HttpMessageHandler,System.Collections.Generic.IEnumerable{System.Net.Http.DelegatingHandler})">
+      <summary>Vytvoří novou instanci položky <see cref="T:System.Net.Http.HttpClient" />, která by měla být zřetězena.</summary>
+      <returns>Nová instance položky <see cref="T:System.Net.Http.HttpClient" />, která by měla být zřetězena.</returns>
+      <param name="innerHandler">Vnitřní obslužná rutina, která je zodpovědná za zpracování zpráv odpovědí HTTP.</param>
+      <param name="handlers">Seznam obslužné rutiny HTTP, která deleguje zpracování zpráv HTTP odpovědí na jinou obslužnou rutinu.</param>
+    </member>
+    <member name="T:System.Net.Http.HttpContentExtensions">
+      <summary>Konkrétní rozšiřující metody, které umožňují čtení objektů se silným typem z instancí HttpContent.</summary>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync``1(System.Net.Http.HttpContent)">
+      <summary> Vrátí úlohu, která předá objekt zadaného typu &lt;typeparamref name="T" /&gt; z instance content. </summary>
+      <returns>Instance objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <typeparam name="T">Typ objektu určeného ke čtení.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync``1(System.Net.Http.HttpContent,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter})">
+      <summary> Vrátí úlohu, která předá objekt zadaného typu &lt;typeparamref name="T" /&gt; z instance content. </summary>
+      <returns>Instance objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <param name="formatters">Kolekce instancí MediaTypeFormatter, která má být použita.</param>
+      <typeparam name="T">Typ objektu určeného ke čtení.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync``1(System.Net.Http.HttpContent,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter},System.Net.Http.Formatting.IFormatterLogger)">
+      <summary> Vrátí úlohu, která předá objekt zadaného typu &lt;typeparamref name="T" /&gt; z instance content. </summary>
+      <returns>Instance objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <param name="formatters">Kolekce instancí MediaTypeFormatter, která má být použita.</param>
+      <param name="formatterLogger">Třída IFormatterLogger, do níž mají být protokolovány události.</param>
+      <typeparam name="T">Typ objektu určeného ke čtení.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync``1(System.Net.Http.HttpContent,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter},System.Net.Http.Formatting.IFormatterLogger,System.Threading.CancellationToken)">
+      <summary>Vrátí úlohu, která předá objekt zadaného typu z instance content.</summary>
+      <returns>Instance objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <param name="formatters">Kolekce instancí MediaTypeFormatter, která má být použita.</param>
+      <param name="formatterLogger">Třída IFormatterLogger, do níž mají být protokolovány události.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+      <typeparam name="T">Typ objektu určeného ke čtení.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync``1(System.Net.Http.HttpContent,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter},System.Threading.CancellationToken)">
+      <summary>Vrátí úlohu, která předá objekt zadaného typu z instance content.</summary>
+      <returns>Instance objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <param name="formatters">Kolekce instancí MediaTypeFormatter, která má být použita.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+      <typeparam name="T">Typ objektu určeného ke čtení.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync``1(System.Net.Http.HttpContent,System.Threading.CancellationToken)">
+      <summary>Vrátí úlohu, která předá objekt zadaného typu z instance content.</summary>
+      <returns>Instance objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+      <typeparam name="T">Typ objektu určeného ke čtení.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync(System.Net.Http.HttpContent,System.Type)">
+      <summary> Vrátí úlohu, která předá objekt zadaného typu z instance content. </summary>
+      <returns>Úloha, která předá instanci objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync(System.Net.Http.HttpContent,System.Type,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter})">
+      <summary> Vrátí úlohu, která předá objekt zadaného typu z instance content pomocí jednoho ze zadaných formátovacích modulů k deserializaci obsahu. </summary>
+      <returns>Instance objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="formatters">Kolekce instancí MediaTypeFormatter, která má být použita.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync(System.Net.Http.HttpContent,System.Type,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter},System.Net.Http.Formatting.IFormatterLogger)">
+      <summary> Vrátí úlohu, která předá objekt zadaného typu z instance content pomocí jednoho ze zadaných formátovacích modulů k deserializaci obsahu. </summary>
+      <returns>Instance objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="formatters">Kolekce instancí MediaTypeFormatter, která má být použita.</param>
+      <param name="formatterLogger">Třída IFormatterLogger, do níž mají být protokolovány události.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync(System.Net.Http.HttpContent,System.Type,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter},System.Net.Http.Formatting.IFormatterLogger,System.Threading.CancellationToken)">
+      <summary>Vrátí úlohu, která předá objekt zadaného typu z instance content pomocí jednoho ze zadaných formátovacích modulů k deserializaci obsahu.</summary>
+      <returns>Instance objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="formatters">Kolekce instancí MediaTypeFormatter, která má být použita.</param>
+      <param name="formatterLogger">Třída IFormatterLogger, do níž mají být protokolovány události.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync(System.Net.Http.HttpContent,System.Type,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter},System.Threading.CancellationToken)">
+      <summary>Vrátí úlohu, která předá objekt zadaného typu z instance content pomocí jednoho ze zadaných formátovacích modulů k deserializaci obsahu.</summary>
+      <returns>Instance objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="formatters">Kolekce instancí MediaTypeFormatter, která má být použita.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentExtensions.ReadAsAsync(System.Net.Http.HttpContent,System.Type,System.Threading.CancellationToken)">
+      <summary>Vrátí úlohu, která předá objekt zadaného typu z instance content pomocí jednoho ze zadaných formátovacích modulů k deserializaci obsahu.</summary>
+      <returns>Instance objektu zadaného typu.</returns>
+      <param name="content">Instance HttpContent, z níž má být provedeno čtení.</param>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+    </member>
+    <member name="T:System.Net.Http.HttpContentFormDataExtensions">
+      <summary>Rozšiřující metody pro čtení dat kódovaných adresou URL formuláře HTML z instancí <see cref="T:System.Net.Http.HttpContent" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.HttpContentFormDataExtensions.IsFormData(System.Net.Http.HttpContent)">
+      <summary>Určuje, zda zadaný obsah představuje data kódovaná adresou URL formuláře HTML.</summary>
+      <returns>Hodnota true, pokud zadaný obsah představuje data kódovaná adresou URL formuláře HTML, jinak hodnota false.</returns>
+      <param name="content">Obsah</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentFormDataExtensions.ReadAsFormDataAsync(System.Net.Http.HttpContent)">
+      <summary>Asynchronně čte data kódovaná adresou URL formuláře HTML z instance <see cref="T:System.Net.Http.HttpContent" /> a ukládá výsledky do objektu <see cref="T:System.Collections.Specialized.NameValueCollection" />.</summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="content">Obsah</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentFormDataExtensions.ReadAsFormDataAsync(System.Net.Http.HttpContent,System.Threading.CancellationToken)">
+      <summary>Asynchronně čte data kódovaná adresou URL formuláře HTML z instance <see cref="T:System.Net.Http.HttpContent" /> a ukládá výsledky do objektu <see cref="T:System.Collections.Specialized.NameValueCollection" />.</summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="content">Obsah</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+    </member>
+    <member name="T:System.Net.Http.HttpContentMessageExtensions">
+      <summary>Poskytuje rozšiřující metody sloužící ke čtení entit <see cref="T:System.Net.Http.HttpRequestMessage" /> a <see cref="T:System.Net.Http.HttpResponseMessage" /> z instancí <see cref="T:System.Net.Http.HttpContent" />. </summary>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.IsHttpRequestMessageContent(System.Net.Http.HttpContent)">
+      <summary>Určuje, zda zadaný obsah je obsahem zprávy požadavku HTTP.</summary>
+      <returns>Pokud zadaný obsah je obsahem zprávy HTTP, vrátí hodnotu true; jinak vrátí hodnotu false.</returns>
+      <param name="content">Kontrolovaný obsah</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.IsHttpResponseMessageContent(System.Net.Http.HttpContent)">
+      <summary>Určuje, zda zadaný obsah je obsahem zprávy odpovědi HTTP.</summary>
+      <returns>Pokud zadaný obsah je obsahem zprávy HTTP, vrátí hodnotu true; jinak vrátí hodnotu false.</returns>
+      <param name="content">Kontrolovaný obsah</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpRequestMessageAsync(System.Net.Http.HttpContent)">
+      <summary> Přečte instanci <see cref="T:System.Net.Http.HttpContent" /> jako entitu <see cref="T:System.Net.Http.HttpRequestMessage" />. </summary>
+      <returns>Analyzovaná instance <see cref="T:System.Net.Http.HttpRequestMessage" />.</returns>
+      <param name="content">Obsah, který má být čten.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpRequestMessageAsync(System.Net.Http.HttpContent,System.String)">
+      <summary> Přečte instanci <see cref="T:System.Net.Http.HttpContent" /> jako entitu <see cref="T:System.Net.Http.HttpRequestMessage" />. </summary>
+      <returns>Analyzovaná instance <see cref="T:System.Net.Http.HttpRequestMessage" />.</returns>
+      <param name="content">Obsah, který má být čten.</param>
+      <param name="uriScheme">Schéma URI, které bude použito pro identifikátor URI žádosti.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpRequestMessageAsync(System.Net.Http.HttpContent,System.String,System.Int32)">
+      <summary> Přečte instanci <see cref="T:System.Net.Http.HttpContent" /> jako entitu <see cref="T:System.Net.Http.HttpRequestMessage" />. </summary>
+      <returns>Analyzovaná instance <see cref="T:System.Net.Http.HttpRequestMessage" />.</returns>
+      <param name="content">Obsah, který má být čten.</param>
+      <param name="uriScheme">Schéma URI, které bude použito pro identifikátor URI žádosti.</param>
+      <param name="bufferSize">Velikost vyrovnávací paměti</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpRequestMessageAsync(System.Net.Http.HttpContent,System.String,System.Int32,System.Int32)">
+      <summary>Přečte instanci <see cref="T:System.Net.Http.HttpContent" /> jako entitu <see cref="T:System.Net.Http.HttpRequestMessage" />.</summary>
+      <returns>Analyzovaná instance <see cref="T:System.Net.Http.HttpRequestMessage" />.</returns>
+      <param name="content">Obsah, který má být čten.</param>
+      <param name="uriScheme">Schéma URI, které bude použito pro identifikátor URI žádosti.</param>
+      <param name="bufferSize">Velikost vyrovnávací paměti</param>
+      <param name="maxHeaderSize">Maximální délka řetězce hlavičky protokolu HTTP.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpRequestMessageAsync(System.Net.Http.HttpContent,System.String,System.Int32,System.Int32,System.Threading.CancellationToken)"></member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpRequestMessageAsync(System.Net.Http.HttpContent,System.String,System.Int32,System.Threading.CancellationToken)"></member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpRequestMessageAsync(System.Net.Http.HttpContent,System.String,System.Threading.CancellationToken)"></member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpRequestMessageAsync(System.Net.Http.HttpContent,System.Threading.CancellationToken)"></member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpResponseMessageAsync(System.Net.Http.HttpContent)">
+      <summary> Přečte instanci <see cref="T:System.Net.Http.HttpContent" /> jako entitu <see cref="T:System.Net.Http.HttpResponseMessage" />. </summary>
+      <returns>Analyzovaná instance <see cref="T:System.Net.Http.HttpResponseMessage" />.</returns>
+      <param name="content">Obsah, který má být čten.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpResponseMessageAsync(System.Net.Http.HttpContent,System.Int32)">
+      <summary>Přečte instanci <see cref="T:System.Net.Http.HttpContent" /> jako entitu <see cref="T:System.Net.Http.HttpResponseMessage" />. </summary>
+      <returns>Analyzovaná instance <see cref="T:System.Net.Http.HttpResponseMessage" />.</returns>
+      <param name="content">Obsah, který má být čten.</param>
+      <param name="bufferSize">Velikost vyrovnávací paměti</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpResponseMessageAsync(System.Net.Http.HttpContent,System.Int32,System.Int32)">
+      <summary>Přečte instanci <see cref="T:System.Net.Http.HttpContent" /> jako entitu <see cref="T:System.Net.Http.HttpResponseMessage" />.</summary>
+      <returns>Analyzovaná instance <see cref="T:System.Net.Http.HttpResponseMessage" />.</returns>
+      <param name="content">Obsah, který má být čten.</param>
+      <param name="bufferSize">Velikost vyrovnávací paměti</param>
+      <param name="maxHeaderSize">Maximální délka řetězce hlavičky protokolu HTTP.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpResponseMessageAsync(System.Net.Http.HttpContent,System.Int32,System.Int32,System.Threading.CancellationToken)"></member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpResponseMessageAsync(System.Net.Http.HttpContent,System.Int32,System.Threading.CancellationToken)"></member>
+    <member name="M:System.Net.Http.HttpContentMessageExtensions.ReadAsHttpResponseMessageAsync(System.Net.Http.HttpContent,System.Threading.CancellationToken)"></member>
+    <member name="T:System.Net.Http.HttpContentMultipartExtensions">
+      <summary>Tyto rozšiřující metody jsou určeny ke čtení entit vícedílných zpráv standardu MIME z instancí <see cref="T:System.Net.Http.HttpContent" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMultipartExtensions.IsMimeMultipartContent(System.Net.Http.HttpContent)">
+      <summary>Určuje, zda zadaný obsah je obsahem vícedílné zprávy standardu MIME.</summary>
+      <returns>Pokud zadaný obsah je obsahem vícedílné zprávy standardu MIME, vrátí hodnotu true; jinak vrátí hodnotu false.</returns>
+      <param name="content">Obsah</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMultipartExtensions.IsMimeMultipartContent(System.Net.Http.HttpContent,System.String)">
+      <summary>Určuje, zda zadaný obsah je obsahem vícedílné zprávy standardu MIME se zadaným podtypem.</summary>
+      <returns>Pokud zadaný obsah je obsahem vícedílné zprávy standardu MIME se zadaným podtypem, vrátí hodnotu true; jinak vrátí hodnotu false.</returns>
+      <param name="content">Obsah</param>
+      <param name="subtype">Podtyp vícedílné zprávy standardu MIME, jemuž musí hodnota odpovídat.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMultipartExtensions.ReadAsMultipartAsync(System.Net.Http.HttpContent)">
+      <summary>Načte všechny části textu ve vícedílné zprávě standardu MIME a jako výsledek vytvoří sadu instancí <see cref="T:System.Net.Http.HttpContent" />.</summary>
+      <returns>Odkaz <see cref="T:System.Threading.Tasks.Task`1" /> představující úlohy získání kolekce instancí <see cref="T:System.Net.Http.HttpContent" />, kde jednotlivé instance představují části textu.</returns>
+      <param name="content">Existující instance <see cref="T:System.Net.Http.HttpContent" />, která bude použita pro obsah objektu.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMultipartExtensions.ReadAsMultipartAsync(System.Net.Http.HttpContent,System.Threading.CancellationToken)">
+      <summary>Načte všechny části textu ve vícedílné zprávě standardu MIME a jako výsledek vytvoří sadu instancí <see cref="T:System.Net.Http.HttpContent" />.</summary>
+      <returns>Odkaz <see cref="T:System.Threading.Tasks.Task`1" /> představující úlohy získání kolekce instancí <see cref="T:System.Net.Http.HttpContent" />, kde jednotlivé instance představují části textu.</returns>
+      <param name="content">Existující instance <see cref="T:System.Net.Http.HttpContent" />, která bude použita pro obsah objektu.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMultipartExtensions.ReadAsMultipartAsync``1(System.Net.Http.HttpContent,``0)">
+      <summary>Načte všechny části textu ve vícedílné zprávě standardu MIME a jako výsledek vytvoří sadu instancí <see cref="T:System.Net.Http.HttpContent" />, u kterých je pomocí instance streamProvider určeno, kde je zapsán obsah jednotlivých částí textu.</summary>
+      <returns>Odkaz <see cref="T:System.Threading.Tasks.Task`1" /> představující úlohy získání kolekce instancí <see cref="T:System.Net.Http.HttpContent" />, kde jednotlivé instance představují části textu.</returns>
+      <param name="content">Existující instance <see cref="T:System.Net.Http.HttpContent" />, která bude použita pro obsah objektu.</param>
+      <param name="streamProvider">Zprostředkovatel datového proudu, který poskytuje výstupní datové proudy pro zápis částí textu v průběhu analýzy.</param>
+      <typeparam name="T">Typ zprávy MIME s více částmi.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMultipartExtensions.ReadAsMultipartAsync``1(System.Net.Http.HttpContent,``0,System.Int32)">
+      <summary>Načte všechny části textu ve vícedílné zprávě standardu MIME a jako výsledek vytvoří sadu instancí <see cref="T:System.Net.Http.HttpContent" />, u kterých je pomocí instance streamProvider určeno, kde je zapsán obsah jednotlivých částí textu, a parametr bufferSize určuje velikost vyrovnávací paměti pro čtení.</summary>
+      <returns>Odkaz <see cref="T:System.Threading.Tasks.Task`1" /> představující úlohy získání kolekce instancí <see cref="T:System.Net.Http.HttpContent" />, kde jednotlivé instance představují části textu.</returns>
+      <param name="content">Existující instance <see cref="T:System.Net.Http.HttpContent" />, která bude použita pro obsah objektu.</param>
+      <param name="streamProvider">Zprostředkovatel datového proudu, který poskytuje výstupní datové proudy pro zápis částí textu v průběhu analýzy.</param>
+      <param name="bufferSize">Velikost vyrovnávací paměti používané ke čtení obsahu.</param>
+      <typeparam name="T">Typ zprávy MIME s více částmi.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMultipartExtensions.ReadAsMultipartAsync``1(System.Net.Http.HttpContent,``0,System.Int32,System.Threading.CancellationToken)">
+      <summary>Načte všechny části textu ve vícedílné zprávě standardu MIME a jako výsledek vytvoří sadu instancí <see cref="T:System.Net.Http.HttpContent" />, u kterých je pomocí instance streamProvider určeno, kde je zapsán obsah jednotlivých částí textu, a parametr bufferSize určuje velikost vyrovnávací paměti pro čtení.</summary>
+      <returns>Odkaz <see cref="T:System.Threading.Tasks.Task`1" /> představující úlohy získání kolekce instancí <see cref="T:System.Net.Http.HttpContent" />, kde jednotlivé instance představují části textu.</returns>
+      <param name="content">Existující instance <see cref="T:System.Net.Http.HttpContent" />, která bude použita pro obsah objektu.</param>
+      <param name="streamProvider">Zprostředkovatel datového proudu, který poskytuje výstupní datové proudy pro zápis částí textu v průběhu analýzy.</param>
+      <param name="bufferSize">Velikost vyrovnávací paměti používané ke čtení obsahu.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+      <typeparam name="T">Typ zprávy MIME s více částmi.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.HttpContentMultipartExtensions.ReadAsMultipartAsync``1(System.Net.Http.HttpContent,``0,System.Threading.CancellationToken)">
+      <summary>Načte všechny části textu ve vícedílné zprávě standardu MIME a jako výsledek vytvoří sadu instancí <see cref="T:System.Net.Http.HttpContent" />, u kterých je pomocí instance streamProvider určeno, kde je zapsán obsah jednotlivých částí textu.</summary>
+      <returns>Odkaz <see cref="T:System.Threading.Tasks.Task`1" /> představující úlohy získání kolekce instancí <see cref="T:System.Net.Http.HttpContent" />, kde jednotlivé instance představují části textu.</returns>
+      <param name="content">Existující instance <see cref="T:System.Net.Http.HttpContent" />, která bude použita pro obsah objektu.</param>
+      <param name="streamProvider">Zprostředkovatel datového proudu, který poskytuje výstupní datové proudy pro zápis částí textu v průběhu analýzy.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+      <typeparam name="T">Typ zprávy MIME s více částmi.</typeparam>
+    </member>
+    <member name="T:System.Net.Http.HttpMessageContent">
+      <summary> Tato třída odvozená z třídy <see cref="T:System.Net.Http.HttpContent" /> umožňuje zapouzdřit instance <see cref="P:System.Net.Http.HttpMessageContent.HttpResponseMessage" /> nebo <see cref="P:System.Net.Http.HttpMessageContent.HttpRequestMessage" /> jako entity s typem média „application/http“. </summary>
+    </member>
+    <member name="M:System.Net.Http.HttpMessageContent.#ctor(System.Net.Http.HttpRequestMessage)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.HttpMessageContent" /> zapouzdřením instance <see cref="P:System.Net.Http.HttpMessageContent.HttpRequestMessage" />. </summary>
+      <param name="httpRequest">Instance <see cref="P:System.Net.Http.HttpMessageContent.HttpResponseMessage" />, která má být zapouzdřena.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpMessageContent.#ctor(System.Net.Http.HttpResponseMessage)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.HttpMessageContent" /> zapouzdřením instance <see cref="P:System.Net.Http.HttpMessageContent.HttpResponseMessage" />. </summary>
+      <param name="httpResponse">Instance <see cref="P:System.Net.Http.HttpMessageContent.HttpResponseMessage" />, která má být zapouzdřena.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpMessageContent.Dispose(System.Boolean)">
+      <summary> Uvolnění nespravovaných a (volitelně) spravovaných prostředků </summary>
+      <param name="disposing">Hodnota true slouží k uvolnění spravovaných i nespravovaných prostředků; hodnota false slouží k uvolnění pouze nespravovaných prostředků.</param>
+    </member>
+    <member name="P:System.Net.Http.HttpMessageContent.HttpRequestMessage">
+      <summary> Získá zprávu požadavku HTTP. </summary>
+    </member>
+    <member name="P:System.Net.Http.HttpMessageContent.HttpResponseMessage">
+      <summary> Získá zprávu odpovědi HTTP. </summary>
+    </member>
+    <member name="M:System.Net.Http.HttpMessageContent.SerializeToStreamAsync(System.IO.Stream,System.Net.TransportContext)">
+      <summary> Asynchronně serializuje obsah objektu s daným datovým proudem. </summary>
+      <returns>Instance <see cref="T:System.Threading.Tasks.Task" />, která asynchronně serializuje obsah objektu.</returns>
+      <param name="stream">Třída <see cref="T:System.IO.Stream" />, do níž má být proveden zápis.</param>
+      <param name="context">Přiřazená třída <see cref="T:System.Net.TransportContext" />.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpMessageContent.TryComputeLength(System.Int64@)">
+      <summary> Je-li to možné, vypočítá délku datového proudu. </summary>
+      <returns>Vrátí hodnotu true v případě vypočtení délky; jinak vrátí hodnotu false.</returns>
+      <param name="length">Vypočtená délka datového proudu.</param>
+    </member>
+    <member name="T:System.Net.Http.HttpRequestHeadersExtensions">
+      <summary>Poskytuje rozšiřující metody pro třídu <see cref="T:System.Net.Http.Headers.HttpRequestHeaders" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.HttpRequestHeadersExtensions.GetCookies(System.Net.Http.Headers.HttpRequestHeaders)">
+      <summary>Získá všechny hlavičky souborů cookie přítomné v žádosti.</summary>
+      <returns>Kolekce instancí <see cref="T:System.Net.Http.Headers.CookieHeaderValue" /></returns>
+      <param name="headers">Hlavičky požadavku.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpRequestHeadersExtensions.GetCookies(System.Net.Http.Headers.HttpRequestHeaders,System.String)">
+      <summary>Získá hlavičky souboru cookie přítomné v požadavku, který obsahuje stav souboru cookie s názvem odpovídajícím zadané hodnotě.</summary>
+      <returns>Kolekce instancí <see cref="T:System.Net.Http.Headers.CookieHeaderValue" /></returns>
+      <param name="headers">Hlavičky požadavku.</param>
+      <param name="name">Název stavu souboru cookie k porovnání.</param>
+    </member>
+    <member name="M:System.Net.Http.HttpRequestMessageExtensions.CreateResponse(System.Net.Http.HttpRequestMessage)"></member>
+    <member name="M:System.Net.Http.HttpRequestMessageExtensions.CreateResponse(System.Net.Http.HttpRequestMessage,System.Net.HttpStatusCode)"></member>
+    <member name="T:System.Net.Http.HttpResponseHeadersExtensions">
+      <summary> Poskytuje rozšiřující metody pro třídu <see cref="T:System.Net.Http.Headers.HttpResponseHeaders" />. </summary>
+    </member>
+    <member name="M:System.Net.Http.HttpResponseHeadersExtensions.AddCookies(System.Net.Http.Headers.HttpResponseHeaders,System.Collections.Generic.IEnumerable{System.Net.Http.Headers.CookieHeaderValue})">
+      <summary> Přidá do odpovědi soubory cookie. Každá hlavička Set-Cookie je vyjádřena jako jedna instance třídy <see cref="T:System.Net.Http.Headers.CookieHeaderValue" />. Třída <see cref="T:System.Net.Http.Headers.CookieHeaderValue" /> obsahuje informace o doméně, cestu a další informace o souboru cookie a jednu nebo více instancí parametru <see cref="T:System.Net.Http.Headers.CookieState" />. Každá instance třídy <see cref="T:System.Net.Http.Headers.CookieState" /> obsahuje název souboru cookie a jakýkoli stav souboru cookie spojený s tímto názvem. Tento stav má formu třídy <see cref="T:System.Collections.Specialized.NameValueCollection" />, která je v kabelovém připojení kódovaná jako data kódovaná adresou URL formuláře HTML.  Tento zápis umožňuje realizaci více přidružených souborů cookie ve stejné hlavičce Cookie a současně stále zajišťuje oddělení mezi stavy jednotlivých souborů cookie. Příklad hlavičky Cookie je uveden níže. V tomto příkladu jsou uvedeny dvě třídy <see cref="T:System.Net.Http.Headers.CookieState" /> nazvané state1 a state2. Každý stav souboru cookie navíc obsahuje dvě dvojice názvu a hodnoty (name1/value1 a name2/value2) a (name3/value3 a name4/value4). &lt;kód&gt; Set-Cookie: state1:name1=value1&amp;amp;name2=value2; state2:name3=value3&amp;amp;name4=value4; domain=domain1; path=path1; &lt;/code&gt;</summary>
+      <param name="headers">Hlavičky odpovědi</param>
+      <param name="cookies">Hodnoty souborů cookie, které se mají přidat do odpovědi.</param>
+    </member>
+    <member name="T:System.Net.Http.InvalidByteRangeException">
+      <summary>Výjimka vyvolaná objektem <see cref="T:System.Net.Http.ByteRangeStreamContent" /> v případě, že se žádný z požadovaných rozsahů nepřekrývá s aktuálním rozšířením vybraného prostředku.Aktuální rozšíření vybraného prostředku je indikováno vlastností ContentRange.</summary>
+    </member>
+    <member name="M:System.Net.Http.InvalidByteRangeException.#ctor(System.Net.Http.Headers.ContentRangeHeaderValue)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.InvalidByteRangeException" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.InvalidByteRangeException.#ctor(System.Net.Http.Headers.ContentRangeHeaderValue,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.InvalidByteRangeException" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.InvalidByteRangeException.#ctor(System.Net.Http.Headers.ContentRangeHeaderValue,System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.InvalidByteRangeException" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.InvalidByteRangeException.#ctor(System.Net.Http.Headers.ContentRangeHeaderValue,System.String,System.Exception)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.InvalidByteRangeException" />.</summary>
+    </member>
+    <member name="P:System.Net.Http.InvalidByteRangeException.ContentRange">
+      <summary> Aktuální rozšíření vybraného prostředku indikované v rámci pole hlavičky ContentRange. </summary>
+    </member>
+    <member name="T:System.Net.Http.MultipartFileData">
+      <summary>Představuje data souboru s více částmi.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartFileData.#ctor(System.Net.Http.Headers.HttpContentHeaders,System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.MultipartFileData" />.</summary>
+      <param name="headers">Hlavičky dat souboru s více částmi.</param>
+      <param name="localFileName">Název místního souboru pro data souboru s více částmi.</param>
+    </member>
+    <member name="P:System.Net.Http.MultipartFileData.Headers">
+      <summary>Získá nebo nastaví hlavičky dat souboru s více částmi.</summary>
+      <returns>Hlavičky dat souboru s více částmi.</returns>
+    </member>
+    <member name="P:System.Net.Http.MultipartFileData.LocalFileName">
+      <summary>Získá nebo nastaví název místního souboru pro data souboru s více částmi.</summary>
+      <returns>Název místního souboru pro data souboru s více částmi.</returns>
+    </member>
+    <member name="T:System.Net.Http.MultipartFileStreamProvider">
+      <summary>Představuje položku <see cref="T:System.Net.Http.IMultipartStreamProvider" /> vhodnou k zápisu jednotlivých částí textu standardu MIME tvořících vícedílnou zprávu standardu MIME do souboru pomocí třídy <see cref="T:System.IO.FileStream" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartFileStreamProvider.#ctor(System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.MultipartFileStreamProvider" />.</summary>
+      <param name="rootPath">Kořenová cesta k umístění, kam je zapisován obsah částí textu vícedílné zprávy standardu MIME.</param>
+    </member>
+    <member name="M:System.Net.Http.MultipartFileStreamProvider.#ctor(System.String,System.Int32)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.MultipartFileStreamProvider" />.</summary>
+      <param name="rootPath">Kořenová cesta k umístění, kam je zapisován obsah částí textu vícedílné zprávy standardu MIME.</param>
+      <param name="bufferSize">Počet bajtů uložených do vyrovnávací paměti při zápisu do souboru.</param>
+    </member>
+    <member name="P:System.Net.Http.MultipartFileStreamProvider.BufferSize">
+      <summary>Získá nebo nastaví počet bajtů uložených do vyrovnávací paměti při zápisu do souboru.</summary>
+      <returns>Počet bajtů uložených do vyrovnávací paměti při zápisu do souboru.</returns>
+    </member>
+    <member name="P:System.Net.Http.MultipartFileStreamProvider.FileData">
+      <summary>Získá nebo nastaví data vícedílného souboru.</summary>
+      <returns>Data vícedílného souboru.</returns>
+    </member>
+    <member name="M:System.Net.Http.MultipartFileStreamProvider.GetLocalFileName(System.Net.Http.Headers.HttpContentHeaders)">
+      <summary>Získá název místního souboru, který bude sloučen s kořenovou cestou za účelem vytvoření absolutního názvu souboru, v němž bude uložen obsah aktuální části textu standardu MIME.</summary>
+      <returns>Relativní název souboru bez komponent cesty.</returns>
+      <param name="headers">Hlavičky aktuální části textu standardu MIME.</param>
+    </member>
+    <member name="M:System.Net.Http.MultipartFileStreamProvider.GetStream(System.Net.Http.HttpContent,System.Net.Http.Headers.HttpContentHeaders)">
+      <summary>Získá instanci datového proudu, do níž je zapsána část textu zprávy.</summary>
+      <returns>Instance <see cref="T:System.IO.Stream" />, do níž je zapsána část textu zprávy.</returns>
+      <param name="parent">Obsah protokolu HTTP.</param>
+      <param name="headers">Pole hlavičky popisující část textu.</param>
+    </member>
+    <member name="P:System.Net.Http.MultipartFileStreamProvider.RootPath">
+      <summary>Získá nebo nastaví kořenovou cesta k umístění, kam je zapisován obsah částí textu vícedílné zprávy standardu MIME.</summary>
+      <returns>Kořenová cesta k umístění, kam je zapisován obsah částí textu vícedílné zprávy standardu MIME.</returns>
+    </member>
+    <member name="T:System.Net.Http.MultipartFormDataRemoteStreamProvider">
+      <summary>Implementace rozhraní <see cref="T:System.Net.Http.MultipartStreamProvider" /> vhodná pro použití při nahrávání souborů ve formátu HTML za účelem zápisu obsahu souboru do vzdáleného úložiště <see cref="T:System.IO.Stream" />.Zprostředkovatel datového proudu čte pole hlavičky Content-Disposition a určuje výstupní vzdálené úložiště <see cref="T:System.IO.Stream" /> na základě přítomnosti parametru filename.Pokud je v poli hlavičky Content-Disposition přítomný parametr filename, část textu se zapíše do vzdáleného úložiště <see cref="T:System.IO.Stream" /> poskytovaného metodou <see cref="M:System.Net.Http.MultipartFormDataRemoteStreamProvider.GetRemoteStream(System.Net.Http.HttpContent,System.Net.Http.Headers.HttpContentHeaders)" />.V opačném případě se zapíše do úložiště <see cref="T:System.IO.MemoryStream" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartFormDataRemoteStreamProvider.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.MultipartFormDataRemoteStreamProvider" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartFormDataRemoteStreamProvider.ExecutePostProcessingAsync">
+      <summary>Čte obsah nepocházející ze souborů jako data formuláře.</summary>
+      <returns>Řetězec <see cref="T:System.Threading.Tasks.Task" /> představující následné zpracování.</returns>
+    </member>
+    <member name="M:System.Net.Http.MultipartFormDataRemoteStreamProvider.ExecutePostProcessingAsync(System.Threading.CancellationToken)">
+      <summary>Čte obsah nepocházející ze souborů jako data formuláře.</summary>
+      <returns>Řetězec <see cref="T:System.Threading.Tasks.Task" /> představující následné zpracování.</returns>
+      <param name="cancellationToken">Token pro monitorování požadavků na zrušení.</param>
+    </member>
+    <member name="P:System.Net.Http.MultipartFormDataRemoteStreamProvider.FileData">
+      <summary>Získá kolekci dat souboru předanou v rámci dat vícedílného formuláře.</summary>
+    </member>
+    <member name="P:System.Net.Http.MultipartFormDataRemoteStreamProvider.FormData">
+      <summary>Získá kolekci <see cref="T:System.Collections.Specialized.NameValueCollection" /> dat formuláře předanou v rámci dat vícedílného formuláře.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartFormDataRemoteStreamProvider.GetRemoteStream(System.Net.Http.HttpContent,System.Net.Http.Headers.HttpContentHeaders)">
+      <summary>Poskytuje položku <see cref="T:System.Net.Http.RemoteStreamInfo" /> pro metodu <see cref="M:System.Net.Http.MultipartFormDataRemoteStreamProvider.GetStream(System.Net.Http.HttpContent,System.Net.Http.Headers.HttpContentHeaders)" />.Pokud chcete zadat vzdálený datový proud, do kterého se mají data zapsat, přepište tuto metodu.</summary>
+      <returns>Výsledek určující vzdálený datový proud, do kterého se soubor zapíše, a umístění, které k souboru umožňuje přístup.Nesmí mít hodnotu null a datový proud musí umožňovat zápis.</returns>
+      <param name="parent">Nadřazená vícedílná instance typu MIME <see cref="T:System.Net.Http.HttpContent" />.</param>
+      <param name="headers">Pole hlavičky popisující obsah části textu.</param>
+    </member>
+    <member name="M:System.Net.Http.MultipartFormDataRemoteStreamProvider.GetStream(System.Net.Http.HttpContent,System.Net.Http.Headers.HttpContentHeaders)"></member>
+    <member name="T:System.Net.Http.MultipartFormDataStreamProvider">
+      <summary>Představuje rozhraní <see cref="T:System.Net.Http.IMultipartStreamProvider" /> vhodné pro použití při nahrávání souborů ve formátu HTML za účelem zápisu obsahu souboru do třídy <see cref="T:System.IO.FileStream" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartFormDataStreamProvider.#ctor(System.String)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.MultipartFormDataStreamProvider" />. </summary>
+      <param name="rootPath">Kořenová cesta k umístění, kam je zapisován obsah částí textu vícedílné zprávy standardu MIME.</param>
+    </member>
+    <member name="M:System.Net.Http.MultipartFormDataStreamProvider.#ctor(System.String,System.Int32)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.MultipartFormDataStreamProvider" />.</summary>
+      <param name="rootPath">Kořenová cesta k umístění, kam je zapisován obsah částí textu vícedílné zprávy standardu MIME.</param>
+      <param name="bufferSize">Počet bajtů uložených do vyrovnávací paměti při zápisu do souboru.</param>
+    </member>
+    <member name="M:System.Net.Http.MultipartFormDataStreamProvider.ExecutePostProcessingAsync">
+      <summary>Čte obsah nepocházející ze souborů jako data formuláře.</summary>
+      <returns>Úloha představující asynchronní operaci.</returns>
+    </member>
+    <member name="M:System.Net.Http.MultipartFormDataStreamProvider.ExecutePostProcessingAsync(System.Threading.CancellationToken)"></member>
+    <member name="P:System.Net.Http.MultipartFormDataStreamProvider.FormData">
+      <summary>Získá kolekci <see cref="T:System.Collections.Specialized.NameValueCollection" /> dat formuláře předanou v rámci dat vícedílného formuláře.</summary>
+      <returns>
+        <see cref="T:System.Collections.Specialized.NameValueCollection" /> dat formuláře.</returns>
+    </member>
+    <member name="M:System.Net.Http.MultipartFormDataStreamProvider.GetStream(System.Net.Http.HttpContent,System.Net.Http.Headers.HttpContentHeaders)">
+      <summary>Získá instanci streamování, do níž je zapsána část textu zprávy.</summary>
+      <returns>Instance <see cref="T:System.IO.Stream" />, do níž je zapsána část textu zprávy.</returns>
+      <param name="parent">Obsah HTTP obsahující tuto část textu.</param>
+      <param name="headers">Pole hlavičky popisující část textu.</param>
+    </member>
+    <member name="T:System.Net.Http.MultipartMemoryStreamProvider">
+      <summary>Představuje zprostředkovatele datového proudu paměti vícedílných zpráv.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartMemoryStreamProvider.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.MultipartMemoryStreamProvider" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartMemoryStreamProvider.GetStream(System.Net.Http.HttpContent,System.Net.Http.Headers.HttpContentHeaders)">
+      <summary>Vrátí položku <see cref="T:System.IO.Stream" /> pro zprostředkovatele <see cref="T:System.Net.Http.MultipartMemoryStreamProvider" />.</summary>
+      <returns>
+        <see cref="T:System.IO.Stream" /> pro daný objekt <see cref="T:System.Net.Http.MultipartMemoryStreamProvider" />.</returns>
+      <param name="parent">Objekt <see cref="T:System.Net.Http.HttpContent" />.</param>
+      <param name="headers">Záhlaví obsahu protokolu HTTP.</param>
+    </member>
+    <member name="T:System.Net.Http.MultipartRelatedStreamProvider">
+      <summary>Představuje poskytovatele vícenásobného datového proudu souvisejícího se souborem s více částmi.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartRelatedStreamProvider.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.MultipartRelatedStreamProvider" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartRelatedStreamProvider.GetStream(System.Net.Http.HttpContent,System.Net.Http.Headers.HttpContentHeaders)">
+      <summary>Získá související datový proud pro poskytovatele.</summary>
+      <returns>Záhlaví obsahu</returns>
+      <param name="parent">Nadřazený obsah.</param>
+      <param name="headers">Záhlaví obsahu protokolu HTTP.</param>
+    </member>
+    <member name="P:System.Net.Http.MultipartRelatedStreamProvider.RootContent">
+      <summary>Získá kořenový obsah poskytovatele <see cref="T:System.Net.Http.MultipartRelatedStreamProvider" />.</summary>
+      <returns>Kořenový obsah poskytovatele <see cref="T:System.Net.Http.MultipartRelatedStreamProvider" />.</returns>
+    </member>
+    <member name="T:System.Net.Http.MultipartRemoteFileData">
+      <summary>Reprezentuje data vícedílného souboru pro vzdálené úložiště.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartRemoteFileData.#ctor(System.Net.Http.Headers.HttpContentHeaders,System.String,System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.MultipartRemoteFileData" />.</summary>
+      <param name="headers">Hlavičky dat souboru s více částmi.</param>
+      <param name="location">Umístění vzdáleného souboru.</param>
+      <param name="fileName">Název vzdáleného souboru.</param>
+    </member>
+    <member name="P:System.Net.Http.MultipartRemoteFileData.FileName">
+      <summary>Získá název vzdáleného souboru.</summary>
+    </member>
+    <member name="P:System.Net.Http.MultipartRemoteFileData.Headers">
+      <summary>Získá hlavičky dat vícedílného souboru.</summary>
+    </member>
+    <member name="P:System.Net.Http.MultipartRemoteFileData.Location">
+      <summary>Získá umístění vzdáleného souboru.</summary>
+    </member>
+    <member name="T:System.Net.Http.MultipartStreamProvider">
+      <summary>Představuje zprostředkovatele datového proudu, který kontroluje hlavičky zprostředkované analyzátorem vícedílných zpráv standardu MIME v rámci metod rozšíření vícedílných zpráv standardu MIME (viz <see cref="T:System.Net.Http.HttpContentMultipartExtensions" />) a určuje, jaký typ datového proudu má být vrácen pro část textu, do nějž má být proveden zápis.</summary>
+    </member>
+    <member name="M:System.Net.Http.MultipartStreamProvider.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.MultipartStreamProvider" />.</summary>
+    </member>
+    <member name="P:System.Net.Http.MultipartStreamProvider.Contents">
+      <summary>Získá nebo nastaví obsah pro daný objekt <see cref="T:System.Net.Http.MultipartStreamProvider" />.</summary>
+      <returns>Obsah tohoto objektu <see cref="T:System.Net.Http.MultipartStreamProvider" />.</returns>
+    </member>
+    <member name="M:System.Net.Http.MultipartStreamProvider.ExecutePostProcessingAsync">
+      <summary>Provede operaci následného zpracování pro tento objekt <see cref="T:System.Net.Http.MultipartStreamProvider" />.</summary>
+      <returns>Asynchronní úloha pro tuto operaci.</returns>
+    </member>
+    <member name="M:System.Net.Http.MultipartStreamProvider.ExecutePostProcessingAsync(System.Threading.CancellationToken)">
+      <summary>Provede operaci následného zpracování pro tento objekt <see cref="T:System.Net.Http.MultipartStreamProvider" />.</summary>
+      <returns>Asynchronní úloha pro tuto operaci.</returns>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+    </member>
+    <member name="M:System.Net.Http.MultipartStreamProvider.GetStream(System.Net.Http.HttpContent,System.Net.Http.Headers.HttpContentHeaders)">
+      <summary>Načte datový proud, do kterého má být zapsána část textu.Tato metoda je volána po analýze části textu vícedílných zpráv standardu MIME.</summary>
+      <returns>Instance <see cref="T:System.IO.Stream" />, do níž je zapsána část textu zprávy.</returns>
+      <param name="parent">Obsah protokolu HTTP.</param>
+      <param name="headers">Pole hlavičky popisující část textu.</param>
+    </member>
+    <member name="T:System.Net.Http.ObjectContent">
+      <summary> Obsahuje hodnotu a jí přidruženou třídu <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />, která bude použita k serializaci hodnoty při zápisu tohoto obsahu. </summary>
+    </member>
+    <member name="M:System.Net.Http.ObjectContent.#ctor(System.Type,System.Object,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.ObjectContent" />.</summary>
+      <param name="type">Typ objektů, které bude tato instance obsahovat.</param>
+      <param name="value">Hodnota objektu, který bude tato instance obsahovat.</param>
+      <param name="formatter">Formátování, které bude použito při serializaci hodnoty.</param>
+    </member>
+    <member name="M:System.Net.Http.ObjectContent.#ctor(System.Type,System.Object,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.ObjectContent" />. </summary>
+      <param name="type">Typ objektů, které bude tato instance obsahovat.</param>
+      <param name="value">Hodnota objektu, který bude tato instance obsahovat.</param>
+      <param name="formatter">Formátování, které bude použito při serializaci hodnoty.</param>
+      <param name="mediaType">Autoritativní hodnota hlavičky Content-Type.Může mít hodnotu Null; v takovém případě se použije výchozí typ obsahu formátovacího modulu.</param>
+    </member>
+    <member name="M:System.Net.Http.ObjectContent.#ctor(System.Type,System.Object,System.Net.Http.Formatting.MediaTypeFormatter,System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.ObjectContent" />.</summary>
+      <param name="type">Typ objektů, které bude tato instance obsahovat.</param>
+      <param name="value">Hodnota objektu, který bude tato instance obsahovat.</param>
+      <param name="formatter">Formátování, které bude použito při serializaci hodnoty.</param>
+      <param name="mediaType">Autoritativní hodnota hlavičky Content-Type.</param>
+    </member>
+    <member name="P:System.Net.Http.ObjectContent.Formatter">
+      <summary>Získá formátovací modul typu média přidružený k této instanci obsahu.</summary>
+      <returns>Formátovací modul typu média přidružený k této instanci obsahu.</returns>
+    </member>
+    <member name="P:System.Net.Http.ObjectContent.ObjectType">
+      <summary>Získá typ objektu spravovaného touto instancí <see cref="T:System.Net.Http.ObjectContent" />.</summary>
+      <returns>Typ objektu.</returns>
+    </member>
+    <member name="M:System.Net.Http.ObjectContent.SerializeToStreamAsync(System.IO.Stream,System.Net.TransportContext)">
+      <summary>Asynchronně serializuje obsah objektu s daným datovým proudem.</summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="stream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="context">Přiřazená třída <see cref="T:System.Net.TransportContext" />.</param>
+    </member>
+    <member name="M:System.Net.Http.ObjectContent.TryComputeLength(System.Int64@)">
+      <summary>Je-li to možné, vypočítá délku datového proudu.</summary>
+      <returns>Vrátí hodnotu true v případě vypočtení délky; jinak vrátí hodnotu false.</returns>
+      <param name="length">Obdrží vypočtenou délku datového proudu.</param>
+    </member>
+    <member name="P:System.Net.Http.ObjectContent.Value">
+      <summary>Získá nebo nastaví hodnotu obsahu.</summary>
+      <returns>Hodnota obsahu.</returns>
+    </member>
+    <member name="T:System.Net.Http.ObjectContent`1">
+      <summary> Obecná forma třídy <see cref="T:System.Net.Http.ObjectContent" />. </summary>
+      <typeparam name="T">Typ objektů, které bude tato třída obsahovat.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.ObjectContent`1.#ctor(`0,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.ObjectContent`1" />.</summary>
+      <param name="value">Hodnota objektu, který bude tato instance obsahovat.</param>
+      <param name="formatter">Formátování, které bude použito při serializaci hodnoty.</param>
+    </member>
+    <member name="M:System.Net.Http.ObjectContent`1.#ctor(`0,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary> Inicializuje novou instanci třídy &lt;see cref="T:System.Net.Http.ObjectContent`1" /&gt;. </summary>
+      <param name="value">Hodnota objektu, který bude tato instance obsahovat.</param>
+      <param name="formatter">Formátování, které bude použito při serializaci hodnoty.</param>
+      <param name="mediaType">Autoritativní hodnota hlavičky Content-Type.Může mít hodnotu Null; v takovém případě se použije výchozí typ obsahu formátovacího modulu.</param>
+    </member>
+    <member name="M:System.Net.Http.ObjectContent`1.#ctor(`0,System.Net.Http.Formatting.MediaTypeFormatter,System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.ObjectContent`1" />.</summary>
+      <param name="value">Hodnota objektu, který bude tato instance obsahovat.</param>
+      <param name="formatter">Formátování, které bude použito při serializaci hodnoty.</param>
+      <param name="mediaType">Autoritativní hodnota hlavičky Content-Type.</param>
+    </member>
+    <member name="T:System.Net.Http.PushStreamContent">
+      <summary>Povolí scénáře, ve kterých chce poskytovatel dat psát přímo (synchronně nebo nesynchronně) pomocí proudu.</summary>
+    </member>
+    <member name="M:System.Net.Http.PushStreamContent.#ctor(System.Action{System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext})">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.PushStreamContent" />.</summary>
+      <param name="onStreamAvailable">Akce, která je volána, když je k dispozici výstupní proud, který umožňuje akci přímý zápis. </param>
+    </member>
+    <member name="M:System.Net.Http.PushStreamContent.#ctor(System.Action{System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext},System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.PushStreamContent" />.</summary>
+      <param name="onStreamAvailable">Akce, která je volána, když je k dispozici výstupní proud, který umožňuje akci přímý zápis.</param>
+      <param name="mediaType">Typ média.</param>
+    </member>
+    <member name="M:System.Net.Http.PushStreamContent.#ctor(System.Action{System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext},System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.PushStreamContent" />.</summary>
+      <param name="onStreamAvailable">Akce, která je volána, když je k dispozici výstupní proud, který umožňuje akci přímý zápis.</param>
+      <param name="mediaType">Typ média.</param>
+    </member>
+    <member name="M:System.Net.Http.PushStreamContent.#ctor(System.Func{System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext,System.Threading.Tasks.Task})">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.PushStreamContent" />.</summary>
+      <param name="onStreamAvailable">Akce, která je volána, když je k dispozici výstupní proud, který umožňuje akci přímý zápis.</param>
+    </member>
+    <member name="M:System.Net.Http.PushStreamContent.#ctor(System.Func{System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext,System.Threading.Tasks.Task},System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.PushStreamContent" />.</summary>
+      <param name="onStreamAvailable">Akce, která je volána, když je k dispozici výstupní proud, který umožňuje akci přímý zápis.</param>
+      <param name="mediaType">Typ média.</param>
+    </member>
+    <member name="M:System.Net.Http.PushStreamContent.#ctor(System.Func{System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext,System.Threading.Tasks.Task},System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.PushStreamContent" />.</summary>
+      <param name="onStreamAvailable">Akce, která je volána, když je k dispozici výstupní proud, který umožňuje akci přímý zápis.</param>
+      <param name="mediaType">Typ média.</param>
+    </member>
+    <member name="M:System.Net.Http.PushStreamContent.SerializeToStreamAsync(System.IO.Stream,System.Net.TransportContext)">
+      <summary>Asynchronně serializuje předávaný obsah do proudu.</summary>
+      <returns>Serializovaný předávaný obsah.</returns>
+      <param name="stream">Proud, ve kterém bude předávaný obsah serializován.</param>
+      <param name="context">Kontext</param>
+    </member>
+    <member name="M:System.Net.Http.PushStreamContent.TryComputeLength(System.Int64@)">
+      <summary>Určuje, zda má obsah proudu platnou délku v bajtech.</summary>
+      <returns>Hodnota true, pokud je délka platná, jinak hodnota false.</returns>
+      <param name="length">Délka obsahu proudu v bajtech.</param>
+    </member>
+    <member name="T:System.Net.Http.RemoteStreamInfo">
+      <summary>Reprezentuje výsledek metody <see cref="M:System.Net.Http.MultipartFormDataRemoteStreamProvider.GetRemoteStream(System.Net.Http.HttpContent,System.Net.Http.Headers.HttpContentHeaders)" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.RemoteStreamInfo.#ctor(System.IO.Stream,System.String,System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.RemoteStreamInfo" />.</summary>
+      <param name="remoteStream">Instance vzdáleného datového proudu pro zápis souboru.</param>
+      <param name="location">Umístění vzdáleného souboru.</param>
+      <param name="fileName">Název vzdáleného souboru.</param>
+    </member>
+    <member name="P:System.Net.Http.RemoteStreamInfo.FileName">
+      <summary>Získá umístění vzdáleného souboru.</summary>
+    </member>
+    <member name="P:System.Net.Http.RemoteStreamInfo.Location">
+      <summary>Získá umístění vzdáleného souboru.</summary>
+    </member>
+    <member name="P:System.Net.Http.RemoteStreamInfo.RemoteStream">
+      <summary>Získá instanci vzdáleného datového proudu pro zápis souboru.</summary>
+    </member>
+    <member name="T:System.Net.Http.UnsupportedMediaTypeException">
+      <summary> Definuje typ výjimky pro signalizaci, že typ média požadavku nebyl podporován. </summary>
+    </member>
+    <member name="M:System.Net.Http.UnsupportedMediaTypeException.#ctor(System.String,System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.UnsupportedMediaTypeException" />. </summary>
+      <param name="message">Zpráva popisující chybu</param>
+      <param name="mediaType">Nepodporovaný typ média.</param>
+    </member>
+    <member name="P:System.Net.Http.UnsupportedMediaTypeException.MediaType">
+      <summary>Získá nebo nastaví typ média.</summary>
+      <returns>Typ média.</returns>
+    </member>
+    <member name="T:System.Net.Http.UriExtensions">
+      <summary>Obsahuje rozšiřující metody umožňující čtení objektů se silným typem z komponenty dotazu instancí <see cref="T:System.Uri" />. </summary>
+    </member>
+    <member name="M:System.Net.Http.UriExtensions.ParseQueryString(System.Uri)">
+      <summary>Analyzuje část dotazu zadaného identifikátoru URI.</summary>
+      <returns>Položka <see cref="T:System.Collections.Specialized.NameValueCollection" /> obsahující parametry dotazu.</returns>
+      <param name="address">Identifikátor URI k analýze.</param>
+    </member>
+    <member name="M:System.Net.Http.UriExtensions.TryReadQueryAs(System.Uri,System.Type,System.Object@)">
+      <summary>Čte kód HTML z kódovaných dat adresy URL zadaných v řetězci dotazu identifikátoru URI jako objekt zadaného typu.</summary>
+      <returns>Pokud lze součást pro dotazy přečíst jako zadaný typ, vrátí hodnotu true, jinak vrátí hodnotu false.</returns>
+      <param name="address">Identifikátor URI ke čtení.</param>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="value">Vrácená metoda obsahuje objekt, který je inicializován ze součásti pro dotazy identifikátoru URI. Tento parametr je zpracováván jako neinicializovaný.</param>
+    </member>
+    <member name="M:System.Net.Http.UriExtensions.TryReadQueryAs``1(System.Uri,``0@)">
+      <summary>Čte kód HTML z kódovaných dat adresy URL zadaných v řetězci dotazu identifikátoru URI jako objekt zadaného typu.</summary>
+      <returns>Pokud lze součást pro dotazy přečíst jako zadaný typ, vrátí hodnotu true, jinak vrátí hodnotu false.</returns>
+      <param name="address">Identifikátor URI ke čtení.</param>
+      <param name="value">Vrácená metoda obsahuje objekt, který je inicializován ze součásti pro dotazy identifikátoru URI. Tento parametr je zpracováván jako neinicializovaný.</param>
+      <typeparam name="T">Typ objektu určeného ke čtení.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.UriExtensions.TryReadQueryAsJson(System.Uri,Newtonsoft.Json.Linq.JObject@)">
+      <summary>Přečte kódovaná data adresy URL formuláře HTML zadaná v komponentě dotazu <see cref="T:System.Uri" /> jako objekt <see cref="T:Newtonsoft.Json.Linq.JObject" />.</summary>
+      <returns>  Pokud komponentu dotazu lze přečíst jako objekt <see cref="T:Newtonsoft.Json.Linq.JObject" />, vrátí hodnotu true; jinak vrátí hodnotu false.</returns>
+      <param name="address">Instance <see cref="T:System.Uri" />, z níž má být provedeno čtení.</param>
+      <param name="value">Objekt, který má být inicializován s touto instancí, nebo hodnota Null, pokud převod nelze provést.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter">
+      <summary>Třída formátovacího modulu abstraktního typu média pro podporu formátů Bson a Json.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.#ctor(System.Net.Http.Formatting.BaseJsonMediaTypeFormatter)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter" />.</summary>
+      <param name="formatter">Instance <see cref="T:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter" />, ze které se má kopírovat nastavení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.CanReadType(System.Type)">
+      <summary>Určuje, zda tento formátovací modul může číst objekty zadaného typu.</summary>
+      <returns>Hodnota true v případě, že objekty tohoto typu lze číst, jinak hodnota false</returns>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.CanWriteType(System.Type)">
+      <summary>Určuje, zda tento formátovací modul může zapisovat objekty zadaného typu.</summary>
+      <returns>Hodnota true v případě, že objekty tohoto typu lze zapsat, jinak hodnota false</returns>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.CreateDefaultSerializerSettings">
+      <summary>Vytvoří instanci <see cref="T:Newtonsoft.Json.JsonSerializerSettings" /> s výchozím nastavením, které používá třída <see cref="T:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter" />.</summary>
+      <returns>Vrací objekt <see cref="T:Newtonsoft.Json.JsonSerializerSettings" />.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.CreateJsonReader(System.Type,System.IO.Stream,System.Text.Encoding)">
+      <summary>Volá se během deserializace pro získání objektu <see cref="T:Newtonsoft.Json.JsonReader" />.</summary>
+      <returns>Čtečka, která se má použít při deserializaci.</returns>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při čtení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.CreateJsonSerializer">
+      <summary>Volá se během serializace a deserializace pro získání objektu <see cref="T:Newtonsoft.Json.JsonSerializer" />.</summary>
+      <returns>Položka JsonSerializer použitá během serializace a deserializace.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.CreateJsonWriter(System.Type,System.IO.Stream,System.Text.Encoding)">
+      <summary>Volá se během serializace pro získání objektu <see cref="T:Newtonsoft.Json.JsonWriter" />.</summary>
+      <returns>Zapisovač, který se má použít při serializaci.</returns>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při zápisu.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.MaxDepth">
+      <summary>Získá nebo nastaví maximální hloubku povolenou tímto formátováním.</summary>
+      <returns>Maximální povolená hloubka u tohoto formátování</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.ReadFromStream(System.Type,System.IO.Stream,System.Text.Encoding,System.Net.Http.Formatting.IFormatterLogger)">
+      <summary>Volá se během deserializace za účelem čtení objektu zadaného typu ze zadaného datového proudu.</summary>
+      <returns>Objekt, který byl přečten.</returns>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při čtení.</param>
+      <param name="formatterLogger">Protokolovač, do kterého mají být protokolovány události.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.ReadFromStreamAsync(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger)">
+      <summary>Volá se během deserializace za účelem čtení objektu zadaného typu ze zadaného datového proudu.</summary>
+      <returns>Úloha, jejímž výsledkem bude přečtená instance objektu.</returns>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" /> pro čtený obsah.</param>
+      <param name="formatterLogger">Protokolovač, do kterého mají být protokolovány události.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.SerializerSettings">
+      <summary>Získá nebo nastaví hodnotu JsonSerializerSettings použitou ke konfiguraci třídy JsonSerializer.</summary>
+      <returns>Hodnota JsonSerializerSettings použitá ke konfiguraci třídy JsonSerializer.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.WriteToStream(System.Type,System.Object,System.IO.Stream,System.Text.Encoding)">
+      <summary>Objekt volaný během serializace za účelem zápisu objektu zadaného typu do zadaného datového proudu.</summary>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+      <param name="value">Objekt určený k zápisu.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při zápisu.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.WriteToStreamAsync(System.Type,System.Object,System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext,System.Threading.CancellationToken)">
+      <summary>Objekt volaný během serializace za účelem zápisu objektu zadaného typu do zadaného datového proudu.</summary>
+      <returns>Vrací objekt <see cref="T:System.Threading.Tasks.Task" />.</returns>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+      <param name="value">Objekt určený k zápisu.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" /> pro zapisovaný obsah.</param>
+      <param name="transportContext">Kontext přenosu</param>
+      <param name="cancellationToken">Token k monitorování pro zrušení.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.BsonMediaTypeFormatter">
+      <summary>Představuje formátovací modul typu média pro zpracování formátu Bson.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BsonMediaTypeFormatter.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.BsonMediaTypeFormatter" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BsonMediaTypeFormatter.#ctor(System.Net.Http.Formatting.BsonMediaTypeFormatter)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.BsonMediaTypeFormatter" />.</summary>
+      <param name="formatter">Formátovací modul, ze kterého se má kopírovat nastavení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BsonMediaTypeFormatter.CreateJsonReader(System.Type,System.IO.Stream,System.Text.Encoding)">
+      <summary>Volá se během deserializace pro získání objektu <see cref="T:Newtonsoft.Json.JsonReader" />.</summary>
+      <returns>Čtečka, která se má použít při deserializaci.</returns>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při čtení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BsonMediaTypeFormatter.CreateJsonWriter(System.Type,System.IO.Stream,System.Text.Encoding)">
+      <summary>Volá se během serializace pro získání objektu <see cref="T:Newtonsoft.Json.JsonWriter" />.</summary>
+      <returns>Zapisovač, který se má použít při serializaci.</returns>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při zápisu.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.BsonMediaTypeFormatter.DefaultMediaType">
+      <summary>Získá výchozí typ média pro formát Json, konkrétně „application/bson“.</summary>
+      <returns>Výchozí typ média pro formát Json, konkrétně „application/bson“.</returns>
+    </member>
+    <member name="P:System.Net.Http.Formatting.BsonMediaTypeFormatter.MaxDepth">
+      <summary>Získá nebo nastaví maximální hloubku povolenou tímto formátováním.</summary>
+      <returns>Maximální povolená hloubka u tohoto formátování</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BsonMediaTypeFormatter.ReadFromStream(System.Type,System.IO.Stream,System.Text.Encoding,System.Net.Http.Formatting.IFormatterLogger)">
+      <summary>Volá se během deserializace za účelem čtení objektu zadaného typu ze zadaného datového proudu.</summary>
+      <returns>Objekt, který byl přečten.</returns>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při čtení.</param>
+      <param name="formatterLogger">Protokolovač, do kterého mají být protokolovány události.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BsonMediaTypeFormatter.ReadFromStreamAsync(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger)">
+      <summary>Volá se během deserializace za účelem čtení objektu zadaného typu ze zadaného datového proudu.</summary>
+      <returns>Úloha, jejímž výsledkem bude přečtená instance objektu.</returns>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" /> pro čtený obsah.</param>
+      <param name="formatterLogger">Protokolovač, do kterého mají být protokolovány události.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BsonMediaTypeFormatter.WriteToStream(System.Type,System.Object,System.IO.Stream,System.Text.Encoding)">
+      <summary>Objekt volaný během serializace za účelem zápisu objektu zadaného typu do zadaného datového proudu.</summary>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+      <param name="value">Objekt určený k zápisu.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při zápisu.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.BufferedMediaTypeFormatter">
+      <summary>Představuje pomocnou třídu, která umožňuje vedle infrastruktury asynchronního formátování použít i synchronní formátování.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BufferedMediaTypeFormatter.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.BufferedMediaTypeFormatter" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BufferedMediaTypeFormatter.#ctor(System.Net.Http.Formatting.BufferedMediaTypeFormatter)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.BufferedMediaTypeFormatter" />.</summary>
+      <param name="formatter">Instance <see cref="T:System.Net.Http.Formatting.BufferedMediaTypeFormatter" />, ze které se má kopírovat nastavení.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.BufferedMediaTypeFormatter.BufferSize">
+      <summary>Získá nebo nastaví navrhovanou velikost vyrovnávací paměti pro použití s datovými proudy (v bajtech).</summary>
+      <returns>Navrhovaná velikost vyrovnávací paměti pro použití s datovými proudy (v bajtech).</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BufferedMediaTypeFormatter.ReadFromStream(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger)">
+      <summary>Čte synchronně z datového proudu ve vyrovnávací paměti.</summary>
+      <returns>Objekt daného typu <paramref name="type" />.</returns>
+      <param name="type">Typ objektu určeného k deserializaci.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="content">Položka <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="formatterLogger">Třída <see cref="T:System.Net.Http.Formatting.IFormatterLogger" />, do níž mají být protokolovány události.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BufferedMediaTypeFormatter.ReadFromStream(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger,System.Threading.CancellationToken)">
+      <summary>Čte synchronně z datového proudu ve vyrovnávací paměti.</summary>
+      <returns>Objekt daného typu <paramref name="type" />.</returns>
+      <param name="type">Typ objektu určeného k deserializaci.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="content">Položka <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="formatterLogger">Třída <see cref="T:System.Net.Http.Formatting.IFormatterLogger" />, do níž mají být protokolovány události.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BufferedMediaTypeFormatter.ReadFromStreamAsync(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger)">
+      <summary>Čte asynchronně z datového proudu ve vyrovnávací paměti.</summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="type">Typ objektu určeného k deserializaci.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="content">Položka <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="formatterLogger">Třída <see cref="T:System.Net.Http.Formatting.IFormatterLogger" />, do níž mají být protokolovány události.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BufferedMediaTypeFormatter.ReadFromStreamAsync(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger,System.Threading.CancellationToken)">
+      <summary>Čte asynchronně z datového proudu ve vyrovnávací paměti.</summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="type">Typ objektu určeného k deserializaci.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="content">Položka <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="formatterLogger">Třída <see cref="T:System.Net.Http.Formatting.IFormatterLogger" />, do níž mají být protokolovány události.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BufferedMediaTypeFormatter.WriteToStream(System.Type,System.Object,System.IO.Stream,System.Net.Http.HttpContent)">
+      <summary>Zapisuje synchronně do datového proudu ve vyrovnávací paměti.</summary>
+      <param name="type">Typ objektu určeného k serializaci.</param>
+      <param name="value">Hodnota objektu určeného k zápisu.Může mít hodnotu null.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="content">Položka <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BufferedMediaTypeFormatter.WriteToStream(System.Type,System.Object,System.IO.Stream,System.Net.Http.HttpContent,System.Threading.CancellationToken)">
+      <summary>Zapisuje synchronně do datového proudu ve vyrovnávací paměti.</summary>
+      <param name="type">Typ objektu určeného k serializaci.</param>
+      <param name="value">Hodnota objektu určeného k zápisu.Může mít hodnotu null.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="content">Položka <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BufferedMediaTypeFormatter.WriteToStreamAsync(System.Type,System.Object,System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext)">
+      <summary>Zapisuje asynchronně do datového proudu ve vyrovnávací paměti.</summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="type">Typ objektu určeného k serializaci.</param>
+      <param name="value">Hodnota objektu určeného k zápisu.Může mít hodnotu null.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="content">Položka <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="transportContext">Kontext přenosu</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.BufferedMediaTypeFormatter.WriteToStreamAsync(System.Type,System.Object,System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext,System.Threading.CancellationToken)">
+      <summary>Zapisuje asynchronně do datového proudu ve vyrovnávací paměti.</summary>
+      <returns>Objekt úlohy představující asynchronní operaci.</returns>
+      <param name="type">Typ objektu určeného k serializaci.</param>
+      <param name="value">Hodnota objektu určeného k zápisu.Může mít hodnotu null.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="content">Položka <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="transportContext">Kontext přenosu</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.ContentNegotiationResult">
+      <summary> Představuje výsledek vyjednávání obsahu prováděného pomocí &lt;see cref="M:System.Net.Http.Formatting.IContentNegotiator.Negotiate(System.Type,System.Net.Http.HttpRequestMessage,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter})" /&gt;.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.ContentNegotiationResult.#ctor(System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary> Vytvoří objekt výsledku vyjednávání obsahu. </summary>
+      <param name="formatter">Formátování.</param>
+      <param name="mediaType">Upřednostňovaný typ média.Může mít hodnotu null.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.ContentNegotiationResult.Formatter">
+      <summary> Formátování zvolené pro serializaci. </summary>
+    </member>
+    <member name="P:System.Net.Http.Formatting.ContentNegotiationResult.MediaType">
+      <summary>Typ média přidružený k formátování zvolenému pro serializaci.Může mít hodnotu null.</summary>
+    </member>
+    <member name="T:System.Net.Http.Formatting.DefaultContentNegotiator">
+      <summary> Výchozí implementace objektu <see cref="T:System.Net.Http.Formatting.IContentNegotiator" />, který slouží k výběru položky <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> pro zprávu <see cref="T:System.Net.Http.HttpRequestMessage" /> nebo <see cref="T:System.Net.Http.HttpResponseMessage" />. </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.DefaultContentNegotiator" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.#ctor(System.Boolean)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.DefaultContentNegotiator" />.</summary>
+      <param name="excludeMatchOnTypeOnly">Hodnota true, pokud chcete vyloučit formátovací moduly odpovídající pouze typu objektu, jinak hodnota false.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.ComputeFormatterMatches(System.Type,System.Net.Http.HttpRequestMessage,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter})">
+      <summary>Určuje, jak moc jednotlivé formátovací moduly odpovídají požadavku HTTP.</summary>
+      <returns>Vrátí kolekci objektů <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterMatch" />, která představuje všechny shody.</returns>
+      <param name="type">Typ určený k serializaci.</param>
+      <param name="request">Žádost</param>
+      <param name="formatters">Sada objektů <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />, z nichž lze vybírat.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.DefaultContentNegotiator.ExcludeMatchOnTypeOnly">
+      <summary>Hodnota true, pokud chcete vyloučit formátovací moduly odpovídající pouze typu objektu, jinak hodnota false.</summary>
+      <returns>Vrací objekt <see cref="T:System.Boolean" />.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.MatchAcceptHeader(System.Collections.Generic.IEnumerable{System.Net.Http.Headers.MediaTypeWithQualityHeaderValue},System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary>Porovná sadu polí hlavičky Accept s typy médií podporovanými formátovacím modulem.</summary>
+      <returns>Vrátí objekt <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterMatch" />, který udává kvalitu shody, nebo hodnotu Null, pokud není nalezena žádná shoda.</returns>
+      <param name="sortedAcceptValues">Seznam hodnot hlavičky Accept seřazený podle koeficientu kvality. Tento seznam lze vytvořit voláním metody <see cref="M:System.Net.Http.Formatting.DefaultContentNegotiator.SortStringWithQualityHeaderValuesByQFactor(System.Collections.Generic.ICollection{System.Net.Http.Headers.StringWithQualityHeaderValue})" />.</param>
+      <param name="formatter">Formátovací modul k porovnání.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.MatchMediaTypeMapping(System.Net.Http.HttpRequestMessage,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary>Porovná požadavek s objekty <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" /> ve formátovacím modulu typu médií.</summary>
+      <returns>Vrátí objekt <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterMatch" />, který udává kvalitu shody, nebo hodnotu Null, pokud není nalezena žádná shoda.</returns>
+      <param name="request">Žádost k porovnání</param>
+      <param name="formatter">Formátovací modul typu média.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.MatchRequestMediaType(System.Net.Http.HttpRequestMessage,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary>Porovná typ obsahu požadavku s typy médií podporovanými formátovacím modulem.</summary>
+      <returns>Vrátí objekt <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterMatch" />, který udává kvalitu shody, nebo hodnotu Null, pokud není nalezena žádná shoda.</returns>
+      <param name="request">Žádost k porovnání</param>
+      <param name="formatter">Formátovací modul k porovnání.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.MatchType(System.Type,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary>Vyberte první typ médií podporovaný formátovacím modulem.</summary>
+      <returns>Vrátí objekt <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterMatch" /> s vlastností <see cref="P:System.Net.Http.Formatting.MediaTypeFormatterMatch.Ranking" /> nastavenou na hodnotu MatchOnCanWriteType, nebo na hodnotu null, pokud není nalezena žádná shoda. Objekt <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterMatch" /> udávající kvalitu shody, nebo hodnota null, pokud shoda není nalezena</returns>
+      <param name="type">Typ k porovnání.</param>
+      <param name="formatter">Formátovací modul k porovnání.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.Negotiate(System.Type,System.Net.Http.HttpRequestMessage,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter})">
+      <summary>Provede vyjednávání obsahu výběrem nejvhodnější třídy <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> z nabídky objektů <paramref name="formatters" /> pro daný požadavek <paramref name="request" />, která může serializovat objekt daného typu <paramref name="type" />.</summary>
+      <returns>Výsledek vyjednávání obsahující nejvhodnější instanci <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />, nebo hodnotu null v případě, že odpovídající formátovací modul není k dispozici</returns>
+      <param name="type">Typ určený k serializaci.</param>
+      <param name="request">Žádost</param>
+      <param name="formatters">Sada objektů <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />, z nichž lze vybírat.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.SelectResponseCharacterEncoding(System.Net.Http.HttpRequestMessage,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary>Určuje nejvhodnější kódování znaků při psaní odpovědi.</summary>
+      <returns>Vrátí položku <see cref="T:System.Text.Encoding" />, která představuje nejlepší shodu.</returns>
+      <param name="request">Žádost</param>
+      <param name="formatter">Vybraný formátovací modul médií.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.SelectResponseMediaTypeFormatter(System.Collections.Generic.ICollection{System.Net.Http.Formatting.MediaTypeFormatterMatch})">
+      <summary>Výběr nejlepší shody mezi nalezenými shodami</summary>
+      <returns>Vrátí objekt <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterMatch" />, který představuje nejlepší shodu. </returns>
+      <param name="matches">Kolekce shod.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.ShouldMatchOnType(System.Collections.Generic.IEnumerable{System.Net.Http.Headers.MediaTypeWithQualityHeaderValue})">
+      <summary> Umožňuje určit, zda se má zajišťovat shoda typu. Pomocí této možnosti se určuje, zda se má v případě, že neexistuje žádná shoda s ničím v žádosti, generovat odpověď 406, nebo použít výchozí typ formátování typu média. Pokud má ExcludeMatchOnTypeOnly hodnotu pravda, nezajišťuje se shoda podle typu. Výjimkou jsou případy, kdy neexistují žádné hlavičky Accept. </summary>
+      <returns>Hodnota pravda, pokud nemá ExcludeMatchOnTypeOnly hodnotu pravda a existují hlavičky Accept s koeficientem kvality vyšším než 0,0.</returns>
+      <param name="sortedAcceptValues">Setříděné hodnoty hlavičky Accept pro hledání shody.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.SortMediaTypeWithQualityHeaderValuesByQFactor(System.Collections.Generic.ICollection{System.Net.Http.Headers.MediaTypeWithQualityHeaderValue})">
+      <summary>Seřadí hodnoty hlavičky Accept v sestupném pořadí podle koeficientu kvality.</summary>
+      <returns>Vrátí seznam seřazených objektů MediaTypeWithQualityHeaderValue.</returns>
+      <param name="headerValues">Kolekce objektů StringWithQualityHeaderValue, která představuje pole hlavičky.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.SortStringWithQualityHeaderValuesByQFactor(System.Collections.Generic.ICollection{System.Net.Http.Headers.StringWithQualityHeaderValue})">
+      <summary>Seřadí seznam hodnot Accept-Charset, Accept-Encoding, Accept-Language nebo souvisejících hodnot hlavičky v sestupném pořadí podle koeficientu kvality.</summary>
+      <returns>Vrátí seznam seřazených objektů StringWithQualityHeaderValue.</returns>
+      <param name="headerValues">Kolekce objektů StringWithQualityHeaderValue, která představuje pole hlavičky.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DefaultContentNegotiator.UpdateBestMatch(System.Net.Http.Formatting.MediaTypeFormatterMatch,System.Net.Http.Formatting.MediaTypeFormatterMatch)">
+      <summary>Vyhodnotí, zda je určitá shoda lepší než aktuální shoda.</summary>
+      <returns>Vrátí objekt <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterMatch" />, který představuje lepší shodu.</returns>
+      <param name="current">Aktuální shoda.</param>
+      <param name="potentialReplacement">Shoda, která se má porovnat s aktuální shodou.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.DelegatingEnumerable`1">
+      <summary> Pomocná třída určená k serializaci typů &lt;see cref="T:System.Collections.Generic.IEnumerable`1" /&gt; jejich delegováním prostřednictvím konkrétní implementace."/&amp;gt;. </summary>
+      <typeparam name="T">Rozhraní provádějící implementaci na proxy server.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DelegatingEnumerable`1.#ctor">
+      <summary>Inicializuje třídu DelegatingEnumerable.Tento konstruktor je nutný pro činnost serializátoru <see cref="T:System.Runtime.Serialization.DataContractSerializer" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DelegatingEnumerable`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+      <summary>Inicializuje třídu DelegatingEnumerable s parametrem &lt;see cref="T:System.Collections.Generic.IEnumerable`1" /&gt;.Toto je pomocná třída pro proxy rozhraní &lt;see cref="T:System.Collections.Generic.IEnumerable`1" /&gt; serializátoru <see cref="T:System.Xml.Serialization.XmlSerializer" />.</summary>
+      <param name="source">Instance &lt;see cref="T:System.Collections.Generic.IEnumerable`1" /&gt;, z níž má být získán enumerátor.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DelegatingEnumerable`1.Add(System.Object)">
+      <summary>Tato metoda není implementována, ale je nutná pro činnost serializace.Nepoužívat.</summary>
+      <param name="item">Položka k přidání.Nepoužívá se.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DelegatingEnumerable`1.GetEnumerator">
+      <summary> Získá enumerátor přiřazeného parametru &lt;see cref="T:System.Collections.Generic.IEnumerable`1" /&gt;. </summary>
+      <returns>Enumerátor zdroje parametru &lt;see cref="T:System.Collections.Generic.IEnumerable`1" /&gt;.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.DelegatingEnumerable`1.System#Collections#IEnumerable#GetEnumerator">
+      <summary> Získá enumerátor přiřazeného parametru &lt;see cref="T:System.Collections.Generic.IEnumerable`1" /&gt;. </summary>
+      <returns>Enumerátor zdroje parametru &lt;see cref="T:System.Collections.Generic.IEnumerable`1" /&gt;.</returns>
+    </member>
+    <member name="T:System.Net.Http.Formatting.FormDataCollection">
+      <summary>Představuje kolekci dat formuláře</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormDataCollection.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.FormDataCollection" />.</summary>
+      <param name="pairs">Dvojice</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormDataCollection.#ctor(System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.FormDataCollection" />.</summary>
+      <param name="query">Dotaz</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormDataCollection.#ctor(System.Uri)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.FormDataCollection" />.</summary>
+      <param name="uri">Identifikátor URI</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormDataCollection.Get(System.String)">
+      <summary>Získá kolekci dat formuláře.</summary>
+      <returns>Kolekce dat formuláře</returns>
+      <param name="key">Klíč</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormDataCollection.GetEnumerator">
+      <summary>Získá vyčíslitelnou položku procházející kolekci.</summary>
+      <returns>Vyčíslitelná položka procházející kolekci.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormDataCollection.GetValues(System.String)">
+      <summary>Získá hodnoty kolekce dat formuláře.</summary>
+      <returns>Hodnoty kolekce dat formuláře</returns>
+      <param name="key">Klíč</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.FormDataCollection.Item(System.String)">
+      <summary>Získá hodnoty přidružené k danému klíči.Je-li k dispozici více hodnot, budou zkráceny.</summary>
+      <returns>Hodnoty přidružené k danému klíči.Je-li k dispozici více hodnot, budou zkráceny.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormDataCollection.ReadAsNameValueCollection">
+      <summary>Načte kolekci dat formuláře jako kolekci hodnot názvů.</summary>
+      <returns>Kolekce dat formuláře jako kolekce hodnot názvů.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormDataCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>Získá vyčíslitelnou položku procházející kolekci.</summary>
+      <returns>Vyčíslitelná položka procházející kolekci.</returns>
+    </member>
+    <member name="T:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter">
+      <summary>Třída <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> sloužící ke zpracování dat zakončených adresou URL formuláře HTML, která jsou také označována jako application/x-www-form-urlencoded.  </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter.#ctor(System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter" />.</summary>
+      <param name="formatter">Instance <see cref="T:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter" />, ze které se má kopírovat nastavení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter.CanReadType(System.Type)">
+      <summary>Zašle dotaz, zda položka <see cref="T:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter" /> může deserializovat objekt zadaného typu.</summary>
+      <returns>Hodnota true, pokud položka <see cref="T:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter" /> dokáže deserializovat tento typ, jinak hodnota false.</returns>
+      <param name="type">Typ k deserializaci.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter.CanWriteType(System.Type)">
+      <summary>Zašle dotaz, zda položka <see cref="T:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter" /> může serializovat objekt zadaného typu.</summary>
+      <returns>Hodnota true, pokud položka <see cref="T:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter" /> dokáže serializovat tento typ, jinak hodnota false.</returns>
+      <param name="type">Typ k serializaci.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter.DefaultMediaType">
+      <summary>Získá výchozí typ média pro data kódovaná adresou URL formuláře HTML, konkrétně application/x-www-form-urlencoded.</summary>
+      <returns>Výchozí typ médií pro data kódovaná adresou URL formuláře HTML</returns>
+    </member>
+    <member name="P:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter.MaxDepth">
+      <summary>Získá nebo nastaví maximální hloubku povolenou tímto formátováním.</summary>
+      <returns>Maximální hloubka.</returns>
+    </member>
+    <member name="P:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter.ReadBufferSize">
+      <summary>Získá nebo nastaví velikost vyrovnávací paměti při čtení příchozího datového toku.</summary>
+      <returns>Velikost vyrovnávací paměti.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter.ReadFromStreamAsync(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger)">
+      <summary> Asynchronně deserializuje objekt zadaného typu.</summary>
+      <returns>Úloha <see cref="T:System.Threading.Tasks.Task" />, jejímž výsledkem bude přečtená instance objektu.</returns>
+      <param name="type">Typ objektu určeného k deserializaci.</param>
+      <param name="readStream">Třída <see cref="T:System.IO.Stream" />, která má být čtena.</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" /> pro čtený obsah.</param>
+      <param name="formatterLogger">Třída <see cref="T:System.Net.Http.Formatting.IFormatterLogger" />, do níž mají být protokolovány události.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.IContentNegotiator">
+      <summary>Provede vyjednávání obsahu.Jedná se o proces výběru zapisovače odpovědí (formátování) v souladu s hodnotami záhlaví v žádosti.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.IContentNegotiator.Negotiate(System.Type,System.Net.Http.HttpRequestMessage,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter})">
+      <summary> Provede vyjednávání obsahu výběrem nejvhodnější třídy <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> z nabídky formátování pro daný požadavek, která může serializovat objekt daného typu. </summary>
+      <returns>Výsledek vyjednávání obsahující nejvhodnější instanci <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />, nebo hodnotu Null v případě, že vhodné formátování není k dispozici.</returns>
+      <param name="type">Typ určený k serializaci.</param>
+      <param name="request">Zpráva požadavku, která obsahuje hodnoty hlavičky použité k provedení vyjednávání.</param>
+      <param name="formatters">Sada objektů <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />, z nichž lze vybírat.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.IFormatterLogger">
+      <summary>Určuje rozhraní pro zpětné volání, které může formátovací modul použít k protokolování chyb při čtení.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.IFormatterLogger.LogError(System.String,System.Exception)">
+      <summary>Zapíše chybu do protokolu.</summary>
+      <param name="errorPath">Cesta k členovi, pro nějž je chyba protokolována.</param>
+      <param name="exception">Chybová zpráva</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.IFormatterLogger.LogError(System.String,System.String)">
+      <summary>Zapíše chybu do protokolu.</summary>
+      <param name="errorPath">Cesta k členovi, pro nějž je chyba protokolována.</param>
+      <param name="errorMessage">Chybová zpráva určená k protokolování.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.IRequiredMemberSelector">
+      <summary>Definuje metodu určující, zda je daný člen vyžadován pro deserializaci.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.IRequiredMemberSelector.IsRequiredMember(System.Reflection.MemberInfo)">
+      <summary>Určuje, zda je daný člen třeba k deserializaci.</summary>
+      <returns>Hodnota true, pokud má být <paramref name="member" /> zpracováván jako povinný člen; v opačném případě hodnota false.</returns>
+      <param name="member">Člen <see cref="T:System.Reflection.MemberInfo" /> k deserializaci.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.JsonContractResolver">
+      <summary>Reprezentuje výchozí objekt <see cref="T:Newtonsoft.Json.Serialization.IContractResolver" /> použitý objektem <see cref="T:System.Net.Http.Formatting.JsonMediaTypeFormatter" />.Použije <see cref="T:System.Net.Http.Formatting.IRequiredMemberSelector" /> formátovacího modulu k výběru požadovaných členů a rozpozná anotaci typu <see cref="T:System.SerializableAttribute" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonContractResolver.#ctor(System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.JsonContractResolver" />.</summary>
+      <param name="formatter">Formátovací modul, který má být použit k vyřešení požadovaných členů.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonContractResolver.CreateProperty(System.Reflection.MemberInfo,Newtonsoft.Json.MemberSerialization)">
+      <summary>Vytvoří vlastnost pro zadanou třídu s využitím zadaných parametrů.</summary>
+      <returns>Vlastnost <see cref="T:Newtonsoft.Json.Serialization.JsonProperty" />, která má být vytvořena pro zadanou třídu s využitím zadaných parametrů.</returns>
+      <param name="member">Informace o členech.</param>
+      <param name="memberSerialization">Serializace členů.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.JsonMediaTypeFormatter">
+      <summary>Reprezentuje třídu <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> určenou pro zpracování formátu JSON. </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonMediaTypeFormatter.#ctor">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.JsonMediaTypeFormatter" />. </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonMediaTypeFormatter.#ctor(System.Net.Http.Formatting.JsonMediaTypeFormatter)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.JsonMediaTypeFormatter" />.</summary>
+      <param name="formatter">Instance <see cref="T:System.Net.Http.Formatting.JsonMediaTypeFormatter" />, ze které se má kopírovat nastavení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonMediaTypeFormatter.CanReadType(System.Type)">
+      <summary>Určuje, zda tato třída <see cref="T:System.Net.Http.Formatting.JsonMediaTypeFormatter" /> může číst zadaný <paramref name="type" /> objektů.</summary>
+      <returns>True v případě, že lze tento <paramref name="type" /> objektů číst; jinak false.</returns>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonMediaTypeFormatter.CanWriteType(System.Type)">
+      <summary>Určuje, zda tato třída <see cref="T:System.Net.Http.Formatting.JsonMediaTypeFormatter" /> může zapisovat zadaný <paramref name="type" /> objektů.</summary>
+      <returns>True v případě, že lze tento <paramref name="type" /> objektů zapisovat; jinak false.</returns>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonMediaTypeFormatter.CreateDataContractSerializer(System.Type)">
+      <summary>Volá se během deserializace pro získání objektu <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />.</summary>
+      <returns>Objekt použitý pro serializaci.</returns>
+      <param name="type">Typ objektu, který bude serializován nebo deserializován.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonMediaTypeFormatter.CreateJsonReader(System.Type,System.IO.Stream,System.Text.Encoding)">
+      <summary>Volá se během deserializace pro získání objektu <see cref="T:Newtonsoft.Json.JsonReader" />.</summary>
+      <returns>Čtečka, která se má použít při deserializaci.</returns>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při čtení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonMediaTypeFormatter.CreateJsonWriter(System.Type,System.IO.Stream,System.Text.Encoding)">
+      <summary>Volá se během serializace pro získání objektu <see cref="T:Newtonsoft.Json.JsonWriter" />.</summary>
+      <returns>Zapisovač, který se má použít při serializaci.</returns>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při zápisu.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.JsonMediaTypeFormatter.DefaultMediaType">
+      <summary>Získá výchozí typ média pro formát JSON, konkrétně „application/json“.</summary>
+      <returns>
+        <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" /> pro formát JSON</returns>
+    </member>
+    <member name="P:System.Net.Http.Formatting.JsonMediaTypeFormatter.Indent">
+      <summary> Získá nebo nastaví hodnotu, která určuje, zda mají být při zápisu dat odsazeny jednotlivé prvky.  </summary>
+      <returns>True, pokud mají být prvky při zápisu dat odsazeny, jinak false.</returns>
+    </member>
+    <member name="P:System.Net.Http.Formatting.JsonMediaTypeFormatter.MaxDepth">
+      <summary>Získá nebo nastaví maximální hloubku povolenou tímto formátováním.</summary>
+      <returns>Maximální povolená hloubka u tohoto formátování</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonMediaTypeFormatter.ReadFromStream(System.Type,System.IO.Stream,System.Text.Encoding,System.Net.Http.Formatting.IFormatterLogger)">
+      <summary>Volá se během deserializace za účelem čtení objektu zadaného typu ze zadaného datového proudu.</summary>
+      <returns>Objekt, který byl přečten.</returns>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="readStream">Datový proud, z něhož má být provedeno čtení.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při čtení.</param>
+      <param name="formatterLogger">Protokolovač, do kterého mají být protokolovány události.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.JsonMediaTypeFormatter.UseDataContractJsonSerializer">
+      <summary> Získá nebo nastaví hodnotu, která určuje, zda se má ve výchozím nastavení použít třída <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />. </summary>
+      <returns>True, pokud má být standardně použita třída <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />; jinak false.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonMediaTypeFormatter.WriteToStream(System.Type,System.Object,System.IO.Stream,System.Text.Encoding)">
+      <summary>Objekt volaný během serializace za účelem zápisu objektu zadaného typu do zadaného datového proudu.</summary>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+      <param name="value">Objekt určený k zápisu.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="effectiveEncoding">Kódování určené k použití při zápisu.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.JsonMediaTypeFormatter.WriteToStreamAsync(System.Type,System.Object,System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext,System.Threading.CancellationToken)">
+      <summary>Objekt volaný během serializace za účelem zápisu objektu zadaného typu do zadaného datového proudu.</summary>
+      <returns>Vrací objekt <see cref="T:System.Threading.Tasks.Task" />.</returns>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+      <param name="value">Objekt určený k zápisu.</param>
+      <param name="writeStream">Datový proud, do kterého se má zapisovat.</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" /> pro zapisovaný obsah.</param>
+      <param name="transportContext">Kontext přenosu</param>
+      <param name="cancellationToken">Token k monitorování pro zrušení.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.MediaTypeFormatter">
+      <summary> Základní třída pro zpracování serializace a deserializace objektů se silným typem pomocí třídy <see cref="T:System.Net.Http.ObjectContent" />. </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.#ctor(System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />.</summary>
+      <param name="formatter">Instance <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />, ze které se má kopírovat nastavení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.CanReadType(System.Type)">
+      <summary>Zašle dotaz, zda tato položka <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> může deserializovat objekt zadaného typu.</summary>
+      <returns>Hodnota true, pokud položka <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> dokáže deserializovat tento typ, jinak hodnota false.</returns>
+      <param name="type">Typ k deserializaci.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.CanWriteType(System.Type)">
+      <summary>Zašle dotaz, zda tato položka <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> může serializovat objekt zadaného typu.</summary>
+      <returns>Hodnota true, pokud položka <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> dokáže serializovat tento typ, jinak hodnota false.</returns>
+      <param name="type">Typ k serializaci.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.GetDefaultValueForType(System.Type)">
+      <summary>Získá výchozí hodnotu pro zadaný typ.</summary>
+      <returns>Výchozí hodnota.</returns>
+      <param name="type">Typ, pro který má být získána výchozí hodnota.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.GetPerRequestFormatterInstance(System.Type,System.Net.Http.HttpRequestMessage,System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary>Vrátí specializovanou instanci třídy <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />, která dokáže formátovat odpověď pro dané parametry.</summary>
+      <returns>Vrací objekt <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />.</returns>
+      <param name="type">Typ k formátování.</param>
+      <param name="request">Žádost</param>
+      <param name="mediaType">Typ média.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatter.MaxHttpCollectionKeys">
+      <summary>Získá nebo nastaví maximální počet klíčů uložených v T: <see cref="System.Collections.Specialized.NameValueCollection" />.</summary>
+      <returns>Maximální počet klíčů.</returns>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatter.MediaTypeMappings">
+      <summary>Získá měnitelnou kolekci objektů <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" />, které porovnávají požadavky HTTP s typy médií.</summary>
+      <returns>Kolekce <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" />.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.ReadFromStreamAsync(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger)">
+      <summary>Asynchronně deserializuje objekt zadaného typu.</summary>
+      <returns>Třída <see cref="T:System.Threading.Tasks.Task" />, jejímž výsledkem bude objekt daného typu.</returns>
+      <param name="type">Typ objektu určeného k deserializaci.</param>
+      <param name="readStream">Třída <see cref="T:System.IO.Stream" />, která má být čtena.</param>
+      <param name="content">Položka <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="formatterLogger">Třída <see cref="T:System.Net.Http.Formatting.IFormatterLogger" />, do níž mají být protokolovány události.</param>
+      <exception cref="T:System.NotSupportedException">Odvozené typy musí podporovat čtení.</exception>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.ReadFromStreamAsync(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger,System.Threading.CancellationToken)">
+      <summary>Asynchronně deserializuje objekt zadaného typu.</summary>
+      <returns>Třída <see cref="T:System.Threading.Tasks.Task" />, jejímž výsledkem bude objekt daného typu.</returns>
+      <param name="type">Typ objektu určeného k deserializaci.</param>
+      <param name="readStream">Třída <see cref="T:System.IO.Stream" />, která má být čtena.</param>
+      <param name="content">Položka <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="formatterLogger">Třída <see cref="T:System.Net.Http.Formatting.IFormatterLogger" />, do níž mají být protokolovány události.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatter.RequiredMemberSelector">
+      <summary>Získá nebo nastaví instanci <see cref="T:System.Net.Http.Formatting.IRequiredMemberSelector" />, která slouží k určení požadovaných členů.</summary>
+      <returns>Instance <see cref="T:System.Net.Http.Formatting.IRequiredMemberSelector" />.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.SelectCharacterEncoding(System.Net.Http.Headers.HttpContentHeaders)">
+      <summary>Určuje nejvhodnější kódování znaků pro čtení nebo zápis obsahu entity HTTP vzhledem k sadě hlaviček obsahu.</summary>
+      <returns>Nejvhodnější kódování.</returns>
+      <param name="contentHeaders">Záhlaví obsahu</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.SetDefaultContentHeaders(System.Type,System.Net.Http.Headers.HttpContentHeaders,System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary>Nastaví výchozí hlavičky pro obsah, který bude formátován pomocí tohoto formátování.Tato metoda je volána z konstruktoru <see cref="T:System.Net.Http.ObjectContent" />.Tato implementace nastaví hlavičku Content-Type na hodnotu mediaType, není-li zadána hodnota Null.Je-li zadána hodnota Null, nastaví hlavičku Content-Type na výchozí typ média tohoto formátování.Pokud v hlavičce Content-Type není nastavena znaková sada, bude nastavena pomocí kódování <see cref="T:System.Text.Encoding" /> nastaveného v tomto formátování.</summary>
+      <param name="type">Typ serializovaného objektu.Viz třída <see cref="T:System.Net.Http.ObjectContent" />.</param>
+      <param name="headers">Hlavičky obsahu, které je třeba nakonfigurovat.</param>
+      <param name="mediaType">Autoritativní typ média.Může mít hodnotu null.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatter.SupportedEncodings">
+      <summary>Získá měnitelnou kolekci kódování znaků podporovaných touto položkou <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />.</summary>
+      <returns>Kolekce objektů <see cref="T:System.Text.Encoding" />.</returns>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatter.SupportedMediaTypes">
+      <summary>Získá měnitelnou kolekci typů médií podporovaných touto položkou <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />.</summary>
+      <returns>Kolekce objektů <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" />.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.WriteToStreamAsync(System.Type,System.Object,System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext)">
+      <summary>Asynchronně zapíše objekt zadaného typu.</summary>
+      <returns>Operace <see cref="T:System.Threading.Tasks.Task" />, která provede zápis.</returns>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+      <param name="value">Hodnota objektu určeného k zápisu.Může mít hodnotu null.</param>
+      <param name="writeStream">Třída <see cref="T:System.IO.Stream" />, do níž má být proveden zápis.</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="transportContext">Třída <see cref="T:System.Net.TransportContext" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <exception cref="T:System.NotSupportedException">Odvozené typy musí podporovat zápis.</exception>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatter.WriteToStreamAsync(System.Type,System.Object,System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext,System.Threading.CancellationToken)">
+      <summary>Asynchronně zapíše objekt zadaného typu.</summary>
+      <returns>Operace <see cref="T:System.Threading.Tasks.Task" />, která provede zápis.</returns>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+      <param name="value">Hodnota objektu určeného k zápisu.Může mít hodnotu null.</param>
+      <param name="writeStream">Třída <see cref="T:System.IO.Stream" />, do níž má být proveden zápis.</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="transportContext">Třída <see cref="T:System.Net.TransportContext" />, je-li k dispozici.Může mít hodnotu null.</param>
+      <param name="cancellationToken">Token pro zrušení operace.</param>
+      <exception cref="T:System.NotSupportedException">Odvozené typy musí podporovat zápis.</exception>
+    </member>
+    <member name="T:System.Net.Http.Formatting.MediaTypeFormatterCollection">
+      <summary> Třída kolekce, která obsahuje instance <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />. </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterCollection.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterCollection" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterCollection.#ctor(System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter})">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterCollection" />.</summary>
+      <param name="formatters">Kolekce instancí <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />, které mají být umístěny do kolekce.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterCollection.AddRange(System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter})">
+      <summary>Přidá elementy vybrané kolekce na konec kolekce <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterCollection" />.</summary>
+      <param name="items">Položky, které mají být přidány na konec kolekce <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterCollection" />. Samotná kolekce položek nesmí mít hodnotu <see cref="null" />, ale může obsahovat elementy s hodnotou <see cref="null" />.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterCollection.ClearItems">
+      <summary>Odebere všechny položky z kolekce.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterCollection.FindReader(System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary>Pomocník pro vyhledání formátování v kolekci, které může číst typ formátu .NET v daném parametru mediaType.</summary>
+      <returns>Formátovací modul, který umožňuje číst daný typ. Není-li formátování nalezeno, vrátí hodnotu Null.</returns>
+      <param name="type">Načítaný typ formátu .NET.</param>
+      <param name="mediaType">Porovnávaný typ média</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterCollection.FindWriter(System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary>Pomocná rutina pro vyhledání formátovacího modulu v kolekci, který může zapsat typ rozhraní .NET v daném parametru mediaType</summary>
+      <returns>Formátovací modul, který umožňuje zapisovat daný typ. Není-li formátování nalezeno, vrátí hodnotu Null.</returns>
+      <param name="type">Načítaný typ formátu .NET.</param>
+      <param name="mediaType">Porovnávaný typ média</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatterCollection.FormUrlEncodedFormatter">
+      <summary>Získá třídu <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> pro použití s daty application/x-www-form-urlencoded.</summary>
+      <returns>Objekt <see cref="T:System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter" />, který má být použit pro data application/x-www-form-urlencoded.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterCollection.InsertItem(System.Int32,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary>Vloží zadanou položku na pozici kolekce se zadaným indexem.</summary>
+      <param name="index">Index, ke kterému má být provedeno vložení.</param>
+      <param name="item">Položka ke vložení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterCollection.InsertRange(System.Int32,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter})">
+      <summary>Vloží elementy kolekce do kolekce <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterCollection" /> s ohledem na zadaný index.</summary>
+      <param name="index">Index o základu 0, na jehož pozici mají být nové prvky vloženy.</param>
+      <param name="items">Položky, které se mají vložit do kolekce <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterCollection" />. Samotná kolekce položek nesmí mít hodnotu <see cref="null" />, ale může obsahovat elementy s hodnotou <see cref="null" />.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterCollection.IsTypeExcludedFromValidation(System.Type)">
+      <summary>Vrátí hodnotu true, pokud je typ některý z volně definovaných typů, které by měly být vyloučeny z ověřování.</summary>
+      <returns>Hodnota true, pokud má být typ vyloučen. V opačném případě hodnota false.</returns>
+      <param name="type">Třída <see cref="T:System.Type" /> technologie .NET, která má být ověřena</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatterCollection.JsonFormatter">
+      <summary>Získá třídu <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> pro použití s formátem JSON.</summary>
+      <returns>
+        <see cref="T:System.Net.Http.Formatting.JsonMediaTypeFormatter" />, které má být použito pro formát JSON.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterCollection.RemoveItem(System.Int32)">
+      <summary>Odebere položku z pozice se zadaným indexem.</summary>
+      <param name="index">Index položky k odebrání.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterCollection.SetItem(System.Int32,System.Net.Http.Formatting.MediaTypeFormatter)">
+      <summary>Přiřadí položku na pozici kolekce se zadaným indexem.</summary>
+      <param name="index">Index, ke kterému má být provedeno vložení.</param>
+      <param name="item">Položka k přiřazení.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatterCollection.XmlFormatter">
+      <summary>Získá třídu <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> pro použití s formátem XML.</summary>
+      <returns>
+        <see cref="T:System.Net.Http.Formatting.XmlMediaTypeFormatter" />, které má být použito pro formát XML.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterExtensions.AddQueryStringMapping(System.Net.Http.Formatting.MediaTypeFormatter,System.String,System.String,System.Net.Http.Headers.MediaTypeHeaderValue)"></member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterExtensions.AddQueryStringMapping(System.Net.Http.Formatting.MediaTypeFormatter,System.String,System.String,System.String)"></member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterExtensions.AddRequestHeaderMapping(System.Net.Http.Formatting.MediaTypeFormatter,System.String,System.String,System.StringComparison,System.Boolean,System.Net.Http.Headers.MediaTypeHeaderValue)"></member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterExtensions.AddRequestHeaderMapping(System.Net.Http.Formatting.MediaTypeFormatter,System.String,System.String,System.StringComparison,System.Boolean,System.String)"></member>
+    <member name="T:System.Net.Http.Formatting.MediaTypeFormatterMatch">
+      <summary> Tato třída popisuje, do jaké míry určitá položka <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> odpovídá požadavku. </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeFormatterMatch.#ctor(System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,System.Nullable{System.Double},System.Net.Http.Formatting.MediaTypeFormatterMatchRanking)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.MediaTypeFormatterMatch" />. </summary>
+      <param name="formatter">Odpovídající formátovací modul.</param>
+      <param name="mediaType">Typ média.Může mít hodnotu null a v takovém případě bude použit typ média application/octet-stream.</param>
+      <param name="quality">Kvalita shody.Může mít hodnotu null a v tom případě bude shoda považována za plnou shodu s hodnotou 1,0</param>
+      <param name="ranking">Druh shody.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatterMatch.Formatter">
+      <summary> Načte formátovací modul typu média. </summary>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatterMatch.MediaType">
+      <summary> Načte porovnávaný typ média. </summary>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatterMatch.Quality">
+      <summary> Načte kvalitu shody </summary>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeFormatterMatch.Ranking">
+      <summary> Načte druh nalezené shody. </summary>
+    </member>
+    <member name="T:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking">
+      <summary> Obsahuje informace o tom, do jaké míry položka <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> odpovídá explicitním či implicitním předvolbám uvedeným v příchozím požadavku. </summary>
+    </member>
+    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnCanWriteType">
+      <summary> Porovnáváno podle typu, což znamená, že formátovací modul je schopen serializovat typ.</summary>
+    </member>
+    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestAcceptHeaderAllMediaRange">
+      <summary>Porovnáváno podle explicitního rozsahu */* v hlavičce Accept.</summary>
+    </member>
+    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestAcceptHeaderLiteral">
+      <summary>Porovnáváno podle explicitně uvedené hlavičky Accept, například application/json.</summary>
+    </member>
+    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestAcceptHeaderSubtypeMediaRange">
+      <summary>Porovnáváno podle explicitního rozsahu podtypu v hlavičce Accept, například application/*.</summary>
+    </member>
+    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestMediaType">
+      <summary> Porovnáváno podle typu média obsahu entity ve zprávě požadavku HTTP.</summary>
+    </member>
+    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.MatchOnRequestWithMediaTypeMapping">
+      <summary> Porovnáváno podle položky <see cref="T:System.Net.Http.HttpRequestMessage" /> po použití různých položek <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" />. </summary>
+    </member>
+    <member name="F:System.Net.Http.Formatting.MediaTypeFormatterMatchRanking.None">
+      <summary> Nebyla nalezena žádná shoda </summary>
+    </member>
+    <member name="T:System.Net.Http.Formatting.MediaTypeMapping">
+      <summary> Tato abstraktní základní třída slouží k vytvoření přidružení mezi instancemi <see cref="T:System.Net.Http.HttpRequestMessage" /> nebo <see cref="T:System.Net.Http.HttpResponseMessage" />, které mají určité charakteristické vlastnosti, a specifickou třídou <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" />.  </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeMapping.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" /> s danou hodnotou mediaType. </summary>
+      <param name="mediaType"> Třída <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" /> přidružená k instancím <see cref="T:System.Net.Http.HttpRequestMessage" /> nebo <see cref="T:System.Net.Http.HttpResponseMessage" />, které mají požadované charakteristické vlastnosti třídy <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" />. </param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeMapping.#ctor(System.String)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" /> s danou hodnotou mediaType. </summary>
+      <param name="mediaType"> Třída <see cref="T:System.String" /> přidružená k instancím <see cref="T:System.Net.Http.HttpRequestMessage" /> nebo <see cref="T:System.Net.Http.HttpResponseMessage" />, které mají požadované charakteristické vlastnosti třídy <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" />. </param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.MediaTypeMapping.MediaType">
+      <summary> Získá třídu <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" />, která je přidružena k instancím <see cref="T:System.Net.Http.HttpRequestMessage" /> nebo <see cref="T:System.Net.Http.HttpResponseMessage" />, které mají požadované charakteristické vlastnosti třídy <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" />. </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.MediaTypeMapping.TryMatchMediaType(System.Net.Http.HttpRequestMessage)">
+      <summary> Vrátí kvalitu shody třídy <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" /> přidružené k požadavku. </summary>
+      <returns>Kvalita shody.Hodnota musí být v rozmezí 0,0 až 1,0.Hodnota 0,0 znamená, že neexistuje žádná shoda.Hodnota 1,0 označuje dokonalou shodu.</returns>
+      <param name="request"> Třída <see cref="T:System.Net.Http.HttpRequestMessage" /> sloužící k vyhodnocení charakteristických vlastností přidružených k instanci <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" /> třídy <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" />. </param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.QueryStringMapping">
+      <summary> Třída, která zprostředkovává instance <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" /> z řetězců dotazů. </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.QueryStringMapping.#ctor(System.String,System.String,System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.QueryStringMapping" />. </summary>
+      <param name="queryStringParameterName">Název parametru řetězce dotazu, který se má shodovat, je-li přítomen.</param>
+      <param name="queryStringParameterValue">Hodnota parametru řetězce dotazu zadaná pomocí parametru queryStringParameterName.</param>
+      <param name="mediaType">Třída <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" />, která má být použita, pokud je přítomen parametr dotazu zadaný pomocí parametru queryStringParameterName a má přiřazenu hodnotu zadanou pomocí parametru queryStringParameterValue.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.QueryStringMapping.#ctor(System.String,System.String,System.String)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.QueryStringMapping" />. </summary>
+      <param name="queryStringParameterName">Název parametru řetězce dotazu, který se má shodovat, je-li přítomen.</param>
+      <param name="queryStringParameterValue">Hodnota parametru řetězce dotazu zadaná pomocí parametru queryStringParameterName.</param>
+      <param name="mediaType">Typ média, který má být použit, pokud je přítomen parametr dotazu zadaný pomocí parametru queryStringParameterName a má přiřazenu hodnotu zadanou pomocí parametru queryStringParameterValue.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.QueryStringMapping.QueryStringParameterName">
+      <summary> Získá název parametru řetězce dotazu. </summary>
+    </member>
+    <member name="P:System.Net.Http.Formatting.QueryStringMapping.QueryStringParameterValue">
+      <summary> Získá hodnotu parametru řetězce dotazu. </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.QueryStringMapping.TryMatchMediaType(System.Net.Http.HttpRequestMessage)">
+      <summary> Vrátí hodnotu, která určuje, zda aktuální instance <see cref="T:System.Net.Http.Formatting.QueryStringMapping" /> může vrátit třídu <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" /> z požadavku. </summary>
+      <returns>Jestliže tato instance může vytvořit hodnotu <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" /> z požadavku, vrátí hodnotu 1,0, jinak vrátí hodnotu 0,0.</returns>
+      <param name="request">Hodnota <see cref="T:System.Net.Http.HttpRequestMessage" /> ke kontrole.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.RequestHeaderMapping">
+      <summary>Tato třída poskytuje mapování z libovolného pole hlavičky požadavku HTTP na objekt <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" /> použitý k výběru instancí <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> pro zpracování obsahu entity <see cref="T:System.Net.Http.HttpRequestMessage" /> nebo <see cref="T:System.Net.Http.HttpResponseMessage" />.&lt;Poznámky:&gt; Tato třída zkontroluje pouze pole hlavičky přidružená ke třídě <see cref="M:HttpRequestMessage.Headers" /> za účelem shody.Nekontroluje pole hlavičky přiřazená k instancím <see cref="M:HttpResponseMessage.Headers" /> nebo <see cref="M:HttpContent.Headers" />.&lt;/remarks&gt;</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.RequestHeaderMapping.#ctor(System.String,System.String,System.StringComparison,System.Boolean,System.Net.Http.Headers.MediaTypeHeaderValue)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.RequestHeaderMapping" />. </summary>
+      <param name="headerName">Název hlavičky, která se má shodovat.</param>
+      <param name="headerValue">Hodnota hlavičky, která se má shodovat.</param>
+      <param name="valueComparison">Třída <see cref="T:System.StringComparison" /> pro použití při kontrole shody hodnoty headerValue.</param>
+      <param name="isValueSubstring">Je-li tato hodnota nastavena na true, bude parametr headerValue považován za shodný, jestliže odpovídá podřetězci skutečné hodnoty hlavičky.</param>
+      <param name="mediaType">Třída <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" />, která má být použita, jestliže jsou parametry headerName a headerValue považovány za shodné.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.RequestHeaderMapping.#ctor(System.String,System.String,System.StringComparison,System.Boolean,System.String)">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.RequestHeaderMapping" />. </summary>
+      <param name="headerName">Název hlavičky, která se má shodovat.</param>
+      <param name="headerValue">Hodnota hlavičky, která se má shodovat.</param>
+      <param name="valueComparison">Porovnání hodnoty pro použití při kontrole shody hodnoty headerValue.</param>
+      <param name="isValueSubstring">Je-li tato hodnota nastavena na true, bude parametr headerValue považován za shodný, jestliže odpovídá podřetězci skutečné hodnoty hlavičky.</param>
+      <param name="mediaType">Typ média, který má být použit, jestliže jsou parametry headerName a headerValue považovány za shodné.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.RequestHeaderMapping.HeaderName">
+      <summary> Získá název hlavičky k porovnání shody. </summary>
+    </member>
+    <member name="P:System.Net.Http.Formatting.RequestHeaderMapping.HeaderValue">
+      <summary> Získá hodnotu hlavičky k porovnání shody. </summary>
+    </member>
+    <member name="P:System.Net.Http.Formatting.RequestHeaderMapping.HeaderValueComparison">
+      <summary> Získá třídu <see cref="T:System.StringComparison" /> pro použití při kontrole shody hodnoty <see cref="M:HeaderValue" />. </summary>
+    </member>
+    <member name="P:System.Net.Http.Formatting.RequestHeaderMapping.IsValueSubstring">
+      <summary>Získá hodnotu, která určuje, zda se třída <see cref="M:HeaderValue" /> shoduje s podřetězcem skutečné hodnoty hlavičky.Tato instance je podřetězcem hodnoty.</summary>
+      <returns>true<see cref="P:System.Net.Http.Formatting.RequestHeaderMapping.HeaderValue" />false</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.RequestHeaderMapping.TryMatchMediaType(System.Net.Http.HttpRequestMessage)">
+      <summary> Vrátí hodnotu, která určuje, zda aktuální instance <see cref="T:System.Net.Http.Formatting.RequestHeaderMapping" /> může vrátit třídu <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" /> z požadavku. </summary>
+      <returns>Kvalita shody.Hodnota musí být v rozmezí 0,0 až 1,0.Hodnota 0,0 znamená, že neexistuje žádná shoda.Hodnota 1,0 označuje dokonalou shodu.</returns>
+      <param name="request">Hodnota <see cref="T:System.Net.Http.HttpRequestMessage" /> ke kontrole.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.XmlHttpRequestHeaderMapping">
+      <summary> Položka <see cref="T:System.Net.Http.Formatting.RequestHeaderMapping" />, která mapuje pole hlavičky HTTP X-Requested-With nastavené rozhraním AJAX XmlHttpRequest (XHR) na typ média application/json, pokud v požadavku nejsou uvedena žádná explicitní pole hlavičky Accept. </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlHttpRequestHeaderMapping.#ctor">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.XmlHttpRequestHeaderMapping" /></summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlHttpRequestHeaderMapping.TryMatchMediaType(System.Net.Http.HttpRequestMessage)">
+      <summary> Vrátí hodnotu, která určuje, zda aktuální instance <see cref="T:System.Net.Http.Formatting.RequestHeaderMapping" /> může vrátit třídu <see cref="T:System.Net.Http.Headers.MediaTypeHeaderValue" /> z požadavku. </summary>
+      <returns>Kvalita shody.Hodnota 0,0 znamená, že neexistuje žádná shoda.Hodnota 1,0 znamená, že se jedná o úplnou shodu a že byl požadavek zadán pomocí rozhraní XmlHttpRequest bez hlavičky Accept.</returns>
+      <param name="request">Hodnota <see cref="T:System.Net.Http.HttpRequestMessage" /> ke kontrole.</param>
+    </member>
+    <member name="T:System.Net.Http.Formatting.XmlMediaTypeFormatter">
+      <summary>Třída <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" /> určená pro zpracování formátu Xml. </summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.XmlMediaTypeFormatter" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.#ctor(System.Net.Http.Formatting.XmlMediaTypeFormatter)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Formatting.XmlMediaTypeFormatter" />.</summary>
+      <param name="formatter">Instance <see cref="T:System.Net.Http.Formatting.XmlMediaTypeFormatter" />, ze které se má kopírovat nastavení.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.CanReadType(System.Type)">
+      <summary>Zašle dotaz, zda položka <see cref="T:System.Net.Http.Formatting.XmlMediaTypeFormatter" /> může deserializovat objekt zadaného typu.</summary>
+      <returns>Hodnota true, pokud položka <see cref="T:System.Net.Http.Formatting.XmlMediaTypeFormatter" /> dokáže deserializovat tento typ, jinak hodnota false.</returns>
+      <param name="type">Typ k deserializaci.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.CanWriteType(System.Type)">
+      <summary>Zašle dotaz, zda položka <see cref="T:System.Net.Http.Formatting.XmlMediaTypeFormatter" /> může serializovat objekt zadaného typu.</summary>
+      <returns>Hodnota true, pokud položka <see cref="T:System.Net.Http.Formatting.XmlMediaTypeFormatter" /> dokáže serializovat tento typ, jinak hodnota false.</returns>
+      <param name="type">Typ k serializaci.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.CreateDataContractSerializer(System.Type)">
+      <summary>Volá se během deserializace pro získání serializátoru DataContractSerializer.</summary>
+      <returns>Objekt použitý pro serializaci.</returns>
+      <param name="type">Typ objektu, který bude serializován nebo deserializován.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.CreateXmlReader(System.IO.Stream,System.Net.Http.HttpContent)">
+      <summary>Volá se během deserializace za účelem získání čtečky XML pro čtení objektů ze streamu.</summary>
+      <returns>Čtečka <see cref="T:System.Xml.XmlReader" />, která má být použita pro čtení objektů</returns>
+      <param name="readStream">Třída <see cref="T:System.IO.Stream" />, z níž se má číst</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" /> pro čtený obsah.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.CreateXmlSerializer(System.Type)">
+      <summary>Volá se během deserializace pro získání serializátoru XML.</summary>
+      <returns>Objekt použitý pro serializaci.</returns>
+      <param name="type">Typ objektu, který bude serializován nebo deserializován.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.CreateXmlWriter(System.IO.Stream,System.Net.Http.HttpContent)">
+      <summary>Volá se během serializace za účelem získání zapisovače XML pro zápis objektů do streamu.</summary>
+      <returns>Zapisovač <see cref="T:System.Xml.XmlWriter" />, který má být použit pro zápis objektů</returns>
+      <param name="writeStream">Stream <see cref="T:System.IO.Stream" />, do kterého se má zapisovat</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" /> pro zapisovaný obsah.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.XmlMediaTypeFormatter.DefaultMediaType">
+      <summary>Získá výchozí typ médií pro formátovací modul XML.</summary>
+      <returns>Výchozí typ médií, tedy application/xml</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.GetDeserializer(System.Type,System.Net.Http.HttpContent)">
+      <summary>Volá se během deserializace za účelem získání serializátoru XML pro deserializaci objektů.</summary>
+      <returns>Instance <see cref="T:System.Runtime.Serialization.XmlObjectSerializer" /> nebo <see cref="T:System.Xml.Serialization.XmlSerializer" />, která má být použita k deserializaci objektu</returns>
+      <param name="type">Typ objektu určeného k deserializaci.</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" /> pro čtený obsah.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.GetSerializer(System.Type,System.Object,System.Net.Http.HttpContent)">
+      <summary>Volá se během serializace za účelem získání serializátoru XML pro serializaci objektů.</summary>
+      <returns>Instance <see cref="T:System.Runtime.Serialization.XmlObjectSerializer" /> nebo <see cref="T:System.Xml.Serialization.XmlSerializer" />, která má být použita k serializaci objektu</returns>
+      <param name="type">Typ objektu určeného k serializaci.</param>
+      <param name="value">Objekt určený k serializaci.</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" /> pro zapisovaný obsah.</param>
+    </member>
+    <member name="P:System.Net.Http.Formatting.XmlMediaTypeFormatter.Indent">
+      <summary>Získá nebo nastaví hodnotu, která určuje, zda mají být při zápisu dat odsazeny jednotlivé prvky.</summary>
+      <returns>Hodnota true pro prvky indent, jinak hodnota false.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.InvokeCreateXmlReader(System.IO.Stream,System.Net.Http.HttpContent)">
+      <summary>Tato metoda podporuje infrastrukturu a není zamýšlena k použití přímo z vašeho kódu.</summary>
+      <returns>Vrací objekt <see cref="T:System.Xml.XmlReader" />.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.InvokeCreateXmlWriter(System.IO.Stream,System.Net.Http.HttpContent)">
+      <summary>Tato metoda podporuje infrastrukturu a není zamýšlena k použití přímo z vašeho kódu.</summary>
+      <returns>Vrací objekt <see cref="T:System.Xml.XmlWriter" />.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.InvokeGetDeserializer(System.Type,System.Net.Http.HttpContent)">
+      <summary>Tato metoda podporuje infrastrukturu a není zamýšlena k použití přímo z vašeho kódu.</summary>
+      <returns>Vrací objekt <see cref="T:System.Object" />.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.InvokeGetSerializer(System.Type,System.Object,System.Net.Http.HttpContent)">
+      <summary>Tato metoda podporuje infrastrukturu a není zamýšlena k použití přímo z vašeho kódu.</summary>
+      <returns>Vrací objekt <see cref="T:System.Object" />.</returns>
+    </member>
+    <member name="P:System.Net.Http.Formatting.XmlMediaTypeFormatter.MaxDepth">
+      <summary>Získá a nastaví maximální hloubku vnořeného uzlu.</summary>
+      <returns>Maximální hloubka vnořeného uzlu.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.ReadFromStreamAsync(System.Type,System.IO.Stream,System.Net.Http.HttpContent,System.Net.Http.Formatting.IFormatterLogger)">
+      <summary> Volá se během deserializace za účelem čtení objektu zadaného typu ze zadané položky readStream. </summary>
+      <returns>Úloha <see cref="T:System.Threading.Tasks.Task" />, jejímž výsledkem bude přečtená instance objektu.</returns>
+      <param name="type">Typ objektu určeného ke čtení.</param>
+      <param name="readStream">Datový proud <see cref="T:System.IO.Stream" />, z něhož má být provedeno čtení.</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" /> pro čtený obsah.</param>
+      <param name="formatterLogger">Třída <see cref="T:System.Net.Http.Formatting.IFormatterLogger" />, do níž mají být protokolovány události.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.RemoveSerializer(System.Type)">
+      <summary>Zruší registraci serializátoru, který je aktuálně přiřazen k danému typu.</summary>
+      <returns>Hodnota true označuje, že serializátor byl zaregistrován pro požadovaný typ; v opačném případě bude uvedena hodnota false.</returns>
+      <param name="type">Typ objektu, jehož serializátor je třeba odebrat.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.SetSerializer``1(System.Runtime.Serialization.XmlObjectSerializer)">
+      <summary>Zaregistruje serializátor <see cref="T:System.Runtime.Serialization.XmlObjectSerializer" /> pro čtení nebo zápis objektů zadaného typu.</summary>
+      <param name="serializer">Instance <see cref="T:System.Runtime.Serialization.XmlObjectSerializer" />.</param>
+      <typeparam name="T">Typ objektu, který bude serializován nebo deserializován pomocí prvku <paramref name="serializer" />.</typeparam>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.SetSerializer(System.Type,System.Runtime.Serialization.XmlObjectSerializer)">
+      <summary>Zaregistruje serializátor <see cref="T:System.Runtime.Serialization.XmlObjectSerializer" /> pro čtení nebo zápis objektů zadaného typu.</summary>
+      <param name="type">Typ objektu, který bude serializován nebo deserializován pomocí prvku <paramref name="serializer" />.</param>
+      <param name="serializer">Instance <see cref="T:System.Runtime.Serialization.XmlObjectSerializer" />.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.SetSerializer(System.Type,System.Xml.Serialization.XmlSerializer)">
+      <summary>Zaregistruje serializátor <see cref="T:System.Xml.Serialization.XmlSerializer" /> pro čtení nebo zápis objektů zadaného typu.</summary>
+      <param name="type">Typ objektu, který bude serializován nebo deserializován pomocí prvku <paramref name="serializer" />.</param>
+      <param name="serializer">Instance <see cref="T:System.Xml.Serialization.XmlSerializer" />.</param>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.SetSerializer``1(System.Xml.Serialization.XmlSerializer)">
+      <summary>Zaregistruje serializátor <see cref="T:System.Xml.Serialization.XmlSerializer" /> pro čtení nebo zápis objektů zadaného typu.</summary>
+      <param name="serializer">Instance <see cref="T:System.Xml.Serialization.XmlSerializer" />.</param>
+      <typeparam name="T">Typ objektu, který bude serializován nebo deserializován pomocí prvku <paramref name="serializer" />.</typeparam>
+    </member>
+    <member name="P:System.Net.Http.Formatting.XmlMediaTypeFormatter.UseXmlSerializer">
+      <summary>Získá nebo nastaví hodnotu, která udává, zda formátovací modul XML používá serializátor <see cref="T:System.Xml.Serialization.XmlSerializer" /> jako výchozí, místo aby používal serializátor <see cref="T:System.Runtime.Serialization.DataContractSerializer" />.</summary>
+      <returns>V případě hodnoty true formátovací modul používá výchozí serializátor <see cref="T:System.Xml.Serialization.XmlSerializer" />, jinak používá výchozí serializátor <see cref="T:System.Runtime.Serialization.DataContractSerializer" />.</returns>
+    </member>
+    <member name="P:System.Net.Http.Formatting.XmlMediaTypeFormatter.WriterSettings">
+      <summary>Získá nastavení, které se má použít při zápisu.</summary>
+      <returns>Nastavení, které se má použít při zápisu.</returns>
+    </member>
+    <member name="M:System.Net.Http.Formatting.XmlMediaTypeFormatter.WriteToStreamAsync(System.Type,System.Object,System.IO.Stream,System.Net.Http.HttpContent,System.Net.TransportContext,System.Threading.CancellationToken)">
+      <summary>Objekt volaný během serializace za účelem zápisu zadaného typu do zadané položky WriteStream.</summary>
+      <returns>Operace <see cref="T:System.Threading.Tasks.Task" />, která hodnotu zapíše do datového proudu.</returns>
+      <param name="type">Typ objektu určeného k zápisu.</param>
+      <param name="value">Objekt určený k zápisu.</param>
+      <param name="writeStream">Třída <see cref="T:System.IO.Stream" />, do níž má být proveden zápis.</param>
+      <param name="content">Třída <see cref="T:System.Net.Http.HttpContent" /> pro zapisovaný obsah.</param>
+      <param name="transportContext">Objekt <see cref="T:System.Net.TransportContext" /></param>
+      <param name="cancellationToken">Token k monitorování zrušení.</param>
+    </member>
+    <member name="T:System.Net.Http.Handlers.HttpProgressEventArgs">
+      <summary>Představuje argumenty událostí pro průběh protokolu HTTP.</summary>
+    </member>
+    <member name="M:System.Net.Http.Handlers.HttpProgressEventArgs.#ctor(System.Int32,System.Object,System.Int64,System.Nullable{System.Int64})">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Handlers.HttpProgressEventArgs" />. </summary>
+      <param name="progressPercentage">Procentní hodnota průběhu.</param>
+      <param name="userToken">Token uživatele.</param>
+      <param name="bytesTransferred">Počet přenesených bajtů.</param>
+      <param name="totalBytes">Celkový počet přenesených bajtů.</param>
+    </member>
+    <member name="P:System.Net.Http.Handlers.HttpProgressEventArgs.BytesTransferred"></member>
+    <member name="P:System.Net.Http.Handlers.HttpProgressEventArgs.TotalBytes"></member>
+    <member name="T:System.Net.Http.Handlers.ProgressMessageHandler">
+      <summary>Generuje oznámení o průběhu pro odesílané entity požadavků i pro stahované entity odpovědí.</summary>
+    </member>
+    <member name="M:System.Net.Http.Handlers.ProgressMessageHandler.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Handlers.ProgressMessageHandler" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Handlers.ProgressMessageHandler.#ctor(System.Net.Http.HttpMessageHandler)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Handlers.ProgressMessageHandler" />.</summary>
+      <param name="innerHandler">Vnitřní popisovač zprávy.</param>
+    </member>
+    <member name="E:System.Net.Http.Handlers.ProgressMessageHandler.HttpReceiveProgress">
+      <summary>Nastává při stahování entit událostí.</summary>
+    </member>
+    <member name="E:System.Net.Http.Handlers.ProgressMessageHandler.HttpSendProgress">
+      <summary>Nastává při odesílání entit událostí.</summary>
+    </member>
+    <member name="M:System.Net.Http.Handlers.ProgressMessageHandler.OnHttpRequestProgress(System.Net.Http.HttpRequestMessage,System.Net.Http.Handlers.HttpProgressEventArgs)">
+      <summary>Vyvolá událost, která zpracuje požadavek na průběh.</summary>
+      <param name="request">Žádost</param>
+      <param name="e">Popisovač události pro požadavek.</param>
+    </member>
+    <member name="M:System.Net.Http.Handlers.ProgressMessageHandler.OnHttpResponseProgress(System.Net.Http.HttpRequestMessage,System.Net.Http.Handlers.HttpProgressEventArgs)">
+      <summary>Vyvolá událost, která zpracuje odpověď na průběh.</summary>
+      <param name="request">Žádost</param>
+      <param name="e">Popisovač události pro požadavek.</param>
+    </member>
+    <member name="M:System.Net.Http.Handlers.ProgressMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+      <summary>Odešle určenou zprávu o průběhu na server HTTP k doručení.</summary>
+      <returns>Odeslaná zpráva o průběhu.</returns>
+      <param name="request">Žádost</param>
+      <param name="cancellationToken">Token zrušení</param>
+    </member>
+    <member name="T:System.Net.Http.Headers.CookieHeaderValue">
+      <summary>Poskytuje hodnoty pro hlavičku Cookie.</summary>
+    </member>
+    <member name="M:System.Net.Http.Headers.CookieHeaderValue.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Headers.CookieHeaderValue" />.</summary>
+    </member>
+    <member name="M:System.Net.Http.Headers.CookieHeaderValue.#ctor(System.String,System.Collections.Specialized.NameValueCollection)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Headers.CookieHeaderValue" />.</summary>
+      <param name="name">Hodnota názvu.</param>
+      <param name="values">Hodnoty</param>
+    </member>
+    <member name="M:System.Net.Http.Headers.CookieHeaderValue.#ctor(System.String,System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Headers.CookieHeaderValue" />.</summary>
+      <param name="name">Hodnota názvu.</param>
+      <param name="value">Hodnota</param>
+    </member>
+    <member name="M:System.Net.Http.Headers.CookieHeaderValue.Clone">
+      <summary>Vytvoří kopii hodnoty souboru cookie bez podstruktury.</summary>
+      <returns>Kopie hodnoty souboru cookie bez podstruktury.</returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieHeaderValue.Cookies">
+      <summary>Získá kolekci souborů cookie zaslaných klientem.</summary>
+      <returns>Objekt kolekce představující proměnné souborů cookie klienta.</returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieHeaderValue.Domain">
+      <summary>Získá nebo načte doménu, ke které se má soubor cookie přidružit.</summary>
+      <returns>Název domény, ke které se má soubor cookie přidružit.</returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieHeaderValue.Expires">
+      <summary>Získá nebo načte datum a čas vypršení platnosti souboru cookie.</summary>
+      <returns>Čas (v klientovi), ve který vyprší platnost souboru cookie.</returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieHeaderValue.HttpOnly">
+      <summary>Získá nebo nastaví hodnotu určující, zda je soubor cookie přístupný pro skripty na straně klienta.</summary>
+      <returns>Hodnota true, jestliže má soubor cookie atribut HttpOnly a nelze k němu získat přístup pomocí skriptu na straně klienta, jinak hodnota false.</returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieHeaderValue.Item(System.String)">
+      <summary>Získá zkratku na vlastnost souboru cookie.</summary>
+      <returns>Hodnota souboru cookie.</returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieHeaderValue.MaxAge">
+      <summary>Získá nebo načte maximální povolené stáří prostředku.</summary>
+      <returns>Maximální povolené stáří prostředku.</returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieHeaderValue.Path">
+      <summary>Získá nebo načte virtuální cestu k předání s aktuálním souborem cookie.</summary>
+      <returns>Virtuální cesta k předání se souborem cookie.</returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieHeaderValue.Secure">
+      <summary>Získá nebo načte hodnotu určující, zda má být soubor cookie přenesen pomocí protokolu SSL (Secure Sockets Layer), tedy pouze pomocí protokolu SSL.</summary>
+      <returns>Hodnota true, má-li být soubor cookie přenášen pomocí připojení SSL (HTTPS), jinak hodnota false.</returns>
+    </member>
+    <member name="M:System.Net.Http.Headers.CookieHeaderValue.ToString">
+      <summary>Vrátí řetězec, který představuje aktuální objekt.</summary>
+      <returns>Řetězec, který představuje aktuální objekt.</returns>
+    </member>
+    <member name="M:System.Net.Http.Headers.CookieHeaderValue.TryParse(System.String,System.Net.Http.Headers.CookieHeaderValue@)">
+      <summary>Určuje hodnotu, která udává, zda bude převedena řetězcová reprezentace.</summary>
+      <returns>Hodnota true, pokud má být řetězcová reprezentace převedena, jinak hodnota false.</returns>
+      <param name="input">Vstupní hodnota.</param>
+      <param name="parsedValue">Analyzovaná hodnota, která má být převedena.</param>
+    </member>
+    <member name="T:System.Net.Http.Headers.CookieState">
+      <summary>Obsahuje název souboru cookie a přidružený stav souboru cookie.</summary>
+    </member>
+    <member name="M:System.Net.Http.Headers.CookieState.#ctor(System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Headers.CookieState" />.</summary>
+      <param name="name">Název souboru cookie</param>
+    </member>
+    <member name="M:System.Net.Http.Headers.CookieState.#ctor(System.String,System.Collections.Specialized.NameValueCollection)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Headers.CookieState" />.</summary>
+      <param name="name">Název souboru cookie</param>
+      <param name="values">Kolekce dvojic název-hodnota pro daný soubor cookie</param>
+    </member>
+    <member name="M:System.Net.Http.Headers.CookieState.#ctor(System.String,System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Net.Http.Headers.CookieState" />.</summary>
+      <param name="name">Název souboru cookie</param>
+      <param name="value">Hodnota souboru cookie</param>
+    </member>
+    <member name="M:System.Net.Http.Headers.CookieState.Clone">
+      <summary>Vrací nový objekt, který je kopií aktuální instance.</summary>
+      <returns>Nový objekt, který je kopií aktuální instance</returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieState.Item(System.String)">
+      <summary>Získá nebo nastaví hodnotu souboru cookie se zadaným názvem souboru cookie, pokud jsou data v souboru cookie strukturovaná.</summary>
+      <returns>Hodnota souboru cookie se zadaný názvem souboru cookie</returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieState.Name">
+      <summary>Získá nebo nastaví název souboru cookie.</summary>
+      <returns>Název souboru cookie</returns>
+    </member>
+    <member name="M:System.Net.Http.Headers.CookieState.ToString">
+      <summary>Vrací řetězcovou reprezentaci aktuálního objektu.</summary>
+      <returns>Řetězcová reprezentace aktuálního objektu</returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieState.Value">
+      <summary>Získá nebo nastaví hodnotu souboru cookie, pokud je hodnota souboru cookie tvořena jednoduchým řetězcem.</summary>
+      <returns>Hodnota souboru cookie </returns>
+    </member>
+    <member name="P:System.Net.Http.Headers.CookieState.Values">
+      <summary>Získá nebo nastaví kolekci dvojic název-hodnota, pokud jsou data souboru cookie strukturovaná.</summary>
+      <returns>Kolekce dvojic název-hodnota pro daný soubor cookie</returns>
+    </member>
+  </members>
+</doc>

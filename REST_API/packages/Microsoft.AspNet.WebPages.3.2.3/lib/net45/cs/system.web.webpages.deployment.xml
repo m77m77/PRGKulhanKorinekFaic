@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Web.WebPages.Deployment</name>
+  </assembly>
+  <members>
+    <member name="T:System.Web.WebPages.Deployment.PreApplicationStartCode">
+      <summary>Pro nasazení webových stránek poskytuje registrační bod pro kód pro spuštění před aplikací.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Deployment.PreApplicationStartCode.Start">
+      <summary>Pro nasazení webových stránek zaregistruje kód pro spuštění před aplikací.</summary>
+    </member>
+    <member name="T:System.Web.WebPages.Deployment.WebPagesDeployment">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Poskytuje metody, které se používají pro získání informací o nasazení k webové aplikaci.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.GetAssemblyPath(System.Version)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá cestu k sestavení pro nasazení aplikace Web Pages.</summary>
+      <returns>Cesta k sestavení pro nasazení aplikace Web Pages</returns>
+      <param name="version">Verze aplikace Web Pages</param>
+    </member>
+    <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.GetExplicitWebPagesVersion(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá verzi aplikace Web Pages z dané binární cesty.</summary>
+      <returns>Verze aplikace Web Pages</returns>
+      <param name="path">Binární cesta pro aplikaci Web Pages</param>
+    </member>
+    <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.GetIncompatibleDependencies(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá odkazy na sestavení z dané cesty bez ohledu na verzi aplikace Web Pages.</summary>
+      <returns>Slovník obsahující odkazy na sestavení aplikace Web Pages a její verzi.</returns>
+      <param name="appPath">Cesta k aplikaci Web Pages</param>
+    </member>
+    <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.GetMaxVersion">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá maximální verzi načtených sestavení aplikace Web Pages.</summary>
+      <returns>Maximální verze načtených sestavení aplikace Web Pages</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.GetVersion(System.String)">
+      <summary>Získá verzi aplikace Web Pages z dané cesty.</summary>
+      <returns>Verze aplikace Web Pages</returns>
+      <param name="path">Cesta ke kořenovému adresáři aplikace.</param>
+    </member>
+    <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.GetVersionWithoutEnabledCheck(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá verzi aplikace Web Pages pomocí nastavení konfigurace se zadanou cestou.</summary>
+      <returns>Verze aplikace Web Pages</returns>
+      <param name="path">Cesta k nastavení aplikace</param>
+    </member>
+    <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.GetWebPagesAssemblies">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vrátí sestavení pro toto nasazení aplikace Web Pages.</summary>
+      <returns>Seznam obsahující sestavení pro toto nasazení aplikace Web Pages</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.IsEnabled(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Indikuje, zda je povoleno nasazení aplikace Web Pages.</summary>
+      <returns>Hodnota true, pokud je povoleno nasazení aplikace Web Pages. V opačném případě hodnota false.</returns>
+      <param name="path">Cesta k nasazení aplikace Web Pages</param>
+    </member>
+    <member name="M:System.Web.WebPages.Deployment.WebPagesDeployment.IsExplicitlyDisabled(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Indikuje, zda je nasazení aplikace Web Pages explicitně zakázáno.</summary>
+      <returns>Hodnota true, pokud je nasazení aplikace Web Pages explicitně zakázáno. V opačném případě hodnota false.</returns>
+      <param name="path">Cesta k nasazení aplikace Web Pages</param>
+    </member>
+  </members>
+</doc>

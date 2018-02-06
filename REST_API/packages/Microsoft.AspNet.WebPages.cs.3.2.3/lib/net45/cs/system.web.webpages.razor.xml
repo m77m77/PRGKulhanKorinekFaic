@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Web.WebPages.Razor</name>
+  </assembly>
+  <members>
+    <member name="T:System.Web.WebPages.Razor.CompilingPathEventArgs">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Představuje základní třídu pro cestu kompilace, která obsahuje data událostí.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.CompilingPathEventArgs.#ctor(System.String,System.Web.WebPages.Razor.WebPageRazorHost)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Inicializuje novou instanci třídy <see cref="T:System.Web.WebPages.Razor.CompilingPathEventArgs" />.</summary>
+      <param name="virtualPath">Řetězec virtuální cesty</param>
+      <param name="host">Hostitel pro syntaxi Razor webové stránky</param>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.CompilingPathEventArgs.Host">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá nebo nastaví hostitele pro syntaxi Razor webové stránky.</summary>
+      <returns>Hostitel pro syntaxi Razor webové stránky</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.CompilingPathEventArgs.VirtualPath">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá virtuální cestu pro webovou stránku.</summary>
+      <returns>Virtuální cesta pro webovou stránku</returns>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.PreApplicationStartCode">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.PreApplicationStartCode.Start">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.</summary>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.RazorBuildProvider">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Představuje poskytovatele sestavení pro prostředí Razor.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.#ctor">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Inicializuje novou instanci třídy <see cref="T:System.Web.WebPages.Razor.RazorBuildProvider" />.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.AddVirtualPathDependency(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Přidá do kolekce závislost na virtuální cestě.</summary>
+      <param name="dependency">Závislost na virtuální cestě, která má být přidána</param>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.RazorBuildProvider.AssemblyBuilder">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá tvůrce sestavení pro prostředí Razor.</summary>
+      <returns>Tvůrce sestavení</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.RazorBuildProvider.CodeCompilerType">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá nastavení kompilátoru pro prostředí Razor.</summary>
+    </member>
+    <member name="E:System.Web.WebPages.Razor.RazorBuildProvider.CodeGenerationCompleted">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Nastane při dokončení generování kódu.</summary>
+    </member>
+    <member name="E:System.Web.WebPages.Razor.RazorBuildProvider.CodeGenerationStarted">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Nastane při spuštění generování kódu.</summary>
+    </member>
+    <member name="E:System.Web.WebPages.Razor.RazorBuildProvider.CompilingPath">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Nastane při kompilaci s novou virtuální cestou.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.CreateHost">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vytvoří základ instance hostitele modulu Razor ve webové konfiguraci.</summary>
+      <returns>Inistance hostitele modulu Razor</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Generuje kód pomocí zadaného tvůrce sestavení.</summary>
+      <param name="assemblyBuilder">Tvůrce sestavení</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá typ generovaného kódu.</summary>
+      <returns>Typ generovaného kódu</returns>
+      <param name="results">Výsledky kompilace kódu</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.GetHostFromConfig">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vytvoří instanci hostitele modulu Razor na základě webové konfigurace.</summary>
+      <returns>Instance hostitele modulu Razor</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.InternalOpenReader">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Otevře interní čtečku textu.</summary>
+      <returns>Interní čtečka textu</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.RazorBuildProvider.OnBeforeCompilePath(System.Web.WebPages.Razor.CompilingPathEventArgs)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vyvolává událost CompilingPath.</summary>
+      <param name="args">Data poskytnutá pro událost CompilingPath</param>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.RazorBuildProvider.VirtualPath">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá virtuální cestu zdrojové stránky.</summary>
+      <returns>Virtuální cesta zdrojového kódu</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.RazorBuildProvider.VirtualPathDependencies">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Získá kolekci virtuálních cest pro závislosti.</summary>
+      <returns>Kolekce virtuálních cest pro závislosti</returns>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.WebCodeRazorHost">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Představuje hostitele syntaxe Razor webového kódu pro webové stránky.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebCodeRazorHost.#ctor(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Inicializuje novou instanci třídy <see cref="T:System.Web.WebPages.Razor.WebCodeRazorHost" />.</summary>
+      <param name="virtualPath">Virtuální cesta</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebCodeRazorHost.#ctor(System.String,System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Inicializuje novou instanci třídy <see cref="T:System.Web.WebPages.Razor.WebCodeRazorHost" />.</summary>
+      <param name="virtualPath">Virtuální cesta</param>
+      <param name="physicalPath">Fyzická cesta</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebCodeRazorHost.GetClassName(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vrací název třídy této instance.</summary>
+      <returns>Název třídy této instance</returns>
+      <param name="virtualPath">Virtuální cesta</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebCodeRazorHost.PostProcessGeneratedCode(System.Web.Razor.Generator.CodeGeneratorContext)">
+      <summary>Generuje kód dodatečného zpracování pro hostitele syntaxe Razor webového kódu.</summary>
+      <param name="context">Kontext generátoru kódu</param>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.WebPageRazorHost">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Represents the razor hosts in a webpage.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.#ctor(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Initializes a new instance of the <see cref="T:System.Web.WebPages.Razor.WebPageRazorHost" /> class with the specified virtual file path.</summary>
+      <param name="virtualPath">Virtuální cesta souboru</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.#ctor(System.String,System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Initializes a new instance of the <see cref="T:System.Web.WebPages.Razor.WebPageRazorHost" /> class with the specified virtual and physical file path.</summary>
+      <param name="virtualPath">Virtuální cesta souboru</param>
+      <param name="physicalPath">Fyzická cesta k souboru</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.AddGlobalImport(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Adds a global import on the webpage.</summary>
+      <param name="ns">The notification service name.</param>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.CodeLanguage">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets the <see cref="T:System.Web.Razor.RazorCodeLanguage" />.</summary>
+      <returns>The <see cref="T:System.Web.Razor.RazorCodeLanguage" />.</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.CreateMarkupParser">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Creates a markup parser.</summary>
+      <returns>A markup parser.</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.DefaultBaseClass">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets or sets a value for the DefaultBaseClass.</summary>
+      <returns>A value for the DefaultBaseClass.</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.DefaultClassName">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets or sets the name of the default class.</summary>
+      <returns>The name of the default class.</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.DefaultDebugCompilation">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets or sets a value that indicates whether the debug compilation is set to default.</summary>
+      <returns>true if the debug compilation is set to default; otherwise, false.</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.DefaultPageBaseClass">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets or sets the base class of the default page.</summary>
+      <returns>The base class of the default page.</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.GetClassName(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Retrieves the name of the class to which the specified webpage belongs.</summary>
+      <returns>The name of the class to which the specified webpage belongs.</returns>
+      <param name="virtualPath">Virtuální cesta souboru</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.GetCodeLanguage">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets the code language specified in the webpage.</summary>
+      <returns>The code language specified in the webpage.</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.GetGlobalImports">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets the global imports for the webpage.</summary>
+      <returns>The global imports for the webpage.</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.InstrumentedSourceFilePath">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets or sets the file path of the instrumental source.</summary>
+      <returns>The file path of the instrumental source.</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.IsSpecialPage">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets a value that indicates whether the webpage is a special page.</summary>
+      <returns>true if the webpage is a special page; otherwise, false.</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.PhysicalPath">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets the physical file system path of the razor host.</summary>
+      <returns>They physical file system path of the razor host.</returns>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.PostProcessGeneratedCode(System.Web.Razor.Generator.CodeGeneratorContext)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets the generated code after the process.</summary>
+      <param name="context">The <see cref="T:System.Web.Razor.Generator.CodeGeneratorContext" />.</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.RegisterSpecialFile(System.String,System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Registers the special file with the specified file name and base type name.</summary>
+      <param name="fileName">Název souboru</param>
+      <param name="baseTypeName">The base type name.</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebPageRazorHost.RegisterSpecialFile(System.String,System.Type)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Registers the special file with the specified file name and base type.</summary>
+      <param name="fileName">Název souboru</param>
+      <param name="baseType">The type of base file.</param>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.WebPageRazorHost.VirtualPath">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Gets the virtual file path.</summary>
+      <returns>Virtuální cesta souboru</returns>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.WebRazorHostFactory">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vytváří instance hostitelských souborů.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.#ctor">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Inicializuje novou instanci třídy <see cref="T:System.Web.WebPages.Razor.WebRazorHostFactory" />.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.ApplyConfigurationToHost(System.Web.WebPages.Razor.Configuration.RazorPagesSection,System.Web.WebPages.Razor.WebPageRazorHost)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Načte informace popisu služby z konfiguračního souboru a použije je na hostitele.</summary>
+      <param name="config">Konfigurace</param>
+      <param name="host">Hostitel Razor webové stránky.</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateDefaultHost(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vytvoří výchozího hostitele se zadanou virtuální cestou.</summary>
+      <returns>Výchozí hostitel.</returns>
+      <param name="virtualPath">Virtuální cesta souboru.</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateDefaultHost(System.String,System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vytvoří výchozího hostitele se zadanou virtuální a fyzickou cestou.</summary>
+      <returns>Výchozí hostitel.</returns>
+      <param name="virtualPath">Virtuální cesta souboru.</param>
+      <param name="physicalPath">Fyzická systémová cesta k souboru.</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateHost(System.String,System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vytvoří hostitele Razor.</summary>
+      <returns>Hostitel Razor.</returns>
+      <param name="virtualPath">Virtuální cesta k cílovému souboru</param>
+      <param name="physicalPath">Fyzická cesta k cílovému souboru</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateHostFromConfig(System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vytvoří hostitele z konfigurace.</summary>
+      <returns>Hostitel z konfigurace.</returns>
+      <param name="virtualPath">Virtuální cesta k cílovému souboru</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateHostFromConfig(System.String,System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vytvoří hostitele z konfigurace.</summary>
+      <returns>Hostitel z konfigurace.</returns>
+      <param name="virtualPath">Virtuální cesta souboru.</param>
+      <param name="physicalPath">Fyzická systémová cesta k souboru.</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateHostFromConfig(System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup,System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vytvoří hostitele z konfigurace.</summary>
+      <returns>Hostitel z konfigurace.</returns>
+      <param name="config">Konfigurace</param>
+      <param name="virtualPath">Virtuální cesta souboru.</param>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.WebRazorHostFactory.CreateHostFromConfig(System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup,System.String,System.String)">
+      <summary>Tento typ/člen podporuje infrastrukturu rozhraní .NET Framework a není určen k použití přímo z uživatelského kódu.Vytvoří hostitele z konfigurace.</summary>
+      <returns>Hostitel z konfigurace.</returns>
+      <param name="config">Konfigurace</param>
+      <param name="virtualPath">Virtuální cesta souboru.</param>
+      <param name="physicalPath">Fyzická systémová cesta k souboru.</param>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.Configuration.HostSection">
+      <summary>Poskytuje podporu konfigurace systému pro konfigurační oddíl host.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.Configuration.HostSection.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.WebPages.Razor.Configuration.HostSection" />.</summary>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.Configuration.HostSection.FactoryType">
+      <summary>Získá nebo nastaví objekt pro vytváření hostitele.</summary>
+      <returns>Objekt pro vytváření hostitele.</returns>
+    </member>
+    <member name="F:System.Web.WebPages.Razor.Configuration.HostSection.SectionName">
+      <summary>Představuje název konfiguračního oddílu pro prostředí hostitele Razor.</summary>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.Configuration.RazorPagesSection">
+      <summary>Poskytuje podporu konfigurace systému pro konfigurační oddíl pages.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.Configuration.RazorPagesSection.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.WebPages.Razor.Configuration.RazorPagesSection" />.</summary>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.Configuration.RazorPagesSection.Namespaces">
+      <summary>Získá nebo nastaví kolekci oborů názvů pro přidání na webové stránky v aktuální aplikaci.</summary>
+      <returns>Kolekce oboru názvů.</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.Configuration.RazorPagesSection.PageBaseType">
+      <summary>Získá nebo nastaví název základní třídy stránky.</summary>
+      <returns>Název základní třídy stránky.</returns>
+    </member>
+    <member name="F:System.Web.WebPages.Razor.Configuration.RazorPagesSection.SectionName">
+      <summary>Představuje název konfiguračního oddílu pro stránky Razor.</summary>
+    </member>
+    <member name="T:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup">
+      <summary>Poskytuje podporu konfigurace systému pro konfigurační oddíl system.web.webPages.razor.</summary>
+    </member>
+    <member name="M:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup" />.</summary>
+    </member>
+    <member name="F:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup.GroupName">
+      <summary>Představuje název konfiguračního oddílu pro oddíl webu Razor.Obsahuje statický řetězec jen ke čtení "system.web.webPages.razor".</summary>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup.Host">
+      <summary>Získá nebo nastaví hodnotu host (hostitel) pro skupinu oddílů system.web.webPages.razor.</summary>
+      <returns>Hodnota host (hostitel).</returns>
+    </member>
+    <member name="P:System.Web.WebPages.Razor.Configuration.RazorWebSectionGroup.Pages">
+      <summary>Získá nebo nastaví hodnotu elementu pages (stránky) pro oddíl system.web.webPages.razor.</summary>
+      <returns>Hodnota elementu pages (stránky).</returns>
+    </member>
+  </members>
+</doc>

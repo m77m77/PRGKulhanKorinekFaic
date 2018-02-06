@@ -1,0 +1,830 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Web.Helpers</name>
+  </assembly>
+  <members>
+    <member name="T:System.Web.Helpers.Chart">
+      <summary>Zobrazuje data ve formě grafu.</summary>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.#ctor(System.Int32,System.Int32,System.String,System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Helpers.Chart" />.</summary>
+      <param name="width">Šířka celého obrázku grafu v pixelech.</param>
+      <param name="height">Výška celého obrázku grafu v pixelech.</param>
+      <param name="theme">(Volitelné) Šablona (motiv) pro použití v grafu.</param>
+      <param name="themePath">(Volitelné) Cesta a název souboru šablony (motivu) pro použití v grafu.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.AddLegend(System.String,System.String)">
+      <summary>Přidá do grafu legendu.</summary>
+      <returns>Graf.</returns>
+      <param name="title">Text nadpisu legendy.</param>
+      <param name="name">Jedinečný název legendy.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.AddSeries(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Collections.IEnumerable,System.String,System.Collections.IEnumerable,System.String)">
+      <summary>Poskytuje datové body a atributy řad grafu.</summary>
+      <returns>Graf.</returns>
+      <param name="name">Jedinečný název řady.</param>
+      <param name="chartType">Typ grafu řady.</param>
+      <param name="chartArea">Název oblasti grafu, která slouží k vykreslení datových řad.</param>
+      <param name="axisLabel">Text popisku osy pro řadu.</param>
+      <param name="legend">Název řady, která je přidružená k legendě.</param>
+      <param name="markerStep">Hustota značek datových bodů.</param>
+      <param name="xValue">Hodnoty k vykreslení podél osy x.</param>
+      <param name="xField">Název pole pro hodnoty x.</param>
+      <param name="yValues">Hodnoty k vykreslení podél osy y.</param>
+      <param name="yFields">Seznam názvu nebo názvů pole nebo polí oddělených čárkou pro hodnoty y.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.AddTitle(System.String,System.String)">
+      <summary>Přidá do grafu název.</summary>
+      <returns>Graf.</returns>
+      <param name="text">Text názvu.</param>
+      <param name="name">Jedinečný název.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.DataBindCrossTable(System.Collections.IEnumerable,System.String,System.String,System.String,System.String,System.String)">
+      <summary>Vytvoří vazbu grafu s tabulkou dat, ve které je pro každou jedinečnou hodnotu ve sloupci vytvořena řada.</summary>
+      <returns>Graf.</returns>
+      <param name="dataSource">Zdroj dat grafu.</param>
+      <param name="groupByField">Název sloupce, který slouží k seskupení dat do řad.</param>
+      <param name="xField">Název sloupce pro hodnoty x.</param>
+      <param name="yFields">Seznam názvů sloupců oddělených čárkou pro hodnoty y.</param>
+      <param name="otherFields">Ostatní vlastnosti dat, které lze navázat.</param>
+      <param name="pointSortOrder">Pořadí, v jakém budou řady seřazeny.Výchozí nastavení je „Vzestupné“.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.DataBindTable(System.Collections.IEnumerable,System.String)">
+      <summary>Vytvoří a naváže data řady na určenou tabulku dat a volitelně vyplní více hodnot x.</summary>
+      <returns>Graf.</returns>
+      <param name="dataSource">Zdroj dat grafu.Může se jednat o libovolný objekt <see cref="T:System.Collections.IEnumerable" />.</param>
+      <param name="xField">Název sloupce tabulky použitý pro hodnoty x řady.</param>
+    </member>
+    <member name="P:System.Web.Helpers.Chart.FileName">
+      <summary>Získá nebo nastaví název souboru, který obsahuje obrázek grafu.</summary>
+      <returns>Název souboru</returns>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.GetBytes(System.String)">
+      <summary>Vrátí obrázek grafu jako bajtové pole.</summary>
+      <returns>Graf.</returns>
+      <param name="format">Formát obrázku.Výchozí nastavení je „jpeg“.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.GetFromCache(System.String)">
+      <summary>Načte určený graf z mezipaměti.</summary>
+      <returns>Graf.</returns>
+      <param name="key">Identifikátor položky mezipaměti obsahující graf, který se má načíst.Klíč se nastaví, jakmile zavoláte metodu <see cref="M:System.Web.Helpers.Chart.SaveToCache(System.String,System.Int32,System.Boolean)" />.</param>
+    </member>
+    <member name="P:System.Web.Helpers.Chart.Height">
+      <summary>Získá nebo nastaví výšku obrázku grafu v pixelech.</summary>
+      <returns>Výška grafu.</returns>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.Save(System.String,System.String)">
+      <summary>Uloží obrázek grafu do určeného souboru.</summary>
+      <returns>Graf.</returns>
+      <param name="path">Umístění a název souboru obrázku.</param>
+      <param name="format">Formát souboru obrázku, například „png“ nebo „jpeg“.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.SaveToCache(System.String,System.Int32,System.Boolean)">
+      <summary>Uloží graf do mezipaměti systému.</summary>
+      <returns>Identifikátor položky mezipaměti obsahující graf.</returns>
+      <param name="key">Identifikátor grafu v mezipaměti.</param>
+      <param name="minutesToCache">Počet minut pro uchování obrázku grafu v mezipaměti.Výchozí hodnota je 20.</param>
+      <param name="slidingExpiration">Hodnota true značí, že vypršení položky grafu v mezipaměti se resetuje pokaždé, když k položce přistoupíte, a hodnota false značí, že vypršení je založeno na absolutním intervalu od doby, kdy byla položka do mezipaměti přidána.Výchozí hodnotou je hodnota true.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.SaveXml(System.String)">
+      <summary>Uloží graf jako soubor XML.</summary>
+      <returns>Graf.</returns>
+      <param name="path">Cesta a název souboru XML.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.SetXAxis(System.String,System.Double,System.Double)">
+      <summary>Nastaví hodnoty pro vodorovnou osu.</summary>
+      <returns>Graf.</returns>
+      <param name="title">Název osy x.</param>
+      <param name="min">Minimální hodnota osy x.</param>
+      <param name="max">Maximální hodnota osy x.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.SetYAxis(System.String,System.Double,System.Double)">
+      <summary>Nastaví hodnoty pro svislou osu.</summary>
+      <returns>Graf.</returns>
+      <param name="title">Název osy y.</param>
+      <param name="min">Minimální hodnota osy y.</param>
+      <param name="max">Maximální hodnota osy y.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.ToWebImage(System.String)">
+      <summary>Vytvoří objekt <see cref="T:System.Web.Helpers.WebImage" /> na základě aktuálního objektu <see cref="T:System.Web.Helpers.Chart" />.</summary>
+      <returns>Graf.</returns>
+      <param name="format">Formát obrázku, ve kterém se má objekt <see cref="T:System.Web.Helpers.WebImage" /> uložit.Výchozí nastavení je „jpeg“.Parametr <paramref name="format" /> nerozlišuje malá a velká písmena.</param>
+    </member>
+    <member name="P:System.Web.Helpers.Chart.Width">
+      <summary>Získá nebo nastaví šířku obrázku grafu v pixelech.</summary>
+      <returns>Šířka grafu.</returns>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.Write(System.String)">
+      <summary>Vykreslí výstup objektu <see cref="T:System.Web.Helpers.Chart" /> jako obrázek.</summary>
+      <returns>Graf.</returns>
+      <param name="format">Formát obrázku.Výchozí nastavení je „jpeg“.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Chart.WriteFromCache(System.String,System.String)">
+      <summary>Vykreslí výstup objektu <see cref="T:System.Web.Helpers.Chart" />, který byl uložený do mezipaměti jako obrázek.</summary>
+      <returns>Graf.</returns>
+      <param name="key">Identifikátor grafu v mezipaměti.</param>
+      <param name="format">Formát obrázku.Výchozí nastavení je „jpeg“.</param>
+    </member>
+    <member name="T:System.Web.Helpers.ChartTheme">
+      <summary>Určuje vizuální motivy objektu <see cref="T:System.Web.Helpers.Chart" />.</summary>
+    </member>
+    <member name="F:System.Web.Helpers.ChartTheme.Blue">
+      <summary>Motiv pro vytváření 2D grafů, který obsahuje vizuální kontejner s modrým přechodem, zaoblenými hranami, stíny a vysoce kontrastními mřížkami.</summary>
+    </member>
+    <member name="F:System.Web.Helpers.ChartTheme.Green">
+      <summary>Motiv pro vytváření 2D grafů, který obsahuje vizuální kontejner se zeleným přechodem, zaoblenými hranami, stíny a vysoce kontrastními mřížkami.</summary>
+    </member>
+    <member name="F:System.Web.Helpers.ChartTheme.Vanilla">
+      <summary>Motiv pro vytváření 2D grafů, který neobsahuje žádné vizuální kontejner ani mřížky.</summary>
+    </member>
+    <member name="F:System.Web.Helpers.ChartTheme.Vanilla3D">
+      <summary>Motiv pro vytváření 3D grafů, který neobsahuje žádný vizuální kontejner, poskytuje omezené možnosti vytváření popisků a strohé, vysoce kontrastní mřížky.</summary>
+    </member>
+    <member name="F:System.Web.Helpers.ChartTheme.Yellow">
+      <summary>Motiv pro vytváření 2D grafů, který obsahuje vizuální kontejner se žlutým přechodem, zaoblenými hranami, stíny a vysoce kontrastními mřížkami.</summary>
+    </member>
+    <member name="T:System.Web.Helpers.Crypto">
+      <summary>Poskytuje metody pro generování hodnot hash a šifrování hesel nebo jiných citlivých dat.</summary>
+    </member>
+    <member name="M:System.Web.Helpers.Crypto.GenerateSalt(System.Int32)">
+      <summary>Vygeneruje kryptograficky silnou posloupnost náhodných bajtových hodnot.</summary>
+      <returns>Generovaná hodnota řetězce salt jako řetězec s kódováním base 64.</returns>
+      <param name="byteLength">Počet generovaných kryptograficky náhodných bajtů.</param>
+    </member>
+    <member name="M:System.Web.Helpers.Crypto.Hash(System.Byte[],System.String)">
+      <summary>Vrátí hodnotu hash pro zadané bajtové pole.</summary>
+      <returns>Hodnota hash pro <paramref name="input" /> jako řetězec hexadecimálních znaků.</returns>
+      <param name="input">Data, pro která má být poskytnuta hodnota hash.</param>
+      <param name="algorithm">Algoritmus použitý ke generování hodnoty hash.Výchozím algoritmem je sha256.</param>
+      <exception cref="T:System.ArgumentNullException">Parametr <paramref name="input" /> má hodnotu null.</exception>
+    </member>
+    <member name="M:System.Web.Helpers.Crypto.Hash(System.String,System.String)">
+      <summary>Vrátí hodnotu hash pro zadaný řetězec.</summary>
+      <returns>Hodnota hash pro <paramref name="input" /> jako řetězec hexadecimálních znaků.</returns>
+      <param name="input">Data, pro která má být poskytnuta hodnota hash.</param>
+      <param name="algorithm">Algoritmus použitý ke generování hodnoty hash.Výchozím algoritmem je sha256.</param>
+      <exception cref="T:System.ArgumentNullException">Parametr <paramref name="input" /> má hodnotu null.</exception>
+    </member>
+    <member name="M:System.Web.Helpers.Crypto.HashPassword(System.String)">
+      <summary>Vrátí hodnotu hash RFC 2898 pro zadané heslo.</summary>
+      <returns>Hodnota hash pro <paramref name="password" /> jako řetězec s kódováním base 64.</returns>
+      <param name="password">Heslo, pro které má být generována hodnota hash.</param>
+      <exception cref="T:System.ArgumentNullException">Parametr <paramref name="password" /> má hodnotu null.</exception>
+    </member>
+    <member name="M:System.Web.Helpers.Crypto.SHA1(System.String)">
+      <summary>Vrátí hodnotu hash SHA-1 pro zadaný řetězec.</summary>
+      <returns>Hodnota hash SHA-1 pro <paramref name="input" /> jako řetězec hexadecimálních znaků.</returns>
+      <param name="input">Data, pro která má být poskytnuta hodnota hash.</param>
+      <exception cref="T:System.ArgumentNullException">Parametr <paramref name="input" /> má hodnotu null.</exception>
+    </member>
+    <member name="M:System.Web.Helpers.Crypto.SHA256(System.String)">
+      <summary>Vrátí hodnotu hash SHA-256 pro zadaný řetězec.</summary>
+      <returns>Hodnota hash SHA-256 pro <paramref name="input" /> jako řetězec hexadecimálních znaků.</returns>
+      <param name="input">Data, pro která má být poskytnuta hodnota hash.</param>
+      <exception cref="T:System.ArgumentNullException">Parametr <paramref name="input" /> má hodnotu null.</exception>
+    </member>
+    <member name="M:System.Web.Helpers.Crypto.VerifyHashedPassword(System.String,System.String)">
+      <summary>Určuje, jestli si zadaná hodnota hash a heslo RFC 2898 vzájemně kryptograficky vyhovují.</summary>
+      <returns>true, pokud je hodnota hash kryptograficky vyhovující pro heslo; v opačném případě false.</returns>
+      <param name="hashedPassword">V předchozím kroku vypočtená hodnota hash RFC 2898 jako řetězec s kódováním base 64.</param>
+      <param name="password">Heslo ve formátu prostého textu, které se má kryptograficky porovnat s <paramref name="hashedPassword" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hashedPassword" /> nebo <paramref name="password" /> má hodnotu null.</exception>
+    </member>
+    <member name="T:System.Web.Helpers.DynamicJsonArray">
+      <summary>Reprezentuje řadu hodnot jako pole ve stylu jazyka JavaScript pomocí dynamických možností prostředí DLR (Dynamic Language Runtime).</summary>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonArray.#ctor(System.Object[])">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Helpers.DynamicJsonArray" /> pomocí zadaných hodnot prvků pole.</summary>
+      <param name="arrayValues">Pole objektů, které obsahuje hodnoty pro přidání do instance <see cref="T:System.Web.Helpers.DynamicJsonArray" />.</param>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonArray.GetEnumerator">
+      <summary>Vrátí enumerátor, který lze použít k iteraci v rámci prvků instance <see cref="T:System.Web.Helpers.DynamicJsonArray" />.</summary>
+      <returns>Enumerátor, který lze použít k iteraci v rámci prvků pole JSON.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.DynamicJsonArray.Item(System.Int32)">
+      <summary>Vrátí hodnotu ve stanoveném indexu v instanci <see cref="T:System.Web.Helpers.DynamicJsonArray" />.</summary>
+      <returns>Hodnota ve stanoveném indexu.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.DynamicJsonArray.Length">
+      <summary>Vrátí počet prvků v instanci <see cref="T:System.Web.Helpers.DynamicJsonArray" />.</summary>
+      <returns>Počet prvků v poli JSON.</returns>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonArray.op_Implicit(System.Web.Helpers.DynamicJsonArray)~System.Object[]">
+      <summary>Převede instanci <see cref="T:System.Web.Helpers.DynamicJsonArray" /> na pole objektů.</summary>
+      <returns>Pole objektů, které představuje pole JSON.</returns>
+      <param name="obj">Pole JSON, které chcete převést.</param>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonArray.op_Implicit(System.Web.Helpers.DynamicJsonArray)~System.Array">
+      <summary>Převede instanci <see cref="T:System.Web.Helpers.DynamicJsonArray" /> na pole objektů.</summary>
+      <returns>Pole objektů, které představuje pole JSON.</returns>
+      <param name="obj">Pole JSON, které chcete převést.</param>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonArray.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+      <summary>Vrátí enumerátor, který lze použít k iteraci v rámci kolekce.</summary>
+      <returns>Enumerátor, který lze použít pro iteraci prostřednictvím kolekce</returns>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonArray.TryConvert(System.Dynamic.ConvertBinder,System.Object@)">
+      <summary>Převede instanci <see cref="T:System.Web.Helpers.DynamicJsonArray" /> na kompatibilní typ.</summary>
+      <returns>Hodnota true, pokud byl převod úspěšný, jinak hodnota false.</returns>
+      <param name="binder">Poskytuje informace o operaci převodu.</param>
+      <param name="result">Po návratu tato metoda obsahuje výsledek operace převodu typu.Tento parametr se předává neinicializovaný.</param>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonArray.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+      <summary>Otestuje přítomnost (nepodporovaných) dynamických členů v instanci <see cref="T:System.Web.Helpers.DynamicJsonArray" /> způsobem, který nevyvolá výjimku.</summary>
+      <returns>Hodnota true ve všech případech</returns>
+      <param name="binder">Poskytuje informace o operaci get.</param>
+      <param name="result">Po návratu tato metoda obsahuje hodnotu null.Tento parametr se předává neinicializovaný.</param>
+    </member>
+    <member name="T:System.Web.Helpers.DynamicJsonObject">
+      <summary>Reprezentuje kolekci hodnot jako objekt ve stylu jazyka JavaScript pomocí možností prostředí DLR (Dynamic Language Runtime).</summary>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonObject.#ctor(System.Collections.Generic.IDictionary{System.String,System.Object})">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Helpers.DynamicJsonObject" /> pomocí zadaných hodnot pole.</summary>
+      <param name="values">Slovník názvů a hodnot vlastností, které chcete přidat do instance <see cref="T:System.Web.Helpers.DynamicJsonObject" /> jako dynamické členy.</param>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonObject.GetDynamicMemberNames">
+      <summary>Vrací seznam obsahující název všech dynamických členů (pole JSON) instance <see cref="T:System.Web.Helpers.DynamicJsonObject" />.</summary>
+      <returns>Seznam obsahující název všech dynamických členů (pole JSON).</returns>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonObject.TryConvert(System.Dynamic.ConvertBinder,System.Object@)">
+      <summary>Převede instanci <see cref="T:System.Web.Helpers.DynamicJsonObject" /> na kompatibilní typ.</summary>
+      <returns>Hodnota true ve všech případech</returns>
+      <param name="binder">Poskytuje informace o operaci převodu.</param>
+      <param name="result">Po návratu tato metoda obsahuje výsledek operace převodu typu.Tento parametr se předává neinicializovaný.</param>
+      <exception cref="T:System.InvalidOperationException">Instanci <see cref="T:System.Web.Helpers.DynamicJsonObject" /> nelze převést na zadaný typ.</exception>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonObject.TryGetIndex(System.Dynamic.GetIndexBinder,System.Object[],System.Object@)">
+      <summary>Získá hodnotu pole <see cref="T:System.Web.Helpers.DynamicJsonObject" /> pomocí zadaného indexu.</summary>
+      <returns>Hodnota true ve všech případech</returns>
+      <param name="binder">Poskytuje informace o indexované operaci get.</param>
+      <param name="indexes">Pole obsahující jeden objekt, který indexuje pole podle názvu.Objekt musí být převeditelný na řetězec, který určuje název pole JSON, které se má vrátit.Pokud je zadáno více indexů, <paramref name="result" /> obsahuje po návratu této metody hodnotu null.</param>
+      <param name="result">Po návratu tato metoda obsahuje hodnotu indexovaného pole, nebo hodnotu null, pokud byla operace get neúspěšná.Tento parametr se předává neinicializovaný.</param>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+      <summary>Získá hodnotu pole <see cref="T:System.Web.Helpers.DynamicJsonObject" /> pomocí zadaného názvu.</summary>
+      <returns>Hodnota true ve všech případech</returns>
+      <param name="binder">Poskytuje informace o operaci get.</param>
+      <param name="result">Po návratu tato metoda obsahuje hodnotu pole, nebo hodnotu null, pokud byla operace neúspěšná.Tento parametr se předává neinicializovaný.</param>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonObject.TrySetIndex(System.Dynamic.SetIndexBinder,System.Object[],System.Object)">
+      <summary>Nastaví hodnotu pole <see cref="T:System.Web.Helpers.DynamicJsonObject" /> pomocí zadaného indexu.</summary>
+      <returns>Hodnota true ve všech případech</returns>
+      <param name="binder">Poskytuje informace o indexované operaci set.</param>
+      <param name="indexes">Pole obsahující jeden objekt, který indexuje pole podle názvu.Objekt musí být převeditelný na řetězec, který určuje název pole JSON, které se má vrátit.Pokud zadáte více indexů, žádné pole se nepřidá ani nezmění.</param>
+      <param name="value">Hodnota, na kterou má být pole nastaveno.</param>
+    </member>
+    <member name="M:System.Web.Helpers.DynamicJsonObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)">
+      <summary>Získá hodnotu pole <see cref="T:System.Web.Helpers.DynamicJsonObject" /> pomocí zadaného názvu.</summary>
+      <returns>Hodnota true ve všech případech</returns>
+      <param name="binder">Poskytuje informace o operaci set.</param>
+      <param name="value">Hodnota, na kterou má být pole nastaveno.</param>
+    </member>
+    <member name="T:System.Web.Helpers.Json">
+      <summary>Poskytuje metody pro práci s daty ve formátu JavaScript Object Notation (JSON).</summary>
+    </member>
+    <member name="M:System.Web.Helpers.Json.Decode``1(System.String)">
+      <summary>Převede data ve formátu JavaScript Object Notation (JSON) do stanoveného datového seznamu silného typu.</summary>
+      <returns>Data zakódovaná ve formátu JSON převedená na seznam silného typu</returns>
+      <param name="value">Řetězec k převedení zakódovaný ve formátu JSON</param>
+      <typeparam name="T">Typ seznamu silného typu k převedení dat ve formátu JSON</typeparam>
+    </member>
+    <member name="M:System.Web.Helpers.Json.Decode(System.String)">
+      <summary>Převede data ve formátu JavaScript Object Notation (JSON) na datový objekt.</summary>
+      <returns>Data zakódovaná ve formátu JSON převedená na datový objekt</returns>
+      <param name="value">Řetězec k převedení zakódovaný ve formátu JSON</param>
+    </member>
+    <member name="M:System.Web.Helpers.Json.Decode(System.String,System.Type)">
+      <summary>Převede data ve formátu JavaScript Object Notation (JSON) na datový objekt stanoveného typu.</summary>
+      <returns>Data zakódovaná ve formátu JSON převedená na stanovený typ</returns>
+      <param name="value">Řetězec k převedení zakódovaný ve formátu JSON</param>
+      <param name="targetType">Typ, do kterého by data <paramref name="value" /> měla být převedena</param>
+    </member>
+    <member name="M:System.Web.Helpers.Json.Encode(System.Object)">
+      <summary>Převede datový objekt na řetězec, který je ve formátu JavaScript Object Notation (JSON).</summary>
+      <returns>Vrátí řetězec dat převedených do formátu JSON.</returns>
+      <param name="value">Datový objekt k převedení</param>
+    </member>
+    <member name="M:System.Web.Helpers.Json.Write(System.Object,System.IO.TextWriter)">
+      <summary>Převede datový objekt na řetězec ve formátu JavaScript Object Notation (JSON) a přidá řetězec do stanoveného objektu <see cref="T:System.IO.TextWriter" />.</summary>
+      <param name="value">Datový objekt k převedení</param>
+      <param name="writer">Objekt, který obsahuje převedená data ve formátu JSON</param>
+    </member>
+    <member name="T:System.Web.Helpers.ObjectInfo">
+      <summary>Vykreslí názvy a hodnoty vlastností zadaného objektu a podobjektů, na které odkazuje.</summary>
+    </member>
+    <member name="M:System.Web.Helpers.ObjectInfo.Print(System.Object,System.Int32,System.Int32)">
+      <summary>Vykreslí názvy a hodnoty vlastností zadaného objektu a podobjektů.</summary>
+      <returns>U jednoduché proměnné vrátí typu a hodnotu.U objektu obsahujícího více položek vrátí název nebo klíč vlastnosti a hodnotu každé vlastnosti.</returns>
+      <param name="value">Objekt, pro který se mají vykreslit informace.</param>
+      <param name="depth">Nepovinný parametr.Určuje hloubku vnořených podobjektů, pro které se mají vykreslit informace.Výchozí hodnota je 10.</param>
+      <param name="enumerationLength">Nepovinný parametr.Určuje maximální počet znaků, které metoda zobrazuje pro hodnoty objektu.Výchozí hodnota je 1000.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Hodnota <paramref name="depth" /> je menší než nula.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Hodnota <paramref name="enumerationLength" /> je menší nebo rovna nule.</exception>
+    </member>
+    <member name="T:System.Web.Helpers.ServerInfo">
+      <summary>Zobrazuje informace o prostředí webového serveru, který hostí aktuální webovou stránku.</summary>
+    </member>
+    <member name="M:System.Web.Helpers.ServerInfo.GetHtml">
+      <summary>Zobrazuje informace o prostředí webového serveru.</summary>
+      <returns>Řetězec dvojic název-hodnota, který obsahuje informace o webovém serveru. </returns>
+    </member>
+    <member name="T:System.Web.Helpers.SortDirection">
+      <summary>Určuje směr, ve kterém se má seřadit seznam položek.</summary>
+    </member>
+    <member name="F:System.Web.Helpers.SortDirection.Ascending">
+      <summary>Seřadit od nejmenšího po největší – například od 1 do 10.</summary>
+    </member>
+    <member name="F:System.Web.Helpers.SortDirection.Descending">
+      <summary>Seřadit od největšího po nejmenší – například od 10 do 1.</summary>
+    </member>
+    <member name="T:System.Web.Helpers.WebCache">
+      <summary>Poskytuje mezipaměť pro uložení dat s častým přístupem.</summary>
+    </member>
+    <member name="M:System.Web.Helpers.WebCache.Get(System.String)">
+      <summary>Získá stanovenou položku z objektu <see cref="T:System.Web.Helpers.WebCache" />.</summary>
+      <returns>Položka získaná z mezipaměti nebo nulová hodnota, pokud položka není nalezena.</returns>
+      <param name="key">Identifikátor pro položku mezipaměti, která se má obnovit.</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebCache.Remove(System.String)">
+      <summary>Odstraní určenou položku z objektu <see cref="T:System.Web.Helpers.WebCache" />.</summary>
+      <returns>Položka odstraněná z objektu <see cref="T:System.Web.Helpers.WebCache" />.Pokud položka není nalezena, vrátí nulovou hodnotu.</returns>
+      <param name="key">Identifikátor pro položku mezipaměti, která se má odstranit.</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebCache.Set(System.String,System.Object,System.Int32,System.Boolean)">
+      <summary>Vloží položku do objektu <see cref="T:System.Web.Helpers.WebCache" />.</summary>
+      <param name="key">Identifikátor pro položku mezipaměti.</param>
+      <param name="value">Data k vložení do mezipaměti.</param>
+      <param name="minutesToCache">Nepovinný parametr.Počet minut pro uchování položky v mezipaměti.Výchozí hodnota je 20.</param>
+      <param name="slidingExpiration">Nepovinný parametr.Hodnota true udává, že doba vypršení platnosti položky mezipaměti se vynuluje pokaždé, když se s položkou pracuje, a hodnota false udává, že doba vypršení platnosti je založena na absolutním čase od doby, kdy byla položka do mezipaměti přidána.Výchozí hodnotou je hodnota true.Pokud v takovém případě také použijete výchozí hodnotu pro parametr <paramref name="minutesToCache" />, položka v mezipaměti vyprší 20 minut po posledním přístupu.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Hodnota <paramref name="minutesToCache" /> je menší než nebo rovna nule.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Klouzavé vypršení platnosti je aktivní a hodnota <paramref name="minutesToCache" /> je vyšší než jeden rok.</exception>
+    </member>
+    <member name="T:System.Web.Helpers.WebGrid">
+      <summary>Zobrazuje data na webové stránce pomocí prvku tabulky HTML.</summary>
+    </member>
+    <member name="M:System.Web.Helpers.WebGrid.#ctor(System.Collections.Generic.IEnumerable{System.Object},System.Collections.Generic.IEnumerable{System.String},System.String,System.Int32,System.Boolean,System.Boolean,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <param name="source">Data k zobrazení.</param>
+      <param name="columnNames">Kolekce obsahující názvy sloupců dat, které se mají zobrazit.Ve výchozím nastavení je tato hodnota automaticky vyplněna podle hodnot v parametru <paramref name="source" />.</param>
+      <param name="defaultSort">Název sloupce dat, který slouží k seřazení mřížky ve výchozím nastavení.</param>
+      <param name="rowsPerPage">Počet řádků, které jsou zobrazené na jednotlivých stránkách mřížky při zapnutém stránkování.Výchozí hodnota je 10.</param>
+      <param name="canPage">Zadejte hodnotu true, pokud chcete určit, že je pro instanci <see cref="T:System.Web.Helpers.WebGrid" /> povoleno stránkování; v opačném případě zadejte hodnotu false.Výchozí hodnotou je hodnota true.</param>
+      <param name="canSort">Zadejte hodnotu true, pokud chcete určit, že je pro instanci <see cref="T:System.Web.Helpers.WebGrid" /> povoleno řazení; v opačném případě zadejte hodnotu false.Výchozí hodnotou je hodnota true.</param>
+      <param name="ajaxUpdateContainerId">Hodnota HTML atributu id, který slouží k označení prvku HTML, který získá dynamické aktualizace Ajax přidružené k instanci <see cref="T:System.Web.Helpers.WebGrid" />.</param>
+      <param name="ajaxUpdateCallback">Název funkce jazyka JavaSript, která se zavolá po aktualizaci prvku HTML určeného vlastností <see cref="P:System.Web.Helpers.WebGrid.AjaxUpdateContainerId" />.Pokud není název funkce zadaný, nezavolá se žádní funkce.Pokud zadaná funkce neexistuje, dojde v případě jejího vyvolání k chybě jazyka JavaScript.</param>
+      <param name="fieldNamePrefix">Předpona, která se použije u všech polí s řetězcem dotazu, které jsou přidružené k instanci <see cref="T:System.Web.Helpers.WebGrid" />.Tato hodnota slouží k podpoře více instancí <see cref="T:System.Web.Helpers.WebGrid" /> na stejné webové stránce.</param>
+      <param name="pageFieldName">Název pole řetězce dotazu, který slouží k určení aktuální stránky instance <see cref="T:System.Web.Helpers.WebGrid" />.</param>
+      <param name="selectionFieldName">Název pole řetězce dotazu, který slouží k určení aktuálně vybraného řádku instance <see cref="T:System.Web.Helpers.WebGrid" />.</param>
+      <param name="sortFieldName">Název pole řetězce dotazu, který slouží k určení názvu sloupce dat, podle kterého je instance <see cref="T:System.Web.Helpers.WebGrid" /> seřazená.</param>
+      <param name="sortDirectionFieldName">Název pole řetězce dotazu, který slouží k určení směru, ve kterém je instance <see cref="T:System.Web.Helpers.WebGrid" /> seřazená.</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebGrid.AddSorter``2(System.String,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+      <summary>Přidá určitou funkci řazení pro daný sloupec.</summary>
+      <returns>Aktuální mřížka, ve které je použito nové vlastní řazení.</returns>
+      <param name="columnName">Název sloupce (ve tvaru používaném při řazení).</param>
+      <param name="keySelector">Funkce sloužící k výběru klíče používaného k řazení pro každý prvek ve zdroji mřížky.</param>
+      <typeparam name="TElement">Typ elementů ve zdroji mřížky.</typeparam>
+      <typeparam name="TProperty">Typ sloupce, obvykle vyvozený z návratového typu funkce keySelector.</typeparam>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.AjaxUpdateCallback">
+      <summary>Získá název funkce jazyka JavaScript, která se má zavolat, jakmile v reakci na žádost o aktualizaci Ajax proběhne aktualizace prvku HTML přidruženého k instanci <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Název funkce.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.AjaxUpdateContainerId">
+      <summary>Získá hodnotu HTML atributu id, který označuje prvek HTML na webové stránce, která obdrží dynamické aktualizace Ajax přidružené k instanci <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Hodnota atributu id.</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebGrid.Bind(System.Collections.Generic.IEnumerable{System.Object},System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Int32)">
+      <summary>Vytvoří vazbu určených data s instancí <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Provázaná a vyplněná instance <see cref="T:System.Web.Helpers.WebGrid" />.</returns>
+      <param name="source">Data k zobrazení.</param>
+      <param name="columnNames">Kolekce obsahující názvy sloupců dat, pro které se má vytvořit vazba.</param>
+      <param name="autoSortAndPage">Zadejte hodnotu true, pokud chcete povolit řazení a stránkování instance <see cref="T:System.Web.Helpers.WebGrid" />; v opačném případě zadejte hodnotu false.</param>
+      <param name="rowCount">Počet řádků, které jsou zobrazené na jednotlivých stránkách mřížky.</param>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.CanSort">
+      <summary>Získá hodnotu, která určuje, zda instance <see cref="T:System.Web.Helpers.WebGrid" /> podporuje řazení.</summary>
+      <returns>Hodnota true, pokud instance podporuje řazení; v opačném případě false.</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebGrid.Column(System.String,System.String,System.Func{System.Object,System.Object},System.String,System.Boolean)">
+      <summary>Vytvoří novou instanci sloupce <see cref="T:System.Web.Helpers.WebGridColumn" />.</summary>
+      <returns>Nový sloupec.</returns>
+      <param name="columnName">Název sloupce dat, který chcete přidružit instanci sloupce <see cref="T:System.Web.Helpers.WebGridColumn" />.</param>
+      <param name="header">Text, který se vykreslí v záhlaví sloupce tabulky HTML přidruženého k instanci sloupce <see cref="T:System.Web.Helpers.WebGridColumn" />.</param>
+      <param name="format">Funkce použitá k formátování datových hodnot přidružených k instanci sloupce <see cref="T:System.Web.Helpers.WebGridColumn" />.</param>
+      <param name="style">Řetězec určující název třídy CSS, která definuje styl buněk tabulky HTML přidružených k instanci sloupce <see cref="T:System.Web.Helpers.WebGridColumn" />.</param>
+      <param name="canSort">Nastavením hodnoty true zapnete v instanci tabulky <see cref="T:System.Web.Helpers.WebGrid" /> řazení podle datových hodnot, které jsou přidružené k instanci sloupce <see cref="T:System.Web.Helpers.WebGridColumn" />. V opačném případě nastavte hodnotu false.Výchozí hodnotou je hodnota true.</param>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.ColumnNames">
+      <summary>Získá kolekci, která obsahuje název všech sloupců dat, které jsou svázány s instancí <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Kolekce názvů sloupců dat.</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebGrid.Columns(System.Web.Helpers.WebGridColumn[])">
+      <summary>Vrátí pole obsahující zadané instance sloupce <see cref="T:System.Web.Helpers.WebGridColumn" />.</summary>
+      <returns>Pole sloupců.</returns>
+      <param name="columnSet">Proměnný počet instancí sloupce <see cref="T:System.Web.Helpers.WebGridColumn" />.</param>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.FieldNamePrefix">
+      <summary>Získá předponu, která se použije u všech polí s řetězcem dotazu, které jsou přidružené k instanci <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Předpona pole řetězce dotazu instance <see cref="T:System.Web.Helpers.WebGrid" />.</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebGrid.GetContainerUpdateScript(System.String)">
+      <summary>Vrátí příkaz jazyka JavaScript, který je možné použít k aktualizaci prvku HTML, který je přidružený k instanci <see cref="T:System.Web.Helpers.WebGrid" /> na zadané webové stránce.</summary>
+      <returns>Příkaz jazyka JavaScript, který je možné použít k aktualizaci prvku HTML na webové stránce, který je přidružený k instanci <see cref="T:System.Web.Helpers.WebGrid" />.</returns>
+      <param name="path">Adresa URL webové stránky, která obsahuje aktualizovanou instanci <see cref="T:System.Web.Helpers.WebGrid" />.Adresa URL může obsahovat argumenty řetězce dotazu.</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebGrid.GetHtml(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String,System.Collections.Generic.IEnumerable{System.Web.Helpers.WebGridColumn},System.Collections.Generic.IEnumerable{System.String},System.Web.Helpers.WebGridPagerModes,System.String,System.String,System.String,System.String,System.Int32,System.Object)">
+      <summary>Vrátí kód jazyka HTML, který slouží k vykreslení instance <see cref="T:System.Web.Helpers.WebGrid" /> pomocí zadaných možností stránkování.</summary>
+      <returns>Kód jazyka HTML představující zcela naplněnou instanci <see cref="T:System.Web.Helpers.WebGrid" />.</returns>
+      <param name="tableStyle">Název třídy CSS, která slouží k formátování celé tabulky.</param>
+      <param name="headerStyle">Název třídy CSS, která slouží k formátování záhlaví tabulky.</param>
+      <param name="footerStyle">Název třídy CSS, která slouží k formátování zápatí tabulky.</param>
+      <param name="rowStyle">Název třídy CSS, která slouží k formátování jednotlivých řádků tabulky.</param>
+      <param name="alternatingRowStyle">Název třídy CSS, která slouží k formátování řádků tabulky se sudým číslem.</param>
+      <param name="selectedRowStyle">Název třídy CSS, která slouží k formátování vybraného řádku tabulky.(V jednom okamžiku je možné mít vybraný jen jeden řádek.)</param>
+      <param name="caption">Záhlaví tabulky.</param>
+      <param name="displayHeader">Hodnota true, pokud chcete zobrazit záhlaví tabulky; jinak hodnotafalse.Výchozí hodnotou je hodnota true.</param>
+      <param name="fillEmptyRows">Hodnota true, pokud v případě nedostatku položek dat k zaplnění poslední stránky chcete na poslední stránku vložit dodatečné řádky; jinak hodnota false.Výchozí hodnotou je hodnota false.Dodatečné řádky jsou vyplněny textem určeným parametrem <paramref name="emptyRowCellValue" />.</param>
+      <param name="emptyRowCellValue">Text sloužící k vyplnění dodatečných řádků na stránce, když není k dispozici dostatek položek dat k zaplnění poslední stránky.Aby se tyto dodatečné řádky zobrazily, musí být parametr <paramref name="fillEmptyRows" /> nastavený na hodnotu true.</param>
+      <param name="columns">Kolekce instancí <see cref="T:System.Web.Helpers.WebGridColumn" />, které určují, jak jsou zobrazeny jednotlivé řádky.Určují kromě jiného to, který sloupec je přidružený k jednotlivým sloupcům mřížky a formátování datových hodnot, které jednotlivé sloupce mřížky obsahují.</param>
+      <param name="exclusions">Kolekce obsahující názvy sloupců dat, které se mají vyloučit při automatickém vyplňování sloupců mřížky.</param>
+      <param name="mode">Bitová kombinace hodnot výčtu, které určují metody poskytnuté pro přesun mezi stránkami instance <see cref="T:System.Web.Helpers.WebGrid" />.</param>
+      <param name="firstText">Text pro prvek odkazu HTML, který odkazuje na první stránku instance <see cref="T:System.Web.Helpers.WebGrid" />.Pokud chcete tento prvek navigace mezi stránkami zobrazit, je nutné nastavit příznak <see cref="F:System.Web.Helpers.WebGridPagerModes.FirstLast" /> parametru <paramref name="mode" />.</param>
+      <param name="previousText">Text pro prvek odkazu HTML, který odkazuje na předchozí stránku instance <see cref="T:System.Web.Helpers.WebGrid" />.Pokud chcete tento prvek navigace mezi stránkami zobrazit, je nutné nastavit příznak <see cref="F:System.Web.Helpers.WebGridPagerModes.NextPrevious" /> parametru <paramref name="mode" />.</param>
+      <param name="nextText">Text pro prvek odkazu HTML, který odkazuje na následující stránku instance <see cref="T:System.Web.Helpers.WebGrid" />.Pokud chcete tento prvek navigace mezi stránkami zobrazit, je nutné nastavit příznak <see cref="F:System.Web.Helpers.WebGridPagerModes.NextPrevious" /> parametru <paramref name="mode" />.</param>
+      <param name="lastText">Text pro prvek odkazu HTML, který odkazuje na poslední stránku instance <see cref="T:System.Web.Helpers.WebGrid" />.Pokud chcete tento prvek navigace mezi stránkami zobrazit, je nutné nastavit příznak <see cref="F:System.Web.Helpers.WebGridPagerModes.FirstLast" /> parametru <paramref name="mode" />.</param>
+      <param name="numericLinksCount">Počet numerických odkazů na stránky poskytnutý sousedním stránkám <see cref="T:System.Web.Helpers.WebGrid" />.Text jednotlivých numerických odkazů na stránky obsahuje číslo stránky.Pokud chcete tyto prvky navigace mezi stránkami zobrazit, je nutné nastavit příznak <see cref="F:System.Web.Helpers.WebGridPagerModes.Numeric" /> parametru <paramref name="mode" />.</param>
+      <param name="htmlAttributes">Objekt představující kolekci atributů (názvy a hodnoty), které se mají nastavit pro prvek tabulky HTML, který představuje instanci <see cref="T:System.Web.Helpers.WebGrid" />.</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebGrid.GetPageUrl(System.Int32)">
+      <summary>Vrátí adresu URL, pomocí které je možné zobrazit určenou stránku dat instance <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Adresa URL, pomocí které je možné zobrazit určenou stránku dat mřížky.</returns>
+      <param name="pageIndex">Index stránky mřížky <see cref="T:System.Web.Helpers.WebGrid" />, která se má zobrazit.</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebGrid.GetSortUrl(System.String)">
+      <summary>Vrátí adresu URL, pomocí které je možné seřadit instanci mřížky <see cref="T:System.Web.Helpers.WebGrid" /> podle určitého sloupce.</summary>
+      <returns>Adresa URL, pomocí které je možné seřadit mřížku.</returns>
+      <param name="column">Název sloupce dat, podle kterého má proběhnout seřazení.</param>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.HasSelection">
+      <summary>Získá hodnotu, která označuje, jestli je vybraný řádek v instanci <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Hodnota true, pokud je řádek aktuálně vybraný; jinak hodnota false.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.IsAjaxEnabled">
+      <summary>Vrátí hodnotu, která označuje, jestli může instance <see cref="T:System.Web.Helpers.WebGrid" /> obnovovat zobrazení pomocí volání technologie Ajax.</summary>
+      <returns>Hodnota true, pokud instance podporuje volání Ajax; v opačném případě false.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.PageCount">
+      <summary>Získá počet řádků, které instance <see cref="T:System.Web.Helpers.WebGrid" /> obsahuje.</summary>
+      <returns>Počet stránek.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.PageFieldName">
+      <summary>Získá celý název pole řetězce dotazu, který slouží k určení aktuální stránky instance <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Získá celý název pole řetězce dotazu, který slouží k určení aktuální stránky mřížky.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.PageIndex">
+      <summary>Získá nebo nastaví index aktuální stránky instance <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Index aktuální stránky.</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebGrid.Pager(System.Web.Helpers.WebGridPagerModes,System.String,System.String,System.String,System.String,System.Int32)">
+      <summary>Vrátí kód HTML, který slouží k poskytování určené podpory stránkování pro instanci mřížky <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Kód jazyka HTML, který poskytuje podporu stránkování mřížky.</returns>
+      <param name="mode">Bitová kombinace hodnot výčtu, které určují metody poskytnuté pro přesun mezi stránkami mřížky.Výchozí je bitová hodnota OR příznaků <see cref="F:System.Web.Helpers.WebGridPagerModes.NextPrevious" /> a <see cref="F:System.Web.Helpers.WebGridPagerModes.Numeric" />.</param>
+      <param name="firstText">Text pro prvek odkazu HTML, který odkazuje na první stránku mřížky.</param>
+      <param name="previousText">Text pro prvek odkazu HTML, který odkazuje na předchozí stránku mřížky.</param>
+      <param name="nextText">Text pro prvek odkazu HTML, který odkazuje na následující stránku mřížky.</param>
+      <param name="lastText">Text pro prvek odkazu HTML, který odkazuje na poslední stránku mřížky.</param>
+      <param name="numericLinksCount">Počet číselných odkazů na stránky, které chcete zobrazit.Výchozí hodnota je 5.</param>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.Rows">
+      <summary>Získá seznam obsahující řádky, které jsou na aktuální stránce instance <see cref="T:System.Web.Helpers.WebGrid" /> po seřazení mřížky.</summary>
+      <returns>Seznam řádků.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.RowsPerPage">
+      <summary>Získá počet řádků, které jsou zobrazené na jednotlivých stránkách instance <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Získá počet řádků, které jsou zobrazené na jednotlivých stránkách mřížky.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.SelectedIndex">
+      <summary>Získá nebo nastaví index vybraného řádku vzhledem k aktuální stránce instance <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Index vybraného řádku vzhledem k aktuální stránce.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.SelectedRow">
+      <summary>Získá aktuálně vybraný řádek instance <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Aktuálně vybraný řádek.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.SelectionFieldName">
+      <summary>Získá celý název pole řetězce dotazu, který slouží k určení vybraného řádku instance <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Získá celý název pole řetězce dotazu, který slouží k určení vybraného řádku mřížky.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.SortColumn">
+      <summary>Získá nebo nastaví název sloupce dat, podle kterého je instance <see cref="T:System.Web.Helpers.WebGrid" /> seřazená.</summary>
+      <returns>Název sloupce dat, který slouží k seřazení mřížky.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.SortDirection">
+      <summary>Získá nebo nastaví směr, ve kterém bude instance <see cref="T:System.Web.Helpers.WebGrid" /> seřazená.</summary>
+      <returns>Směr řazení.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.SortDirectionFieldName">
+      <summary>Získá celý název pole řetězce dotazu, který slouží k určení směru řazení instance <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Celý název pole řetězce dotazu, který slouží k určení směru řazení mřížky.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.SortFieldName">
+      <summary>Získá celý název pole řetězce dotazu, který slouží k určení názvu sloupce dat, podle kterého je instance <see cref="T:System.Web.Helpers.WebGrid" /> seřazená.</summary>
+      <returns>Celý název pole řetězce dotazu, který slouží k určení názvu sloupce dat, podle kterého je mřížka seřazená.</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebGrid.Table(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String,System.Collections.Generic.IEnumerable{System.Web.Helpers.WebGridColumn},System.Collections.Generic.IEnumerable{System.String},System.Func{System.Object,System.Object},System.Object)">
+      <summary>Vrátí kód HTML sloužící k vykreslení instance <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Kód jazyka HTML představující zcela naplněnou instanci <see cref="T:System.Web.Helpers.WebGrid" />.</returns>
+      <param name="tableStyle">Název třídy CSS, která slouží k formátování celé tabulky.</param>
+      <param name="headerStyle">Název třídy CSS, která slouží k formátování záhlaví tabulky.</param>
+      <param name="footerStyle">Název třídy CSS, která slouží k formátování zápatí tabulky.</param>
+      <param name="rowStyle">Název třídy CSS, která slouží k formátování jednotlivých řádků tabulky.</param>
+      <param name="alternatingRowStyle">Název třídy CSS, která slouží k formátování řádků tabulky se sudým číslem.</param>
+      <param name="selectedRowStyle">Název třídy CSS, která slouží k formátování vybraného řádku tabulky.</param>
+      <param name="caption">Záhlaví tabulky.</param>
+      <param name="displayHeader">Hodnota true, pokud chcete zobrazit záhlaví tabulky; jinak hodnotafalse.Výchozí hodnotou je hodnota true.</param>
+      <param name="fillEmptyRows">Hodnota true, pokud v případě nedostatku položek dat k zaplnění poslední stránky chcete na poslední stránku vložit dodatečné řádky; jinak hodnota false.Výchozí hodnotou je hodnota false.Dodatečné řádky jsou vyplněny textem určeným parametrem <paramref name="emptyRowCellValue" />.</param>
+      <param name="emptyRowCellValue">Text sloužící k vyplnění dodatečných řádků na poslední stránce, když není k dispozici dostatek položek dat k zaplnění poslední stránky.Aby se tyto dodatečné řádky zobrazily, musí být parametr <paramref name="fillEmptyRows" /> nastavený na hodnotu true.</param>
+      <param name="columns">Kolekce instancí <see cref="T:System.Web.Helpers.WebGridColumn" />, které určují, jak jsou zobrazeny jednotlivé řádky.Určují kromě jiného to, který sloupec je přidružený k jednotlivým sloupcům mřížky a formátování datových hodnot, které jednotlivé sloupce mřížky obsahují.</param>
+      <param name="exclusions">Kolekce obsahující názvy sloupců dat, které se mají vyloučit při automatickém vyplňování sloupců mřížky.</param>
+      <param name="footer">Funkce vracející kód HTML sloužící k vykreslení zápatí tabulky.</param>
+      <param name="htmlAttributes">Objekt představující kolekci atributů (názvy a hodnoty), které se mají nastavit pro prvek tabulky HTML, který představuje instanci <see cref="T:System.Web.Helpers.WebGrid" />.</param>
+    </member>
+    <member name="P:System.Web.Helpers.WebGrid.TotalRowCount">
+      <summary>Získá celkový počet řádků, které instance <see cref="T:System.Web.Helpers.WebGrid" /> obsahuje.</summary>
+      <returns>Celkový počet řádků v mřížce.Tato hodnota zahrnuje všechny řádky ze všech stránek, ale nezahrnuje dodatečné řádky vložené na poslední stránku, když není k dispozici dostatek položek dat k zaplnění poslední stránky.</returns>
+    </member>
+    <member name="T:System.Web.Helpers.WebGridColumn">
+      <summary>Představuje sloupec v instanci <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+    </member>
+    <member name="M:System.Web.Helpers.WebGridColumn.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Helpers.WebGridColumn" />.</summary>
+    </member>
+    <member name="P:System.Web.Helpers.WebGridColumn.CanSort">
+      <summary>Získá nebo nastaví hodnotu, která označuje, zda lze sloupec <see cref="T:System.Web.Helpers.WebGrid" /> seřadit.</summary>
+      <returns>Hodnota true označuje, že sloupec lze seřadit, v opačném případě je hodnota false.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGridColumn.ColumnName">
+      <summary>Získá nebo nastaví název položky dat, která je přidružená ke sloupci <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Název položky dat.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGridColumn.Format">
+      <summary>Získá nebo nastaví funkci, která slouží k formátování položky dat přidružené ke sloupci <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Funkce použitá k formátování položky dat přidružené ke sloupci.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGridColumn.Header">
+      <summary>Získá nebo nastaví text, který se vykreslí v záhlaví sloupce <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Text, který se vykreslí v záhlaví sloupce.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGridColumn.Style">
+      <summary>Získá nebo nastaví atribut třídy CSS, který se vykreslí jako součást buněk tabulky HTML, které jsou přidružené ke sloupci <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+      <returns>Atribut třídy CSS, který se použije na buňky přidružené ke sloupci.</returns>
+    </member>
+    <member name="T:System.Web.Helpers.WebGridPagerModes">
+      <summary>Určuje příznaky, které popisují metody poskytované pro přesun mezi stránkami instance <see cref="T:System.Web.Helpers.WebGrid" />.Tento výčet má atribut <see cref="T:System.FlagsAttribute" />, který umožňuje bitové kombinace hodnot členů.</summary>
+    </member>
+    <member name="F:System.Web.Helpers.WebGridPagerModes.All">
+      <summary>Označuje, že jsou poskytnuty všechny metody pro přesun mezi stránkami <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+    </member>
+    <member name="F:System.Web.Helpers.WebGridPagerModes.FirstLast">
+      <summary>Označuje, že jsou poskytnuty metody pro přímý přesun na první nebo poslední stránku <see cref="F:System.Web.Helpers.WebGrid" />.</summary>
+    </member>
+    <member name="F:System.Web.Helpers.WebGridPagerModes.NextPrevious">
+      <summary>Označuje, že jsou poskytnuty metody pro přímý přesun na další nebo předchozí stránku <see cref="F:System.Web.Helpers.WebGrid" />.</summary>
+    </member>
+    <member name="F:System.Web.Helpers.WebGridPagerModes.Numeric">
+      <summary>Označuje, že jsou poskytnuty metody pro přesun na blízkou stránku <see cref="F:System.Web.Helpers.WebGrid" /> pomocí čísla stránky.</summary>
+    </member>
+    <member name="T:System.Web.Helpers.WebGridRow">
+      <summary>Představuje řádek v instanci <see cref="T:System.Web.Helpers.WebGrid" />.</summary>
+    </member>
+    <member name="M:System.Web.Helpers.WebGridRow.#ctor(System.Web.Helpers.WebGrid,System.Object,System.Int32)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Helpers.WebGridRow" /> pomocí zadané instance <see cref="T:System.Web.Helpers.WebGrid" />, hodnoty řádku a indexu.</summary>
+      <param name="webGrid">Instance <see cref="T:System.Web.Helpers.WebGrid" />, která obsahuje řádek</param>
+      <param name="value">Objekt, který obsahuje člena vlastnosti pro každou hodnotu v řádku</param>
+      <param name="rowIndex">Index řádku</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebGridRow.GetEnumerator">
+      <summary>Vrátí enumerátor, který lze použít k iteraci v rámci hodnot instance <see cref="T:System.Web.Helpers.WebGridRow" />.</summary>
+      <returns>Enumerátor, který lze použít k iteraci v rámci hodnot řádku</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebGridRow.GetSelectLink(System.String)">
+      <summary>Vrátí element HTML (odkaz), který mohou uživatelé použít k vybrání řádku.</summary>
+      <returns>Odkaz, na který uživatelé mohou kliknout, a vybrat tak řádek</returns>
+      <param name="text">Vnitřní text prvku odkazu.Pokud je parametr <paramref name="text" /> prázdný nebo má hodnotu null, použije se možnost Vybrat.</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebGridRow.GetSelectUrl">
+      <summary>Vrátí URL, kterou lze použít k vybrání řádku.</summary>
+      <returns>URL, která se používá k vybrání řádku</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGridRow.Item(System.Int32)">
+      <summary>Vrátí hodnotu ve stanoveném indexu v instanci <see cref="T:System.Web.Helpers.WebGridRow" />.</summary>
+      <returns>Hodnota ve stanoveném indexu.</returns>
+      <param name="index">Index hodnoty v řádku (počítáno od nuly), který má být vrácen</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Hodnota <paramref name="index" /> je menší než 0 nebo větší než nebo rovna počtu hodnot v řádku.</exception>
+    </member>
+    <member name="P:System.Web.Helpers.WebGridRow.Item(System.String)">
+      <summary>Vrátí hodnotu, která má určené jméno v instanci <see cref="T:System.Web.Helpers.WebGridRow" />.</summary>
+      <returns>Určená hodnota</returns>
+      <param name="name">Název hodnoty v řádku, který má být vrácen</param>
+      <exception cref="T:System.ArgumentException">Parametr <paramref name="name" /> má hodnotu Nothing nebo je prázdný.</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="name" /> určí hodnotu, která neexistuje.</exception>
+    </member>
+    <member name="M:System.Web.Helpers.WebGridRow.System#Collections#IEnumerable#GetEnumerator">
+      <summary>Vrátí enumerátor, který lze použít k iteraci v rámci kolekce.</summary>
+      <returns>Enumerátor, který lze použít pro iteraci prostřednictvím kolekce</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebGridRow.ToString">
+      <summary>Vrátí řetězec, který představuje všechny hodnoty instance <see cref="T:System.Web.Helpers.WebGridRow" />.</summary>
+      <returns>Řetězec, který představuje hodnoty řádku</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebGridRow.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)">
+      <summary>Vrátí hodnotu člena <see cref="T:System.Web.Helpers.WebGridRow" />, který je popsán stanoveným vazačem.</summary>
+      <returns>Má hodnotu true, pokud hodnota položky byla úspěšně získána; jinak má hodnotu false.</returns>
+      <param name="binder">Příjemce člena vázané vlastnosti.</param>
+      <param name="result">Když se tato metoda vrátí, obsahuje objekt, který uchovává hodnotu položky popsané prostřednictvím parametru <paramref name="binder" />.Tento parametr se předává neinicializovaný.</param>
+    </member>
+    <member name="P:System.Web.Helpers.WebGridRow.Value">
+      <summary>Získá objekt, který obsahuje člena vlastnosti pro každou hodnotu v řádku.</summary>
+      <returns>Objekt, který obsahuje každou hodnotu v řádku jako vlastnost</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebGridRow.WebGrid">
+      <summary>Získá instanci <see cref="T:System.Web.Helpers.WebGrid" />, které náleží daný řádek.</summary>
+      <returns>Instance <see cref="T:System.Web.Helpers.WebGrid" />, která obsahuje řádek</returns>
+    </member>
+    <member name="T:System.Web.Helpers.WebImage">
+      <summary>Představuje objekt, který vám umožní zobrazit a spravovat obrázky na webové stránce.</summary>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.#ctor(System.Byte[])">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Helpers.WebImage" /> pomocí bajtového pole za účelem zastoupení obrázku.</summary>
+      <param name="content">Obrázek</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.#ctor(System.IO.Stream)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Helpers.WebImage" /> pomocí datového proudu za účelem zastoupení obrázku.</summary>
+      <param name="imageStream">Obrázek</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.#ctor(System.String)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Helpers.WebImage" /> pomocí cesty za účelem zastoupení umístění obrázku.</summary>
+      <param name="filePath">Cesta souboru, který obsahuje obrázek</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.AddImageWatermark(System.String,System.Int32,System.Int32,System.String,System.String,System.Int32,System.Int32)">
+      <summary>Přidá vodoznak pomocí cesty k vodoznaku.</summary>
+      <returns>Vodoznak</returns>
+      <param name="watermarkImageFilePath">Cesta souboru, který obsahuje vodoznak</param>
+      <param name="width">Šířka vodoznaku v pixelech</param>
+      <param name="height">Výška vodoznaku v pixelech</param>
+      <param name="horizontalAlign">Horizontální vyrovnání vodoznaku.Hodnoty mohou být „vlevo“, „vpravo“ a „na střed“.</param>
+      <param name="verticalAlign">Vertikální vyrovnání vodoznaku.Hodnoty mohou být „nahoru“, „na střed“ a „dolů“.</param>
+      <param name="opacity">Neprůhlednost vodoznaku stanovená jako hodnota mezi 0 a 100</param>
+      <param name="padding">Velikost výplně kolem vodoznaku v pixelech</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.AddImageWatermark(System.Web.Helpers.WebImage,System.Int32,System.Int32,System.String,System.String,System.Int32,System.Int32)">
+      <summary>Přidá vodoznak pomocí určeného objektu obrázku.</summary>
+      <returns>Vodoznak</returns>
+      <param name="watermarkImage">Objekt <see cref="T:System.Web.Helpers.WebImage" />.</param>
+      <param name="width">Šířka vodoznaku v pixelech</param>
+      <param name="height">Výška vodoznaku v pixelech</param>
+      <param name="horizontalAlign">Horizontální vyrovnání vodoznaku.Hodnoty mohou být „vlevo“, „vpravo“ a „na střed“.</param>
+      <param name="verticalAlign">Vertikální vyrovnání vodoznaku.Hodnoty mohou být „nahoru“, „na střed“ a „dolů“.</param>
+      <param name="opacity">Neprůhlednost vodoznaku stanovená jako hodnota mezi 0 a 100</param>
+      <param name="padding">Velikost výplně kolem vodoznaku v pixelech</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.AddTextWatermark(System.String,System.String,System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.Int32)">
+      <summary>Přidá vodoznakový text k obrázku.</summary>
+      <returns>Vodoznak</returns>
+      <param name="text">Text, který bude použit jako vodoznak</param>
+      <param name="fontColor">Barva vodoznakového textu</param>
+      <param name="fontSize">Velikost písma vodoznakového textu</param>
+      <param name="fontStyle">Styl písma vodoznakového textu</param>
+      <param name="fontFamily">Typ písma vodoznakového textu</param>
+      <param name="horizontalAlign">Horizontální vyrovnání vodoznakového textu.Hodnoty mohou být „vlevo“, „vpravo“ a „na střed“.</param>
+      <param name="verticalAlign">Vertikální vyrovnání vodoznakového textu.Hodnoty mohou být „nahoru“, „na střed“ a „dolů“.</param>
+      <param name="opacity">Neprůhlednost vodoznaku stanovená jako hodnota mezi 0 a 100</param>
+      <param name="padding">Velikost výplně kolem vodoznakového textu v pixelech</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.Clone">
+      <summary>Kopie objektu <see cref="T:System.Web.Helpers.WebImage" /></summary>
+      <returns>Obrázek</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.Crop(System.Int32,System.Int32,System.Int32,System.Int32)">
+      <summary>Ořízne obrázek.</summary>
+      <returns>Oříznutý obrázek</returns>
+      <param name="top">Počet pixelů k odstranění na horní straně</param>
+      <param name="left">Počet pixelů k odstranění vlevo</param>
+      <param name="bottom">Počet pixelů k odstranění na dolní straně</param>
+      <param name="right">Počet pixelů k odstranění vpravo</param>
+    </member>
+    <member name="P:System.Web.Helpers.WebImage.FileName">
+      <summary>Získá nebo nastaví název souboru objektu <see cref="T:System.Web.Helpers.WebImage" />.</summary>
+      <returns>Název souboru</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.FlipHorizontal">
+      <summary>Horizontální přetočení obrázku</summary>
+      <returns>Přetočený obrázek</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.FlipVertical">
+      <summary>Přetočí obrázek vertikálně.</summary>
+      <returns>Přetočený obrázek</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.GetBytes(System.String)">
+      <summary>Vrátí obrázek jako bajtové pole.</summary>
+      <returns>Obrázek</returns>
+      <param name="requestedFormat">Hodnota <see cref="P:System.Web.Helpers.WebImage.ImageFormat" /> objektu <see cref="T:System.Web.Helpers.WebImage" /></param>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.GetImageFromRequest(System.String)">
+      <summary>Vrátí obrázek, který byl načten pomocí prohlížeče.</summary>
+      <returns>Obrázek</returns>
+      <param name="postedFileName">(Volitelné) Název souboru, který byl odeslán.Pokud není stanoven žádný název souboru, bude vrácen první odeslaný soubor.</param>
+    </member>
+    <member name="P:System.Web.Helpers.WebImage.Height">
+      <summary>Získá výšku obrázku v pixelech.</summary>
+      <returns>Výška</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebImage.ImageFormat">
+      <summary>Získá formát obrázku (například jpeg nebo png).</summary>
+      <returns>Formát souboru obrázku</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.Resize(System.Int32,System.Int32,System.Boolean,System.Boolean)">
+      <summary>Změní velikost obrázku.</summary>
+      <returns>Obrázek se změněnou velikostí</returns>
+      <param name="width">Šířka objektu <see cref="T:System.Web.Helpers.WebImage" /> v pixelech</param>
+      <param name="height">Výška objektu <see cref="T:System.Web.Helpers.WebImage" /> v pixelech</param>
+      <param name="preserveAspectRatio">Hodnota true zachová poměr stran obrázku; jinak má hodnotu false.</param>
+      <param name="preventEnlarge">Hodnota true zachová zvětšení obrázku; jinak má hodnotu false.</param>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.RotateLeft">
+      <summary>Otočí obrázek vlevo.</summary>
+      <returns>Otočený obrázek</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.RotateRight">
+      <summary>Otočí obrázek vpravo.</summary>
+      <returns>Otočený obrázek</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.Save(System.String,System.String,System.Boolean)">
+      <summary>Uloží obrázek s použitím určeného názvu souboru.</summary>
+      <returns>Obrázek</returns>
+      <param name="filePath">Cesta pro uložení obrázku</param>
+      <param name="imageFormat">Formát, který bude použit, když je soubor obrázku uložen, např. gif nebo png</param>
+      <param name="forceCorrectExtension">Hodnota true vynutí správnou příponu názvu souboru, která bude použita pro formát určený v parametru <paramref name="imageFormat" />; jinak má hodnotu false.Pokud dojde k neshodě mezi typem souboru a určenou příponou názvu souboru a pokud má <paramref name="forceCorrectExtension" /> hodnotu true, bude k názvu souboru připojena správná přípona.Například soubor PNG pojmenovaný Fotografie.txt je uložen pod názvem Fotografie.txt.png.</param>
+    </member>
+    <member name="P:System.Web.Helpers.WebImage.Width">
+      <summary>Získá šířku obrázku v pixelech.</summary>
+      <returns>Šířka</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebImage.Write(System.String)">
+      <summary>Poskytne obrázek prohlížeči.</summary>
+      <returns>Obrázek</returns>
+      <param name="requestedFormat">(Volitelné) Formát souboru, který bude použit, když je obrázek zapsaný</param>
+    </member>
+    <member name="T:System.Web.Helpers.WebMail">
+      <summary>Umožňuje sestavit a odeslat e-mailovou zprávu pomocí protokolu SMTP (Simple Mail Transfer Protocol).</summary>
+    </member>
+    <member name="P:System.Web.Helpers.WebMail.EnableSsl">
+      <summary>Získá nebo nastaví hodnotu, která označuje, jestli je při odesílání zprávy připojení šifrováno pomocí protokolu SSL (Secure Sockets Layer).</summary>
+      <returns>true, pokud je připojení šifrováno pomocí protokolu SSL; v opačném případě false.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebMail.From">
+      <summary>Získá nebo nastaví e-mailovou adresu odesílatele.</summary>
+      <returns>E-mailová adresa odesílatele.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebMail.Password">
+      <summary>Získá nebo nastaví heslo e-mailového účtu odesílatele.</summary>
+      <returns>Heslo odesílatele.</returns>
+    </member>
+    <member name="M:System.Web.Helpers.WebMail.Send(System.String,System.String,System.String,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Boolean,System.Collections.Generic.IEnumerable{System.String},System.String,System.String,System.String,System.String,System.String)">
+      <summary>Odešle určenou zprávu na server SMTP k doručení.</summary>
+      <param name="to">E-mailová adresa příjemce nebo příjemců.Oddělte jednotlivé příjemce středníkem (;).</param>
+      <param name="subject">Řádek předmětu e-mailové zprávy.</param>
+      <param name="body">Tělo e-mailové zprávy.Pokud má parametr <paramref name="isBodyHtml" /> hodnotu true, je HTML v těle zprávy interpretováno jako značky.</param>
+      <param name="from">(Volitelné) E-mailová adresa odesílatele zprávy, nebo null pro nezadání odesílatele.Výchozí hodnota je null.</param>
+      <param name="cc">(Volitelné) E-mailové adresy dalších příjemců, kterým se má odeslat kopie zprávy, nebo null, pokud zpráva nemá další příjemce.Oddělte jednotlivé příjemce středníkem (;).Výchozí hodnota je null.</param>
+      <param name="filesToAttach">(Volitelné) Kolekce názvů souborů určující soubory, které se mají připojit k e-mailové zprávě, nebo null, pokud nechcete připojit žádné soubory.Výchozí hodnota je null.</param>
+      <param name="isBodyHtml">(Volitelné) true určuje, že tělo e-mailové zprávy je ve formátu HTML; false určuje, že tělo zprávy je ve formátu prostého textu.Výchozí hodnotou je hodnota true.</param>
+      <param name="additionalHeaders">(Volitelné) Kolekce záhlaví, která se mají přidat k normálním záhlavím SMTP zahrnutým v této e-mailové zprávě, nebo null, pokud nechcete odeslat žádná další záhlaví.Výchozí hodnota je null.</param>
+      <param name="bcc">(Volitelné) E-mailové adresy dalších příjemců, kterým se má odeslat „skrytá“ kopie zprávy, nebo null, pokud zpráva nemá další příjemce.Oddělte jednotlivé příjemce středníkem (;).Výchozí hodnota je null.</param>
+      <param name="contentEncoding">(Volitelné) Kódování použité pro tělo zprávy.Možné hodnoty jsou tvořeny hodnotami vlastností pro třídu <see cref="T:System.Text.Encoding" />, například <see cref="P:System.Text.Encoding.UTF8" />.Výchozí hodnota je null.</param>
+      <param name="headerEncoding">(Volitelné) Kódování použité pro záhlaví zprávy.Možné hodnoty jsou tvořeny hodnotami vlastností pro třídu <see cref="T:System.Text.Encoding" />, například <see cref="P:System.Text.Encoding.UTF8" />.Výchozí hodnota je null.</param>
+      <param name="priority">(Volitelné) Hodnota („Normální“, „Nízká“, „Vysoká“) určující prioritu zprávy.Výchozí nastavení je „Normální“.</param>
+      <param name="replyTo">(Volitelné) E-mailová adresa, která se použije při odpovědi příjemce na zprávu.Výchozí hodnota je null. Tato hodnota znamená, že adresa pro odeslání odpovědi je hodnota vlastnosti From.</param>
+    </member>
+    <member name="P:System.Web.Helpers.WebMail.SmtpPort">
+      <summary>Získá nebo nastaví port, který se používá pro transakce SMTP.</summary>
+      <returns>Port používaný pro transakce SMTP.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebMail.SmtpServer">
+      <summary>Získá nebo nastaví název serveru SMTP, který se používá k přenosu e-mailové zprávy.</summary>
+      <returns>Server SMTP.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebMail.SmtpUseDefaultCredentials">
+      <summary>Získá nebo nastaví hodnotu, která označuje, jestli jsou s požadavky odesílána výchozí pověření.</summary>
+      <returns>true, pokud jsou pověření odesílána spolu s e-mailovou zprávou; v opačném případě false.</returns>
+    </member>
+    <member name="P:System.Web.Helpers.WebMail.UserName">
+      <summary>Získá nebo nastaví název e-mailového účtu, který slouží k odesílání e-mailů.</summary>
+      <returns>Název uživatelského účtu.</returns>
+    </member>
+  </members>
+</doc>

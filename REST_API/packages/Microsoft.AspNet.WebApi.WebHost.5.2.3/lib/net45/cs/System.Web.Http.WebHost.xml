@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Web.Http.WebHost</name>
+  </assembly>
+  <members>
+    <member name="T:System.Web.Http.GlobalConfiguration">
+      <summary> Poskytuje globální konfiguraci <see cref="T:System.Web.Http.HttpConfiguration" /> pro aplikace ASP.NET. </summary>
+    </member>
+    <member name="P:System.Web.Http.GlobalConfiguration.Configuration"></member>
+    <member name="M:System.Web.Http.GlobalConfiguration.Configure(System.Action{System.Web.Http.HttpConfiguration})"></member>
+    <member name="P:System.Web.Http.GlobalConfiguration.DefaultHandler"></member>
+    <member name="P:System.Web.Http.GlobalConfiguration.DefaultServer">
+      <summary> Získá globální konfiguraci <see cref="T:System.Web.Http.HttpServer" />. </summary>
+      <returns>Globální konfigurace <see cref="T:System.Web.Http.HttpServer" /></returns>
+    </member>
+    <member name="T:System.Web.Http.RouteCollectionExtensions">
+      <summary> Rozšiřující metody třídy <see cref="T:System.Web.Routing.RouteCollection" /></summary>
+    </member>
+    <member name="M:System.Web.Http.RouteCollectionExtensions.MapHttpRoute(System.Web.Routing.RouteCollection,System.String,System.String)">
+      <summary>Mapuje zadanou šablonu trasy.</summary>
+      <returns>Odkaz na mapovanou trasu</returns>
+      <param name="routes">Kolekce tras pro aplikaci</param>
+      <param name="name">Název mapované trasy</param>
+      <param name="routeTemplate">Šablona trasy pro tuto trasu</param>
+    </member>
+    <member name="M:System.Web.Http.RouteCollectionExtensions.MapHttpRoute(System.Web.Routing.RouteCollection,System.String,System.String,System.Object)">
+      <summary>Mapuje zadanou šablonu trasy a nastavuje výchozí trasu.</summary>
+      <returns>Odkaz na mapovanou trasu</returns>
+      <param name="routes">Kolekce tras pro aplikaci</param>
+      <param name="name">Název mapované trasy</param>
+      <param name="routeTemplate">Šablona trasy pro tuto trasu</param>
+      <param name="defaults">Objekt obsahující výchozí hodnoty trasy</param>
+    </member>
+    <member name="M:System.Web.Http.RouteCollectionExtensions.MapHttpRoute(System.Web.Routing.RouteCollection,System.String,System.String,System.Object,System.Object)">
+      <summary>Mapuje zadanou šablonu trasy a nastavuje výchozí hodnoty trasy a omezení.</summary>
+      <returns>Odkaz na mapovanou trasu</returns>
+      <param name="routes">Kolekce tras pro aplikaci</param>
+      <param name="name">Název mapované trasy</param>
+      <param name="routeTemplate">Šablona trasy pro tuto trasu</param>
+      <param name="defaults">Objekt obsahující výchozí hodnoty trasy</param>
+      <param name="constraints">Sada výrazů, které určují hodnoty pro routeTemplate</param>
+    </member>
+    <member name="M:System.Web.Http.RouteCollectionExtensions.MapHttpRoute(System.Web.Routing.RouteCollection,System.String,System.String,System.Object,System.Object,System.Net.Http.HttpMessageHandler)">
+      <summary>Mapuje zadanou šablonu trasy a nastavuje výchozí hodnoty trasy, omezení a popisovač zpráv pro koncový bod.</summary>
+      <returns>Odkaz na mapovanou trasu</returns>
+      <param name="routes">Kolekce tras pro aplikaci</param>
+      <param name="name">Název mapované trasy</param>
+      <param name="routeTemplate">Šablona trasy pro tuto trasu</param>
+      <param name="defaults">Objekt obsahující výchozí hodnoty trasy</param>
+      <param name="constraints">Sada výrazů, které určují hodnoty pro routeTemplate</param>
+      <param name="handler">Popisovač, do kterého bude požadavek odeslán.</param>
+    </member>
+    <member name="T:System.Web.Http.WebHost.HttpControllerHandler">
+      <summary>Objekt <see cref="T:System.Web.IHttpTaskAsyncHandler" />, který předá žádosti technologie ASP.NET do kanálu <see cref="T:System.Web.Http.HttpServer" /> a zapíše zpět výsledek.</summary>
+    </member>
+    <member name="M:System.Web.Http.WebHost.HttpControllerHandler.#ctor(System.Web.Routing.RouteData)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Http.WebHost.HttpControllerHandler" />.</summary>
+      <param name="routeData">Data trasy</param>
+    </member>
+    <member name="M:System.Web.Http.WebHost.HttpControllerHandler.#ctor(System.Web.Routing.RouteData,System.Net.Http.HttpMessageHandler)">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Http.WebHost.HttpControllerHandler" />.</summary>
+      <param name="routeData">Data trasy</param>
+      <param name="handler">Popisovač zpráv, na který mají být odesílány žádosti.</param>
+    </member>
+    <member name="M:System.Web.Http.WebHost.HttpControllerHandler.ProcessRequestAsync(System.Web.HttpContext)">
+      <summary>Poskytuje kód, který zpracovává asynchronní úlohu.</summary>
+      <returns>Asynchronní úloha</returns>
+      <param name="context">Kontext HTTP</param>
+    </member>
+    <member name="T:System.Web.Http.WebHost.HttpControllerRouteHandler">
+      <summary> Objekt <see cref="T:System.Web.Routing.IRouteHandler" />, který vrátí instance <see cref="T:System.Web.Http.WebHost.HttpControllerHandler" />, jež mohou předat žádosti dané instanci <see cref="T:System.Web.Http.HttpServer" />. </summary>
+    </member>
+    <member name="M:System.Web.Http.WebHost.HttpControllerRouteHandler.#ctor">
+      <summary> Inicializuje novou instanci třídy <see cref="T:System.Web.Http.WebHost.HttpControllerRouteHandler" />. </summary>
+    </member>
+    <member name="M:System.Web.Http.WebHost.HttpControllerRouteHandler.GetHttpHandler(System.Web.Routing.RequestContext)">
+      <summary> Poskytne objekt, který zpracuje žádost. </summary>
+      <returns> Objekt, který zpracuje žádost </returns>
+      <param name="requestContext">Objekt, který zapouzdřuje informace o žádosti</param>
+    </member>
+    <member name="P:System.Web.Http.WebHost.HttpControllerRouteHandler.Instance">
+      <summary> Získá instanci <see cref="T:System.Web.Http.WebHost.HttpControllerRouteHandler" /> typu singleton. </summary>
+    </member>
+    <member name="M:System.Web.Http.WebHost.HttpControllerRouteHandler.System#Web#Routing#IRouteHandler#GetHttpHandler(System.Web.Routing.RequestContext)">
+      <summary> Poskytne objekt, který zpracuje žádost. </summary>
+      <returns> Objekt, který zpracuje žádost </returns>
+      <param name="requestContext">Objekt, který zapouzdřuje informace o žádosti</param>
+    </member>
+    <member name="T:System.Web.Http.WebHost.PreApplicationStartCode">
+      <summary>Zajišťuje registrační bod pro spouštěcí kód před aplikací.</summary>
+    </member>
+    <member name="M:System.Web.Http.WebHost.PreApplicationStartCode.Start">
+      <summary>Registruje spouštěcí kód před aplikací pro jednoduché členství.</summary>
+    </member>
+    <member name="T:System.Web.Http.WebHost.WebHostBufferPolicySelector">
+      <summary>Představuje selektor zásad pro vyrovnávací paměť webového hostitele.</summary>
+    </member>
+    <member name="M:System.Web.Http.WebHost.WebHostBufferPolicySelector.#ctor">
+      <summary>Inicializuje novou instanci třídy <see cref="T:System.Web.Http.WebHost.WebHostBufferPolicySelector" />.</summary>
+    </member>
+    <member name="M:System.Web.Http.WebHost.WebHostBufferPolicySelector.UseBufferedInputStream(System.Object)">
+      <summary>Získá hodnotu, která určuje, zda má hostitel ukládat obsah entity požadavku HTTP do vyrovnávací paměti.</summary>
+      <returns>Hodnota true, pokud se má používat ukládání do vyrovnávací paměti; v opačném případě by se měl použít požadavek vysílaný datovým proudem.</returns>
+      <param name="hostContext">Kontext hostitele.</param>
+    </member>
+    <member name="M:System.Web.Http.WebHost.WebHostBufferPolicySelector.UseBufferedOutputStream(System.Net.Http.HttpResponseMessage)">
+      <summary>Použije pro webového hostitele výstupní datový proud ukládaný do vyrovnávací paměti.</summary>
+      <returns>Výstupní datový proud ukládaný do vyrovnávací paměti.</returns>
+      <param name="response">Odpověď</param>
+    </member>
+    <member name="T:System.Web.Http.WebHost.WebHostExceptionCatchBlocks">
+      <summary>Poskytuje bloky catch použité v tomto sestavení.</summary>
+    </member>
+    <member name="P:System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpControllerHandlerBufferContent">
+      <summary>Získá popisek pro blok catch v: System.Web.Http.WebHost.HttpControllerHandler.WriteBufferedResponseContentAsync.</summary>
+      <returns>Popisek pro blok catch v: System.Web.Http.WebHost.HttpControllerHandler.WriteBufferedResponseContentAsync.</returns>
+    </member>
+    <member name="P:System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpControllerHandlerBufferError">
+      <summary>Získá popisek pro blok catch v: System.Web.Http.WebHost.HttpControllerHandler.WriteErrorResponseContentAsync.</summary>
+      <returns>Popisek pro blok catch v: System.Web.Http.WebHost.HttpControllerHandler.WriteErrorResponseContentAsync.</returns>
+    </member>
+    <member name="P:System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpControllerHandlerComputeContentLength">
+      <summary>Získá popisek pro blok catch v: System.Web.Http.WebHost.HttpControllerHandler.ComputeContentLength.</summary>
+      <returns>Popisek pro blok catch v: System.Web.Http.WebHost.HttpControllerHandler.ComputeContentLength.</returns>
+    </member>
+    <member name="P:System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpControllerHandlerStreamContent">
+      <summary>Získá popisek pro blok catch v: System.Web.Http.WebHost.HttpControllerHandler.WriteStreamedResponseContentAsync.</summary>
+      <returns>Popisek pro blok catch v: System.Web.Http.WebHost.HttpControllerHandler.WriteStreamedResponseContentAsync.</returns>
+    </member>
+    <member name="P:System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpWebRoute">
+      <summary>Získá popisek pro blok catch v: System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpWebRoute.GetRouteData.</summary>
+      <returns>Popisek pro blok catch v: System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpWebRoute.GetRouteData.</returns>
+    </member>
+  </members>
+</doc>
