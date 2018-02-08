@@ -10,7 +10,7 @@ namespace REST_API
     {
         public static MySqlConnection Connection()
         {
-            string connection_string = "server=localhost;uid=kulhanmatous;pwd=123456;database=3b2_kulhanmatous_db2";
+            string connection_string = "server=mysqlstudenti.litv.sssvt.cz;uid=kulhanmatous;pwd=123456;database=3b2_kulhanmatous_db2";
             MySqlConnection Connection = new MySqlConnection(connection_string);
 
             return Connection;
