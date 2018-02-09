@@ -24,13 +24,12 @@ namespace REST_API.Controllers
 
         public Settings(string DataType,string TypeOfBackup,string BeforeBackup,string AfterBackup,bool Comprimation,string Error)
         {
-            this.AfterBackup = afterbackup;
-            this.BeforeBackup = beforebackup;
-            this.Comprimation = comprimation;
-            this.DataType = datatype;
-            this.LocalDestinationPath = localdestinationpath;
-            this.TypeOfBackup = typeofbackup;
-            this.Error = error;
+            this.AfterBackup = AfterBackup;
+            this.BeforeBackup = BeforeBackup;
+            this.Comprimation = Comprimation;
+            this.DataType = DataType;
+            this.TypeOfBackup = TypeOfBackup;
+            this.Error = Error;
 
             this.FTP = ftp;
 

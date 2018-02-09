@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\REST_API"
+    "\\REST_API",
+    "\\REST_API\\REST_API",
+    "\\REST_API\\REST_API\\CommunicationClasses",
+    "\\REST_API\\REST_API\\Controllers",
+    "\\REST_API\\REST_API\\DatabaseConnectionClasses"
   ],
-  "SelectedNode": "\\REST_API\\REST_API.sln",
+  "SelectedNode": "\\REST_API\\REST_API\\DatabaseConnectionClasses\\Frequency.cs",
   "PreviewInSolutionExplorer": false
 }
