@@ -6,10 +6,29 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using REST_API.
 
 namespace REST_API.Controllers
 {
+    public interface IDestination
+    {
+        string Adress;
+        string Port;
+        string Username;
+        string Password;
+    }
+    public class FTPDestination : IDestination
+    {
+
+    }
+    public class Frequency
+    {
+        public string Time { get; set; }
+        public string Interval { get; set; }
+        public string FromTime { get; set; }
+        public string ToTime { get; set; }
+        public string DayOfTheWeek { get; set; }
+        public string DayOfTheMonth { get; set; }
+    }
     public class Settings
     {
         public string DataType { get; set; }
