@@ -9,18 +9,31 @@ using System.Web.Http;
 
 namespace REST_API.Controllers
 {
-    public class Result
+    public class Settings
     {
-        public string id { get; set; } // id a value > name,surname....
-        public string value { get; set; }
+        public string DataType { get; set; }
+        public string TypeOfBackup { get; set; }
+        public string BeforeBackup { get; set; }
+        public string AfterBackup { get; set; }
+        public bool Comprimation { get; set; }
+        
+        public IDestination Destination {get;set;}
+        
 
-        public string error { get; set; }
+        public string Error { get; set; }
 
-        public Result(string id, string value, string error)
+        public Settings(string DataType,string TypeOfBackup,string BeforeBackup,string AfterBackup,bool Comprimation,string Error)
         {
-            this.id = id;
-            this.value = value;
-            this.error = error;
+            this.AfterBackup = afterbackup;
+            this.BeforeBackup = beforebackup;
+            this.Comprimation = comprimation;
+            this.DataType = datatype;
+            this.LocalDestinationPath = localdestinationpath;
+            this.TypeOfBackup = typeofbackup;
+            this.Error = error;
+
+            this.FTP = ftp;
+
         }
     }
 
@@ -29,7 +42,7 @@ namespace REST_API.Controllers
         // GET api/admin
 
         [Route("api/admin/{token}")]
-        public List<Result> Get(string token)
+        public List<Settings> Get(string token)
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
@@ -37,7 +50,7 @@ namespace REST_API.Controllers
             Query.CommandText = "SELECT settings FROM daemons"; //WHERE @id = id";
 
             //Query.Parameters.AddWithValue("@id", id);
-            var results = new List<Result>();
+            var settings = new List<Settings>();
 
             try
             {
@@ -45,18 +58,26 @@ namespace REST_API.Controllers
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
-                results.Add(new Result(null, null, ex.ToString()));
+                settings.Add(new Settings(null, null, ex.ToString()));
             }
 
-            MySqlDataReader Fetch_query = Query.ExecuteReader();
+            MySqlDataReader Reader = Query.ExecuteReader();
 
-            while (Fetch_query.Read())
+            while (Reader.Read())
             {
-                results.Add(new Result(Fetch_query["id"].ToString(), Fetch_query["value"].ToString(), null));
+                settings.Add(new Settings(Reader["id"].ToString(), Reader["value"].ToString(), null,null,null,null,null,null));
             }
 
-            return results;
-            //return token;
+            Reader.Close();
+            Connection.Close();
+
+            //for(int i = 0;i > settings.Count;i++)
+            //{
+            //    string json = JsonConvert.SerializeObject(settings[i]);
+            //    yield return json;
+            //}
+
+            return settings;
         }
     }
 }
