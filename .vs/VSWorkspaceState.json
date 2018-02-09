@@ -7,6 +7,6 @@
     "\\REST_API\\REST_API\\Controllers",
     "\\REST_API\\REST_API\\DatabaseConnectionClasses"
   ],
-  "SelectedNode": "\\REST_API\\REST_API\\DatabaseConnectionClasses\\Frequency.cs",
+  "SelectedNode": "\\REST_API\\REST_API",
   "PreviewInSolutionExplorer": false
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using REST_API.
 
 namespace REST_API.Controllers
 {
@@ -31,8 +32,6 @@ namespace REST_API.Controllers
             this.TypeOfBackup = TypeOfBackup;
             this.Error = Error;
 
-            this.FTP = ftp;
-
         }
     }
 
@@ -57,14 +56,14 @@ namespace REST_API.Controllers
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
-                settings.Add(new Settings(null, null, ex.ToString()));
+                settings.Add(new Settings(null, null,null, null,true ex.ToString()));
             }
 
             MySqlDataReader Reader = Query.ExecuteReader();
 
             while (Reader.Read())
             {
-                settings.Add(new Settings(Reader["id"].ToString(), Reader["value"].ToString(), null,null,null,null,null,null));
+                settings.Add(new Settings(Reader["id"].ToString(), Reader["value"].ToString(), null,null,true,null));
             }
 
             Reader.Close();
