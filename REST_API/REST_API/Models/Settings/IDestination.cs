@@ -8,9 +8,7 @@ namespace REST_API.Models.Settings
 {
     public interface IDestination
     {
-        string Adress { get; set; }
-        string Port { get; set; }
-        string Username { get; set; }
-        string Password { get; set; }
+        string Path { get; set; }
+        string Type { get; set; }
     }
 }
