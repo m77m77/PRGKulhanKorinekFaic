@@ -125,5 +125,3 @@ D:\Projekty\PRG_KulhanKořínekFaic_4\REST_API\REST_API\bin\cs\System.Web.WebPag
 D:\Projekty\PRG_KulhanKořínekFaic_4\REST_API\REST_API\obj\Debug\REST_API.csprojResolveAssemblyReference.cache
 D:\Projekty\PRG_KulhanKořínekFaic_4\REST_API\REST_API\obj\Debug\REST_API.dll
 D:\Projekty\PRG_KulhanKořínekFaic_4\REST_API\REST_API\obj\Debug\REST_API.pdb
-F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\bin\REST_API.dll.CodeAnalysisLog.xml
-F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\bin\REST_API.dll.lastcodeanalysissucceeded

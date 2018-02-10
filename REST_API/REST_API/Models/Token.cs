@@ -56,13 +56,10 @@ namespace REST_API.Models
         /// <returns>Instance třídy Token nebo null</returns>
         public static Token GenerateNewTokenForAdmin(int idAdmin)
         {
-            string sqlInsertIntoTokensAdmins =
-                    "INSERT INTO tokensAdmins(idToken,idAdmin) VALUES(@idToken,@idAdmin);";
+            string sqlInsertIntoTokensAdmins = "INSERT INTO tokensAdmins(idToken,idAdmin) VALUES(@idToken,@idAdmin);";
 
             MySqlCommand queryInsertIntoTokensAdmins = new MySqlCommand(sqlInsertIntoTokensAdmins);
             queryInsertIntoTokensAdmins.Parameters.AddWithValue("@idAdmin", idAdmin);
-
-
 
             Token token = InsertIntoTokens(queryInsertIntoTokensAdmins);
 
