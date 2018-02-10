@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="f:\program files\program files (x86)\vs2017\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="15.0">
+ <Targets>
+  <Target Name="F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\bin\REST_API.dll">
+   <Modules>
+    <Module Name="rest_api.dll">
+     <Namespaces>
+      <Namespace Name="REST_API.Areas.HelpPage">
+       <Types>
+        <Type Name="HelpPageConfig" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Register(System.Web.Http.HttpConfiguration)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="bsonspec" TypeName="Literály by měly být zadány správně" Category="Microsoft.Naming" CheckId="CA2204" Status="ExcludedInSource" Created="2018-02-10 12:17:08Z" FixCategory="DependsOnFix" LastSeen="0001-01-01 00:00:00Z">
+             <Notes>
+              <User Name="[SuppressMessage]">
+               <Note Id="12" />
+              </User>
+             </Notes>
+            </Message>
+            <Message Id="REST_API.Areas.HelpPage.TextSample.#ctor(System.String)" TypeName="Nepředávejte literály jako lokalizované parametry" Category="Microsoft.Globalization" CheckId="CA1303" Status="ExcludedInSource" Created="2018-02-10 12:17:08Z" FixCategory="DependsOnFix" LastSeen="0001-01-01 00:00:00Z">
+             <Notes>
+              <User Name="[SuppressMessage]">
+               <Note Id="11" />
+              </User>
+             </Notes>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="HelpPageConfigurationExtensions" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GenerateSamples(REST_API.Areas.HelpPage.Models.HelpPageApiModel,REST_API.Areas.HelpPage.HelpPageSampleGenerator)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="ExcludedInSource" Created="2018-02-10 12:17:08Z" FixCategory="NonBreaking" LastSeen="0001-01-01 00:00:00Z">
+             <Notes>
+              <User Name="[SuppressMessage]">
+               <Note Id="13" />
+              </User>
+             </Notes>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="HelpPageSampleGenerator" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetSampleObject(System.Type)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="ExcludedInSource" Created="2018-02-10 12:17:08Z" FixCategory="NonBreaking" LastSeen="0001-01-01 00:00:00Z">
+             <Notes>
+              <User Name="[SuppressMessage]">
+               <Note Id="14" />
+              </User>
+             </Notes>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable`1&lt;System.String&gt;,REST_API.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection`1&lt;System.Net.Http.Formatting.MediaTypeFormatter&gt;&amp;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="ExcludedInSource" Created="2018-02-10 12:17:08Z" FixCategory="Breaking" LastSeen="0001-01-01 00:00:00Z">
+             <Notes>
+              <User Name="[SuppressMessage]">
+               <Note Id="15" />
+              </User>
+             </Notes>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SampleObjectFactories" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="ExcludedInSource" Created="2018-02-10 12:17:08Z" FixCategory="Breaking" LastSeen="0001-01-01 00:00:00Z">
+             <Notes>
+              <User Name="[SuppressMessage]">
+               <Note Id="19" />
+              </User>
+             </Notes>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TryFormatJson(System.String)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="ExcludedInSource" Created="2018-02-10 12:17:08Z" FixCategory="NonBreaking" LastSeen="0001-01-01 00:00:00Z">
+             <Notes>
+              <User Name="[SuppressMessage]">
+               <Note Id="17" />
+              </User>
+             </Notes>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#TryFormatXml(System.String)" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="ExcludedInSource" Created="2018-02-10 12:17:08Z" FixCategory="NonBreaking" LastSeen="0001-01-01 00:00:00Z">
+             <Notes>
+              <User Name="[SuppressMessage]">
+               <Note Id="18" />
+              </User>
+             </Notes>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="ExcludedInSource" Created="2018-02-10 12:17:08Z" FixCategory="NonBreaking" LastSeen="0001-01-01 00:00:00Z">
+             <Notes>
+              <User Name="[SuppressMessage]">
+               <Note Id="16" />
+              </User>
+             </Notes>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ObjectGenerator" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GenerateObject(System.Type,System.Collections.Generic.Dictionary`2&lt;System.Type,System.Object&gt;)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Status="ExcludedInSource" Created="2018-02-10 12:17:08Z" FixCategory="NonBreaking" LastSeen="0001-01-01 00:00:00Z">
+             <Notes>
+              <User Name="[SuppressMessage]">
+               <Note Id="21" />
+              </User>
+             </Notes>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ObjectGenerator+SimpleTypeObjectGenerator" Kind="Class" Accessibility="Private" ExternallyVisible="False">
+         <Members>
+          <Member Name="#InitializeGenerators()" Kind="Method" Static="True" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="AvoidExcessiveComplexity" Category="Microsoft.Maintainability" CheckId="CA1502" Status="ExcludedInSource" Created="2018-02-10 12:17:08Z" FixCategory="NonBreaking" LastSeen="0001-01-01 00:00:00Z">
+             <Notes>
+              <User Name="[SuppressMessage]">
+               <Note Id="20" />
+              </User>
+             </Notes>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="REST_API.Controllers">
+       <Types>
+        <Type Name="FTPDestination" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Adress" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#get_Adress()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2018-02-10 12:17:08Z" FixCategory="Breaking">
+               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\Controllers" File="AdminController.cs" Line="21">'FTPDestination.Adress.get()' vytvoří výjimku typu 'NotImplementedException', typ výjimky, která by neměla být vyvolána ve vlastnosti. Pokud by tato instance výjimky mohla být vyvolána, použijte odlišný typ výjimky, převeďte tuto vlastnost na metodu nebo změňte tuto logiku vlastnosti tak, že již nadále nevyvolává výjimku.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+          <Member Name="#Password" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#get_Password()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2018-02-10 12:17:08Z" FixCategory="Breaking">
+               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\Controllers" File="AdminController.cs" Line="24">'FTPDestination.Password.get()' vytvoří výjimku typu 'NotImplementedException', typ výjimky, která by neměla být vyvolána ve vlastnosti. Pokud by tato instance výjimky mohla být vyvolána, použijte odlišný typ výjimky, převeďte tuto vlastnost na metodu nebo změňte tuto logiku vlastnosti tak, že již nadále nevyvolává výjimku.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+          <Member Name="#Port" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#get_Port()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2018-02-10 12:17:08Z" FixCategory="Breaking">
+               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\Controllers" File="AdminController.cs" Line="22">'FTPDestination.Port.get()' vytvoří výjimku typu 'NotImplementedException', typ výjimky, která by neměla být vyvolána ve vlastnosti. Pokud by tato instance výjimky mohla být vyvolána, použijte odlišný typ výjimky, převeďte tuto vlastnost na metodu nebo změňte tuto logiku vlastnosti tak, že již nadále nevyvolává výjimku.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+          <Member Name="#Username" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Accessors>
+            <Accessor Name="#get_Username()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+             <Messages>
+              <Message TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065" Status="Active" Created="2018-02-10 12:17:08Z" FixCategory="Breaking">
+               <Issue Name="PropertyGetter" Certainty="90" Level="Warning" Path="F:\PRGKulhanKorinekFaicGIT\REST_API\REST_API\Controllers" File="AdminController.cs" Line="23">'FTPDestination.Username.get()' vytvoří výjimku typu 'NotImplementedException', typ výjimky, která by neměla být vyvolána ve vlastnosti. Pokud by tato instance výjimky mohla být vyvolána, použijte odlišný typ výjimky, převeďte tuto vlastnost na metodu nebo změňte tuto logiku vlastnosti tak, že již nadále nevyvolává výjimku.</Issue>
+              </Message>
+             </Messages>
+            </Accessor>
+           </Accessors>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Notes>
+  <User Name="[SuppressMessage]">
+   <Note Id="11" Modified="2018-02-10 12:17:09Z">End users may choose to merge this string with existing localized resources.</Note>
+   <Note Id="12" Modified="2018-02-10 12:17:09Z">Part of a URI.</Note>
+   <Note Id="13" Modified="2018-02-10 12:17:09Z">The exception is recorded as ErrorMessages.</Note>
+   <Note Id="14" Modified="2018-02-10 12:17:09Z">Even if all items in SampleObjectFactories throw, problem will be visible as missing sample.</Note>
+   <Note Id="15" Modified="2018-02-10 12:17:09Z">This is only used in advanced scenarios.</Note>
+   <Note Id="16" Modified="2018-02-10 12:17:09Z">The exception is recorded as InvalidSample.</Note>
+   <Note Id="17" Modified="2018-02-10 12:17:09Z">Handling the failure by returning the original string.</Note>
+   <Note Id="18" Modified="2018-02-10 12:17:09Z">Handling the failure by returning the original string.</Note>
+   <Note Id="19" Modified="2018-02-10 12:17:09Z">This is an appropriate nesting of generic types</Note>
+   <Note Id="20" Modified="2018-02-10 12:17:09Z">These are simple type factories and cannot be split up.</Note>
+   <Note Id="21" Modified="2018-02-10 12:17:09Z">Here we just want to return null if anything goes wrong.</Note>
+  </User>
+ </Notes>
+ <Rules>
+  <Rule TypeName="AvoidExcessiveComplexity" Category="Microsoft.Maintainability" CheckId="CA1502">
+   <Name>Vyhněte se nadměrné složitosti</Name>
+   <Description>Implementace metod, které jsou mimořádně složité, zvyšují výzvu porozumění a spravování kódu.</Description>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182212.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Warning</MessageLevel>
+   <File Name="maintainabilityrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021">
+   <Name>Vyhněte se výstupním parametrům</Name>
+   <Description>Použití výstupním parametrů může znamenat chybu návrhu. Ačkoliv existují oprávněné časy na použití výstupních parametrů, jejich použití často označuje návrh, který není v souladu s pokyny návrhu pro spravovaný kód.</Description>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182131.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="50">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
+   <Name>Nezachycujte výjimky obecného typu</Name>
+   <Description>Neměli byste zachytit Exception nebo SystemException. Zachycování výjimek obecného typu může skrýt problémy za běhu z knihovny uživatele a může zkomplikovat ladění. Měli byste zachytit pouze takové výjimky, které můžete elegantně zpracovat.</Description>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182137.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006">
+   <Name>Nevnořujte obecné typy v signaturách členu</Name>
+   <Description>Vyhněte se rozhraní API, které vyžadují uživateli vytvořit instance obecného typu s jiným obecným typem jako argumentem typu. Syntaxe získá přílišnou složitost.</Description>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182144.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotRaiseExceptionsInUnexpectedLocations" Category="Microsoft.Design" CheckId="CA1065">
+   <Name>Nevyvolávejte výjimky v neočekávaných umístěních</Name>
+   <Description>Nevyvolávejte explicitně výjimky z neočekávaných umístění. Existují některé metody jako například Equals a GetHashCode, které uživatelé neočekávají vyvolat výjimky. Proto volání těchto metod nejsou obvykle zabalené v blocích try catch.</Description>
+   <Resolution Name="PropertyGetter">{0} vytvoří výjimku typu {1}, typ výjimky, která by neměla být vyvolána ve vlastnosti. Pokud by tato instance výjimky mohla být vyvolána, použijte odlišný typ výjimky, převeďte tuto vlastnost na metodu nebo změňte tuto logiku vlastnosti tak, že již nadále nevyvolává výjimku.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb386039.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Error, Warning</MessageLevel>
+   <File Name="designrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="Literály by měly být zadány správně" Category="Microsoft.Naming" CheckId="CA2204">
+   <Name>Literály by měly být zadány správně</Name>
+   <Description>Toto pravidlo analyzuje řetězcový literál do slov, tokenizací složených slov, a zkontroluje pravopis pro každé slovo/token.</Description>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/bb264488.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="15.0.0.0" />
+  </Rule>
+  <Rule TypeName="Nepředávejte literály jako lokalizované parametry" Category="Microsoft.Globalization" CheckId="CA1303">
+   <Name>Nepředávejte literály jako lokalizované parametry</Name>
+   <Description>Řetězcové literály, které jsou vloženy do zdrojového kódu, jsou obtížně lokalizovatelné. Vyhněte se předávání řetězcových literálů jako argumentů za okolností, kde se obecně očekává lokalizovaný řetězec.</Description>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182187.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="15.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Kategorie</String>
+  <String Key="Certainty">Jistota</String>
+  <String Key="CollapseAll">Všechno sbalit</String>
+  <String Key="CheckId">ID kontroly</String>
+  <String Key="Error">Chyba</String>
+  <String Key="Errors">chyby</String>
+  <String Key="ExpandAll">Všechno rozbalit</String>
+  <String Key="Help">Nápověda</String>
+  <String Key="Line">Řádek</String>
+  <String Key="Messages">zprávy</String>
+  <String Key="LocationNotStoredInPdb">[Umístění není uloženo v Pdb]</String>
+  <String Key="Project">Projekt</String>
+  <String Key="Resolution">Rozhodnutí</String>
+  <String Key="Rule">Pravidlo</String>
+  <String Key="RuleFile">Soubor pravidla</String>
+  <String Key="RuleDescription">Popis pravidla</String>
+  <String Key="Source">Zdroj</String>
+  <String Key="Status">Stav</String>
+  <String Key="Target">Cíl</String>
+  <String Key="Warning">Upozornění</String>
+  <String Key="Warnings">upozornění</String>
+  <String Key="ReportTitle">Sestava analýzy kódu</String>
+ </Localized>
+</FxCopReport>
