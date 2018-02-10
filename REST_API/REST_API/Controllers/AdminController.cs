@@ -11,14 +11,17 @@ namespace REST_API.Controllers
 {
     public interface IDestination
     {
-        string Adress;
-        string Port;
-        string Username;
-        string Password;
+        string Adress { get; set; }
+        string Port { get; set; }
+        string Username { get; set; }
+        string Password { get; set; }
     }
     public class FTPDestination : IDestination
     {
-
+        public string Adress { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Port { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Username { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Password { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     }
     public class Frequency
     {
@@ -39,7 +42,7 @@ namespace REST_API.Controllers
         
         public IDestination Destination {get;set;}
         
-
+        
         public string Error { get; set; }
 
         public Settings(string DataType,string TypeOfBackup,string BeforeBackup,string AfterBackup,bool Comprimation,string Error)
@@ -57,7 +60,44 @@ namespace REST_API.Controllers
     public class AdminController : ApiController
     {
         // GET api/admin
+        //public Settings Get()                                                     // testovací metoda get !
+        //{
+        //    MySqlConnection Connection = WebApiConfig.Connection();
 
+        //    MySqlCommand Query = Connection.CreateCommand();
+        //    Query.CommandText = "SELECT settings FROM daemons"; //WHERE @id = id";
+
+        //    //Query.Parameters.AddWithValue("@id", id);
+        //    var settings = new List<Settings>();
+
+        //    try
+        //    {
+        //        Connection.Open();
+        //    }
+        //    catch (MySql.Data.MySqlClient.MySqlException ex)
+        //    {
+        //        settings.Add(new Settings(null, null, null, null, true, ex.ToString()));
+        //    }
+
+        //    MySqlDataReader Reader = Query.ExecuteReader();
+
+        //    while (Reader.Read())
+        //    {
+        //        //settings.Add(new Settings(Reader["DataType"].ToString(), Reader["TypeOfBackup"].ToString(), null, null, true, null));
+        //        settings.Add(new Settings("a","b","c","d",true,"e"));
+        //    }
+
+        //    Reader.Close();
+        //    Connection.Close();
+
+        //    //for (int i = 0; i > settings.Count; i++)
+        //    //{
+        //    //    string json = JsonConvert.SerializeObject(settings[i]);
+        //    //    yield return json;
+        //    //}
+
+        //    return settings[0];
+        //}
         [Route("api/admin/{token}")]
         public List<Settings> Get(string token)
         {
@@ -75,20 +115,20 @@ namespace REST_API.Controllers
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
-                settings.Add(new Settings(null, null,null, null,true ex.ToString()));
+                settings.Add(new Settings(null, null,null, null,true, ex.ToString()));
             }
 
             MySqlDataReader Reader = Query.ExecuteReader();
 
             while (Reader.Read())
             {
-                settings.Add(new Settings(Reader["id"].ToString(), Reader["value"].ToString(), null,null,true,null));
+                settings.Add(new Settings(Reader["DataType"].ToString(), Reader["TypeOfBackup"].ToString(), null,null,true,null));
             }
 
             Reader.Close();
             Connection.Close();
 
-            //for(int i = 0;i > settings.Count;i++)
+            //for (int i = 0; i > settings.Count; i++)
             //{
             //    string json = JsonConvert.SerializeObject(settings[i]);
             //    yield return json;

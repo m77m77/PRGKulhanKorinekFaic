@@ -4,8 +4,7 @@
     "\\REST_API",
     "\\REST_API\\REST_API",
     "\\REST_API\\REST_API\\CommunicationClasses",
-    "\\REST_API\\REST_API\\Controllers",
-    "\\REST_API\\REST_API\\DatabaseConnectionClasses"
+    "\\REST_API\\REST_API\\Controllers"
   ],
   "SelectedNode": "\\REST_API\\REST_API\\Controllers\\AdminController.cs",
   "PreviewInSolutionExplorer": false
