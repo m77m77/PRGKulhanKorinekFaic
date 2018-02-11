@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using REST_API.Models.Settings;
 using REST_API.CommunicationClasses;
+using REST_API.Models;
 
 namespace REST_API.Controllers
 {
@@ -20,7 +21,20 @@ namespace REST_API.Controllers
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response(null,"TokenNotFound",null,null);
+            }
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response(null, "TokenIsNotMatched", null, null);
+            }
+
             MySqlCommand Query = Connection.CreateCommand();
+
             Query.CommandText = "SELECT settings FROM daemons"; //WHERE @id = id";
 
             //Query.Parameters.AddWithValue("@id", id);
@@ -38,6 +52,7 @@ namespace REST_API.Controllers
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
+                
             }
 
             MySqlDataReader Reader = Query.ExecuteReader();
