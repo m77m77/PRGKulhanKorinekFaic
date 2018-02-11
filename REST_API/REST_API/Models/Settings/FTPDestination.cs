@@ -13,6 +13,6 @@ namespace REST_API.Models.Settings
         public string Password { get; set; }
 
         public string Path { get; set; }
-        public string Type { get; set; }
+        public string Type { get => "FTP"; set { } }
     }
 }

@@ -5,9 +5,9 @@ using System.Web;
 
 namespace REST_API.Models.Settings
 {
-    public class LocalDestination : IDestination
+    public class NetworkDestination : IDestination
     {
         public string Path { get; set; }
-        public string Type { get => "LOCAL"; set { } }
+        public string Type { get => "NETWORK"; set { } }
     }
 }
