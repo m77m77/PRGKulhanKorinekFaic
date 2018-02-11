@@ -4,8 +4,12 @@
     "\\REST_API",
     "\\REST_API\\REST_API",
     "\\REST_API\\REST_API\\CommunicationClasses",
-    "\\REST_API\\REST_API\\Controllers"
+    "\\REST_API\\REST_API\\Content",
+    "\\REST_API\\REST_API\\Controllers",
+    "\\REST_API\\REST_API\\DatabaseConnectionClasses",
+    "\\REST_API\\REST_API\\Models",
+    "\\REST_API\\REST_API\\Models\\Settings"
   ],
-  "SelectedNode": "\\REST_API\\REST_API\\Controllers\\AdminController.cs",
+  "SelectedNode": "\\REST_API\\REST_API\\Models\\Token.cs",
   "PreviewInSolutionExplorer": false
 }
