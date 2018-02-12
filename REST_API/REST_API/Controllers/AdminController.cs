@@ -124,5 +124,55 @@ namespace REST_API.Controllers
 
             return r;
         }
+
+        //api/admin/system/{token}
+
+        [Route("api/admin/system/{token}")]
+        public Response Post(string token,[FromBody]SystemSettings value)
+        {
+
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
+
+            MySqlCommand Query = Connection.CreateCommand();
+
+            Response r = new Response();
+
+            try
+            {
+                Connection.Open();
+
+                Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`systemSettings` SET `name` = @Name WHERE `systemSettings`.`id` = @ID;";
+                Query.Parameters.AddWithValue("@Name", JsonConvert.SerializeObject(value.Name));
+                Query.Parameters.AddWithValue("@ID", value.ID);
+                Query.ExecuteNonQuery();
+
+                Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`systemSettings` SET `value` = @valueName WHERE `systemSettings`.`id` = @ID;";
+                Query.Parameters.AddWithValue("@Value", JsonConvert.SerializeObject(value.Value));
+                Query.Parameters.AddWithValue("@ID", value.ID);
+                Query.ExecuteNonQuery();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblemm", null, null);
+            }
+            Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
     }
 }
