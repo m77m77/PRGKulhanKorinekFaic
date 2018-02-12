@@ -9,11 +9,17 @@ using Newtonsoft.Json;
 using REST_API.CommunicationClasses;
 using REST_API.Models;
 using REST_API.Utilities;
+using REST_API.Models.Settings;
 
 namespace REST_API.Controllers
 {
     public class NewTokenController : ApiController
     {
+        public Settings Get()
+        {
+            return JsonConvert.DeserializeObject<Settings>("{\"DataType\":null,\"BeforeBackup\":null,\"AfterBackup\":null,\"SaveFormat\":null,\"Destination\":{\"$type\":\"REST_API.Models.Settings.FTPDestination, REST_API\",\"Adress\":null,\"Port\":null,\"Username\":null,\"Password\":null,\"Path\":null,\"Type\":\"FTP\"}}", new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto});
+            //return JsonConvert.SerializeObject(new Settings() { Destination = new FTPDestination() }, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+        }
 
         //POST api/newtoken/admin
         /// <summary>
@@ -48,18 +54,18 @@ namespace REST_API.Controllers
                             if(newToken != null)
                                 response = new Response("OK", null, newToken.Value, null);
                             else
-                                response = new Response("ERROR", "Chyba generování tokenu.", null, null);
+                                response = new Response("ERROR", "TokenGeneration", null, null);
 
                         }
                         else
-                            response = new Response("ERROR", "Chybné heslo.", null, null);
+                            response = new Response("ERROR", "BadPassword", null, null);
                     }
                     else
-                        response = new Response("ERROR", "Chybné uživatelské jméno.", null, null);
+                        response = new Response("ERROR", "BadUserName", null, null);
                 }
                 catch (Exception)
                 {
-                    response = new Response("ERROR", "Problém spojení s databází.", null, null);
+                    response = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
                 }
             }
 

@@ -365,7 +365,7 @@
             this.panel_Monthly.Controls.Add(this.checkBox_Tue);
             this.panel_Monthly.Location = new System.Drawing.Point(94, 0);
             this.panel_Monthly.Name = "panel_Monthly";
-            this.panel_Monthly.Size = new System.Drawing.Size(550, 247);
+            this.panel_Monthly.Size = new System.Drawing.Size(550, 271);
             this.panel_Monthly.TabIndex = 9;
             // 
             // dateTimePicker_MonthlyTime

@@ -198,6 +198,7 @@
     <Compile Include="Models\Settings\FTPDestination.cs" />
     <Compile Include="Models\Settings\IDestination.cs" />
     <Compile Include="Models\Settings\LocalDestination.cs" />
+    <Compile Include="Models\Settings\NetworkDestination.cs" />
     <Compile Include="Models\Settings\Settings.cs" />
     <Compile Include="Models\Token.cs" />
     <Compile Include="Controllers\AdminController.cs" />
