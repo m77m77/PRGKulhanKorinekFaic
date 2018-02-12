@@ -10,6 +10,6 @@
     "\\REST_API\\REST_API\\Models",
     "\\REST_API\\REST_API\\Models\\Settings"
   ],
-  "SelectedNode": "\\REST_API\\REST_API\\Models\\Token.cs",
+  "SelectedNode": "\\REST_API\\REST_API\\Controllers\\AdminController.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -35,7 +35,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT settings FROM daemons"; //WHERE @id = id";
+            Query.CommandText = "SELECT settings,id FROM daemons"; //WHERE @id = id";
 
             //Query.Parameters.AddWithValue("@id", id);
 
@@ -44,16 +44,20 @@ namespace REST_API.Controllers
             ListSettingsData data = new ListSettingsData();
             data.ListSettings = new List<Settings>();
             r.Data = data;
-
-
+            
             try
             {
                 Connection.Open();
                 MySqlDataReader Reader = Query.ExecuteReader();
-
+                int i = 0;
                 while (Reader.Read())
                 {
+                    //data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString()));
+                    //JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString()).DaemonID = Convert.ToInt32(Reader["id"]);
+
                     data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString()));
+                    data.ListSettings[i].DaemonID = Convert.ToInt32(Reader["id"]);
+                    i++;
                 }
                 Reader.Close();
             }
@@ -89,15 +93,17 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "INSERT INTO `3b2_kulhanmatous_db2`.`daemons` (`settings`) VALUES (@value);";
+            //Query.CommandText = "INSERT INTO `3b2_kulhanmatous_db2`.`daemons` (`settings`) VALUES (@value);";
+            Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`daemons` SET `settings` = @value WHERE `daemons`.`id` = @DaemonID;";
 
-            Query.Parameters.AddWithValue("@value", value);
-
+            Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(value));
+            Query.Parameters.AddWithValue("@DaemonID", value.DaemonID);
+            
             Response r = new Response();
 
-            ListSettingsData data = new ListSettingsData();
-            data.ListSettings = new List<Settings>();
-            r.Data = data;
+            //ListSettingsData data = new ListSettingsData();
+            //data.ListSettings = new List<Settings>();
+            //r.Data = data;
 
 
             try
@@ -105,8 +111,7 @@ namespace REST_API.Controllers
                 Connection.Open();
                 Query.ExecuteNonQuery();
 
-                data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(value.ToString()));
-
+                //data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(value.ToString()));
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
