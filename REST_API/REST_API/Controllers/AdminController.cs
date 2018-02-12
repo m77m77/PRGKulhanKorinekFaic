@@ -63,7 +63,7 @@ namespace REST_API.Controllers
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
-                r = new Response("ERROR", "ConnectionWithDatabaseProblemm", null, null);
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
             }
             Connection.Close();
 
@@ -115,7 +115,7 @@ namespace REST_API.Controllers
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
-                r = new Response("ERROR", "ConnectionWithDatabaseProblemm", null, null);
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
             }
             Connection.Close();
 
@@ -160,7 +160,7 @@ namespace REST_API.Controllers
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
-                r = new Response("ERROR", "ConnectionWithDatabaseProblemm", null, null);
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
             }
             Connection.Close();
 
