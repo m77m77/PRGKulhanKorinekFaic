@@ -49,11 +49,13 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel_Onetime = new System.Windows.Forms.Panel();
             this.panel_Monthly = new System.Windows.Forms.Panel();
+            this.comboBox_AppointMonthly = new System.Windows.Forms.ComboBox();
+            this.comboBox_MothlyTypeofBackup = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.dateTimePicker_MonthlyTime = new System.Windows.Forms.DateTimePicker();
             this.comboBox_MonthFreq = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker_OnetimeYear = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.checkBox_Sun = new System.Windows.Forms.CheckBox();
@@ -64,16 +66,36 @@
             this.checkBox_Monday = new System.Windows.Forms.CheckBox();
             this.checkBox_Thu = new System.Windows.Forms.CheckBox();
             this.checkBox_Tue = new System.Windows.Forms.CheckBox();
+            this.panel_Weekly = new System.Windows.Forms.Panel();
+            this.panel_Onetime = new System.Windows.Forms.Panel();
             this.dateTimePicker_OnetimeTime = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.dateTimePicker_OnetimeYear = new System.Windows.Forms.DateTimePicker();
+            this.panel_Daily = new System.Windows.Forms.Panel();
+            this.comboBox_AppointDaily = new System.Windows.Forms.ComboBox();
+            this.comboBox_DailyTypeofBackup = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dateTimePicker_DailyTime = new System.Windows.Forms.DateTimePicker();
+            this.comboBox_AppointWeekly = new System.Windows.Forms.ComboBox();
+            this.comboBox_WeeklyTypeofBackup = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dateTimePicker_WeeklyTime = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ToolStripMenuItem_Onetime = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_Daily = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_Weekly = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem_Monthly = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel_Daily = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dateTimePicker_DailyTime = new System.Windows.Forms.DateTimePicker();
             this.TabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.textBox_Selectdestination = new System.Windows.Forms.TextBox();
@@ -95,43 +117,21 @@
             this.label_Savingformat = new System.Windows.Forms.Label();
             this.comboBox_Afterbackup = new System.Windows.Forms.ComboBox();
             this.label_AfterBackup = new System.Windows.Forms.Label();
-            this.panel_Weekly = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.dateTimePicker_WeeklyTime = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.button_Cancel = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.comboBox_MothlyTypeofBackup = new System.Windows.Forms.ComboBox();
-            this.comboBox_AppointMonthly = new System.Windows.Forms.ComboBox();
-            this.comboBox_AppointWeekly = new System.Windows.Forms.ComboBox();
-            this.comboBox_WeeklyTypeofBackup = new System.Windows.Forms.ComboBox();
-            this.comboBox_AppointDaily = new System.Windows.Forms.ComboBox();
-            this.comboBox_DailyTypeofBackup = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.tabPage4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.panel_Onetime.SuspendLayout();
             this.panel_Monthly.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.panel_Weekly.SuspendLayout();
+            this.panel_Onetime.SuspendLayout();
             this.panel_Daily.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.TabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.panel_Weekly.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -250,7 +250,7 @@
             this.label_Password.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label_Password.Location = new System.Drawing.Point(337, 143);
             this.label_Password.Name = "label_Password";
-            this.label_Password.Size = new System.Drawing.Size(76, 21);
+            this.label_Password.Size = new System.Drawing.Size(77, 21);
             this.label_Password.TabIndex = 6;
             this.label_Password.Text = "Password";
             // 
@@ -270,7 +270,7 @@
             this.label_Port.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label_Port.Location = new System.Drawing.Point(46, 143);
             this.label_Port.Name = "label_Port";
-            this.label_Port.Size = new System.Drawing.Size(38, 21);
+            this.label_Port.Size = new System.Drawing.Size(39, 21);
             this.label_Port.TabIndex = 3;
             this.label_Port.Text = "Port";
             // 
@@ -299,7 +299,7 @@
             this.label_To.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label_To.Location = new System.Drawing.Point(46, 17);
             this.label_To.Name = "label_To";
-            this.label_To.Size = new System.Drawing.Size(25, 21);
+            this.label_To.Size = new System.Drawing.Size(27, 21);
             this.label_To.TabIndex = 0;
             this.label_To.Text = "To";
             // 
@@ -335,16 +335,6 @@
             this.tabPage2.Text = "Backup scheme";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // panel_Onetime
-            // 
-            this.panel_Onetime.Controls.Add(this.dateTimePicker_OnetimeTime);
-            this.panel_Onetime.Controls.Add(this.label3);
-            this.panel_Onetime.Controls.Add(this.dateTimePicker_OnetimeYear);
-            this.panel_Onetime.Location = new System.Drawing.Point(6, 3);
-            this.panel_Onetime.Name = "panel_Onetime";
-            this.panel_Onetime.Size = new System.Drawing.Size(547, 268);
-            this.panel_Onetime.TabIndex = 1;
-            // 
             // panel_Monthly
             // 
             this.panel_Monthly.Controls.Add(this.comboBox_AppointMonthly);
@@ -367,6 +357,53 @@
             this.panel_Monthly.Name = "panel_Monthly";
             this.panel_Monthly.Size = new System.Drawing.Size(550, 271);
             this.panel_Monthly.TabIndex = 9;
+            // 
+            // comboBox_AppointMonthly
+            // 
+            this.comboBox_AppointMonthly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_AppointMonthly.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.comboBox_AppointMonthly.FormattingEnabled = true;
+            this.comboBox_AppointMonthly.Items.AddRange(new object[] {
+            "Full backup",
+            "Differential backup"});
+            this.comboBox_AppointMonthly.Location = new System.Drawing.Point(229, 208);
+            this.comboBox_AppointMonthly.Name = "comboBox_AppointMonthly";
+            this.comboBox_AppointMonthly.Size = new System.Drawing.Size(121, 25);
+            this.comboBox_AppointMonthly.TabIndex = 21;
+            // 
+            // comboBox_MothlyTypeofBackup
+            // 
+            this.comboBox_MothlyTypeofBackup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_MothlyTypeofBackup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.comboBox_MothlyTypeofBackup.FormattingEnabled = true;
+            this.comboBox_MothlyTypeofBackup.Items.AddRange(new object[] {
+            "Full backup",
+            "Differential backup",
+            "Incremental backup"});
+            this.comboBox_MothlyTypeofBackup.Location = new System.Drawing.Point(158, 178);
+            this.comboBox_MothlyTypeofBackup.Name = "comboBox_MothlyTypeofBackup";
+            this.comboBox_MothlyTypeofBackup.Size = new System.Drawing.Size(121, 25);
+            this.comboBox_MothlyTypeofBackup.TabIndex = 20;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.Location = new System.Drawing.Point(30, 178);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(98, 17);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Backup method";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label13.Location = new System.Drawing.Point(30, 208);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(193, 17);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "Appoint monthly first backup as";
             // 
             // dateTimePicker_MonthlyTime
             // 
@@ -391,14 +428,6 @@
             this.comboBox_MonthFreq.Name = "comboBox_MonthFreq";
             this.comboBox_MonthFreq.Size = new System.Drawing.Size(116, 25);
             this.comboBox_MonthFreq.TabIndex = 15;
-            // 
-            // dateTimePicker_OnetimeYear
-            // 
-            this.dateTimePicker_OnetimeYear.Location = new System.Drawing.Point(314, 68);
-            this.dateTimePicker_OnetimeYear.Name = "dateTimePicker_OnetimeYear";
-            this.dateTimePicker_OnetimeYear.Size = new System.Drawing.Size(200, 27);
-            this.dateTimePicker_OnetimeYear.TabIndex = 3;
-            this.dateTimePicker_OnetimeYear.Value = new System.DateTime(2018, 2, 11, 21, 15, 19, 0);
             // 
             // label14
             // 
@@ -458,7 +487,7 @@
             this.checkBox_Wed.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.checkBox_Wed.Location = new System.Drawing.Point(145, 119);
             this.checkBox_Wed.Name = "checkBox_Wed";
-            this.checkBox_Wed.Size = new System.Drawing.Size(53, 21);
+            this.checkBox_Wed.Size = new System.Drawing.Size(54, 21);
             this.checkBox_Wed.TabIndex = 4;
             this.checkBox_Wed.Text = "Wed";
             this.checkBox_Wed.UseVisualStyleBackColor = true;
@@ -507,6 +536,38 @@
             this.checkBox_Tue.Text = "Tue";
             this.checkBox_Tue.UseVisualStyleBackColor = true;
             // 
+            // panel_Weekly
+            // 
+            this.panel_Weekly.Controls.Add(this.panel_Onetime);
+            this.panel_Weekly.Controls.Add(this.panel_Daily);
+            this.panel_Weekly.Controls.Add(this.comboBox_AppointWeekly);
+            this.panel_Weekly.Controls.Add(this.comboBox_WeeklyTypeofBackup);
+            this.panel_Weekly.Controls.Add(this.checkBox1);
+            this.panel_Weekly.Controls.Add(this.checkBox2);
+            this.panel_Weekly.Controls.Add(this.checkBox3);
+            this.panel_Weekly.Controls.Add(this.checkBox4);
+            this.panel_Weekly.Controls.Add(this.checkBox5);
+            this.panel_Weekly.Controls.Add(this.checkBox6);
+            this.panel_Weekly.Controls.Add(this.checkBox7);
+            this.panel_Weekly.Controls.Add(this.label11);
+            this.panel_Weekly.Controls.Add(this.label12);
+            this.panel_Weekly.Controls.Add(this.dateTimePicker_WeeklyTime);
+            this.panel_Weekly.Controls.Add(this.label6);
+            this.panel_Weekly.Location = new System.Drawing.Point(94, 0);
+            this.panel_Weekly.Name = "panel_Weekly";
+            this.panel_Weekly.Size = new System.Drawing.Size(550, 249);
+            this.panel_Weekly.TabIndex = 2;
+            // 
+            // panel_Onetime
+            // 
+            this.panel_Onetime.Controls.Add(this.dateTimePicker_OnetimeTime);
+            this.panel_Onetime.Controls.Add(this.label3);
+            this.panel_Onetime.Controls.Add(this.dateTimePicker_OnetimeYear);
+            this.panel_Onetime.Location = new System.Drawing.Point(6, 3);
+            this.panel_Onetime.Name = "panel_Onetime";
+            this.panel_Onetime.Size = new System.Drawing.Size(547, 268);
+            this.panel_Onetime.TabIndex = 1;
+            // 
             // dateTimePicker_OnetimeTime
             // 
             this.dateTimePicker_OnetimeTime.Location = new System.Drawing.Point(183, 68);
@@ -524,6 +585,234 @@
             this.label3.Size = new System.Drawing.Size(133, 21);
             this.label3.TabIndex = 0;
             this.label3.Text = "Execute backup at";
+            // 
+            // dateTimePicker_OnetimeYear
+            // 
+            this.dateTimePicker_OnetimeYear.Location = new System.Drawing.Point(314, 68);
+            this.dateTimePicker_OnetimeYear.Name = "dateTimePicker_OnetimeYear";
+            this.dateTimePicker_OnetimeYear.Size = new System.Drawing.Size(200, 27);
+            this.dateTimePicker_OnetimeYear.TabIndex = 3;
+            this.dateTimePicker_OnetimeYear.Value = new System.DateTime(2018, 2, 11, 21, 15, 19, 0);
+            // 
+            // panel_Daily
+            // 
+            this.panel_Daily.Controls.Add(this.comboBox_AppointDaily);
+            this.panel_Daily.Controls.Add(this.comboBox_DailyTypeofBackup);
+            this.panel_Daily.Controls.Add(this.label10);
+            this.panel_Daily.Controls.Add(this.label15);
+            this.panel_Daily.Controls.Add(this.label8);
+            this.panel_Daily.Controls.Add(this.dateTimePicker_DailyTime);
+            this.panel_Daily.Location = new System.Drawing.Point(3, 3);
+            this.panel_Daily.Name = "panel_Daily";
+            this.panel_Daily.Size = new System.Drawing.Size(550, 268);
+            this.panel_Daily.TabIndex = 4;
+            // 
+            // comboBox_AppointDaily
+            // 
+            this.comboBox_AppointDaily.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_AppointDaily.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.comboBox_AppointDaily.FormattingEnabled = true;
+            this.comboBox_AppointDaily.Items.AddRange(new object[] {
+            "Full backup",
+            "Differential backup"});
+            this.comboBox_AppointDaily.Location = new System.Drawing.Point(246, 219);
+            this.comboBox_AppointDaily.Name = "comboBox_AppointDaily";
+            this.comboBox_AppointDaily.Size = new System.Drawing.Size(121, 25);
+            this.comboBox_AppointDaily.TabIndex = 27;
+            // 
+            // comboBox_DailyTypeofBackup
+            // 
+            this.comboBox_DailyTypeofBackup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_DailyTypeofBackup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.comboBox_DailyTypeofBackup.FormattingEnabled = true;
+            this.comboBox_DailyTypeofBackup.Items.AddRange(new object[] {
+            "Full backup",
+            "Differential backup",
+            "Incremental backup"});
+            this.comboBox_DailyTypeofBackup.Location = new System.Drawing.Point(155, 183);
+            this.comboBox_DailyTypeofBackup.Name = "comboBox_DailyTypeofBackup";
+            this.comboBox_DailyTypeofBackup.Size = new System.Drawing.Size(121, 25);
+            this.comboBox_DailyTypeofBackup.TabIndex = 26;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.Location = new System.Drawing.Point(38, 186);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(98, 17);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Backup method";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label15.Location = new System.Drawing.Point(38, 222);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(193, 17);
+            this.label15.TabIndex = 25;
+            this.label15.Text = "Appoint monthly first backup as";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.Location = new System.Drawing.Point(38, 21);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(79, 17);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Time setting";
+            // 
+            // dateTimePicker_DailyTime
+            // 
+            this.dateTimePicker_DailyTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dateTimePicker_DailyTime.Location = new System.Drawing.Point(147, 21);
+            this.dateTimePicker_DailyTime.Name = "dateTimePicker_DailyTime";
+            this.dateTimePicker_DailyTime.Size = new System.Drawing.Size(116, 25);
+            this.dateTimePicker_DailyTime.TabIndex = 2;
+            // 
+            // comboBox_AppointWeekly
+            // 
+            this.comboBox_AppointWeekly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_AppointWeekly.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.comboBox_AppointWeekly.FormattingEnabled = true;
+            this.comboBox_AppointWeekly.Items.AddRange(new object[] {
+            "Full backup",
+            "Differential backup"});
+            this.comboBox_AppointWeekly.Location = new System.Drawing.Point(246, 184);
+            this.comboBox_AppointWeekly.Name = "comboBox_AppointWeekly";
+            this.comboBox_AppointWeekly.Size = new System.Drawing.Size(121, 25);
+            this.comboBox_AppointWeekly.TabIndex = 23;
+            // 
+            // comboBox_WeeklyTypeofBackup
+            // 
+            this.comboBox_WeeklyTypeofBackup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_WeeklyTypeofBackup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.comboBox_WeeklyTypeofBackup.FormattingEnabled = true;
+            this.comboBox_WeeklyTypeofBackup.Items.AddRange(new object[] {
+            "Full backup",
+            "Differential backup",
+            "Incremental backup"});
+            this.comboBox_WeeklyTypeofBackup.Location = new System.Drawing.Point(155, 148);
+            this.comboBox_WeeklyTypeofBackup.Name = "comboBox_WeeklyTypeofBackup";
+            this.comboBox_WeeklyTypeofBackup.Size = new System.Drawing.Size(121, 25);
+            this.comboBox_WeeklyTypeofBackup.TabIndex = 22;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox1.Location = new System.Drawing.Point(353, 48);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(48, 21);
+            this.checkBox1.TabIndex = 18;
+            this.checkBox1.Text = "Sun";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox2.Location = new System.Drawing.Point(302, 48);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(45, 21);
+            this.checkBox2.TabIndex = 17;
+            this.checkBox2.Text = "Sat";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox3.Location = new System.Drawing.Point(142, 48);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(54, 21);
+            this.checkBox3.TabIndex = 14;
+            this.checkBox3.Text = "Wed";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox4.Location = new System.Drawing.Point(255, 47);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(41, 21);
+            this.checkBox4.TabIndex = 16;
+            this.checkBox4.Text = "Fri";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox5.Location = new System.Drawing.Point(28, 48);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(54, 21);
+            this.checkBox5.TabIndex = 12;
+            this.checkBox5.Text = "Mon";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox6.Location = new System.Drawing.Point(201, 48);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(48, 21);
+            this.checkBox6.TabIndex = 15;
+            this.checkBox6.Text = "Thu";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBox7.Location = new System.Drawing.Point(88, 48);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(48, 21);
+            this.checkBox7.TabIndex = 13;
+            this.checkBox7.Text = "Tue";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.Location = new System.Drawing.Point(38, 151);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(98, 17);
+            this.label11.TabIndex = 10;
+            this.label11.Text = "Backup method";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label12.Location = new System.Drawing.Point(40, 187);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(193, 17);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Appoint monthly first backup as";
+            // 
+            // dateTimePicker_WeeklyTime
+            // 
+            this.dateTimePicker_WeeklyTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.dateTimePicker_WeeklyTime.Location = new System.Drawing.Point(139, 12);
+            this.dateTimePicker_WeeklyTime.Name = "dateTimePicker_WeeklyTime";
+            this.dateTimePicker_WeeklyTime.Size = new System.Drawing.Size(110, 25);
+            this.dateTimePicker_WeeklyTime.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(27, 18);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(79, 17);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Time setting";
             // 
             // menuStrip1
             // 
@@ -566,37 +855,6 @@
             this.ToolStripMenuItem_Monthly.Size = new System.Drawing.Size(84, 25);
             this.ToolStripMenuItem_Monthly.Text = "Monthly";
             this.ToolStripMenuItem_Monthly.Click += new System.EventHandler(this.ToolStripMenuItem_Monthly_Click);
-            // 
-            // panel_Daily
-            // 
-            this.panel_Daily.Controls.Add(this.comboBox_AppointDaily);
-            this.panel_Daily.Controls.Add(this.comboBox_DailyTypeofBackup);
-            this.panel_Daily.Controls.Add(this.label10);
-            this.panel_Daily.Controls.Add(this.label15);
-            this.panel_Daily.Controls.Add(this.label8);
-            this.panel_Daily.Controls.Add(this.dateTimePicker_DailyTime);
-            this.panel_Daily.Location = new System.Drawing.Point(3, 3);
-            this.panel_Daily.Name = "panel_Daily";
-            this.panel_Daily.Size = new System.Drawing.Size(550, 268);
-            this.panel_Daily.TabIndex = 4;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(38, 21);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(79, 17);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Time setting";
-            // 
-            // dateTimePicker_DailyTime
-            // 
-            this.dateTimePicker_DailyTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dateTimePicker_DailyTime.Location = new System.Drawing.Point(147, 21);
-            this.dateTimePicker_DailyTime.Name = "dateTimePicker_DailyTime";
-            this.dateTimePicker_DailyTime.Size = new System.Drawing.Size(116, 25);
-            this.dateTimePicker_DailyTime.TabIndex = 2;
             // 
             // TabControl1
             // 
@@ -728,7 +986,7 @@
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.Location = new System.Drawing.Point(331, 190);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 21);
+            this.label4.Size = new System.Drawing.Size(77, 21);
             this.label4.TabIndex = 5;
             this.label4.Text = "Password";
             // 
@@ -738,7 +996,7 @@
             this.label_FTPport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label_FTPport.Location = new System.Drawing.Point(331, 116);
             this.label_FTPport.Name = "label_FTPport";
-            this.label_FTPport.Size = new System.Drawing.Size(38, 21);
+            this.label_FTPport.Size = new System.Drawing.Size(39, 21);
             this.label_FTPport.TabIndex = 4;
             this.label_FTPport.Text = "Port";
             // 
@@ -841,66 +1099,6 @@
             this.label_AfterBackup.TabIndex = 4;
             this.label_AfterBackup.Text = "After backup";
             // 
-            // panel_Weekly
-            // 
-            this.panel_Weekly.Controls.Add(this.panel_Onetime);
-            this.panel_Weekly.Controls.Add(this.panel_Daily);
-            this.panel_Weekly.Controls.Add(this.comboBox_AppointWeekly);
-            this.panel_Weekly.Controls.Add(this.comboBox_WeeklyTypeofBackup);
-            this.panel_Weekly.Controls.Add(this.checkBox1);
-            this.panel_Weekly.Controls.Add(this.checkBox2);
-            this.panel_Weekly.Controls.Add(this.checkBox3);
-            this.panel_Weekly.Controls.Add(this.checkBox4);
-            this.panel_Weekly.Controls.Add(this.checkBox5);
-            this.panel_Weekly.Controls.Add(this.checkBox6);
-            this.panel_Weekly.Controls.Add(this.checkBox7);
-            this.panel_Weekly.Controls.Add(this.label11);
-            this.panel_Weekly.Controls.Add(this.label12);
-            this.panel_Weekly.Controls.Add(this.dateTimePicker_WeeklyTime);
-            this.panel_Weekly.Controls.Add(this.label6);
-            this.panel_Weekly.Location = new System.Drawing.Point(94, 0);
-            this.panel_Weekly.Name = "panel_Weekly";
-            this.panel_Weekly.Size = new System.Drawing.Size(550, 249);
-            this.panel_Weekly.TabIndex = 2;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label11.Location = new System.Drawing.Point(38, 151);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(98, 17);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "Backup method";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label12.Location = new System.Drawing.Point(40, 187);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(193, 17);
-            this.label12.TabIndex = 11;
-            this.label12.Text = "Appoint monthly first backup as";
-            // 
-            // dateTimePicker_WeeklyTime
-            // 
-            this.dateTimePicker_WeeklyTime.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.dateTimePicker_WeeklyTime.Location = new System.Drawing.Point(139, 12);
-            this.dateTimePicker_WeeklyTime.Name = "dateTimePicker_WeeklyTime";
-            this.dateTimePicker_WeeklyTime.Size = new System.Drawing.Size(110, 25);
-            this.dateTimePicker_WeeklyTime.TabIndex = 1;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(27, 18);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 17);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Time setting";
-            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
@@ -927,204 +1125,6 @@
             this.button_Save.UseVisualStyleBackColor = true;
             this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label13.Location = new System.Drawing.Point(30, 208);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(193, 17);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "Appoint monthly first backup as";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox1.Location = new System.Drawing.Point(353, 48);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(48, 21);
-            this.checkBox1.TabIndex = 18;
-            this.checkBox1.Text = "Sun";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox2.Location = new System.Drawing.Point(302, 48);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(45, 21);
-            this.checkBox2.TabIndex = 17;
-            this.checkBox2.Text = "Sat";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox3.Location = new System.Drawing.Point(142, 48);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(53, 21);
-            this.checkBox3.TabIndex = 14;
-            this.checkBox3.Text = "Wed";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox4.Location = new System.Drawing.Point(255, 47);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(41, 21);
-            this.checkBox4.TabIndex = 16;
-            this.checkBox4.Text = "Fri";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox5.Location = new System.Drawing.Point(28, 48);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(54, 21);
-            this.checkBox5.TabIndex = 12;
-            this.checkBox5.Text = "Mon";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox6.Location = new System.Drawing.Point(201, 48);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(48, 21);
-            this.checkBox6.TabIndex = 15;
-            this.checkBox6.Text = "Thu";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox7.Location = new System.Drawing.Point(88, 48);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(48, 21);
-            this.checkBox7.TabIndex = 13;
-            this.checkBox7.Text = "Tue";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.Location = new System.Drawing.Point(30, 178);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(98, 17);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Backup method";
-            // 
-            // comboBox_MothlyTypeofBackup
-            // 
-            this.comboBox_MothlyTypeofBackup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_MothlyTypeofBackup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.comboBox_MothlyTypeofBackup.FormattingEnabled = true;
-            this.comboBox_MothlyTypeofBackup.Items.AddRange(new object[] {
-            "Full backup",
-            "Differential backup",
-            "Incremental backup"});
-            this.comboBox_MothlyTypeofBackup.Location = new System.Drawing.Point(158, 178);
-            this.comboBox_MothlyTypeofBackup.Name = "comboBox_MothlyTypeofBackup";
-            this.comboBox_MothlyTypeofBackup.Size = new System.Drawing.Size(121, 25);
-            this.comboBox_MothlyTypeofBackup.TabIndex = 20;
-            // 
-            // comboBox_AppointMonthly
-            // 
-            this.comboBox_AppointMonthly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_AppointMonthly.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.comboBox_AppointMonthly.FormattingEnabled = true;
-            this.comboBox_AppointMonthly.Items.AddRange(new object[] {
-            "Full backup",
-            "Differential backup"});
-            this.comboBox_AppointMonthly.Location = new System.Drawing.Point(229, 208);
-            this.comboBox_AppointMonthly.Name = "comboBox_AppointMonthly";
-            this.comboBox_AppointMonthly.Size = new System.Drawing.Size(121, 25);
-            this.comboBox_AppointMonthly.TabIndex = 21;
-            // 
-            // comboBox_AppointWeekly
-            // 
-            this.comboBox_AppointWeekly.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_AppointWeekly.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.comboBox_AppointWeekly.FormattingEnabled = true;
-            this.comboBox_AppointWeekly.Items.AddRange(new object[] {
-            "Full backup",
-            "Differential backup"});
-            this.comboBox_AppointWeekly.Location = new System.Drawing.Point(246, 184);
-            this.comboBox_AppointWeekly.Name = "comboBox_AppointWeekly";
-            this.comboBox_AppointWeekly.Size = new System.Drawing.Size(121, 25);
-            this.comboBox_AppointWeekly.TabIndex = 23;
-            // 
-            // comboBox_WeeklyTypeofBackup
-            // 
-            this.comboBox_WeeklyTypeofBackup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_WeeklyTypeofBackup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.comboBox_WeeklyTypeofBackup.FormattingEnabled = true;
-            this.comboBox_WeeklyTypeofBackup.Items.AddRange(new object[] {
-            "Full backup",
-            "Differential backup",
-            "Incremental backup"});
-            this.comboBox_WeeklyTypeofBackup.Location = new System.Drawing.Point(155, 148);
-            this.comboBox_WeeklyTypeofBackup.Name = "comboBox_WeeklyTypeofBackup";
-            this.comboBox_WeeklyTypeofBackup.Size = new System.Drawing.Size(121, 25);
-            this.comboBox_WeeklyTypeofBackup.TabIndex = 22;
-            // 
-            // comboBox_AppointDaily
-            // 
-            this.comboBox_AppointDaily.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_AppointDaily.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.comboBox_AppointDaily.FormattingEnabled = true;
-            this.comboBox_AppointDaily.Items.AddRange(new object[] {
-            "Full backup",
-            "Differential backup"});
-            this.comboBox_AppointDaily.Location = new System.Drawing.Point(246, 219);
-            this.comboBox_AppointDaily.Name = "comboBox_AppointDaily";
-            this.comboBox_AppointDaily.Size = new System.Drawing.Size(121, 25);
-            this.comboBox_AppointDaily.TabIndex = 27;
-            // 
-            // comboBox_DailyTypeofBackup
-            // 
-            this.comboBox_DailyTypeofBackup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_DailyTypeofBackup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.comboBox_DailyTypeofBackup.FormattingEnabled = true;
-            this.comboBox_DailyTypeofBackup.Items.AddRange(new object[] {
-            "Full backup",
-            "Differential backup",
-            "Incremental backup"});
-            this.comboBox_DailyTypeofBackup.Location = new System.Drawing.Point(155, 183);
-            this.comboBox_DailyTypeofBackup.Name = "comboBox_DailyTypeofBackup";
-            this.comboBox_DailyTypeofBackup.Size = new System.Drawing.Size(121, 25);
-            this.comboBox_DailyTypeofBackup.TabIndex = 26;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.Location = new System.Drawing.Point(38, 186);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(98, 17);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "Backup method";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label15.Location = new System.Drawing.Point(38, 222);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(193, 17);
-            this.label15.TabIndex = 25;
-            this.label15.Text = "Appoint monthly first backup as";
-            // 
             // Form_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1149,21 +1149,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.panel_Onetime.ResumeLayout(false);
-            this.panel_Onetime.PerformLayout();
             this.panel_Monthly.ResumeLayout(false);
             this.panel_Monthly.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.panel_Weekly.ResumeLayout(false);
+            this.panel_Weekly.PerformLayout();
+            this.panel_Onetime.ResumeLayout(false);
+            this.panel_Onetime.PerformLayout();
             this.panel_Daily.ResumeLayout(false);
             this.panel_Daily.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.TabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            this.panel_Weekly.ResumeLayout(false);
-            this.panel_Weekly.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

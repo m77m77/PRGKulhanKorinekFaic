@@ -65,7 +65,7 @@
             this.label_Password.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Password.Location = new System.Drawing.Point(98, 128);
             this.label_Password.Name = "label_Password";
-            this.label_Password.Size = new System.Drawing.Size(99, 25);
+            this.label_Password.Size = new System.Drawing.Size(100, 25);
             this.label_Password.TabIndex = 2;
             this.label_Password.Text = "Passsword";
             // 
