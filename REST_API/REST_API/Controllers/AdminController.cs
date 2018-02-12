@@ -96,8 +96,10 @@ namespace REST_API.Controllers
             //Query.CommandText = "INSERT INTO `3b2_kulhanmatous_db2`.`daemons` (`settings`) VALUES (@value);";
             Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`daemons` SET `settings` = @value WHERE `daemons`.`id` = @DaemonID;";
 
-            Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(value, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto }));
             Query.Parameters.AddWithValue("@DaemonID", value.DaemonID);
+            value.DaemonID = 0;
+            Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(value, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto }));
+            
             
             Response r = new Response();
 
@@ -153,7 +155,7 @@ namespace REST_API.Controllers
             {
                 Connection.Open();
 
-                Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`systemSettings` SET `value` = @Value WHERE `systemSettings`.`name` = 1"; //@Name;";
+                Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`systemSettings` SET `value` = @Value WHERE `systemSettings`.`name` = @Name";
                 Query.Parameters.AddWithValue("@Value", value.Value);
                 Query.Parameters.AddWithValue("@Name", value.Name);
                 Query.ExecuteNonQuery();
