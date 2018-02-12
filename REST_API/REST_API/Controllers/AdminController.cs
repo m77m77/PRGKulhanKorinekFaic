@@ -153,14 +153,9 @@ namespace REST_API.Controllers
             {
                 Connection.Open();
 
-                Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`systemSettings` SET `name` = @Name WHERE `systemSettings`.`id` = @ID;";
-                Query.Parameters.AddWithValue("@Name", JsonConvert.SerializeObject(value.Name));
-                Query.Parameters.AddWithValue("@ID", value.ID);
-                Query.ExecuteNonQuery();
-
-                Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`systemSettings` SET `value` = @valueName WHERE `systemSettings`.`id` = @ID;";
+                Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`systemSettings` SET `value` = @Value WHERE `systemSettings`.`name` = @Name;";
                 Query.Parameters.AddWithValue("@Value", JsonConvert.SerializeObject(value.Value));
-                Query.Parameters.AddWithValue("@ID", value.ID);
+                Query.Parameters.AddWithValue("@Name", value.Name);
                 Query.ExecuteNonQuery();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
