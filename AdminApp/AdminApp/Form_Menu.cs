@@ -22,10 +22,24 @@ namespace AdminApp
             textBox_FTPPassword.PasswordChar = '*';
 
             this.TimeSettings();
-        
+
+            this.DefaultBool();
+            
 
         }
 
+        private void DefaultBool()
+        {
+            this.panel_Mail.Visible = true;
+            this.panel_Administrace.Visible = false;
+            this.panel_BackupschemeDefault.Visible = false;
+            this.panel_Daily.Visible = false;
+            this.panel_Bakupsettings.Visible = false;
+            this.panel_Weekly.Visible = false;
+            this.panel_Monthly.Visible = false;
+            this.panel_Weekly.Enabled = true;
+            this.panel_Monthly.Enabled = true;
+        }
         private void button_Select_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
@@ -42,7 +56,7 @@ namespace AdminApp
             this.textBox_FTPUsername.ReadOnly = true;
             this.textBox_FTPPort.ReadOnly = true;
             this.textBox_FTPAdress.ReadOnly = true;
-            this.button_Selectdestinaton.Enabled = true;
+          
             this.textBox_Selectdestination.ReadOnly = false;
 
         }
@@ -53,20 +67,11 @@ namespace AdminApp
             this.textBox_FTPUsername.ReadOnly = false;
             this.textBox_FTPPort.ReadOnly = false;
             this.textBox_FTPAdress.ReadOnly = false;
-            this.button_Selectdestinaton.Enabled = false;
+         
             this.textBox_Selectdestination.ReadOnly = true;
         }
 
-        private void button_Selectdestinaton_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                this.textBox_Selectdestination.Text = fbd.SelectedPath;
-
-            }
-
-        }
+       
 
         private bool IsValid()
         {
@@ -87,60 +92,54 @@ namespace AdminApp
 
         public void TimeSettings()
         {
-            this.dateTimePicker_OnetimeTime.CustomFormat = "hh:mm:ss";
-            this.dateTimePicker_OnetimeTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_OnetimeTime.ShowUpDown = true;
+            this.dateTimePicker_OneTimeTime.CustomFormat = "hh:mm:ss";
+            this.dateTimePicker_OneTimeTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_OneTimeTime.ShowUpDown = true;
 
             this.dateTimePicker_DailyTime.CustomFormat = "hh:mm:ss";
             this.dateTimePicker_DailyTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker_DailyTime.ShowUpDown = true;
 
-            this.dateTimePicker_WeeklyTime.CustomFormat = "hh:mm:ss";
-            this.dateTimePicker_WeeklyTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_WeeklyTime.ShowUpDown = true;
+            //this.dateTimePicker_WeeklyTime.CustomFormat = "hh:mm:ss";
+            //this.dateTimePicker_WeeklyTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            //this.dateTimePicker_WeeklyTime.ShowUpDown = true;
 
-            this.dateTimePicker_MonthlyTime.CustomFormat = "hh:mm:ss";
-            this.dateTimePicker_MonthlyTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_MonthlyTime.ShowUpDown = true;
+            this.dateTimePicker_WeeklyMon.CustomFormat = "hh:mm:ss";
+            this.dateTimePicker_WeeklyMon.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_WeeklyMon.ShowUpDown = true;
+
+            this.dateTimePicker_WeeklyTue.CustomFormat = "hh:mm:ss";
+            this.dateTimePicker_WeeklyTue.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_WeeklyTue.ShowUpDown = true;
+
+            this.dateTimePicker_WeeklyWed.CustomFormat = "hh:mm:ss";
+            this.dateTimePicker_WeeklyWed.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_WeeklyWed.ShowUpDown = true;
+
+            this.dateTimePicker_WeeklyThur.CustomFormat = "hh:mm:ss";
+            this.dateTimePicker_WeeklyThur.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_WeeklyThur.ShowUpDown = true;
+
+            this.dateTimePicker_WeeklyFri.CustomFormat = "hh:mm:ss";
+            this.dateTimePicker_WeeklyFri.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_WeeklyFri.ShowUpDown = true;
+
+            this.dateTimePicker_WeeklySat.CustomFormat = "hh:mm:ss";
+            this.dateTimePicker_WeeklySat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_WeeklySat.ShowUpDown = true;
+
+            this.dateTimePicker_WeeklySun.CustomFormat = "hh:mm:ss";
+            this.dateTimePicker_WeeklySun.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker_WeeklySun.ShowUpDown = true;
 
 
 
-        }
 
-        private void ToolStripMenuItem_Onetime_Click(object sender, EventArgs e)
-        {
-            this.panel_Onetime.Visible = true;
-            this.panel_Daily.Visible = false;
-            this.panel_Weekly.Visible = false;
-            this.panel_Monthly.Visible = false;
-        }
-        private void ToolStripMenuItem_Daily_Click(object sender, EventArgs e)
-        {
-            this.panel_Daily.Visible = true;
-            this.panel_Onetime.Visible = false;
-            this.panel_Weekly.Visible = false;
-            this.panel_Monthly.Visible = false;
-        }
 
-       
-
-        private void ToolStripMenuItem_Weekly_Click(object sender, EventArgs e)
-        {
-            this.panel_Weekly.Visible = true;
-            this.panel_Daily.Visible = false;
-            this.panel_Onetime.Visible = false;
-            this.panel_Monthly.Visible = false;
-
-        }
-
-        private void ToolStripMenuItem_Monthly_Click(object sender, EventArgs e)
-        {
-            this.panel_Monthly.Visible = true;
-            this.panel_Weekly.Visible = false;
-            this.panel_Daily.Visible = false;
-            this.panel_Onetime.Visible = false;
 
         }
+
+
 
         private void button_Save_Click(object sender, EventArgs e)
         {
@@ -154,10 +153,101 @@ namespace AdminApp
 
         private void button_Cancel_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Do you really want to exit?");
+            //MessageBox.Show("Do you really want to exit?");
             Application.Exit();
         }
 
-       
+        private void emailNotifikaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.panel_Mail.Visible = true;
+            this.panel_Administrace.Visible = false;
+        }
+
+        private void administraceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.panel_Administrace.Visible = true;
+            this.panel_Mail.Visible = true;
+        }
+
+        private void button_AddDaemon_Click(object sender, EventArgs e)
+        {
+
+            TabPage newPage = new TabPage();
+
+            foreach (Control control in tabControl1.TabPages[0].Controls)
+            {
+                newPage.Controls.Add(control);
+            }
+
+            tabControl1.TabPages.Add(newPage);
+
+         
+
+        }
+
+        private void backupSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.panel_Bakupsettings.Visible = true;
+            this.panel_BackupschemeDefault.Visible = false;
+            this.panel_Daily.Visible = false;
+            this.panel_Weekly.Visible = false;
+            this.panel_Monthly.Visible = false;
+        }
+
+        private void backupSchemeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          
+            this.panel_BackupschemeDefault.Visible = true;
+            // this.panel_Daily.Visible = false;
+            //this.panel_Bakupsettings.Visible = false;
+         //   this.panel_Daily.Visible = false;
+           // this.panel_Weekly.Visible = false;
+           // this.panel_Monthly.Visible = false;
+
+
+
+
+        }
+
+        private void OneTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            this.panel_BackupschemeDefault.Visible = true;
+            this.panel_Daily.Visible = false;
+            //this.panel_Bakupsettings.Visible = false;
+            this.panel_Monthly.Visible = false;
+            this.panel_Daily.Visible = false;
+        }
+
+        private void DailyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        
+         
+            this.panel_BackupschemeDefault.Visible = true;
+            this.panel_Daily.Visible = true;
+            // this.panel_Bakupsettings.Visible = false;
+            this.panel_Monthly.Visible = false;
+            this.panel_Weekly.Visible = false;
+
+        }
+
+        private void WeeklyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.panel_BackupschemeDefault.Visible = true;
+            this.panel_Weekly.Visible = true;
+            this.panel_Monthly.Visible = false;
+            this.panel_Daily.Visible = false;
+        }
+
+        private void MonthlyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           
+            this.panel_BackupschemeDefault.Visible = true;
+            this.panel_Monthly.Visible = true;
+            this.panel_Weekly.Visible = false;
+            this.panel_Daily.Visible = false;
+        }
+
+      
     }
 }

@@ -15,7 +15,7 @@ namespace AdminApp
         public Form_Login()
         {
             InitializeComponent();
-            textBox_Password.PasswordChar = '*';
+            textBox_Password.PasswordChar = '•';
         }
 
         private void button_Login_Click(object sender, EventArgs e)
