@@ -73,44 +73,7 @@
             this.backupSchemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_Bakupsettings = new System.Windows.Forms.Panel();
             this.panel_BackupschemeDefault = new System.Windows.Forms.Panel();
-            this.panel_Daily = new System.Windows.Forms.Panel();
             this.panel_Weekly = new System.Windows.Forms.Panel();
-            this.checkBox_Tue = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.dateTimePicker_WeeklyFri = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_WeeklySat = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_WeeklyThur = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_WeeklyWed = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_WeeklySun = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_WeeklyTue = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_WeeklyMon = new System.Windows.Forms.DateTimePicker();
-            this.checkBox_Sun = new System.Windows.Forms.CheckBox();
-            this.checkBox_Sat = new System.Windows.Forms.CheckBox();
-            this.checkBox_Fri = new System.Windows.Forms.CheckBox();
-            this.checkBox_Thur = new System.Windows.Forms.CheckBox();
-            this.checkBox_Wed = new System.Windows.Forms.CheckBox();
-            this.checkBox_Mon = new System.Windows.Forms.CheckBox();
-            this.comboBox_DailyBeginMethod = new System.Windows.Forms.ComboBox();
-            this.comboBox_DailyBackupMethod = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.dateTimePicker_DailyTime = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dateTimePicker_OneTimeTime = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_OneTimeDMY = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
-            this.menuStrip3 = new System.Windows.Forms.MenuStrip();
-            this.OneTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.WeeklyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MonthlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel_Mail = new System.Windows.Forms.Panel();
-            this.panel_Administrace = new System.Windows.Forms.Panel();
-            this.button_AddDaemon = new System.Windows.Forms.Button();
             this.panel_Monthly = new System.Windows.Forms.Panel();
             this.checkBox_MonthlyDay14 = new System.Windows.Forms.CheckBox();
             this.checkBox_MonthlyDay13 = new System.Windows.Forms.CheckBox();
@@ -143,6 +106,43 @@
             this.checkBox_MonthlyDay16 = new System.Windows.Forms.CheckBox();
             this.checkBox_MonthlyDay2 = new System.Windows.Forms.CheckBox();
             this.checkBox_MonthlyDay1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Tue = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.dateTimePicker_WeeklyFri = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_WeeklySat = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_WeeklyThur = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_WeeklyWed = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_WeeklySun = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_WeeklyTue = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_WeeklyMon = new System.Windows.Forms.DateTimePicker();
+            this.checkBox_Sun = new System.Windows.Forms.CheckBox();
+            this.checkBox_Sat = new System.Windows.Forms.CheckBox();
+            this.checkBox_Fri = new System.Windows.Forms.CheckBox();
+            this.checkBox_Thur = new System.Windows.Forms.CheckBox();
+            this.checkBox_Wed = new System.Windows.Forms.CheckBox();
+            this.checkBox_Mon = new System.Windows.Forms.CheckBox();
+            this.panel_Daily = new System.Windows.Forms.Panel();
+            this.comboBox_DailyBeginMethod = new System.Windows.Forms.ComboBox();
+            this.comboBox_DailyBackupMethod = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dateTimePicker_DailyTime = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dateTimePicker_OneTimeTime = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_OneTimeDMY = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.menuStrip3 = new System.Windows.Forms.MenuStrip();
+            this.OneTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WeeklyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MonthlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel_Mail = new System.Windows.Forms.Panel();
+            this.panel_Administrace = new System.Windows.Forms.Panel();
+            this.button_AddDaemon = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -150,12 +150,12 @@
             this.menuStrip2.SuspendLayout();
             this.panel_Bakupsettings.SuspendLayout();
             this.panel_BackupschemeDefault.SuspendLayout();
-            this.panel_Daily.SuspendLayout();
             this.panel_Weekly.SuspendLayout();
+            this.panel_Monthly.SuspendLayout();
+            this.panel_Daily.SuspendLayout();
             this.menuStrip3.SuspendLayout();
             this.panel_Mail.SuspendLayout();
             this.panel_Administrace.SuspendLayout();
-            this.panel_Monthly.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -508,7 +508,7 @@
             this.administraceToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(681, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(674, 25);
             this.menuStrip1.TabIndex = 22;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -618,19 +618,6 @@
             this.panel_BackupschemeDefault.Size = new System.Drawing.Size(515, 337);
             this.panel_BackupschemeDefault.TabIndex = 15;
             // 
-            // panel_Daily
-            // 
-            this.panel_Daily.Controls.Add(this.comboBox_DailyBeginMethod);
-            this.panel_Daily.Controls.Add(this.comboBox_DailyBackupMethod);
-            this.panel_Daily.Controls.Add(this.label11);
-            this.panel_Daily.Controls.Add(this.label10);
-            this.panel_Daily.Controls.Add(this.dateTimePicker_DailyTime);
-            this.panel_Daily.Controls.Add(this.label8);
-            this.panel_Daily.Location = new System.Drawing.Point(0, 27);
-            this.panel_Daily.Name = "panel_Daily";
-            this.panel_Daily.Size = new System.Drawing.Size(518, 304);
-            this.panel_Daily.TabIndex = 1;
-            // 
             // panel_Weekly
             // 
             this.panel_Weekly.Controls.Add(this.panel_Monthly);
@@ -657,344 +644,6 @@
             this.panel_Weekly.Name = "panel_Weekly";
             this.panel_Weekly.Size = new System.Drawing.Size(515, 310);
             this.panel_Weekly.TabIndex = 26;
-            // 
-            // checkBox_Tue
-            // 
-            this.checkBox_Tue.AutoSize = true;
-            this.checkBox_Tue.Location = new System.Drawing.Point(120, 28);
-            this.checkBox_Tue.Name = "checkBox_Tue";
-            this.checkBox_Tue.Size = new System.Drawing.Size(41, 21);
-            this.checkBox_Tue.TabIndex = 1;
-            this.checkBox_Tue.Text = "Út";
-            this.checkBox_Tue.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Full backup"});
-            this.comboBox1.Location = new System.Drawing.Point(208, 216);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 25);
-            this.comboBox1.TabIndex = 17;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup",
-            "Differential backup"});
-            this.comboBox2.Location = new System.Drawing.Point(154, 251);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(175, 25);
-            this.comboBox2.TabIndex = 16;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(19, 254);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(103, 17);
-            this.label12.TabIndex = 15;
-            this.label12.Text = "Backup metoda";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(19, 219);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(167, 17);
-            this.label15.TabIndex = 14;
-            this.label15.Text = "Začít týdenní backup jako";
-            // 
-            // dateTimePicker_WeeklyFri
-            // 
-            this.dateTimePicker_WeeklyFri.Enabled = false;
-            this.dateTimePicker_WeeklyFri.Location = new System.Drawing.Point(22, 121);
-            this.dateTimePicker_WeeklyFri.Name = "dateTimePicker_WeeklyFri";
-            this.dateTimePicker_WeeklyFri.Size = new System.Drawing.Size(85, 25);
-            this.dateTimePicker_WeeklyFri.TabIndex = 13;
-            // 
-            // dateTimePicker_WeeklySat
-            // 
-            this.dateTimePicker_WeeklySat.Enabled = false;
-            this.dateTimePicker_WeeklySat.Location = new System.Drawing.Point(121, 121);
-            this.dateTimePicker_WeeklySat.Name = "dateTimePicker_WeeklySat";
-            this.dateTimePicker_WeeklySat.Size = new System.Drawing.Size(85, 25);
-            this.dateTimePicker_WeeklySat.TabIndex = 12;
-            // 
-            // dateTimePicker_WeeklyThur
-            // 
-            this.dateTimePicker_WeeklyThur.Enabled = false;
-            this.dateTimePicker_WeeklyThur.Location = new System.Drawing.Point(322, 63);
-            this.dateTimePicker_WeeklyThur.Name = "dateTimePicker_WeeklyThur";
-            this.dateTimePicker_WeeklyThur.Size = new System.Drawing.Size(85, 25);
-            this.dateTimePicker_WeeklyThur.TabIndex = 11;
-            // 
-            // dateTimePicker_WeeklyWed
-            // 
-            this.dateTimePicker_WeeklyWed.Enabled = false;
-            this.dateTimePicker_WeeklyWed.Location = new System.Drawing.Point(219, 63);
-            this.dateTimePicker_WeeklyWed.Name = "dateTimePicker_WeeklyWed";
-            this.dateTimePicker_WeeklyWed.Size = new System.Drawing.Size(85, 25);
-            this.dateTimePicker_WeeklyWed.TabIndex = 10;
-            // 
-            // dateTimePicker_WeeklySun
-            // 
-            this.dateTimePicker_WeeklySun.Enabled = false;
-            this.dateTimePicker_WeeklySun.Location = new System.Drawing.Point(219, 121);
-            this.dateTimePicker_WeeklySun.Name = "dateTimePicker_WeeklySun";
-            this.dateTimePicker_WeeklySun.Size = new System.Drawing.Size(85, 25);
-            this.dateTimePicker_WeeklySun.TabIndex = 9;
-            // 
-            // dateTimePicker_WeeklyTue
-            // 
-            this.dateTimePicker_WeeklyTue.Enabled = false;
-            this.dateTimePicker_WeeklyTue.Location = new System.Drawing.Point(121, 63);
-            this.dateTimePicker_WeeklyTue.Name = "dateTimePicker_WeeklyTue";
-            this.dateTimePicker_WeeklyTue.Size = new System.Drawing.Size(85, 25);
-            this.dateTimePicker_WeeklyTue.TabIndex = 8;
-            // 
-            // dateTimePicker_WeeklyMon
-            // 
-            this.dateTimePicker_WeeklyMon.Enabled = false;
-            this.dateTimePicker_WeeklyMon.Location = new System.Drawing.Point(22, 63);
-            this.dateTimePicker_WeeklyMon.Name = "dateTimePicker_WeeklyMon";
-            this.dateTimePicker_WeeklyMon.Size = new System.Drawing.Size(85, 25);
-            this.dateTimePicker_WeeklyMon.TabIndex = 7;
-            // 
-            // checkBox_Sun
-            // 
-            this.checkBox_Sun.AutoSize = true;
-            this.checkBox_Sun.Location = new System.Drawing.Point(219, 98);
-            this.checkBox_Sun.Name = "checkBox_Sun";
-            this.checkBox_Sun.Size = new System.Drawing.Size(44, 21);
-            this.checkBox_Sun.TabIndex = 6;
-            this.checkBox_Sun.Text = "Ne";
-            this.checkBox_Sun.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_Sat
-            // 
-            this.checkBox_Sat.AutoSize = true;
-            this.checkBox_Sat.Location = new System.Drawing.Point(121, 98);
-            this.checkBox_Sat.Name = "checkBox_Sat";
-            this.checkBox_Sat.Size = new System.Drawing.Size(42, 21);
-            this.checkBox_Sat.TabIndex = 5;
-            this.checkBox_Sat.Text = "So";
-            this.checkBox_Sat.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_Fri
-            // 
-            this.checkBox_Fri.AutoSize = true;
-            this.checkBox_Fri.Location = new System.Drawing.Point(22, 98);
-            this.checkBox_Fri.Name = "checkBox_Fri";
-            this.checkBox_Fri.Size = new System.Drawing.Size(42, 21);
-            this.checkBox_Fri.TabIndex = 4;
-            this.checkBox_Fri.Text = "Pá";
-            this.checkBox_Fri.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_Thur
-            // 
-            this.checkBox_Thur.AutoSize = true;
-            this.checkBox_Thur.Location = new System.Drawing.Point(322, 28);
-            this.checkBox_Thur.Name = "checkBox_Thur";
-            this.checkBox_Thur.Size = new System.Drawing.Size(40, 21);
-            this.checkBox_Thur.TabIndex = 3;
-            this.checkBox_Thur.Text = "Čt";
-            this.checkBox_Thur.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_Wed
-            // 
-            this.checkBox_Wed.AutoSize = true;
-            this.checkBox_Wed.Location = new System.Drawing.Point(219, 28);
-            this.checkBox_Wed.Name = "checkBox_Wed";
-            this.checkBox_Wed.Size = new System.Drawing.Size(39, 21);
-            this.checkBox_Wed.TabIndex = 2;
-            this.checkBox_Wed.Text = "St";
-            this.checkBox_Wed.UseVisualStyleBackColor = true;
-            // 
-            // checkBox_Mon
-            // 
-            this.checkBox_Mon.AutoSize = true;
-            this.checkBox_Mon.Location = new System.Drawing.Point(22, 28);
-            this.checkBox_Mon.Name = "checkBox_Mon";
-            this.checkBox_Mon.Size = new System.Drawing.Size(43, 21);
-            this.checkBox_Mon.TabIndex = 0;
-            this.checkBox_Mon.Text = "Po";
-            this.checkBox_Mon.UseVisualStyleBackColor = true;
-            // 
-            // comboBox_DailyBeginMethod
-            // 
-            this.comboBox_DailyBeginMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_DailyBeginMethod.FormattingEnabled = true;
-            this.comboBox_DailyBeginMethod.Items.AddRange(new object[] {
-            "Full backup"});
-            this.comboBox_DailyBeginMethod.Location = new System.Drawing.Point(186, 215);
-            this.comboBox_DailyBeginMethod.Name = "comboBox_DailyBeginMethod";
-            this.comboBox_DailyBeginMethod.Size = new System.Drawing.Size(121, 25);
-            this.comboBox_DailyBeginMethod.TabIndex = 5;
-            // 
-            // comboBox_DailyBackupMethod
-            // 
-            this.comboBox_DailyBackupMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_DailyBackupMethod.FormattingEnabled = true;
-            this.comboBox_DailyBackupMethod.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup",
-            "Differential backup"});
-            this.comboBox_DailyBackupMethod.Location = new System.Drawing.Point(154, 250);
-            this.comboBox_DailyBackupMethod.Name = "comboBox_DailyBackupMethod";
-            this.comboBox_DailyBackupMethod.Size = new System.Drawing.Size(154, 25);
-            this.comboBox_DailyBackupMethod.TabIndex = 4;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(20, 253);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(103, 17);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Backup metoda";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 218);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(155, 17);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "Začít denní backup jako";
-            // 
-            // dateTimePicker_DailyTime
-            // 
-            this.dateTimePicker_DailyTime.Location = new System.Drawing.Point(187, 85);
-            this.dateTimePicker_DailyTime.Name = "dateTimePicker_DailyTime";
-            this.dateTimePicker_DailyTime.Size = new System.Drawing.Size(121, 25);
-            this.dateTimePicker_DailyTime.TabIndex = 1;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(23, 88);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(146, 17);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Provést vždy zálohu v ";
-            // 
-            // dateTimePicker_OneTimeTime
-            // 
-            this.dateTimePicker_OneTimeTime.Location = new System.Drawing.Point(154, 92);
-            this.dateTimePicker_OneTimeTime.Name = "dateTimePicker_OneTimeTime";
-            this.dateTimePicker_OneTimeTime.Size = new System.Drawing.Size(121, 25);
-            this.dateTimePicker_OneTimeTime.TabIndex = 3;
-            // 
-            // dateTimePicker_OneTimeDMY
-            // 
-            this.dateTimePicker_OneTimeDMY.Location = new System.Drawing.Point(295, 92);
-            this.dateTimePicker_OneTimeDMY.Name = "dateTimePicker_OneTimeDMY";
-            this.dateTimePicker_OneTimeDMY.Size = new System.Drawing.Size(200, 25);
-            this.dateTimePicker_OneTimeDMY.TabIndex = 2;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 98);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(116, 17);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Zálohu provést v ";
-            // 
-            // menuStrip3
-            // 
-            this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OneTimeToolStripMenuItem,
-            this.DailyToolStripMenuItem,
-            this.WeeklyToolStripMenuItem,
-            this.MonthlyToolStripMenuItem});
-            this.menuStrip3.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip3.Name = "menuStrip3";
-            this.menuStrip3.Size = new System.Drawing.Size(515, 24);
-            this.menuStrip3.TabIndex = 0;
-            this.menuStrip3.Text = "menuStrip3";
-            // 
-            // OneTimeToolStripMenuItem
-            // 
-            this.OneTimeToolStripMenuItem.Name = "OneTimeToolStripMenuItem";
-            this.OneTimeToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
-            this.OneTimeToolStripMenuItem.Text = "Jednorázově";
-            this.OneTimeToolStripMenuItem.Click += new System.EventHandler(this.OneTimeToolStripMenuItem_Click);
-            // 
-            // DailyToolStripMenuItem
-            // 
-            this.DailyToolStripMenuItem.Name = "DailyToolStripMenuItem";
-            this.DailyToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.DailyToolStripMenuItem.Text = "Denně";
-            this.DailyToolStripMenuItem.Click += new System.EventHandler(this.DailyToolStripMenuItem_Click);
-            // 
-            // WeeklyToolStripMenuItem
-            // 
-            this.WeeklyToolStripMenuItem.Name = "WeeklyToolStripMenuItem";
-            this.WeeklyToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
-            this.WeeklyToolStripMenuItem.Text = "Týdně";
-            this.WeeklyToolStripMenuItem.Click += new System.EventHandler(this.WeeklyToolStripMenuItem_Click);
-            // 
-            // MonthlyToolStripMenuItem
-            // 
-            this.MonthlyToolStripMenuItem.Name = "MonthlyToolStripMenuItem";
-            this.MonthlyToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
-            this.MonthlyToolStripMenuItem.Text = "Měsíčně";
-            this.MonthlyToolStripMenuItem.Click += new System.EventHandler(this.MonthlyToolStripMenuItem_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(23, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 17);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Destinace";
-            // 
-            // panel_Mail
-            // 
-            this.panel_Mail.Controls.Add(this.textBox_MailUsername);
-            this.panel_Mail.Controls.Add(this.label_Servername);
-            this.panel_Mail.Controls.Add(this.label_Port);
-            this.panel_Mail.Controls.Add(this.label_To);
-            this.panel_Mail.Controls.Add(this.label_Username);
-            this.panel_Mail.Controls.Add(this.textBox_To);
-            this.panel_Mail.Controls.Add(this.label_Password);
-            this.panel_Mail.Controls.Add(this.textBox_MailServername);
-            this.panel_Mail.Controls.Add(this.textBox_MailPort);
-            this.panel_Mail.Controls.Add(this.label_SMTP);
-            this.panel_Mail.Controls.Add(this.textBox_MailPassword);
-            this.panel_Mail.Controls.Add(this.checkBox_SSL);
-            this.panel_Mail.Location = new System.Drawing.Point(12, 44);
-            this.panel_Mail.Name = "panel_Mail";
-            this.panel_Mail.Size = new System.Drawing.Size(671, 397);
-            this.panel_Mail.TabIndex = 24;
-            // 
-            // panel_Administrace
-            // 
-            this.panel_Administrace.Controls.Add(this.button_AddDaemon);
-            this.panel_Administrace.Controls.Add(this.tabControl1);
-            this.panel_Administrace.Location = new System.Drawing.Point(12, 43);
-            this.panel_Administrace.Name = "panel_Administrace";
-            this.panel_Administrace.Size = new System.Drawing.Size(671, 399);
-            this.panel_Administrace.TabIndex = 25;
-            // 
-            // button_AddDaemon
-            // 
-            this.button_AddDaemon.Location = new System.Drawing.Point(471, 0);
-            this.button_AddDaemon.Name = "button_AddDaemon";
-            this.button_AddDaemon.Size = new System.Drawing.Size(170, 30);
-            this.button_AddDaemon.TabIndex = 24;
-            this.button_AddDaemon.Text = "Přidat daemona";
-            this.button_AddDaemon.UseVisualStyleBackColor = true;
-            this.button_AddDaemon.Click += new System.EventHandler(this.button_AddDaemon_Click);
             // 
             // panel_Monthly
             // 
@@ -1344,13 +993,364 @@
             this.checkBox_MonthlyDay1.Text = "1";
             this.checkBox_MonthlyDay1.UseVisualStyleBackColor = true;
             // 
+            // checkBox_Tue
+            // 
+            this.checkBox_Tue.AutoSize = true;
+            this.checkBox_Tue.Location = new System.Drawing.Point(120, 28);
+            this.checkBox_Tue.Name = "checkBox_Tue";
+            this.checkBox_Tue.Size = new System.Drawing.Size(41, 21);
+            this.checkBox_Tue.TabIndex = 1;
+            this.checkBox_Tue.Text = "Út";
+            this.checkBox_Tue.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Full backup"});
+            this.comboBox1.Location = new System.Drawing.Point(208, 216);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 25);
+            this.comboBox1.TabIndex = 17;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Full backup",
+            "Incremental backup",
+            "Differential backup"});
+            this.comboBox2.Location = new System.Drawing.Point(154, 251);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(175, 25);
+            this.comboBox2.TabIndex = 16;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(19, 254);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(103, 17);
+            this.label12.TabIndex = 15;
+            this.label12.Text = "Backup metoda";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(19, 219);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(167, 17);
+            this.label15.TabIndex = 14;
+            this.label15.Text = "Začít týdenní backup jako";
+            // 
+            // dateTimePicker_WeeklyFri
+            // 
+            this.dateTimePicker_WeeklyFri.Enabled = false;
+            this.dateTimePicker_WeeklyFri.Location = new System.Drawing.Point(22, 121);
+            this.dateTimePicker_WeeklyFri.Name = "dateTimePicker_WeeklyFri";
+            this.dateTimePicker_WeeklyFri.Size = new System.Drawing.Size(85, 25);
+            this.dateTimePicker_WeeklyFri.TabIndex = 13;
+            // 
+            // dateTimePicker_WeeklySat
+            // 
+            this.dateTimePicker_WeeklySat.Enabled = false;
+            this.dateTimePicker_WeeklySat.Location = new System.Drawing.Point(121, 121);
+            this.dateTimePicker_WeeklySat.Name = "dateTimePicker_WeeklySat";
+            this.dateTimePicker_WeeklySat.Size = new System.Drawing.Size(85, 25);
+            this.dateTimePicker_WeeklySat.TabIndex = 12;
+            // 
+            // dateTimePicker_WeeklyThur
+            // 
+            this.dateTimePicker_WeeklyThur.Enabled = false;
+            this.dateTimePicker_WeeklyThur.Location = new System.Drawing.Point(322, 63);
+            this.dateTimePicker_WeeklyThur.Name = "dateTimePicker_WeeklyThur";
+            this.dateTimePicker_WeeklyThur.Size = new System.Drawing.Size(85, 25);
+            this.dateTimePicker_WeeklyThur.TabIndex = 11;
+            // 
+            // dateTimePicker_WeeklyWed
+            // 
+            this.dateTimePicker_WeeklyWed.Enabled = false;
+            this.dateTimePicker_WeeklyWed.Location = new System.Drawing.Point(219, 63);
+            this.dateTimePicker_WeeklyWed.Name = "dateTimePicker_WeeklyWed";
+            this.dateTimePicker_WeeklyWed.Size = new System.Drawing.Size(85, 25);
+            this.dateTimePicker_WeeklyWed.TabIndex = 10;
+            // 
+            // dateTimePicker_WeeklySun
+            // 
+            this.dateTimePicker_WeeklySun.Enabled = false;
+            this.dateTimePicker_WeeklySun.Location = new System.Drawing.Point(219, 121);
+            this.dateTimePicker_WeeklySun.Name = "dateTimePicker_WeeklySun";
+            this.dateTimePicker_WeeklySun.Size = new System.Drawing.Size(85, 25);
+            this.dateTimePicker_WeeklySun.TabIndex = 9;
+            // 
+            // dateTimePicker_WeeklyTue
+            // 
+            this.dateTimePicker_WeeklyTue.Enabled = false;
+            this.dateTimePicker_WeeklyTue.Location = new System.Drawing.Point(121, 63);
+            this.dateTimePicker_WeeklyTue.Name = "dateTimePicker_WeeklyTue";
+            this.dateTimePicker_WeeklyTue.Size = new System.Drawing.Size(85, 25);
+            this.dateTimePicker_WeeklyTue.TabIndex = 8;
+            // 
+            // dateTimePicker_WeeklyMon
+            // 
+            this.dateTimePicker_WeeklyMon.Enabled = false;
+            this.dateTimePicker_WeeklyMon.Location = new System.Drawing.Point(22, 63);
+            this.dateTimePicker_WeeklyMon.Name = "dateTimePicker_WeeklyMon";
+            this.dateTimePicker_WeeklyMon.Size = new System.Drawing.Size(85, 25);
+            this.dateTimePicker_WeeklyMon.TabIndex = 7;
+            // 
+            // checkBox_Sun
+            // 
+            this.checkBox_Sun.AutoSize = true;
+            this.checkBox_Sun.Location = new System.Drawing.Point(219, 98);
+            this.checkBox_Sun.Name = "checkBox_Sun";
+            this.checkBox_Sun.Size = new System.Drawing.Size(44, 21);
+            this.checkBox_Sun.TabIndex = 6;
+            this.checkBox_Sun.Text = "Ne";
+            this.checkBox_Sun.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Sat
+            // 
+            this.checkBox_Sat.AutoSize = true;
+            this.checkBox_Sat.Location = new System.Drawing.Point(121, 98);
+            this.checkBox_Sat.Name = "checkBox_Sat";
+            this.checkBox_Sat.Size = new System.Drawing.Size(42, 21);
+            this.checkBox_Sat.TabIndex = 5;
+            this.checkBox_Sat.Text = "So";
+            this.checkBox_Sat.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Fri
+            // 
+            this.checkBox_Fri.AutoSize = true;
+            this.checkBox_Fri.Location = new System.Drawing.Point(22, 98);
+            this.checkBox_Fri.Name = "checkBox_Fri";
+            this.checkBox_Fri.Size = new System.Drawing.Size(42, 21);
+            this.checkBox_Fri.TabIndex = 4;
+            this.checkBox_Fri.Text = "Pá";
+            this.checkBox_Fri.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Thur
+            // 
+            this.checkBox_Thur.AutoSize = true;
+            this.checkBox_Thur.Location = new System.Drawing.Point(322, 28);
+            this.checkBox_Thur.Name = "checkBox_Thur";
+            this.checkBox_Thur.Size = new System.Drawing.Size(40, 21);
+            this.checkBox_Thur.TabIndex = 3;
+            this.checkBox_Thur.Text = "Čt";
+            this.checkBox_Thur.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Wed
+            // 
+            this.checkBox_Wed.AutoSize = true;
+            this.checkBox_Wed.Location = new System.Drawing.Point(219, 28);
+            this.checkBox_Wed.Name = "checkBox_Wed";
+            this.checkBox_Wed.Size = new System.Drawing.Size(39, 21);
+            this.checkBox_Wed.TabIndex = 2;
+            this.checkBox_Wed.Text = "St";
+            this.checkBox_Wed.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Mon
+            // 
+            this.checkBox_Mon.AutoSize = true;
+            this.checkBox_Mon.Location = new System.Drawing.Point(22, 28);
+            this.checkBox_Mon.Name = "checkBox_Mon";
+            this.checkBox_Mon.Size = new System.Drawing.Size(43, 21);
+            this.checkBox_Mon.TabIndex = 0;
+            this.checkBox_Mon.Text = "Po";
+            this.checkBox_Mon.UseVisualStyleBackColor = true;
+            // 
+            // panel_Daily
+            // 
+            this.panel_Daily.Controls.Add(this.comboBox_DailyBeginMethod);
+            this.panel_Daily.Controls.Add(this.comboBox_DailyBackupMethod);
+            this.panel_Daily.Controls.Add(this.label11);
+            this.panel_Daily.Controls.Add(this.label10);
+            this.panel_Daily.Controls.Add(this.dateTimePicker_DailyTime);
+            this.panel_Daily.Controls.Add(this.label8);
+            this.panel_Daily.Location = new System.Drawing.Point(0, 27);
+            this.panel_Daily.Name = "panel_Daily";
+            this.panel_Daily.Size = new System.Drawing.Size(518, 304);
+            this.panel_Daily.TabIndex = 1;
+            // 
+            // comboBox_DailyBeginMethod
+            // 
+            this.comboBox_DailyBeginMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_DailyBeginMethod.FormattingEnabled = true;
+            this.comboBox_DailyBeginMethod.Items.AddRange(new object[] {
+            "Full backup"});
+            this.comboBox_DailyBeginMethod.Location = new System.Drawing.Point(186, 215);
+            this.comboBox_DailyBeginMethod.Name = "comboBox_DailyBeginMethod";
+            this.comboBox_DailyBeginMethod.Size = new System.Drawing.Size(121, 25);
+            this.comboBox_DailyBeginMethod.TabIndex = 5;
+            // 
+            // comboBox_DailyBackupMethod
+            // 
+            this.comboBox_DailyBackupMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_DailyBackupMethod.FormattingEnabled = true;
+            this.comboBox_DailyBackupMethod.Items.AddRange(new object[] {
+            "Full backup",
+            "Incremental backup",
+            "Differential backup"});
+            this.comboBox_DailyBackupMethod.Location = new System.Drawing.Point(154, 250);
+            this.comboBox_DailyBackupMethod.Name = "comboBox_DailyBackupMethod";
+            this.comboBox_DailyBackupMethod.Size = new System.Drawing.Size(154, 25);
+            this.comboBox_DailyBackupMethod.TabIndex = 4;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(20, 253);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(103, 17);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Backup metoda";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(20, 218);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(155, 17);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Začít denní backup jako";
+            // 
+            // dateTimePicker_DailyTime
+            // 
+            this.dateTimePicker_DailyTime.Location = new System.Drawing.Point(187, 85);
+            this.dateTimePicker_DailyTime.Name = "dateTimePicker_DailyTime";
+            this.dateTimePicker_DailyTime.Size = new System.Drawing.Size(121, 25);
+            this.dateTimePicker_DailyTime.TabIndex = 1;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(23, 88);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(146, 17);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Provést vždy zálohu v ";
+            // 
+            // dateTimePicker_OneTimeTime
+            // 
+            this.dateTimePicker_OneTimeTime.Location = new System.Drawing.Point(154, 92);
+            this.dateTimePicker_OneTimeTime.Name = "dateTimePicker_OneTimeTime";
+            this.dateTimePicker_OneTimeTime.Size = new System.Drawing.Size(121, 25);
+            this.dateTimePicker_OneTimeTime.TabIndex = 3;
+            // 
+            // dateTimePicker_OneTimeDMY
+            // 
+            this.dateTimePicker_OneTimeDMY.Location = new System.Drawing.Point(295, 92);
+            this.dateTimePicker_OneTimeDMY.Name = "dateTimePicker_OneTimeDMY";
+            this.dateTimePicker_OneTimeDMY.Size = new System.Drawing.Size(200, 25);
+            this.dateTimePicker_OneTimeDMY.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(20, 98);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(116, 17);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Zálohu provést v ";
+            // 
+            // menuStrip3
+            // 
+            this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OneTimeToolStripMenuItem,
+            this.DailyToolStripMenuItem,
+            this.WeeklyToolStripMenuItem,
+            this.MonthlyToolStripMenuItem});
+            this.menuStrip3.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip3.Name = "menuStrip3";
+            this.menuStrip3.Size = new System.Drawing.Size(515, 24);
+            this.menuStrip3.TabIndex = 0;
+            this.menuStrip3.Text = "menuStrip3";
+            // 
+            // OneTimeToolStripMenuItem
+            // 
+            this.OneTimeToolStripMenuItem.Name = "OneTimeToolStripMenuItem";
+            this.OneTimeToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.OneTimeToolStripMenuItem.Text = "Jednorázově";
+            this.OneTimeToolStripMenuItem.Click += new System.EventHandler(this.OneTimeToolStripMenuItem_Click);
+            // 
+            // DailyToolStripMenuItem
+            // 
+            this.DailyToolStripMenuItem.Name = "DailyToolStripMenuItem";
+            this.DailyToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.DailyToolStripMenuItem.Text = "Denně";
+            this.DailyToolStripMenuItem.Click += new System.EventHandler(this.DailyToolStripMenuItem_Click);
+            // 
+            // WeeklyToolStripMenuItem
+            // 
+            this.WeeklyToolStripMenuItem.Name = "WeeklyToolStripMenuItem";
+            this.WeeklyToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.WeeklyToolStripMenuItem.Text = "Týdně";
+            this.WeeklyToolStripMenuItem.Click += new System.EventHandler(this.WeeklyToolStripMenuItem_Click);
+            // 
+            // MonthlyToolStripMenuItem
+            // 
+            this.MonthlyToolStripMenuItem.Name = "MonthlyToolStripMenuItem";
+            this.MonthlyToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
+            this.MonthlyToolStripMenuItem.Text = "Měsíčně";
+            this.MonthlyToolStripMenuItem.Click += new System.EventHandler(this.MonthlyToolStripMenuItem_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(23, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Destinace";
+            // 
+            // panel_Mail
+            // 
+            this.panel_Mail.Controls.Add(this.textBox_MailUsername);
+            this.panel_Mail.Controls.Add(this.label_Servername);
+            this.panel_Mail.Controls.Add(this.label_Port);
+            this.panel_Mail.Controls.Add(this.label_To);
+            this.panel_Mail.Controls.Add(this.label_Username);
+            this.panel_Mail.Controls.Add(this.textBox_To);
+            this.panel_Mail.Controls.Add(this.label_Password);
+            this.panel_Mail.Controls.Add(this.textBox_MailServername);
+            this.panel_Mail.Controls.Add(this.textBox_MailPort);
+            this.panel_Mail.Controls.Add(this.label_SMTP);
+            this.panel_Mail.Controls.Add(this.textBox_MailPassword);
+            this.panel_Mail.Controls.Add(this.checkBox_SSL);
+            this.panel_Mail.Location = new System.Drawing.Point(12, 44);
+            this.panel_Mail.Name = "panel_Mail";
+            this.panel_Mail.Size = new System.Drawing.Size(671, 397);
+            this.panel_Mail.TabIndex = 24;
+            // 
+            // panel_Administrace
+            // 
+            this.panel_Administrace.Controls.Add(this.button_AddDaemon);
+            this.panel_Administrace.Controls.Add(this.tabControl1);
+            this.panel_Administrace.Location = new System.Drawing.Point(12, 43);
+            this.panel_Administrace.Name = "panel_Administrace";
+            this.panel_Administrace.Size = new System.Drawing.Size(671, 399);
+            this.panel_Administrace.TabIndex = 25;
+            // 
+            // button_AddDaemon
+            // 
+            this.button_AddDaemon.Location = new System.Drawing.Point(471, 0);
+            this.button_AddDaemon.Name = "button_AddDaemon";
+            this.button_AddDaemon.Size = new System.Drawing.Size(170, 30);
+            this.button_AddDaemon.TabIndex = 24;
+            this.button_AddDaemon.Text = "Přidat daemona";
+            this.button_AddDaemon.UseVisualStyleBackColor = true;
+            this.button_AddDaemon.Click += new System.EventHandler(this.button_AddDaemon_Click);
+            // 
             // Form_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(681, 491);
+            this.ClientSize = new System.Drawing.Size(674, 491);
             this.Controls.Add(this.panel_Administrace);
             this.Controls.Add(this.panel_Mail);
             this.Controls.Add(this.button_Save);
@@ -1372,17 +1372,17 @@
             this.panel_Bakupsettings.PerformLayout();
             this.panel_BackupschemeDefault.ResumeLayout(false);
             this.panel_BackupschemeDefault.PerformLayout();
-            this.panel_Daily.ResumeLayout(false);
-            this.panel_Daily.PerformLayout();
             this.panel_Weekly.ResumeLayout(false);
             this.panel_Weekly.PerformLayout();
+            this.panel_Monthly.ResumeLayout(false);
+            this.panel_Monthly.PerformLayout();
+            this.panel_Daily.ResumeLayout(false);
+            this.panel_Daily.PerformLayout();
             this.menuStrip3.ResumeLayout(false);
             this.menuStrip3.PerformLayout();
             this.panel_Mail.ResumeLayout(false);
             this.panel_Mail.PerformLayout();
             this.panel_Administrace.ResumeLayout(false);
-            this.panel_Monthly.ResumeLayout(false);
-            this.panel_Monthly.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
