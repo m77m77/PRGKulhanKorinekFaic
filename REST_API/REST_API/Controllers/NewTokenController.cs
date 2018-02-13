@@ -54,7 +54,7 @@ namespace REST_API.Controllers
                             if(newToken != null)
                                 response = new Response("OK", null, newToken.Value, null);
                             else
-                                response = new Response("ERROR", "TokenGeneration", null, null);
+                                response = new Response("ERROR", "TokenGenerationFailed", null, null);
 
                         }
                         else
@@ -76,7 +76,7 @@ namespace REST_API.Controllers
         [Route("api/newtoken/daemon")]
         public Response PostDaemon([FromBody] string value)
         {
-            return new Response("ERROR", "NOT YET INCLUDED", null, null);
+            return new Response("ERROR", "NotYetImplemented", null, null);
         }
     }
 }
