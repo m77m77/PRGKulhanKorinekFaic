@@ -45,7 +45,7 @@
             this.button_Login.Name = "button_Login";
             this.button_Login.Size = new System.Drawing.Size(211, 41);
             this.button_Login.TabIndex = 0;
-            this.button_Login.Text = "Log In";
+            this.button_Login.Text = "Přihlásit se";
             this.button_Login.UseVisualStyleBackColor = true;
             this.button_Login.Click += new System.EventHandler(this.button_Login_Click);
             // 
@@ -55,9 +55,9 @@
             this.label_Username.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label_Username.Location = new System.Drawing.Point(98, 31);
             this.label_Username.Name = "label_Username";
-            this.label_Username.Size = new System.Drawing.Size(97, 25);
+            this.label_Username.Size = new System.Drawing.Size(164, 25);
             this.label_Username.TabIndex = 1;
-            this.label_Username.Text = "Username";
+            this.label_Username.Text = "Uživatelské jméno";
             // 
             // label_Password
             // 
@@ -65,9 +65,9 @@
             this.label_Password.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Password.Location = new System.Drawing.Point(98, 128);
             this.label_Password.Name = "label_Password";
-            this.label_Password.Size = new System.Drawing.Size(100, 25);
+            this.label_Password.Size = new System.Drawing.Size(59, 25);
             this.label_Password.TabIndex = 2;
-            this.label_Password.Text = "Passsword";
+            this.label_Password.Text = "Heslo";
             // 
             // textBox_Username
             // 
