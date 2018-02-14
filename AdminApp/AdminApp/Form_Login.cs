@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AdminApp.CommunicationClasses;
 
 namespace AdminApp
 {
@@ -18,14 +20,21 @@ namespace AdminApp
             textBox_Password.PasswordChar = '•';
         }
 
-        private void button_Login_Click(object sender, EventArgs e)
+        private Response button_Login_Click(object sender, EventArgs e)
         {
+            Response r = new Response();
+
             if (this.IsValid())
             {
+                
+                HttpClient http = new HttpClient();
+                http.PostAsync("api/newtoken/admin", r.NewToken());
                 this.Hide();
                 Form_Menu frm = new Form_Menu();
                 if (frm.ShowDialog() == DialogResult.OK) { }
+                return r;
             }
+            return r;
           
 
 

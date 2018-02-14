@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommunicationClasses\AdminPost.cs" />
+    <Compile Include="CommunicationClasses\IData.cs" />
+    <Compile Include="CommunicationClasses\Response.cs" />
     <Compile Include="Form_Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,5 +90,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
