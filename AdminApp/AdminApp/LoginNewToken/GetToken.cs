@@ -11,7 +11,7 @@ namespace AdminApp.LoginNewToken
 {
     public class GetToken
     {
-        public async Task GetTokenMethod(AdminPost adminpost)
+        public async Task<Response> GetTokenMethod(AdminPost adminpost)
         {
         Response r = new Response();
 
@@ -22,9 +22,18 @@ namespace AdminApp.LoginNewToken
         StringContent sc = new StringContent(json);
 
         HttpResponseMessage t = new HttpResponseMessage();
+        
+            try
+            {
+                t = await http.PostAsync("http://localhost:63058/api/newtoken/admin", sc);
+                r = JsonConvert.DeserializeObject<Response>(t.Content.ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+            }
+            catch(Exception ex)
+            {
 
-        t = await http.PostAsync("http://localhost:63058/api/newtoken/admin", sc);
+            }
 
+            return r;
         }
         
 
