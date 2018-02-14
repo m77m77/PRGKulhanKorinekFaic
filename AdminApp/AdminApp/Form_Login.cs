@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminApp.CommunicationClasses;
+using AdminApp.LoginNewToken;
 
 namespace AdminApp
 {
@@ -20,24 +21,22 @@ namespace AdminApp
             textBox_Password.PasswordChar = '•';
         }
 
-        private Response button_Login_Click(object sender, EventArgs e)
+        private async void button_Login_Click(object sender, EventArgs e)
         {
-            Response r = new Response();
-
+            GetToken gt = new GetToken();
             if (this.IsValid())
             {
-                
-                HttpClient http = new HttpClient();
-                http.PostAsync("api/newtoken/admin", r.NewToken());
+                AdminPost ap = new AdminPost();
+                ap.Name = textBox_Username.Text;
+                ap.Password = textBox_Password.Text;
+
+                await gt.GetTokenMethod(ap);
+
                 this.Hide();
                 Form_Menu frm = new Form_Menu();
                 if (frm.ShowDialog() == DialogResult.OK) { }
-                return r;
             }
-            return r;
           
-
-
         }
 
         private bool IsValid()
