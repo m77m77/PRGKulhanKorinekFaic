@@ -30,8 +30,10 @@ namespace AdminApp.LoginNewToken
             }
             catch(Exception ex)
             {
-
+                r = new Response("ERROR", "ConnectionError", null, null);
             }
+            if (r.Status == null)
+                r.Status = "OK";
 
             return r;
         }
