@@ -14,8 +14,8 @@ namespace REST_API.Controllers
 {
     public class DaemonController : ApiController
     {
-        [Route("api/daemon/id/{token}")]
-        public Response Get(string token,int id)
+        [Route("api/daemon/{token}")]
+        public Response Get(string token)
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
@@ -25,9 +25,9 @@ namespace REST_API.Controllers
                 //token není v databázi  
                 return new Response("ERROR", "TokenNotFound", null, null);
             }
-            if (!t.IsAdmin)
+            if (!t.IsDaemon)
             {
-                //token nepatří adminovi  
+                //token nepatří daemonovi
                 return new Response("ERROR", "TokenIsNotMatched", null, null);
             }
 
@@ -35,7 +35,7 @@ namespace REST_API.Controllers
 
             Query.CommandText = "SELECT settings FROM daemons WHERE @id = id";
 
-            Query.Parameters.AddWithValue("@id", id);
+            Query.Parameters.AddWithValue("@id", t.DaemonID);
 
             Response r = new Response();
 
@@ -51,7 +51,7 @@ namespace REST_API.Controllers
                 while (Reader.Read())
                 {
                     data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto }));
-                    data.ListSettings[0].DaemonID = id;
+                    data.ListSettings[0].DaemonID = t.DaemonID;
                 }
                 Reader.Close();
             }
