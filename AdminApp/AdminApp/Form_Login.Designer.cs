@@ -35,6 +35,8 @@
             this.textBox_Username = new System.Windows.Forms.TextBox();
             this.textBox_Password = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.textBox_serverAdress = new System.Windows.Forms.TextBox();
+            this.label_server = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +47,7 @@
             this.button_Login.Name = "button_Login";
             this.button_Login.Size = new System.Drawing.Size(211, 41);
             this.button_Login.TabIndex = 0;
-            this.button_Login.Text = "Přihlásit se";
+            this.button_Login.Text = "Log in";
             this.button_Login.UseVisualStyleBackColor = true;
             this.button_Login.Click += new System.EventHandler(this.button_Login_Click);
             // 
@@ -53,26 +55,26 @@
             // 
             this.label_Username.AutoSize = true;
             this.label_Username.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_Username.Location = new System.Drawing.Point(98, 31);
+            this.label_Username.Location = new System.Drawing.Point(98, 85);
             this.label_Username.Name = "label_Username";
-            this.label_Username.Size = new System.Drawing.Size(164, 25);
+            this.label_Username.Size = new System.Drawing.Size(97, 25);
             this.label_Username.TabIndex = 1;
-            this.label_Username.Text = "Uživatelské jméno";
+            this.label_Username.Text = "Username";
             // 
             // label_Password
             // 
             this.label_Password.AutoSize = true;
             this.label_Password.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Password.Location = new System.Drawing.Point(98, 128);
+            this.label_Password.Location = new System.Drawing.Point(98, 158);
             this.label_Password.Name = "label_Password";
-            this.label_Password.Size = new System.Drawing.Size(59, 25);
+            this.label_Password.Size = new System.Drawing.Size(92, 25);
             this.label_Password.TabIndex = 2;
-            this.label_Password.Text = "Heslo";
+            this.label_Password.Text = "Password";
             // 
             // textBox_Username
             // 
             this.textBox_Username.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_Username.Location = new System.Drawing.Point(103, 70);
+            this.textBox_Username.Location = new System.Drawing.Point(103, 113);
             this.textBox_Username.Multiline = true;
             this.textBox_Username.Name = "textBox_Username";
             this.textBox_Username.Size = new System.Drawing.Size(211, 42);
@@ -81,7 +83,7 @@
             // textBox_Password
             // 
             this.textBox_Password.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_Password.Location = new System.Drawing.Point(103, 167);
+            this.textBox_Password.Location = new System.Drawing.Point(103, 186);
             this.textBox_Password.Multiline = true;
             this.textBox_Password.Name = "textBox_Password";
             this.textBox_Password.Size = new System.Drawing.Size(211, 41);
@@ -92,12 +94,32 @@
             this.errorProvider1.BlinkRate = 100;
             this.errorProvider1.ContainerControl = this;
             // 
+            // textBox_serverAdress
+            // 
+            this.textBox_serverAdress.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.textBox_serverAdress.Location = new System.Drawing.Point(103, 48);
+            this.textBox_serverAdress.Name = "textBox_serverAdress";
+            this.textBox_serverAdress.Size = new System.Drawing.Size(211, 33);
+            this.textBox_serverAdress.TabIndex = 5;
+            // 
+            // label_server
+            // 
+            this.label_server.AutoSize = true;
+            this.label_server.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.label_server.Location = new System.Drawing.Point(98, 20);
+            this.label_server.Name = "label_server";
+            this.label_server.Size = new System.Drawing.Size(65, 25);
+            this.label_server.TabIndex = 6;
+            this.label_server.Text = "Server";
+            // 
             // Form_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(405, 301);
+            this.Controls.Add(this.label_server);
+            this.Controls.Add(this.textBox_serverAdress);
             this.Controls.Add(this.textBox_Password);
             this.Controls.Add(this.textBox_Username);
             this.Controls.Add(this.label_Password);
@@ -123,6 +145,8 @@
         private System.Windows.Forms.TextBox textBox_Username;
         private System.Windows.Forms.TextBox textBox_Password;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.TextBox textBox_serverAdress;
+        private System.Windows.Forms.Label label_server;
     }
 }
 

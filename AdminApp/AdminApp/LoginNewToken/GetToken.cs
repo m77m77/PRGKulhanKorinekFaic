@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AdminApp.CommunicationClasses;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Windows.Forms;
 
 namespace AdminApp.LoginNewToken
 {
@@ -34,6 +35,28 @@ namespace AdminApp.LoginNewToken
             }
             if (r.Status == null)
                 r.Status = "OK";
+
+
+            if(r.Error == "ConnectionError")
+            {
+                MessageBox.Show("fail0");
+            }
+            if (r.Error == "TokenGenerationFailed")
+            {
+                MessageBox.Show("fail1");
+            }
+            if (r.Error == "BadPassword")
+            {
+                MessageBox.Show("fail2");
+            }
+            if (r.Error == "BadUserName")
+            {
+                MessageBox.Show("fail3");
+            }
+            if (r.Error == "ConnectionWithDatabaseProblem")
+            {
+                MessageBox.Show("fail4");
+            }
 
             return r;
         }
