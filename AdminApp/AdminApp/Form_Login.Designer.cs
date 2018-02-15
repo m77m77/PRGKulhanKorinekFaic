@@ -37,6 +37,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.textBox_serverAdress = new System.Windows.Forms.TextBox();
             this.label_server = new System.Windows.Forms.Label();
+            this.label_error = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,12 +113,24 @@
             this.label_server.TabIndex = 6;
             this.label_server.Text = "Server";
             // 
+            // label_error
+            // 
+            this.label_error.AutoSize = true;
+            this.label_error.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.label_error.ForeColor = System.Drawing.Color.Red;
+            this.label_error.Location = new System.Drawing.Point(178, 281);
+            this.label_error.Name = "label_error";
+            this.label_error.Size = new System.Drawing.Size(54, 25);
+            this.label_error.TabIndex = 7;
+            this.label_error.Text = "error";
+            // 
             // Form_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(405, 301);
+            this.ClientSize = new System.Drawing.Size(405, 315);
+            this.Controls.Add(this.label_error);
             this.Controls.Add(this.label_server);
             this.Controls.Add(this.textBox_serverAdress);
             this.Controls.Add(this.textBox_Password);
@@ -147,6 +160,7 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TextBox textBox_serverAdress;
         private System.Windows.Forms.Label label_server;
+        private System.Windows.Forms.Label label_error;
     }
 }
 

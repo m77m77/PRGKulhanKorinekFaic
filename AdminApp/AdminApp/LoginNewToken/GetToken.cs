@@ -12,8 +12,9 @@ namespace AdminApp.LoginNewToken
 {
     public class ServerAccess
     {
-        public async Task<Response> GetTokenMethod(AdminPost adminpost)
+        public async Task<bool> GetTokenMethod(AdminPost adminpost,Label label)
         {
+        bool ret = true;
         Response r = new Response();
 
         string json = "";
@@ -27,7 +28,7 @@ namespace AdminApp.LoginNewToken
             try
             {
                 t = await http.PostAsync("http://localhost:63058/api/newtoken/admin", sc);
-                r = JsonConvert.DeserializeObject<Response>(t.Content.ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+                r = JsonConvert.DeserializeObject<Response>(await t.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
             }
             catch(Exception ex)
             {
@@ -36,29 +37,40 @@ namespace AdminApp.LoginNewToken
             if (r.Status == null)
                 r.Status = "OK";
 
+            label.Visible = false;
 
             if(r.Error == "ConnectionError")
             {
-                MessageBox.Show("fail0");
+                label.Text = "ConnectionError";
+                label.Visible = true;
+                ret = false;
             }
             if (r.Error == "TokenGenerationFailed")
             {
-                MessageBox.Show("fail1");
+                label.Text = "TokenGenerationFailed";
+                label.Visible = true;
+                ret = false;
             }
             if (r.Error == "BadPassword")
             {
-                MessageBox.Show("fail2");
+                label.Text = "BadPassword";
+                label.Visible = true;
+                ret = false;
             }
             if (r.Error == "BadUserName")
             {
-                MessageBox.Show("fail3");
+                label.Text = "BadUserName";
+                label.Visible = true;
+                ret = false;
             }
             if (r.Error == "ConnectionWithDatabaseProblem")
             {
-                MessageBox.Show("fail4");
+                label.Text = "ConnectionWithDatabaseProblem";
+                label.Visible = true;
+                ret = false;
             }
 
-            return r;
+            return ret;
         }
         
 

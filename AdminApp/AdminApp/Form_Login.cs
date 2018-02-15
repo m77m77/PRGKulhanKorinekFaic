@@ -18,6 +18,7 @@ namespace AdminApp
         public Form_Login()
         {
             InitializeComponent();
+            label_error.Visible = false;
             textBox_Password.PasswordChar = '•';
         }
 
@@ -27,15 +28,20 @@ namespace AdminApp
             
             if (this.IsValid())
             {
+                bool res;
                 AdminPost ap = new AdminPost();
                 ap.Name = textBox_Username.Text;
                 ap.Password = textBox_Password.Text;
 
-                await gt.GetTokenMethod(ap);
+                res = await gt.GetTokenMethod(ap,label_error);
 
+                if(res == true)
+                {
                 this.Hide();
                 Form_Menu frm = new Form_Menu(gt);
                 if (frm.ShowDialog() == DialogResult.OK) { }
+                }
+                
             }
           
         }
@@ -59,6 +65,5 @@ namespace AdminApp
             return valid;
 
         }
-
     }
 }
