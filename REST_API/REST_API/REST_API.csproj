@@ -193,6 +193,7 @@
     <Compile Include="CommunicationClasses\IData.cs" />
     <Compile Include="CommunicationClasses\ListSettingsData.cs" />
     <Compile Include="CommunicationClasses\Response.cs" />
+    <Compile Include="Controllers\DaemonController.cs" />
     <Compile Include="Controllers\NewTokenController.cs" />
     <Compile Include="Models\Settings\BackupFrequencyScheme.cs" />
     <Compile Include="Models\Settings\BackupTime.cs" />
