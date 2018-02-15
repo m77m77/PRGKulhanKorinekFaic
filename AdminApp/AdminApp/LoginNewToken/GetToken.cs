@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace AdminApp.LoginNewToken
 {
-    public class GetToken
+    public class ServerAccess
     {
         public async Task<Response> GetTokenMethod(AdminPost adminpost)
         {

@@ -23,7 +23,8 @@ namespace AdminApp
 
         private async void button_Login_Click(object sender, EventArgs e)
         {
-            GetToken gt = new GetToken();
+            ServerAccess gt = new ServerAccess();
+            
             if (this.IsValid())
             {
                 AdminPost ap = new AdminPost();
@@ -33,7 +34,7 @@ namespace AdminApp
                 await gt.GetTokenMethod(ap);
 
                 this.Hide();
-                Form_Menu frm = new Form_Menu();
+                Form_Menu frm = new Form_Menu(gt);
                 if (frm.ShowDialog() == DialogResult.OK) { }
             }
           

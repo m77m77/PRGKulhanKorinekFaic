@@ -8,13 +8,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AdminApp.LoginNewToken;
 
 
 namespace AdminApp
 {
     public partial class Form_Menu : Form
     {
-        public Form_Menu()
+        public Form_Menu(ServerAccess gettoken)
         {
             InitializeComponent();
 
