@@ -20,7 +20,7 @@ namespace AdminApp.LoginNewToken
         json = JsonConvert.SerializeObject(adminpost, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
 
         HttpClient http = new HttpClient();
-        StringContent sc = new StringContent(json);
+        StringContent sc = new StringContent(json, Encoding.UTF8, "application/json");
 
         HttpResponseMessage t = new HttpResponseMessage();
         
