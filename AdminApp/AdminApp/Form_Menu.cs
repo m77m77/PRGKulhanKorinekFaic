@@ -249,6 +249,94 @@ namespace AdminApp
             this.panel_Daily.Visible = false;
         }
 
-      
+        private void comboBox_Afterbackup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_Path_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox_Savingformat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_FTPAdress_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_FTPPassword_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_FTPPort_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_Savingformat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_Adress_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_FTPUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_Selectdestination_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_FTPport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label_AfterBackup_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

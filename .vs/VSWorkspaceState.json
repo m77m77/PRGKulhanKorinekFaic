@@ -1,15 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\REST_API",
+    "\\AdminApp",
+    "\\AdminApp\\AdminApp",
+    "\\AdminApp\\AdminApp\\obj\\Debug",
     "\\REST_API\\REST_API",
     "\\REST_API\\REST_API\\CommunicationClasses",
     "\\REST_API\\REST_API\\Content",
     "\\REST_API\\REST_API\\Controllers",
     "\\REST_API\\REST_API\\DatabaseConnectionClasses",
-    "\\REST_API\\REST_API\\Models",
-    "\\REST_API\\REST_API\\Models\\Settings"
+    "\\REST_API\\REST_API\\Models"
   ],
-  "SelectedNode": "\\REST_API\\REST_API\\Controllers\\AdminController.cs",
+  "SelectedNode": "\\AdminApp\\AdminApp.sln",
   "PreviewInSolutionExplorer": false
 }
