@@ -33,7 +33,7 @@ namespace AdminApp
                 ap.Name = textBox_Username.Text;
                 ap.Password = textBox_Password.Text;
 
-                res = await gt.GetTokenMethod(ap,label_error);
+                res = await gt.GetTokenMethod(ap,label_error,textBox_serverAdress);
 
                 if(res == true)
                 {
