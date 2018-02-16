@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using REST_API.CommunicationClasses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace REST_API.Models.Settings
 {
-    public class Settings
+    public class Settings : IData
     {
         public int DaemonID { get; set; }
         public string DaemonName { get; set; }

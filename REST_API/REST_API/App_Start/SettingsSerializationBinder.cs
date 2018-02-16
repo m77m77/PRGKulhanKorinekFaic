@@ -28,6 +28,8 @@ namespace REST_API
                     return typeof(SFTPDestination);
                 case "ListSettingsData":
                     return typeof(ListSettingsData);
+                case "Settings":
+                    return typeof(Settings);
             }
 
             return null;

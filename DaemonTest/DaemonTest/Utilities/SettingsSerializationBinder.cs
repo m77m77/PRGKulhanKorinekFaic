@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using DaemonTest.Models.Settings;
 
-namespace DaemonTest
+namespace DaemonTest.Utilities
 {
     public class SettingsSerializationBinder : ISerializationBinder
     {
@@ -24,6 +24,8 @@ namespace DaemonTest
                     return typeof(LocalNetworkDestination);
                 case "SFTPDestination":
                     return typeof(SFTPDestination);
+                case "Settings":
+                    return typeof(Settings);
             }
 
             return null;

@@ -39,10 +39,6 @@ namespace REST_API.Controllers
 
             Response r = new Response();
 
-            ListSettingsData data = new ListSettingsData();
-            data.ListSettings = new List<Settings>();
-            r.Data = data;
-
             try
             {
                 Connection.Open();
@@ -50,8 +46,9 @@ namespace REST_API.Controllers
 
                 while (Reader.Read())
                 {
-                    data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
-                    data.ListSettings[0].DaemonID = t.DaemonID;
+                    Settings s = JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                    s.DaemonID = t.DaemonID;
+                    r.Data = s;
                 }
                 Reader.Close();
             }

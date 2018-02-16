@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DaemonTest.CommunicationClasses;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace DaemonTest.Models.Settings
 {
-    public class Settings
+    public class Settings : IData
     {
         public int DaemonID { get; set; }
         public string DaemonName { get; set; }
