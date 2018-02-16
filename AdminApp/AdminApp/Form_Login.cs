@@ -38,7 +38,7 @@ namespace AdminApp
                 if(res == true)
                 {
                 this.Hide();
-                Form_Menu frm = new Form_Menu(gt);
+                Form_NewMenu frm = new Form_NewMenu(gt);
                 if (frm.ShowDialog() == DialogResult.OK) { }
                 }
                 
