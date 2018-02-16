@@ -17,8 +17,25 @@ namespace REST_API.Controllers
     {
         public Settings Get()
         {
-            return JsonConvert.DeserializeObject<Settings>("{\"DataType\":null,\"BeforeBackup\":null,\"AfterBackup\":null,\"SaveFormat\":null,\"Destination\":{\"$type\":\"REST_API.Models.Settings.FTPDestination, REST_API\",\"Adress\":null,\"Port\":null,\"Username\":null,\"Password\":null,\"Path\":null,\"Type\":\"FTP\"}}", new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto});
-            //return JsonConvert.SerializeObject(new Settings() { Destination = new FTPDestination() }, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+            Settings s = new Settings();
+            s.ActionAfterBackup = "RESTART";
+            s.BackupSourcePath = @"C:\DATA";
+            s.DaemonName = "Main daemon";
+            s.Destination = new LocalNetworkDestination() { Path = @"E:\BACKUP" };
+            s.SaveFormat = "ZIP";
+            BackupScheme scheme = new BackupScheme();
+            scheme.Type = "WEEKLY";
+            scheme.MaxBackups = 5;
+            scheme.BackupTimes = new List<BackupTime>();
+            scheme.BackupTimes.Add(new BackupTime() { DayNumber = 1, Time = new TimeSpan(5, 0, 0), Type = "FULL" });
+            scheme.BackupTimes.Add(new BackupTime() { DayNumber = 4, Time = new TimeSpan(4, 0, 0), Type = "DIFF" });
+            scheme.BackupTimes.Add(new BackupTime() { DayNumber = 7, Time = new TimeSpan(21, 0, 0), Type = "DIFF" });
+
+            s.BackupScheme = scheme;
+
+            return s;
+            //return JsonConvert.DeserializeObject<Settings>("{\"DataType\":null,\"BeforeBackup\":null,\"AfterBackup\":null,\"SaveFormat\":null,\"Destination\":{\"$type\":\"REST_API.Models.Settings.FTPDestination, REST_API\",\"Adress\":null,\"Port\":null,\"Username\":null,\"Password\":null,\"Path\":null,\"Type\":\"FTP\"}}", new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto});
+            //return JsonConvert.SerializeObject(new Settings() { Destination = new FTPDestination() }, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
         }
 
         //POST api/newtoken/admin

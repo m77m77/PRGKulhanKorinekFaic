@@ -55,7 +55,7 @@ namespace REST_API.Controllers
                     //data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString()));
                     //JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString()).DaemonID = Convert.ToInt32(Reader["id"]);
 
-                    data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(),new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto }));
+                    data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(),new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
                     data.ListSettings[i].DaemonID = Convert.ToInt32(Reader["id"]);
                     i++;
                 }
@@ -98,7 +98,7 @@ namespace REST_API.Controllers
 
             Query.Parameters.AddWithValue("@DaemonID", value.DaemonID);
             value.DaemonID = 0;
-            Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(value, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto }));
+            Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(value, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
             
             
             Response r = new Response();

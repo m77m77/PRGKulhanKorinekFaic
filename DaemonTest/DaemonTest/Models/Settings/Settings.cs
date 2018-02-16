@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using REST_API.CommunicationClasses;
+﻿using DaemonTest.CommunicationClasses;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace REST_API.Models.Settings
+namespace DaemonTest.Models.Settings
 {
     public class Settings : IData
     {
