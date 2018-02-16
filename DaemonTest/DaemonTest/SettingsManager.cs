@@ -6,5 +6,6 @@ namespace DaemonTest
 {
     public static class SettingsManager
     {
+
     }
 }

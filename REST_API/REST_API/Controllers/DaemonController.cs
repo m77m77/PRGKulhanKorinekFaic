@@ -50,7 +50,7 @@ namespace REST_API.Controllers
 
                 while (Reader.Read())
                 {
-                    data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto }));
+                    data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
                     data.ListSettings[0].DaemonID = t.DaemonID;
                 }
                 Reader.Close();

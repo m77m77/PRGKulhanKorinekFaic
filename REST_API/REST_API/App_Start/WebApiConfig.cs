@@ -20,6 +20,7 @@ namespace REST_API
             // Služby a konfigurace rozhraní Web API
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
             config.Formatters.JsonFormatter.SerializerSettings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Auto;
+            config.Formatters.JsonFormatter.SerializerSettings.SerializationBinder = new SettingsSerializationBinder();
             // Trasy rozhraní Web API
             config.MapHttpAttributeRoutes();
 

@@ -15,10 +15,10 @@ namespace REST_API.Controllers
 {
     public class NewTokenController : ApiController
     {
-        public Settings Get()
+        public string Get()
         {
-            return JsonConvert.DeserializeObject<Settings>("{\"DataType\":null,\"BeforeBackup\":null,\"AfterBackup\":null,\"SaveFormat\":null,\"Destination\":{\"$type\":\"REST_API.Models.Settings.FTPDestination, REST_API\",\"Adress\":null,\"Port\":null,\"Username\":null,\"Password\":null,\"Path\":null,\"Type\":\"FTP\"}}", new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto});
-            //return JsonConvert.SerializeObject(new Settings() { Destination = new FTPDestination() }, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+            //return JsonConvert.DeserializeObject<Settings>("{\"DataType\":null,\"BeforeBackup\":null,\"AfterBackup\":null,\"SaveFormat\":null,\"Destination\":{\"$type\":\"REST_API.Models.Settings.FTPDestination, REST_API\",\"Adress\":null,\"Port\":null,\"Username\":null,\"Password\":null,\"Path\":null,\"Type\":\"FTP\"}}", new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto});
+            return JsonConvert.SerializeObject(new Settings() { Destination = new FTPDestination() }, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
         }
 
         //POST api/newtoken/admin
