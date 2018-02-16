@@ -12,7 +12,7 @@ namespace AdminApp.LoginNewToken
 {
     public class ServerAccess
     {
-        public async Task<bool> GetTokenMethod(AdminPost adminpost,Label label)
+        public async Task<bool> GetTokenMethod(AdminPost adminpost,Label label,TextBox textbox)
         {
         bool ret = true;
         Response r = new Response();
@@ -27,7 +27,8 @@ namespace AdminApp.LoginNewToken
         
             try
             {
-                t = await http.PostAsync("http://localhost:63058/api/newtoken/admin", sc);
+                //t = await http.PostAsync("http://localhost:63058/api/newtoken/admin", sc);
+                t = await http.PostAsync(textbox.Text + "/api/newtoken/admin", sc);
                 r = JsonConvert.DeserializeObject<Response>(await t.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
             }
             catch(Exception ex)
