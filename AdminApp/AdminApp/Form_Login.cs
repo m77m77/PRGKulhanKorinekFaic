@@ -51,8 +51,12 @@ namespace AdminApp
             bool valid  = true;
             this.errorProvider1.Clear();
 
-
-            if(string.IsNullOrWhiteSpace(this.textBox_Username.Text))
+            if (string.IsNullOrWhiteSpace(this.textBox_serverAdress.Text))
+            {
+                this.errorProvider1.SetError(this.textBox_serverAdress, "Cannot be empty");
+                valid = false;
+            }
+            else if (string.IsNullOrWhiteSpace(this.textBox_Username.Text))
             {
                 this.errorProvider1.SetError(this.textBox_Username, "Cannot be empty");
                 valid = false;
