@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using AdminApp.LoginNewToken;
 
 namespace AdminApp
 {
@@ -15,7 +16,7 @@ namespace AdminApp
     {
  
 
-        public Form_NewMenu()
+        public Form_NewMenu(ServerAccess gettoken)
         {
             InitializeComponent();
             this.CharPassword();
