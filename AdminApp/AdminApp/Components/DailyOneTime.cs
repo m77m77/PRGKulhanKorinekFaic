@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApp.Models.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -63,6 +64,40 @@ namespace AdminApp.Components
             page.Controls.Add(this.dailyTime);
             page.Controls.Add(this.dailySelectType);
             page.Controls.Add(this.dailyRemove);
+        }
+
+        public void LoadSettings(BackupTime time)
+        {
+            this.dailyTime.Value = new DateTime(2000, 1, 1, time.Time.Hours, time.Time.Minutes, time.Time.Seconds);
+            
+            if(time.Type == "FULL")
+            {
+                this.dailySelectType.SelectedIndex = 0;
+            }
+            else if (time.Type == "INC")
+            {
+                this.dailySelectType.SelectedIndex = 1;
+            }
+            else if (time.Type == "DIFF")
+            {
+                this.dailySelectType.SelectedIndex = 2;
+            }
+        }
+        public void SaveSettings(BackupTime bcTime)
+        {
+            bcTime.Time = this.GetTime;
+            if(this.dailySelectType.SelectedIndex == 0)
+            {
+                bcTime.Type = "FULL";
+            }
+            else if (this.dailySelectType.SelectedIndex == 1)
+            {
+                bcTime.Type = "INC";
+            }
+            else if (this.dailySelectType.SelectedIndex == 2)
+            {
+                bcTime.Type = "DIFF";
+            }
         }
 
         private void DailyRemove_Click(object sender, EventArgs e)

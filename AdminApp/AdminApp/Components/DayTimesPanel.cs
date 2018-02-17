@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApp.Models.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,6 +49,19 @@ namespace AdminApp.Components
             this.Panel.BringToFront();
         }
 
+        public void SaveSettings(List<BackupTime> bcTimes, int dayNum)
+        {
+            foreach (DayTimesPanelOneTime item in this.times)
+            {
+                BackupTime bcTime = new BackupTime();
+                bcTime.DayNumber = dayNum;
+
+                item.SaveSettings(bcTime);
+
+                bcTimes.Add(bcTime);
+            }
+        }
+
         private void Add_Click(object sender, EventArgs e)
         {
             this.AddTime();
@@ -58,13 +72,19 @@ namespace AdminApp.Components
             this.ListChanged?.Invoke();
         }
 
-        public void AddTime()
+        public void AddTime(BackupTime bcTime = null)
         {
             DayTimesPanelOneTime time = new DayTimesPanelOneTime(this, this.times.Count);
+            if(bcTime != null)
+            {
+                time.LoadSettings(bcTime);
+            }
             time.TimeChanged += TimeChanged;
             this.times.Add(time);
             this.ChangeAddButtonPosition();
-            this.ListChanged?.Invoke();
+
+            if (bcTime == null)
+                this.ListChanged?.Invoke();
         }
 
         private void ChangeAddButtonPosition()

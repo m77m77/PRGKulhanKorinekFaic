@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApp.Models.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -76,6 +77,41 @@ namespace AdminApp.Components
             parent.Panel.Controls.Add(this.timePicker);
             parent.Panel.Controls.Add(this.selectType);
             parent.Panel.Controls.Add(this.remove);
+        }
+
+        public void LoadSettings(BackupTime bcTime)
+        {
+            this.timePicker.Value = new DateTime(2000, 1, 1,bcTime.Time.Hours, bcTime.Time.Minutes, bcTime.Time.Seconds);
+
+            if (bcTime.Type == "FULL")
+            {
+                this.selectType.SelectedIndex = 0;
+            }
+            else if (bcTime.Type == "INC")
+            {
+                this.selectType.SelectedIndex = 1;
+            }
+            else if (bcTime.Type == "DIFF")
+            {
+                this.selectType.SelectedIndex = 2;
+            }
+        }
+
+        public void SaveSettings(BackupTime bcTime)
+        {
+            bcTime.Time = this.GetTime;
+            if (this.selectType.SelectedIndex == 0)
+            {
+                bcTime.Type = "FULL";
+            }
+            else if (this.selectType.SelectedIndex == 1)
+            {
+                bcTime.Type = "INC";
+            }
+            else if (this.selectType.SelectedIndex == 2)
+            {
+                bcTime.Type = "DIFF";
+            }
         }
 
         private void TimePicker_ValueChanged(object sender, EventArgs e)

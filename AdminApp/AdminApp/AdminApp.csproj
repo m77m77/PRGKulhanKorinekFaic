@@ -50,12 +50,16 @@
   <ItemGroup>
     <Compile Include="CommunicationClasses\AdminPost.cs" />
     <Compile Include="CommunicationClasses\IData.cs" />
+    <Compile Include="CommunicationClasses\ListSettingsData.cs" />
     <Compile Include="CommunicationClasses\Response.cs" />
     <Compile Include="Components\BackupCalendar.cs" />
+    <Compile Include="Components\BackupSchemeTab.cs" />
+    <Compile Include="Components\BackupSettingsTab.cs" />
     <Compile Include="Components\Daily.cs" />
     <Compile Include="Components\DailyOneTime.cs" />
     <Compile Include="Components\DayTimesPanel.cs" />
     <Compile Include="Components\DayTimesPanelOneTime.cs" />
+    <Compile Include="Components\OneDaemonSettings.cs" />
     <Compile Include="Components\OneDay.cs" />
     <Compile Include="Form_Login.cs">
       <SubType>Form</SubType>
@@ -76,8 +80,18 @@
       <DependentUpon>Form_NewMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginNewToken\GetToken.cs" />
+    <Compile Include="Models\Settings\BackupScheme.cs" />
+    <Compile Include="Models\Settings\BackupTime.cs" />
+    <Compile Include="Models\Settings\FTPDestination.cs" />
+    <Compile Include="Models\Settings\IDestination.cs" />
+    <Compile Include="Models\Settings\LocalNetworkDestination.cs" />
+    <Compile Include="Models\Settings\OneTimeBackup.cs" />
+    <Compile Include="Models\Settings\Settings.cs" />
+    <Compile Include="Models\Settings\SFTPDestination.cs" />
+    <Compile Include="Models\Settings\SystemSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsSerializationBinder.cs" />
     <EmbeddedResource Include="Form_Login.resx">
       <DependentUpon>Form_Login.cs</DependentUpon>
     </EmbeddedResource>

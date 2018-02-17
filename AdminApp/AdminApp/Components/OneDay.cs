@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using AdminApp.Models.Settings;
 
 namespace AdminApp.Components
 {
@@ -51,7 +52,23 @@ namespace AdminApp.Components
             panel.ListChanged += this.PanelChanged;
         }
 
+        public void LoadSettings(BackupTime bcTime)
+        {
+            this.panel.AddTime(bcTime);
+            this.PanelChanged();
+        }
+
+        public void SaveSettings(List<BackupTime> bcTimes,int dayNum)
+        {
+            this.panel.SaveSettings(bcTimes, dayNum);
+        }
+
         private void PanelChanged()
+        {
+            this.PanelChanged(false);
+        }
+
+        private void PanelChanged(bool isLoading)
         {
             if (panel.ItemCount > 0)
             {
@@ -64,7 +81,8 @@ namespace AdminApp.Components
                 this.dayButton.FlatAppearance.MouseOverBackColor = Color.White;
             }
 
-            this.ListChanged?.Invoke();
+            if(!isLoading)
+                this.ListChanged?.Invoke();
         }
 
         private void DayButton_Click(object sender, EventArgs e)

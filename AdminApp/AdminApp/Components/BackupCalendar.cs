@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApp.Models.Settings;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace AdminApp.Components
         private List<OneDay> days;
         public event Action ValuesChanged;
 
-        public BackupCalendar(TabPage page,Form_NewMenu menu,int count,params string[] names)
+        public BackupCalendar(TabControl control,TabPage page,Form_NewMenu menu,int count,params string[] names)
         {
             days = new List<OneDay>();
 
@@ -29,8 +30,27 @@ namespace AdminApp.Components
                 days.Add(day);
             }
 
-            ((TabControl)page.Parent).SelectedIndexChanged += BackupCalendar_TabControl_SelectedIndexChanged;
+            control.SelectedIndexChanged += BackupCalendar_TabControl_SelectedIndexChanged;
         }
+
+        public void LoadSettings(Settings settings)
+        {
+            foreach (BackupTime item in settings.BackupScheme.BackupTimes)
+            {
+                this.days[item.DayNumber].LoadSettings(item);
+            }
+        }
+
+        public void SaveSettings(Settings settings)
+        {
+            List<BackupTime> bcTimes = new List<BackupTime>();
+            for (int i = 0; i < this.days.Count; i++)
+            {
+                this.days[i].SaveSettings(bcTimes, i);
+            }
+
+            settings.BackupScheme.BackupTimes = bcTimes;
+        }   
 
         private void BackupCalendar_TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {

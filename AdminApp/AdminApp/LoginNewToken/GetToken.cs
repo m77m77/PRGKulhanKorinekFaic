@@ -18,7 +18,7 @@ namespace AdminApp.LoginNewToken
         Response r = new Response();
 
         string json = "";
-        json = JsonConvert.SerializeObject(adminpost, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+        json = JsonConvert.SerializeObject(adminpost, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto,SerializationBinder = new SettingsSerializationBinder() });
 
         HttpClient http = new HttpClient();
         StringContent sc = new StringContent(json, Encoding.UTF8, "application/json");
@@ -29,7 +29,7 @@ namespace AdminApp.LoginNewToken
             {
                 //t = await http.PostAsync("http://localhost:63058/api/newtoken/admin", sc);
                 t = await http.PostAsync(textbox.Text + "/api/newtoken/admin", sc);
-                r = JsonConvert.DeserializeObject<Response>(await t.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto });
+                r = JsonConvert.DeserializeObject<Response>(await t.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto,SerializationBinder = new SettingsSerializationBinder() });
             }
             catch(Exception ex)
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApp.Models.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -47,13 +48,44 @@ namespace AdminApp.Components
             this.ListChanged?.Invoke();
         }
 
-        public void AddTime()
+        public void LoadSettings(Settings settings)
+        {
+            foreach (BackupTime item in settings.BackupScheme.BackupTimes)
+            {
+                this.AddTime(item);
+            }
+
+            ValidateFirstDay();
+        }
+
+        public void SaveSettings(Settings settings)
+        {
+            List<BackupTime> bcTimes = new List<BackupTime>();
+            foreach (DailyOneTime item in this.times)
+            {
+                BackupTime bcTime = new BackupTime();
+                bcTime.DayNumber = 1;
+                item.SaveSettings(bcTime);
+                bcTimes.Add(bcTime);
+            }
+
+            settings.BackupScheme.BackupTimes = bcTimes;
+        }
+
+        public void AddTime(BackupTime bcTime = null)
         {
             DailyOneTime time = new DailyOneTime(this.times.Count, this.Parent, this);
+            if(bcTime != null)
+            {
+                time.LoadSettings(bcTime);
+            }
+
             time.ValueChanged += ValuesChanged;
             this.times.Add(time);
             this.ChangeAddButtonPosition();
-            this.ListChanged?.Invoke();
+
+            if(bcTime == null)
+                this.ListChanged?.Invoke();
         }
 
         private void ChangeAddButtonPosition()

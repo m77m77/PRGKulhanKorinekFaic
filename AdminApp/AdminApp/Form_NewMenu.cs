@@ -10,6 +10,8 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using AdminApp.LoginNewToken;
 using AdminApp.Components;
+using AdminApp.Models.Settings;
+using Newtonsoft.Json;
 
 namespace AdminApp
 {
@@ -24,22 +26,46 @@ namespace AdminApp
             //p.AddTime();
             //p.AddTime();
             //p.AddTime();
-            BackupCalendar weekly = new BackupCalendar(this.tabPage_Weekly, this, 7, "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun");
-            BackupCalendar monthly = new BackupCalendar(this.tabPage_Monthly, this, 31);
+            //BackupCalendar weekly = new BackupCalendar(this.tabPage_Weekly, this, 7, "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun");
+            //BackupCalendar monthly = new BackupCalendar(this.tabPage_Monthly, this, 31);
 
-            Daily daily = new Daily(this.tabPage_Daily);
-            daily.AddTime();
+            //Daily daily = new Daily(this.tabPage_Daily);
+            //daily.AddTime();
 
-            this.CharPassword();
-            this.TimeSettings();
-            this.DefaultBools();
-        }
+            //BackupSchemeTab tab = new BackupSchemeTab(this.tabPage_BackupScheme, this);
+            //BackupSettingsTab settingsTab = new BackupSettingsTab(this.tabPage_BackupSettings);
+            Settings settings = new Settings();
+            settings.DaemonID = 1;
+            settings.DaemonName = "Main";
+            settings.BackupSourcePath = @"C\DATA";
+            settings.ActionAfterBackup = "RESTART";
+            settings.SaveFormat = "ZIP";
 
-        private void CharPassword()
-        {
-            textBox_SMTPPassword.PasswordChar = '•';
-            textBox_FTPPassword.PasswordChar = '•';
-            textBox_SFTPPassword.PasswordChar = '•';
+            //LocalNetworkDestination dest = new LocalNetworkDestination();
+            FTPDestination dest = new FTPDestination();
+            dest.Path = @"\BACKUP\ABCD";
+            dest.Adress = "localhost";
+            dest.Port = "5430";
+            dest.Username = "admin";
+            dest.Password = "password";
+            settings.Destination = dest;
+
+            BackupScheme scheme = new BackupScheme();
+            scheme.Type = "WEEKLY";
+            scheme.MaxBackups = 5;
+            scheme.BackupTimes = new List<BackupTime>();
+            scheme.BackupTimes.Add(new BackupTime() { Type = "FULL", Time = new TimeSpan(4, 0, 0), DayNumber = 0 });
+            scheme.BackupTimes.Add(new BackupTime() { Type = "DIFF", Time = new TimeSpan(5, 0, 0), DayNumber = 4 });
+            scheme.BackupTimes.Add(new BackupTime() { Type = "INC", Time = new TimeSpan(6, 0, 0), DayNumber = 6 });
+            settings.BackupScheme = scheme;
+
+            OneDaemonSettings daemonSet = new OneDaemonSettings(this.tabControl_Daemon, this,false,settings);
+            OneDaemonSettings defaultSet = new OneDaemonSettings(this.tabControl_Daemon, this,true,settings);
+
+            MessageBox.Show(JsonConvert.SerializeObject(daemonSet.SaveSettings(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+            //this.CharPassword();
+            //this.TimeSettings();
+            //this.DefaultBools();
         }
 
 
@@ -54,13 +80,6 @@ namespace AdminApp
             System.Threading.Thread.CurrentThread.CurrentCulture = culture;
             System.Threading.Thread.CurrentThread.CurrentUICulture = culture;
 
-            dateTimePicker_OneTimeYMD.Format = DateTimePickerFormat.Custom;
-            dateTimePicker_OneTimeYMD.CustomFormat = "yyyy-MM-dd"; // or the format you prefer
-
-            this.dateTimePicker_OneTimeTime.CustomFormat = "hh:mm:ss";
-            this.dateTimePicker_OneTimeTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker_OneTimeTime.ShowUpDown = true;
-
         }
 
         private bool IsValid()
@@ -72,16 +91,6 @@ namespace AdminApp
             if (Regex.IsMatch(this.textBox_To.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
             {
                 this.errorProvider1.SetError(this.textBox_To, "Type in correct email - xxx@xxx.xx");
-                valid = false;
-            }
-            else if (!this.IsNumber(this.textBox_FTPPort.Text))
-            {
-                this.errorProvider1.SetError(this.textBox_FTPPort, "This is not number");
-                valid = false;
-            }
-            else if (!this.IsNumber(this.textBox_SFTPPort.Text))
-            {
-                this.errorProvider1.SetError(this.textBox_SFTPPort, "This is not number");
                 valid = false;
             }
 
@@ -114,70 +123,6 @@ namespace AdminApp
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-        }
-
-
-        private void radioButton_Localnetwork_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!radioButton_Localnetwork.Checked)
-                return;
-
-            this.textBox_FTPPassword.Enabled = false;
-            this.textBox_FTPUsername.Enabled = false;
-            this.textBox_FTPPort.Enabled = false;
-            this.textBox_FTPAdress.Enabled = false;
-            this.textBox_FTPPath.Enabled = false;
-
-            this.textBox_SFTPPassword.Enabled = false;
-            this.textBox_SFTPUsername.Enabled = false;
-            this.textBox_SFTPPort.Enabled = false;
-            this.textBox_SFTPAdress.Enabled = false;
-            this.textBox_SFTPPath.Enabled = false;
-
-
-            this.textBox_Selectdestination.Enabled = true;
-        }
-
-        private void radioButton_SFTP_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!radioButton_SFTP.Checked)
-                return;
-
-            this.textBox_FTPPassword.Enabled = false;
-            this.textBox_FTPUsername.Enabled = false;
-            this.textBox_FTPPort.Enabled = false;
-            this.textBox_FTPAdress.Enabled = false;
-            this.textBox_FTPPath.Enabled = false;
-
-            this.textBox_SFTPPassword.Enabled = true;
-            this.textBox_SFTPUsername.Enabled = true;
-            this.textBox_SFTPPort.Enabled = true;
-            this.textBox_SFTPAdress.Enabled = true;
-            this.textBox_SFTPPath.Enabled = true;
-
-
-            this.textBox_Selectdestination.Enabled = false;
-        }
-
-        private void radioButton_FTP_CheckedChanged(object sender, EventArgs e)
-        {
-            if (!radioButton_FTP.Checked)
-                return;
-
-            this.textBox_FTPPassword.Enabled = true;
-            this.textBox_FTPUsername.Enabled = true;
-            this.textBox_FTPPort.Enabled = true;
-            this.textBox_FTPAdress.Enabled = true;
-            this.textBox_FTPPath.Enabled = true;
-
-            this.textBox_SFTPPassword.Enabled = false;
-            this.textBox_SFTPUsername.Enabled = false;
-            this.textBox_SFTPPort.Enabled = false;
-            this.textBox_SFTPAdress.Enabled = false;
-            this.textBox_SFTPPath.Enabled = false;
-
-
-            this.textBox_Selectdestination.Enabled = false;
         }
     }
 }
