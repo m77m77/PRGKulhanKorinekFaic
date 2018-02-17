@@ -33,13 +33,16 @@ namespace AdminApp
                 ap.Name = textBox_Username.Text;
                 ap.Password = textBox_Password.Text;
 
-                res = await gt.GetTokenMethod(ap,label_error,textBox_serverAdress);
+                //DEBUG
+                //res = await gt.GetTokenMethod(ap,label_error,textBox_serverAdress);
+                res = true;
 
                 if(res == true)
                 {
                 this.Hide();
                 Form_NewMenu frm = new Form_NewMenu(gt);
                 if (frm.ShowDialog() == DialogResult.OK) { }
+                    this.Close();
                 }
                 
             }
