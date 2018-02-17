@@ -9,6 +9,7 @@ using DaemonTest.SaveMethods;
 using Newtonsoft.Json;
 using DaemonTest.Models.Settings;
 using System.Threading.Tasks;
+using DaemonTest.CommunicationClasses;
 
 namespace DaemonTest
 {
@@ -18,9 +19,9 @@ namespace DaemonTest
         {
             Console.WriteLine("Hello World!");
 
-            Task<bool> a = SettingsManager.GetNewSettings();
-            a.Wait();
-            Console.WriteLine(SettingsManager.CurrentSettings.DaemonName);
+            Task<Response> res =  SettingsManager.GetNewSettings();
+            res.Wait();
+            Console.WriteLine(res.Result.Error);
             Console.ReadLine();
         }
     }

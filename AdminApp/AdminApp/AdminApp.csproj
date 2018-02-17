@@ -51,6 +51,12 @@
     <Compile Include="CommunicationClasses\AdminPost.cs" />
     <Compile Include="CommunicationClasses\IData.cs" />
     <Compile Include="CommunicationClasses\Response.cs" />
+    <Compile Include="Components\BackupCalendar.cs" />
+    <Compile Include="Components\Daily.cs" />
+    <Compile Include="Components\DailyOneTime.cs" />
+    <Compile Include="Components\DayTimesPanel.cs" />
+    <Compile Include="Components\DayTimesPanelOneTime.cs" />
+    <Compile Include="Components\OneDay.cs" />
     <Compile Include="Form_Login.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -48,6 +48,10 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl_Backup = new System.Windows.Forms.TabControl();
             this.tabPage_BackupSettings = new System.Windows.Forms.TabPage();
+            this.textBox_SFTPPath = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.textBox_FTPPath = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.textBox_SFTPAdress = new System.Windows.Forms.TextBox();
             this.textBox_SFTPPassword = new System.Windows.Forms.TextBox();
             this.textBox_SFTPPort = new System.Windows.Forms.TextBox();
@@ -83,92 +87,17 @@
             this.dateTimePicker_OneTimeTime = new System.Windows.Forms.DateTimePicker();
             this.label15 = new System.Windows.Forms.Label();
             this.tabPage_Daily = new System.Windows.Forms.TabPage();
-            this.comboBox_DailyMethod5 = new System.Windows.Forms.ComboBox();
-            this.comboBox_DailyMethod4 = new System.Windows.Forms.ComboBox();
-            this.comboBox_DailyMethod3 = new System.Windows.Forms.ComboBox();
-            this.comboBox_DailyMethod2 = new System.Windows.Forms.ComboBox();
-            this.comboBox_DailyMethod1 = new System.Windows.Forms.ComboBox();
-            this.textBox_DailyKeepingBackups = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.button_DailyRemoveTime5 = new System.Windows.Forms.Button();
-            this.button_DailyRemoveTime4 = new System.Windows.Forms.Button();
-            this.button_DailyRemoveTime3 = new System.Windows.Forms.Button();
-            this.button_DailyAddTime5 = new System.Windows.Forms.Button();
-            this.button_DailyAddTime4 = new System.Windows.Forms.Button();
-            this.button_DailyAddTime3 = new System.Windows.Forms.Button();
-            this.dateTimePicker_DailyTime4 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_DailyTime3 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_DailyTime2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_DailyTime5 = new System.Windows.Forms.DateTimePicker();
-            this.button_DailyRemoveTime2 = new System.Windows.Forms.Button();
-            this.button_DailyAddTime2 = new System.Windows.Forms.Button();
-            this.dateTimePicker_DailyTime1 = new System.Windows.Forms.DateTimePicker();
-            this.label17 = new System.Windows.Forms.Label();
-            this.tabPage_Weekly = new System.Windows.Forms.TabPage();
-            this.panel_WeeklyDay = new System.Windows.Forms.Panel();
-            this.comboBox_WeeklyDay3 = new System.Windows.Forms.ComboBox();
-            this.comboBox_WeeklyDay2 = new System.Windows.Forms.ComboBox();
-            this.comboBox_WeeklyDay1 = new System.Windows.Forms.ComboBox();
-            this.button_WeeklyRemoveTime = new System.Windows.Forms.Button();
-            this.button_WeeklyAddTime = new System.Windows.Forms.Button();
-            this.dateTimePicker_WeeklyTime2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_WeeklyTime1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker_WeeklyTime3 = new System.Windows.Forms.DateTimePicker();
-            this.textBox_WeeklyKeepingBackups = new System.Windows.Forms.TextBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label19 = new System.Windows.Forms.Label();
-            this.checkBox_Tue = new System.Windows.Forms.CheckBox();
-            this.checkBox_Sun = new System.Windows.Forms.CheckBox();
-            this.checkBox_Sat = new System.Windows.Forms.CheckBox();
-            this.checkBox_Fri = new System.Windows.Forms.CheckBox();
-            this.checkBox_Thu = new System.Windows.Forms.CheckBox();
-            this.checkBox_Wed = new System.Windows.Forms.CheckBox();
-            this.checkBox_Mon = new System.Windows.Forms.CheckBox();
-            this.tabPage_Monthly = new System.Windows.Forms.TabPage();
-            this.textBox_MonthlyKeepingBackups = new System.Windows.Forms.TextBox();
+            this.tabPage_Weekly = new System.Windows.Forms.TabPage();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.label20 = new System.Windows.Forms.Label();
-            this.checkBox_MonthlyDay14 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay13 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay11 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay4 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay3 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay27 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay26 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay21 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay7 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay6 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay9 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay20 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay19 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay18 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay24 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay17 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay12 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay10 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay22 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay15 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay8 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay5 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay25 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay23 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay28 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay29 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay30 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay31 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay16 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay2 = new System.Windows.Forms.CheckBox();
-            this.checkBox_MonthlyDay1 = new System.Windows.Forms.CheckBox();
+            this.tabPage_Monthly = new System.Windows.Forms.TabPage();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
             this.button_Cancel = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.panel_MonthlyDay = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.tabControl_DefaultMenu.SuspendLayout();
             this.tabPage_EmailNotification.SuspendLayout();
             this.tabPage_Administration.SuspendLayout();
@@ -180,11 +109,12 @@
             this.tabControl_Scheme.SuspendLayout();
             this.tabPage_OneTime.SuspendLayout();
             this.tabPage_Daily.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabPage_Weekly.SuspendLayout();
-            this.panel_WeeklyDay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.tabPage_Monthly.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.panel_MonthlyDay.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_DefaultMenu
@@ -384,6 +314,10 @@
             // 
             // tabPage_BackupSettings
             // 
+            this.tabPage_BackupSettings.Controls.Add(this.textBox_SFTPPath);
+            this.tabPage_BackupSettings.Controls.Add(this.label18);
+            this.tabPage_BackupSettings.Controls.Add(this.textBox_FTPPath);
+            this.tabPage_BackupSettings.Controls.Add(this.label22);
             this.tabPage_BackupSettings.Controls.Add(this.textBox_SFTPAdress);
             this.tabPage_BackupSettings.Controls.Add(this.textBox_SFTPPassword);
             this.tabPage_BackupSettings.Controls.Add(this.textBox_SFTPPort);
@@ -419,8 +353,51 @@
             this.tabPage_BackupSettings.Text = "Backup settings";
             this.tabPage_BackupSettings.UseVisualStyleBackColor = true;
             // 
+            // textBox_SFTPPath
+            // 
+            this.textBox_SFTPPath.Enabled = false;
+            this.textBox_SFTPPath.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_SFTPPath.Location = new System.Drawing.Point(538, 312);
+            this.textBox_SFTPPath.Multiline = true;
+            this.textBox_SFTPPath.Name = "textBox_SFTPPath";
+            this.textBox_SFTPPath.Size = new System.Drawing.Size(153, 20);
+            this.textBox_SFTPPath.TabIndex = 49;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Enabled = false;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label18.Location = new System.Drawing.Point(464, 315);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(31, 15);
+            this.label18.TabIndex = 48;
+            this.label18.Text = "Path";
+            // 
+            // textBox_FTPPath
+            // 
+            this.textBox_FTPPath.Enabled = false;
+            this.textBox_FTPPath.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_FTPPath.Location = new System.Drawing.Point(286, 312);
+            this.textBox_FTPPath.Multiline = true;
+            this.textBox_FTPPath.Name = "textBox_FTPPath";
+            this.textBox_FTPPath.Size = new System.Drawing.Size(153, 20);
+            this.textBox_FTPPath.TabIndex = 47;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Enabled = false;
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label22.Location = new System.Drawing.Point(212, 315);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(31, 15);
+            this.label22.TabIndex = 44;
+            this.label22.Text = "Path";
+            // 
             // textBox_SFTPAdress
             // 
+            this.textBox_SFTPAdress.Enabled = false;
             this.textBox_SFTPAdress.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBox_SFTPAdress.Location = new System.Drawing.Point(538, 159);
             this.textBox_SFTPAdress.Multiline = true;
@@ -430,6 +407,7 @@
             // 
             // textBox_SFTPPassword
             // 
+            this.textBox_SFTPPassword.Enabled = false;
             this.textBox_SFTPPassword.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBox_SFTPPassword.Location = new System.Drawing.Point(538, 275);
             this.textBox_SFTPPassword.Multiline = true;
@@ -439,6 +417,7 @@
             // 
             // textBox_SFTPPort
             // 
+            this.textBox_SFTPPort.Enabled = false;
             this.textBox_SFTPPort.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBox_SFTPPort.Location = new System.Drawing.Point(538, 198);
             this.textBox_SFTPPort.Multiline = true;
@@ -449,6 +428,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Enabled = false;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.Location = new System.Drawing.Point(464, 162);
             this.label8.Name = "label8";
@@ -458,6 +438,7 @@
             // 
             // textBox_SFTPUsername
             // 
+            this.textBox_SFTPUsername.Enabled = false;
             this.textBox_SFTPUsername.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBox_SFTPUsername.Location = new System.Drawing.Point(538, 236);
             this.textBox_SFTPUsername.Multiline = true;
@@ -468,6 +449,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.Enabled = false;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label12.Location = new System.Drawing.Point(464, 239);
             this.label12.Name = "label12";
@@ -478,6 +460,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.Enabled = false;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label13.Location = new System.Drawing.Point(464, 199);
             this.label13.Name = "label13";
@@ -488,6 +471,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.Enabled = false;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label14.Location = new System.Drawing.Point(464, 278);
             this.label14.Name = "label14";
@@ -526,7 +510,6 @@
             this.textBox_Path.Name = "textBox_Path";
             this.textBox_Path.Size = new System.Drawing.Size(200, 20);
             this.textBox_Path.TabIndex = 17;
-            this.textBox_Path.Text = "Path";
             // 
             // comboBox_Savingformat
             // 
@@ -537,11 +520,11 @@
             this.comboBox_Savingformat.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBox_Savingformat.FormattingEnabled = true;
             this.comboBox_Savingformat.Items.AddRange(new object[] {
-            "Archive .zip",
-            "Without comprimation"});
-            this.comboBox_Savingformat.Location = new System.Drawing.Point(574, 64);
+            "Without comprimation",
+            "Archive .zip"});
+            this.comboBox_Savingformat.Location = new System.Drawing.Point(512, 64);
             this.comboBox_Savingformat.Name = "comboBox_Savingformat";
-            this.comboBox_Savingformat.Size = new System.Drawing.Size(114, 25);
+            this.comboBox_Savingformat.Size = new System.Drawing.Size(176, 25);
             this.comboBox_Savingformat.TabIndex = 26;
             // 
             // label9
@@ -556,6 +539,7 @@
             // 
             // textBox_FTPAdress
             // 
+            this.textBox_FTPAdress.Enabled = false;
             this.textBox_FTPAdress.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBox_FTPAdress.Location = new System.Drawing.Point(286, 157);
             this.textBox_FTPAdress.Multiline = true;
@@ -565,6 +549,7 @@
             // 
             // textBox_FTPPassword
             // 
+            this.textBox_FTPPassword.Enabled = false;
             this.textBox_FTPPassword.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBox_FTPPassword.Location = new System.Drawing.Point(286, 273);
             this.textBox_FTPPassword.Multiline = true;
@@ -587,6 +572,7 @@
             // 
             // textBox_FTPPort
             // 
+            this.textBox_FTPPort.Enabled = false;
             this.textBox_FTPPort.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBox_FTPPort.Location = new System.Drawing.Point(286, 196);
             this.textBox_FTPPort.Multiline = true;
@@ -598,7 +584,7 @@
             // 
             this.label_Savingformat.AutoSize = true;
             this.label_Savingformat.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_Savingformat.Location = new System.Drawing.Point(464, 67);
+            this.label_Savingformat.Location = new System.Drawing.Point(424, 67);
             this.label_Savingformat.Name = "label_Savingformat";
             this.label_Savingformat.Size = new System.Drawing.Size(49, 17);
             this.label_Savingformat.TabIndex = 25;
@@ -620,6 +606,7 @@
             // label_Adress
             // 
             this.label_Adress.AutoSize = true;
+            this.label_Adress.Enabled = false;
             this.label_Adress.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label_Adress.Location = new System.Drawing.Point(212, 160);
             this.label_Adress.Name = "label_Adress";
@@ -629,6 +616,7 @@
             // 
             // textBox_FTPUsername
             // 
+            this.textBox_FTPUsername.Enabled = false;
             this.textBox_FTPUsername.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBox_FTPUsername.Location = new System.Drawing.Point(286, 234);
             this.textBox_FTPUsername.Multiline = true;
@@ -638,17 +626,18 @@
             // 
             // textBox_Selectdestination
             // 
+            this.textBox_Selectdestination.Enabled = false;
             this.textBox_Selectdestination.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBox_Selectdestination.Location = new System.Drawing.Point(18, 155);
             this.textBox_Selectdestination.Multiline = true;
             this.textBox_Selectdestination.Name = "textBox_Selectdestination";
             this.textBox_Selectdestination.Size = new System.Drawing.Size(150, 20);
             this.textBox_Selectdestination.TabIndex = 33;
-            this.textBox_Selectdestination.Text = "Path";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.Enabled = false;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label10.Location = new System.Drawing.Point(212, 237);
             this.label10.Name = "label10";
@@ -662,17 +651,19 @@
             this.comboBox_Afterbackup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBox_Afterbackup.FormattingEnabled = true;
             this.comboBox_Afterbackup.Items.AddRange(new object[] {
+            "Nothing",
             "Restart",
             "Turn off",
             "Sleep mode"});
-            this.comboBox_Afterbackup.Location = new System.Drawing.Point(574, 25);
+            this.comboBox_Afterbackup.Location = new System.Drawing.Point(512, 25);
             this.comboBox_Afterbackup.Name = "comboBox_Afterbackup";
-            this.comboBox_Afterbackup.Size = new System.Drawing.Size(114, 25);
+            this.comboBox_Afterbackup.Size = new System.Drawing.Size(176, 25);
             this.comboBox_Afterbackup.TabIndex = 23;
             // 
             // label_FTPport
             // 
             this.label_FTPport.AutoSize = true;
+            this.label_FTPport.Enabled = false;
             this.label_FTPport.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label_FTPport.Location = new System.Drawing.Point(212, 197);
             this.label_FTPport.Name = "label_FTPport";
@@ -683,6 +674,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
+            this.label11.Enabled = false;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label11.Location = new System.Drawing.Point(212, 276);
             this.label11.Name = "label11";
@@ -694,7 +686,7 @@
             // 
             this.label_AfterBackup.AutoSize = true;
             this.label_AfterBackup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_AfterBackup.Location = new System.Drawing.Point(464, 28);
+            this.label_AfterBackup.Location = new System.Drawing.Point(424, 29);
             this.label_AfterBackup.Name = "label_AfterBackup";
             this.label_AfterBackup.Size = new System.Drawing.Size(82, 17);
             this.label_AfterBackup.TabIndex = 21;
@@ -771,27 +763,8 @@
             // 
             // tabPage_Daily
             // 
-            this.tabPage_Daily.Controls.Add(this.comboBox_DailyMethod5);
-            this.tabPage_Daily.Controls.Add(this.comboBox_DailyMethod4);
-            this.tabPage_Daily.Controls.Add(this.comboBox_DailyMethod3);
-            this.tabPage_Daily.Controls.Add(this.comboBox_DailyMethod2);
-            this.tabPage_Daily.Controls.Add(this.comboBox_DailyMethod1);
-            this.tabPage_Daily.Controls.Add(this.textBox_DailyKeepingBackups);
-            this.tabPage_Daily.Controls.Add(this.label18);
-            this.tabPage_Daily.Controls.Add(this.button_DailyRemoveTime5);
-            this.tabPage_Daily.Controls.Add(this.button_DailyRemoveTime4);
-            this.tabPage_Daily.Controls.Add(this.button_DailyRemoveTime3);
-            this.tabPage_Daily.Controls.Add(this.button_DailyAddTime5);
-            this.tabPage_Daily.Controls.Add(this.button_DailyAddTime4);
-            this.tabPage_Daily.Controls.Add(this.button_DailyAddTime3);
-            this.tabPage_Daily.Controls.Add(this.dateTimePicker_DailyTime4);
-            this.tabPage_Daily.Controls.Add(this.dateTimePicker_DailyTime3);
-            this.tabPage_Daily.Controls.Add(this.dateTimePicker_DailyTime2);
-            this.tabPage_Daily.Controls.Add(this.dateTimePicker_DailyTime5);
-            this.tabPage_Daily.Controls.Add(this.button_DailyRemoveTime2);
-            this.tabPage_Daily.Controls.Add(this.button_DailyAddTime2);
-            this.tabPage_Daily.Controls.Add(this.dateTimePicker_DailyTime1);
-            this.tabPage_Daily.Controls.Add(this.label17);
+            this.tabPage_Daily.Controls.Add(this.numericUpDown1);
+            this.tabPage_Daily.Controls.Add(this.label19);
             this.tabPage_Daily.Location = new System.Drawing.Point(4, 30);
             this.tabPage_Daily.Name = "tabPage_Daily";
             this.tabPage_Daily.Padding = new System.Windows.Forms.Padding(3);
@@ -800,222 +773,37 @@
             this.tabPage_Daily.Text = "Daily";
             this.tabPage_Daily.UseVisualStyleBackColor = true;
             // 
-            // comboBox_DailyMethod5
+            // numericUpDown1
             // 
-            this.comboBox_DailyMethod5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_DailyMethod5.FormattingEnabled = true;
-            this.comboBox_DailyMethod5.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup",
-            "Differential backup"});
-            this.comboBox_DailyMethod5.Location = new System.Drawing.Point(371, 98);
-            this.comboBox_DailyMethod5.Name = "comboBox_DailyMethod5";
-            this.comboBox_DailyMethod5.Size = new System.Drawing.Size(85, 29);
-            this.comboBox_DailyMethod5.TabIndex = 21;
+            this.numericUpDown1.Location = new System.Drawing.Point(552, 41);
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(49, 29);
+            this.numericUpDown1.TabIndex = 67;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // comboBox_DailyMethod4
+            // label19
             // 
-            this.comboBox_DailyMethod4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_DailyMethod4.FormattingEnabled = true;
-            this.comboBox_DailyMethod4.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup",
-            "Differential backup"});
-            this.comboBox_DailyMethod4.Location = new System.Drawing.Point(280, 98);
-            this.comboBox_DailyMethod4.Name = "comboBox_DailyMethod4";
-            this.comboBox_DailyMethod4.Size = new System.Drawing.Size(85, 29);
-            this.comboBox_DailyMethod4.TabIndex = 20;
-            // 
-            // comboBox_DailyMethod3
-            // 
-            this.comboBox_DailyMethod3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_DailyMethod3.FormattingEnabled = true;
-            this.comboBox_DailyMethod3.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup",
-            "Differential backup"});
-            this.comboBox_DailyMethod3.Location = new System.Drawing.Point(189, 98);
-            this.comboBox_DailyMethod3.Name = "comboBox_DailyMethod3";
-            this.comboBox_DailyMethod3.Size = new System.Drawing.Size(85, 29);
-            this.comboBox_DailyMethod3.TabIndex = 19;
-            // 
-            // comboBox_DailyMethod2
-            // 
-            this.comboBox_DailyMethod2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_DailyMethod2.FormattingEnabled = true;
-            this.comboBox_DailyMethod2.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup",
-            "Differential backup"});
-            this.comboBox_DailyMethod2.Location = new System.Drawing.Point(98, 98);
-            this.comboBox_DailyMethod2.Name = "comboBox_DailyMethod2";
-            this.comboBox_DailyMethod2.Size = new System.Drawing.Size(85, 29);
-            this.comboBox_DailyMethod2.TabIndex = 18;
-            // 
-            // comboBox_DailyMethod1
-            // 
-            this.comboBox_DailyMethod1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_DailyMethod1.FormattingEnabled = true;
-            this.comboBox_DailyMethod1.Items.AddRange(new object[] {
-            "Full backup"});
-            this.comboBox_DailyMethod1.Location = new System.Drawing.Point(7, 98);
-            this.comboBox_DailyMethod1.Name = "comboBox_DailyMethod1";
-            this.comboBox_DailyMethod1.Size = new System.Drawing.Size(85, 29);
-            this.comboBox_DailyMethod1.TabIndex = 17;
-            // 
-            // textBox_DailyKeepingBackups
-            // 
-            this.textBox_DailyKeepingBackups.Location = new System.Drawing.Point(312, 271);
-            this.textBox_DailyKeepingBackups.Name = "textBox_DailyKeepingBackups";
-            this.textBox_DailyKeepingBackups.Size = new System.Drawing.Size(100, 29);
-            this.textBox_DailyKeepingBackups.TabIndex = 16;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(3, 274);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(298, 21);
-            this.label18.TabIndex = 15;
-            this.label18.Text = "How many backups do you want to keep?";
-            // 
-            // button_DailyRemoveTime5
-            // 
-            this.button_DailyRemoveTime5.Location = new System.Drawing.Point(418, 176);
-            this.button_DailyRemoveTime5.Name = "button_DailyRemoveTime5";
-            this.button_DailyRemoveTime5.Size = new System.Drawing.Size(39, 30);
-            this.button_DailyRemoveTime5.TabIndex = 14;
-            this.button_DailyRemoveTime5.Text = "-";
-            this.button_DailyRemoveTime5.UseVisualStyleBackColor = true;
-            this.button_DailyRemoveTime5.Click += new System.EventHandler(this.button_DailyRemoveTime5_Click);
-            // 
-            // button_DailyRemoveTime4
-            // 
-            this.button_DailyRemoveTime4.Location = new System.Drawing.Point(327, 176);
-            this.button_DailyRemoveTime4.Name = "button_DailyRemoveTime4";
-            this.button_DailyRemoveTime4.Size = new System.Drawing.Size(39, 30);
-            this.button_DailyRemoveTime4.TabIndex = 13;
-            this.button_DailyRemoveTime4.Text = "-";
-            this.button_DailyRemoveTime4.UseVisualStyleBackColor = true;
-            this.button_DailyRemoveTime4.Click += new System.EventHandler(this.button_DailyRemoveTime4_Click);
-            // 
-            // button_DailyRemoveTime3
-            // 
-            this.button_DailyRemoveTime3.Location = new System.Drawing.Point(236, 176);
-            this.button_DailyRemoveTime3.Name = "button_DailyRemoveTime3";
-            this.button_DailyRemoveTime3.Size = new System.Drawing.Size(39, 30);
-            this.button_DailyRemoveTime3.TabIndex = 12;
-            this.button_DailyRemoveTime3.Text = "-";
-            this.button_DailyRemoveTime3.UseVisualStyleBackColor = true;
-            this.button_DailyRemoveTime3.Click += new System.EventHandler(this.button_DailyRemoveTime3_Click);
-            // 
-            // button_DailyAddTime5
-            // 
-            this.button_DailyAddTime5.Location = new System.Drawing.Point(372, 176);
-            this.button_DailyAddTime5.Name = "button_DailyAddTime5";
-            this.button_DailyAddTime5.Size = new System.Drawing.Size(40, 30);
-            this.button_DailyAddTime5.TabIndex = 10;
-            this.button_DailyAddTime5.Text = "+";
-            this.button_DailyAddTime5.UseVisualStyleBackColor = true;
-            this.button_DailyAddTime5.Click += new System.EventHandler(this.button_DailyAddTime5_Click);
-            // 
-            // button_DailyAddTime4
-            // 
-            this.button_DailyAddTime4.Location = new System.Drawing.Point(281, 176);
-            this.button_DailyAddTime4.Name = "button_DailyAddTime4";
-            this.button_DailyAddTime4.Size = new System.Drawing.Size(40, 30);
-            this.button_DailyAddTime4.TabIndex = 9;
-            this.button_DailyAddTime4.Text = "+";
-            this.button_DailyAddTime4.UseVisualStyleBackColor = true;
-            this.button_DailyAddTime4.Click += new System.EventHandler(this.button_DailyAddTime4_Click);
-            // 
-            // button_DailyAddTime3
-            // 
-            this.button_DailyAddTime3.Location = new System.Drawing.Point(190, 176);
-            this.button_DailyAddTime3.Name = "button_DailyAddTime3";
-            this.button_DailyAddTime3.Size = new System.Drawing.Size(40, 30);
-            this.button_DailyAddTime3.TabIndex = 8;
-            this.button_DailyAddTime3.Text = "+";
-            this.button_DailyAddTime3.UseVisualStyleBackColor = true;
-            this.button_DailyAddTime3.Click += new System.EventHandler(this.button_DailyAddTime3_Click);
-            // 
-            // dateTimePicker_DailyTime4
-            // 
-            this.dateTimePicker_DailyTime4.Location = new System.Drawing.Point(280, 63);
-            this.dateTimePicker_DailyTime4.Name = "dateTimePicker_DailyTime4";
-            this.dateTimePicker_DailyTime4.Size = new System.Drawing.Size(85, 29);
-            this.dateTimePicker_DailyTime4.TabIndex = 7;
-            // 
-            // dateTimePicker_DailyTime3
-            // 
-            this.dateTimePicker_DailyTime3.Location = new System.Drawing.Point(189, 63);
-            this.dateTimePicker_DailyTime3.Name = "dateTimePicker_DailyTime3";
-            this.dateTimePicker_DailyTime3.Size = new System.Drawing.Size(85, 29);
-            this.dateTimePicker_DailyTime3.TabIndex = 6;
-            // 
-            // dateTimePicker_DailyTime2
-            // 
-            this.dateTimePicker_DailyTime2.Location = new System.Drawing.Point(98, 63);
-            this.dateTimePicker_DailyTime2.Name = "dateTimePicker_DailyTime2";
-            this.dateTimePicker_DailyTime2.Size = new System.Drawing.Size(85, 29);
-            this.dateTimePicker_DailyTime2.TabIndex = 5;
-            // 
-            // dateTimePicker_DailyTime5
-            // 
-            this.dateTimePicker_DailyTime5.Location = new System.Drawing.Point(371, 63);
-            this.dateTimePicker_DailyTime5.Name = "dateTimePicker_DailyTime5";
-            this.dateTimePicker_DailyTime5.Size = new System.Drawing.Size(85, 29);
-            this.dateTimePicker_DailyTime5.TabIndex = 4;
-            // 
-            // button_DailyRemoveTime2
-            // 
-            this.button_DailyRemoveTime2.Location = new System.Drawing.Point(145, 176);
-            this.button_DailyRemoveTime2.Name = "button_DailyRemoveTime2";
-            this.button_DailyRemoveTime2.Size = new System.Drawing.Size(39, 30);
-            this.button_DailyRemoveTime2.TabIndex = 3;
-            this.button_DailyRemoveTime2.Text = "-";
-            this.button_DailyRemoveTime2.UseVisualStyleBackColor = true;
-            this.button_DailyRemoveTime2.Click += new System.EventHandler(this.button_DailyRemoveTime2_Click);
-            // 
-            // button_DailyAddTime2
-            // 
-            this.button_DailyAddTime2.Location = new System.Drawing.Point(98, 176);
-            this.button_DailyAddTime2.Name = "button_DailyAddTime2";
-            this.button_DailyAddTime2.Size = new System.Drawing.Size(40, 30);
-            this.button_DailyAddTime2.TabIndex = 2;
-            this.button_DailyAddTime2.Text = "+";
-            this.button_DailyAddTime2.UseVisualStyleBackColor = true;
-            this.button_DailyAddTime2.Click += new System.EventHandler(this.button_DailyAddTime2_Click);
-            // 
-            // dateTimePicker_DailyTime1
-            // 
-            this.dateTimePicker_DailyTime1.Location = new System.Drawing.Point(7, 63);
-            this.dateTimePicker_DailyTime1.Name = "dateTimePicker_DailyTime1";
-            this.dateTimePicker_DailyTime1.Size = new System.Drawing.Size(85, 29);
-            this.dateTimePicker_DailyTime1.TabIndex = 1;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label17.Location = new System.Drawing.Point(3, 26);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(48, 21);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "Time";
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label19.Location = new System.Drawing.Point(499, 40);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(183, 25);
+            this.label19.TabIndex = 66;
+            this.label19.Text = "Keep            backups";
             // 
             // tabPage_Weekly
             // 
-            this.tabPage_Weekly.Controls.Add(this.panel_WeeklyDay);
-            this.tabPage_Weekly.Controls.Add(this.textBox_WeeklyKeepingBackups);
-            this.tabPage_Weekly.Controls.Add(this.label19);
-            this.tabPage_Weekly.Controls.Add(this.checkBox_Tue);
-            this.tabPage_Weekly.Controls.Add(this.checkBox_Sun);
-            this.tabPage_Weekly.Controls.Add(this.checkBox_Sat);
-            this.tabPage_Weekly.Controls.Add(this.checkBox_Fri);
-            this.tabPage_Weekly.Controls.Add(this.checkBox_Thu);
-            this.tabPage_Weekly.Controls.Add(this.checkBox_Wed);
-            this.tabPage_Weekly.Controls.Add(this.checkBox_Mon);
+            this.tabPage_Weekly.Controls.Add(this.numericUpDown3);
+            this.tabPage_Weekly.Controls.Add(this.label20);
             this.tabPage_Weekly.Location = new System.Drawing.Point(4, 30);
             this.tabPage_Weekly.Name = "tabPage_Weekly";
             this.tabPage_Weekly.Padding = new System.Windows.Forms.Padding(3);
@@ -1024,241 +812,37 @@
             this.tabPage_Weekly.Text = "Weekly";
             this.tabPage_Weekly.UseVisualStyleBackColor = true;
             // 
-            // panel_WeeklyDay
+            // numericUpDown3
             // 
-            this.panel_WeeklyDay.Controls.Add(this.comboBox_WeeklyDay3);
-            this.panel_WeeklyDay.Controls.Add(this.comboBox_WeeklyDay2);
-            this.panel_WeeklyDay.Controls.Add(this.comboBox_WeeklyDay1);
-            this.panel_WeeklyDay.Controls.Add(this.button_WeeklyRemoveTime);
-            this.panel_WeeklyDay.Controls.Add(this.button_WeeklyAddTime);
-            this.panel_WeeklyDay.Controls.Add(this.dateTimePicker_WeeklyTime2);
-            this.panel_WeeklyDay.Controls.Add(this.dateTimePicker_WeeklyTime1);
-            this.panel_WeeklyDay.Controls.Add(this.dateTimePicker_WeeklyTime3);
-            this.panel_WeeklyDay.Location = new System.Drawing.Point(13, 65);
-            this.panel_WeeklyDay.Name = "panel_WeeklyDay";
-            this.panel_WeeklyDay.Size = new System.Drawing.Size(160, 224);
-            this.panel_WeeklyDay.TabIndex = 30;
+            this.numericUpDown3.Location = new System.Drawing.Point(552, 41);
+            this.numericUpDown3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(49, 29);
+            this.numericUpDown3.TabIndex = 65;
+            this.numericUpDown3.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // comboBox_WeeklyDay3
+            // label20
             // 
-            this.comboBox_WeeklyDay3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_WeeklyDay3.FormattingEnabled = true;
-            this.comboBox_WeeklyDay3.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup ",
-            "Differential backup"});
-            this.comboBox_WeeklyDay3.Location = new System.Drawing.Point(29, 187);
-            this.comboBox_WeeklyDay3.Name = "comboBox_WeeklyDay3";
-            this.comboBox_WeeklyDay3.Size = new System.Drawing.Size(85, 29);
-            this.comboBox_WeeklyDay3.TabIndex = 32;
-            // 
-            // comboBox_WeeklyDay2
-            // 
-            this.comboBox_WeeklyDay2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_WeeklyDay2.FormattingEnabled = true;
-            this.comboBox_WeeklyDay2.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup ",
-            "Differential backup"});
-            this.comboBox_WeeklyDay2.Location = new System.Drawing.Point(29, 116);
-            this.comboBox_WeeklyDay2.Name = "comboBox_WeeklyDay2";
-            this.comboBox_WeeklyDay2.Size = new System.Drawing.Size(85, 29);
-            this.comboBox_WeeklyDay2.TabIndex = 31;
-            // 
-            // comboBox_WeeklyDay1
-            // 
-            this.comboBox_WeeklyDay1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_WeeklyDay1.FormattingEnabled = true;
-            this.comboBox_WeeklyDay1.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup ",
-            "Differential backup"});
-            this.comboBox_WeeklyDay1.Location = new System.Drawing.Point(29, 43);
-            this.comboBox_WeeklyDay1.Name = "comboBox_WeeklyDay1";
-            this.comboBox_WeeklyDay1.Size = new System.Drawing.Size(85, 29);
-            this.comboBox_WeeklyDay1.TabIndex = 30;
-            // 
-            // button_WeeklyRemoveTime
-            // 
-            this.button_WeeklyRemoveTime.Location = new System.Drawing.Point(120, 52);
-            this.button_WeeklyRemoveTime.Name = "button_WeeklyRemoveTime";
-            this.button_WeeklyRemoveTime.Size = new System.Drawing.Size(25, 29);
-            this.button_WeeklyRemoveTime.TabIndex = 29;
-            this.button_WeeklyRemoveTime.Text = "-";
-            this.button_WeeklyRemoveTime.UseVisualStyleBackColor = true;
-            this.button_WeeklyRemoveTime.Click += new System.EventHandler(this.button_WeeklyRemoveTime_Click);
-            // 
-            // button_WeeklyAddTime
-            // 
-            this.button_WeeklyAddTime.Location = new System.Drawing.Point(120, 17);
-            this.button_WeeklyAddTime.Name = "button_WeeklyAddTime";
-            this.button_WeeklyAddTime.Size = new System.Drawing.Size(25, 29);
-            this.button_WeeklyAddTime.TabIndex = 28;
-            this.button_WeeklyAddTime.Text = "+";
-            this.button_WeeklyAddTime.UseVisualStyleBackColor = true;
-            this.button_WeeklyAddTime.Click += new System.EventHandler(this.button_WeeklyAddTime_Click);
-            // 
-            // dateTimePicker_WeeklyTime2
-            // 
-            this.dateTimePicker_WeeklyTime2.Enabled = false;
-            this.dateTimePicker_WeeklyTime2.Location = new System.Drawing.Point(29, 90);
-            this.dateTimePicker_WeeklyTime2.Name = "dateTimePicker_WeeklyTime2";
-            this.dateTimePicker_WeeklyTime2.Size = new System.Drawing.Size(85, 29);
-            this.dateTimePicker_WeeklyTime2.TabIndex = 27;
-            // 
-            // dateTimePicker_WeeklyTime1
-            // 
-            this.dateTimePicker_WeeklyTime1.Enabled = false;
-            this.dateTimePicker_WeeklyTime1.Location = new System.Drawing.Point(29, 17);
-            this.dateTimePicker_WeeklyTime1.Name = "dateTimePicker_WeeklyTime1";
-            this.dateTimePicker_WeeklyTime1.Size = new System.Drawing.Size(85, 29);
-            this.dateTimePicker_WeeklyTime1.TabIndex = 21;
-            // 
-            // dateTimePicker_WeeklyTime3
-            // 
-            this.dateTimePicker_WeeklyTime3.Enabled = false;
-            this.dateTimePicker_WeeklyTime3.Location = new System.Drawing.Point(29, 160);
-            this.dateTimePicker_WeeklyTime3.Name = "dateTimePicker_WeeklyTime3";
-            this.dateTimePicker_WeeklyTime3.Size = new System.Drawing.Size(85, 29);
-            this.dateTimePicker_WeeklyTime3.TabIndex = 26;
-            // 
-            // textBox_WeeklyKeepingBackups
-            // 
-            this.textBox_WeeklyKeepingBackups.Location = new System.Drawing.Point(318, 289);
-            this.textBox_WeeklyKeepingBackups.Name = "textBox_WeeklyKeepingBackups";
-            this.textBox_WeeklyKeepingBackups.Size = new System.Drawing.Size(100, 29);
-            this.textBox_WeeklyKeepingBackups.TabIndex = 29;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(9, 292);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(298, 21);
-            this.label19.TabIndex = 28;
-            this.label19.Text = "How many backups do you want to keep?";
-            // 
-            // checkBox_Tue
-            // 
-            this.checkBox_Tue.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_Tue.AutoSize = true;
-            this.checkBox_Tue.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_Tue.Location = new System.Drawing.Point(154, 28);
-            this.checkBox_Tue.Name = "checkBox_Tue";
-            this.checkBox_Tue.Size = new System.Drawing.Size(45, 31);
-            this.checkBox_Tue.TabIndex = 15;
-            this.checkBox_Tue.Text = "Tue";
-            this.checkBox_Tue.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_Sun
-            // 
-            this.checkBox_Sun.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_Sun.AutoSize = true;
-            this.checkBox_Sun.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_Sun.Location = new System.Drawing.Point(408, 28);
-            this.checkBox_Sun.Name = "checkBox_Sun";
-            this.checkBox_Sun.Size = new System.Drawing.Size(47, 31);
-            this.checkBox_Sun.TabIndex = 20;
-            this.checkBox_Sun.Text = "Sun";
-            this.checkBox_Sun.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_Sat
-            // 
-            this.checkBox_Sat.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_Sat.AutoSize = true;
-            this.checkBox_Sat.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_Sat.Location = new System.Drawing.Point(360, 28);
-            this.checkBox_Sat.Name = "checkBox_Sat";
-            this.checkBox_Sat.Size = new System.Drawing.Size(42, 31);
-            this.checkBox_Sat.TabIndex = 19;
-            this.checkBox_Sat.Text = "Sat";
-            this.checkBox_Sat.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_Fri
-            // 
-            this.checkBox_Fri.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_Fri.AutoSize = true;
-            this.checkBox_Fri.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_Fri.Location = new System.Drawing.Point(316, 28);
-            this.checkBox_Fri.Name = "checkBox_Fri";
-            this.checkBox_Fri.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_Fri.TabIndex = 18;
-            this.checkBox_Fri.Text = "Fri";
-            this.checkBox_Fri.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_Thu
-            // 
-            this.checkBox_Thu.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_Thu.AutoSize = true;
-            this.checkBox_Thu.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_Thu.Location = new System.Drawing.Point(264, 28);
-            this.checkBox_Thu.Name = "checkBox_Thu";
-            this.checkBox_Thu.Size = new System.Drawing.Size(46, 31);
-            this.checkBox_Thu.TabIndex = 17;
-            this.checkBox_Thu.Text = "Thu";
-            this.checkBox_Thu.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_Wed
-            // 
-            this.checkBox_Wed.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_Wed.AutoSize = true;
-            this.checkBox_Wed.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_Wed.Location = new System.Drawing.Point(205, 28);
-            this.checkBox_Wed.Name = "checkBox_Wed";
-            this.checkBox_Wed.Size = new System.Drawing.Size(51, 31);
-            this.checkBox_Wed.TabIndex = 16;
-            this.checkBox_Wed.Text = "Wed";
-            this.checkBox_Wed.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_Mon
-            // 
-            this.checkBox_Mon.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_Mon.AutoSize = true;
-            this.checkBox_Mon.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_Mon.Location = new System.Drawing.Point(96, 28);
-            this.checkBox_Mon.Name = "checkBox_Mon";
-            this.checkBox_Mon.Size = new System.Drawing.Size(52, 31);
-            this.checkBox_Mon.TabIndex = 14;
-            this.checkBox_Mon.Text = "Mon";
-            this.checkBox_Mon.UseVisualStyleBackColor = false;
-            this.checkBox_Mon.CheckedChanged += new System.EventHandler(this.checkBox_Mon_CheckedChanged);
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label20.Location = new System.Drawing.Point(499, 40);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(183, 25);
+            this.label20.TabIndex = 64;
+            this.label20.Text = "Keep            backups";
             // 
             // tabPage_Monthly
             // 
-            this.tabPage_Monthly.Controls.Add(this.panel_MonthlyDay);
-            this.tabPage_Monthly.Controls.Add(this.textBox_MonthlyKeepingBackups);
-            this.tabPage_Monthly.Controls.Add(this.label20);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay14);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay13);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay11);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay4);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay3);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay27);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay26);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay21);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay7);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay6);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay9);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay20);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay19);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay18);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay24);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay17);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay12);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay10);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay22);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay15);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay8);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay5);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay25);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay23);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay28);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay29);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay30);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay31);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay16);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay2);
-            this.tabPage_Monthly.Controls.Add(this.checkBox_MonthlyDay1);
+            this.tabPage_Monthly.Controls.Add(this.numericUpDown2);
+            this.tabPage_Monthly.Controls.Add(this.label21);
             this.tabPage_Monthly.Location = new System.Drawing.Point(4, 30);
             this.tabPage_Monthly.Name = "tabPage_Monthly";
             this.tabPage_Monthly.Padding = new System.Windows.Forms.Padding(3);
@@ -1267,393 +851,32 @@
             this.tabPage_Monthly.Text = "Monthly";
             this.tabPage_Monthly.UseVisualStyleBackColor = true;
             // 
-            // textBox_MonthlyKeepingBackups
-            // 
-            this.textBox_MonthlyKeepingBackups.Location = new System.Drawing.Point(317, 292);
-            this.textBox_MonthlyKeepingBackups.Name = "textBox_MonthlyKeepingBackups";
-            this.textBox_MonthlyKeepingBackups.Size = new System.Drawing.Size(100, 29);
-            this.textBox_MonthlyKeepingBackups.TabIndex = 62;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(8, 295);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(298, 21);
-            this.label20.TabIndex = 61;
-            this.label20.Text = "How many backups do you want to keep?";
-            // 
-            // checkBox_MonthlyDay14
-            // 
-            this.checkBox_MonthlyDay14.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay14.AutoSize = true;
-            this.checkBox_MonthlyDay14.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay14.Location = new System.Drawing.Point(344, 84);
-            this.checkBox_MonthlyDay14.Name = "checkBox_MonthlyDay14";
-            this.checkBox_MonthlyDay14.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay14.TabIndex = 60;
-            this.checkBox_MonthlyDay14.Text = "14";
-            this.checkBox_MonthlyDay14.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay13
-            // 
-            this.checkBox_MonthlyDay13.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay13.AutoSize = true;
-            this.checkBox_MonthlyDay13.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay13.Location = new System.Drawing.Point(304, 84);
-            this.checkBox_MonthlyDay13.Name = "checkBox_MonthlyDay13";
-            this.checkBox_MonthlyDay13.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay13.TabIndex = 59;
-            this.checkBox_MonthlyDay13.Text = "13";
-            this.checkBox_MonthlyDay13.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay11
-            // 
-            this.checkBox_MonthlyDay11.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay11.AutoSize = true;
-            this.checkBox_MonthlyDay11.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay11.Location = new System.Drawing.Point(224, 81);
-            this.checkBox_MonthlyDay11.Name = "checkBox_MonthlyDay11";
-            this.checkBox_MonthlyDay11.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay11.TabIndex = 58;
-            this.checkBox_MonthlyDay11.Text = "11";
-            this.checkBox_MonthlyDay11.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay4
-            // 
-            this.checkBox_MonthlyDay4.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay4.AutoSize = true;
-            this.checkBox_MonthlyDay4.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay4.Location = new System.Drawing.Point(224, 46);
-            this.checkBox_MonthlyDay4.Name = "checkBox_MonthlyDay4";
-            this.checkBox_MonthlyDay4.Size = new System.Drawing.Size(29, 31);
-            this.checkBox_MonthlyDay4.TabIndex = 57;
-            this.checkBox_MonthlyDay4.Text = "4";
-            this.checkBox_MonthlyDay4.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay3
-            // 
-            this.checkBox_MonthlyDay3.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay3.AutoSize = true;
-            this.checkBox_MonthlyDay3.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay3.Location = new System.Drawing.Point(186, 46);
-            this.checkBox_MonthlyDay3.Name = "checkBox_MonthlyDay3";
-            this.checkBox_MonthlyDay3.Size = new System.Drawing.Size(29, 31);
-            this.checkBox_MonthlyDay3.TabIndex = 56;
-            this.checkBox_MonthlyDay3.Text = "3";
-            this.checkBox_MonthlyDay3.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay27
-            // 
-            this.checkBox_MonthlyDay27.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay27.AutoSize = true;
-            this.checkBox_MonthlyDay27.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay27.Location = new System.Drawing.Point(306, 150);
-            this.checkBox_MonthlyDay27.Name = "checkBox_MonthlyDay27";
-            this.checkBox_MonthlyDay27.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay27.TabIndex = 55;
-            this.checkBox_MonthlyDay27.Text = "27";
-            this.checkBox_MonthlyDay27.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay26
-            // 
-            this.checkBox_MonthlyDay26.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay26.AutoSize = true;
-            this.checkBox_MonthlyDay26.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay26.Location = new System.Drawing.Point(268, 150);
-            this.checkBox_MonthlyDay26.Name = "checkBox_MonthlyDay26";
-            this.checkBox_MonthlyDay26.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay26.TabIndex = 54;
-            this.checkBox_MonthlyDay26.Text = "26";
-            this.checkBox_MonthlyDay26.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay21
-            // 
-            this.checkBox_MonthlyDay21.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay21.AutoSize = true;
-            this.checkBox_MonthlyDay21.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay21.Location = new System.Drawing.Point(344, 117);
-            this.checkBox_MonthlyDay21.Name = "checkBox_MonthlyDay21";
-            this.checkBox_MonthlyDay21.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay21.TabIndex = 53;
-            this.checkBox_MonthlyDay21.Text = "21";
-            this.checkBox_MonthlyDay21.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay7
-            // 
-            this.checkBox_MonthlyDay7.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay7.AutoSize = true;
-            this.checkBox_MonthlyDay7.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay7.Location = new System.Drawing.Point(343, 47);
-            this.checkBox_MonthlyDay7.Name = "checkBox_MonthlyDay7";
-            this.checkBox_MonthlyDay7.Size = new System.Drawing.Size(29, 31);
-            this.checkBox_MonthlyDay7.TabIndex = 52;
-            this.checkBox_MonthlyDay7.Text = "7";
-            this.checkBox_MonthlyDay7.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay6
-            // 
-            this.checkBox_MonthlyDay6.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay6.AutoSize = true;
-            this.checkBox_MonthlyDay6.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay6.Location = new System.Drawing.Point(303, 47);
-            this.checkBox_MonthlyDay6.Name = "checkBox_MonthlyDay6";
-            this.checkBox_MonthlyDay6.Size = new System.Drawing.Size(29, 31);
-            this.checkBox_MonthlyDay6.TabIndex = 51;
-            this.checkBox_MonthlyDay6.Text = "6";
-            this.checkBox_MonthlyDay6.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay9
-            // 
-            this.checkBox_MonthlyDay9.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay9.AutoSize = true;
-            this.checkBox_MonthlyDay9.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay9.Location = new System.Drawing.Point(148, 81);
-            this.checkBox_MonthlyDay9.Name = "checkBox_MonthlyDay9";
-            this.checkBox_MonthlyDay9.Size = new System.Drawing.Size(29, 31);
-            this.checkBox_MonthlyDay9.TabIndex = 50;
-            this.checkBox_MonthlyDay9.Text = "9";
-            this.checkBox_MonthlyDay9.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay20
-            // 
-            this.checkBox_MonthlyDay20.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay20.AutoSize = true;
-            this.checkBox_MonthlyDay20.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay20.Location = new System.Drawing.Point(304, 117);
-            this.checkBox_MonthlyDay20.Name = "checkBox_MonthlyDay20";
-            this.checkBox_MonthlyDay20.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay20.TabIndex = 49;
-            this.checkBox_MonthlyDay20.Text = "20";
-            this.checkBox_MonthlyDay20.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay19
-            // 
-            this.checkBox_MonthlyDay19.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay19.AutoSize = true;
-            this.checkBox_MonthlyDay19.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay19.Location = new System.Drawing.Point(268, 117);
-            this.checkBox_MonthlyDay19.Name = "checkBox_MonthlyDay19";
-            this.checkBox_MonthlyDay19.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay19.TabIndex = 48;
-            this.checkBox_MonthlyDay19.Text = "19";
-            this.checkBox_MonthlyDay19.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay18
-            // 
-            this.checkBox_MonthlyDay18.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay18.AutoSize = true;
-            this.checkBox_MonthlyDay18.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay18.Location = new System.Drawing.Point(224, 114);
-            this.checkBox_MonthlyDay18.Name = "checkBox_MonthlyDay18";
-            this.checkBox_MonthlyDay18.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay18.TabIndex = 47;
-            this.checkBox_MonthlyDay18.Text = "18";
-            this.checkBox_MonthlyDay18.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay24
-            // 
-            this.checkBox_MonthlyDay24.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay24.AutoSize = true;
-            this.checkBox_MonthlyDay24.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay24.Location = new System.Drawing.Point(186, 147);
-            this.checkBox_MonthlyDay24.Name = "checkBox_MonthlyDay24";
-            this.checkBox_MonthlyDay24.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay24.TabIndex = 46;
-            this.checkBox_MonthlyDay24.Text = "24";
-            this.checkBox_MonthlyDay24.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay17
-            // 
-            this.checkBox_MonthlyDay17.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay17.AutoSize = true;
-            this.checkBox_MonthlyDay17.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay17.Location = new System.Drawing.Point(186, 114);
-            this.checkBox_MonthlyDay17.Name = "checkBox_MonthlyDay17";
-            this.checkBox_MonthlyDay17.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay17.TabIndex = 45;
-            this.checkBox_MonthlyDay17.Text = "17";
-            this.checkBox_MonthlyDay17.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay12
-            // 
-            this.checkBox_MonthlyDay12.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay12.AutoSize = true;
-            this.checkBox_MonthlyDay12.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay12.Location = new System.Drawing.Point(268, 84);
-            this.checkBox_MonthlyDay12.Name = "checkBox_MonthlyDay12";
-            this.checkBox_MonthlyDay12.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay12.TabIndex = 44;
-            this.checkBox_MonthlyDay12.Text = "12";
-            this.checkBox_MonthlyDay12.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay10
-            // 
-            this.checkBox_MonthlyDay10.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay10.AutoSize = true;
-            this.checkBox_MonthlyDay10.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay10.Location = new System.Drawing.Point(186, 81);
-            this.checkBox_MonthlyDay10.Name = "checkBox_MonthlyDay10";
-            this.checkBox_MonthlyDay10.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay10.TabIndex = 43;
-            this.checkBox_MonthlyDay10.Text = "10";
-            this.checkBox_MonthlyDay10.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay22
-            // 
-            this.checkBox_MonthlyDay22.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay22.AutoSize = true;
-            this.checkBox_MonthlyDay22.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay22.Location = new System.Drawing.Point(110, 147);
-            this.checkBox_MonthlyDay22.Name = "checkBox_MonthlyDay22";
-            this.checkBox_MonthlyDay22.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay22.TabIndex = 42;
-            this.checkBox_MonthlyDay22.Text = "22";
-            this.checkBox_MonthlyDay22.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay15
-            // 
-            this.checkBox_MonthlyDay15.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay15.AutoSize = true;
-            this.checkBox_MonthlyDay15.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay15.Location = new System.Drawing.Point(110, 114);
-            this.checkBox_MonthlyDay15.Name = "checkBox_MonthlyDay15";
-            this.checkBox_MonthlyDay15.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay15.TabIndex = 41;
-            this.checkBox_MonthlyDay15.Text = "15";
-            this.checkBox_MonthlyDay15.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay8
-            // 
-            this.checkBox_MonthlyDay8.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay8.AutoSize = true;
-            this.checkBox_MonthlyDay8.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay8.Location = new System.Drawing.Point(110, 81);
-            this.checkBox_MonthlyDay8.Name = "checkBox_MonthlyDay8";
-            this.checkBox_MonthlyDay8.Size = new System.Drawing.Size(29, 31);
-            this.checkBox_MonthlyDay8.TabIndex = 40;
-            this.checkBox_MonthlyDay8.Text = "8";
-            this.checkBox_MonthlyDay8.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay5
-            // 
-            this.checkBox_MonthlyDay5.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay5.AutoSize = true;
-            this.checkBox_MonthlyDay5.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay5.Location = new System.Drawing.Point(267, 47);
-            this.checkBox_MonthlyDay5.Name = "checkBox_MonthlyDay5";
-            this.checkBox_MonthlyDay5.Size = new System.Drawing.Size(29, 31);
-            this.checkBox_MonthlyDay5.TabIndex = 39;
-            this.checkBox_MonthlyDay5.Text = "5";
-            this.checkBox_MonthlyDay5.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay25
-            // 
-            this.checkBox_MonthlyDay25.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay25.AutoSize = true;
-            this.checkBox_MonthlyDay25.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay25.Location = new System.Drawing.Point(224, 147);
-            this.checkBox_MonthlyDay25.Name = "checkBox_MonthlyDay25";
-            this.checkBox_MonthlyDay25.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay25.TabIndex = 38;
-            this.checkBox_MonthlyDay25.Text = "25";
-            this.checkBox_MonthlyDay25.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay23
-            // 
-            this.checkBox_MonthlyDay23.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay23.AutoSize = true;
-            this.checkBox_MonthlyDay23.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay23.Location = new System.Drawing.Point(148, 147);
-            this.checkBox_MonthlyDay23.Name = "checkBox_MonthlyDay23";
-            this.checkBox_MonthlyDay23.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay23.TabIndex = 37;
-            this.checkBox_MonthlyDay23.Text = "23";
-            this.checkBox_MonthlyDay23.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay28
-            // 
-            this.checkBox_MonthlyDay28.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay28.AutoSize = true;
-            this.checkBox_MonthlyDay28.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay28.Location = new System.Drawing.Point(344, 150);
-            this.checkBox_MonthlyDay28.Name = "checkBox_MonthlyDay28";
-            this.checkBox_MonthlyDay28.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay28.TabIndex = 36;
-            this.checkBox_MonthlyDay28.Text = "28";
-            this.checkBox_MonthlyDay28.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay29
-            // 
-            this.checkBox_MonthlyDay29.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay29.AutoSize = true;
-            this.checkBox_MonthlyDay29.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay29.Location = new System.Drawing.Point(110, 179);
-            this.checkBox_MonthlyDay29.Name = "checkBox_MonthlyDay29";
-            this.checkBox_MonthlyDay29.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay29.TabIndex = 35;
-            this.checkBox_MonthlyDay29.Text = "29";
-            this.checkBox_MonthlyDay29.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay30
-            // 
-            this.checkBox_MonthlyDay30.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay30.AutoSize = true;
-            this.checkBox_MonthlyDay30.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay30.Location = new System.Drawing.Point(148, 179);
-            this.checkBox_MonthlyDay30.Name = "checkBox_MonthlyDay30";
-            this.checkBox_MonthlyDay30.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay30.TabIndex = 34;
-            this.checkBox_MonthlyDay30.Text = "30";
-            this.checkBox_MonthlyDay30.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay31
-            // 
-            this.checkBox_MonthlyDay31.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay31.AutoSize = true;
-            this.checkBox_MonthlyDay31.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay31.Location = new System.Drawing.Point(186, 179);
-            this.checkBox_MonthlyDay31.Name = "checkBox_MonthlyDay31";
-            this.checkBox_MonthlyDay31.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay31.TabIndex = 33;
-            this.checkBox_MonthlyDay31.Text = "31";
-            this.checkBox_MonthlyDay31.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay16
-            // 
-            this.checkBox_MonthlyDay16.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay16.AutoSize = true;
-            this.checkBox_MonthlyDay16.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay16.Location = new System.Drawing.Point(148, 114);
-            this.checkBox_MonthlyDay16.Name = "checkBox_MonthlyDay16";
-            this.checkBox_MonthlyDay16.Size = new System.Drawing.Size(38, 31);
-            this.checkBox_MonthlyDay16.TabIndex = 32;
-            this.checkBox_MonthlyDay16.Text = "16";
-            this.checkBox_MonthlyDay16.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay2
-            // 
-            this.checkBox_MonthlyDay2.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay2.AutoSize = true;
-            this.checkBox_MonthlyDay2.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay2.Location = new System.Drawing.Point(148, 46);
-            this.checkBox_MonthlyDay2.Name = "checkBox_MonthlyDay2";
-            this.checkBox_MonthlyDay2.Size = new System.Drawing.Size(29, 31);
-            this.checkBox_MonthlyDay2.TabIndex = 31;
-            this.checkBox_MonthlyDay2.Text = "2";
-            this.checkBox_MonthlyDay2.UseVisualStyleBackColor = false;
-            // 
-            // checkBox_MonthlyDay1
-            // 
-            this.checkBox_MonthlyDay1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkBox_MonthlyDay1.AutoSize = true;
-            this.checkBox_MonthlyDay1.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.checkBox_MonthlyDay1.Location = new System.Drawing.Point(110, 46);
-            this.checkBox_MonthlyDay1.Name = "checkBox_MonthlyDay1";
-            this.checkBox_MonthlyDay1.Size = new System.Drawing.Size(29, 31);
-            this.checkBox_MonthlyDay1.TabIndex = 30;
-            this.checkBox_MonthlyDay1.Text = "1";
-            this.checkBox_MonthlyDay1.UseVisualStyleBackColor = false;
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(552, 41);
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(49, 29);
+            this.numericUpDown2.TabIndex = 63;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label21.Location = new System.Drawing.Point(499, 40);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(183, 25);
+            this.label21.TabIndex = 62;
+            this.label21.Text = "Keep            backups";
             // 
             // button_Cancel
             // 
@@ -1681,102 +904,6 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // panel_MonthlyDay
-            // 
-            this.panel_MonthlyDay.Controls.Add(this.comboBox1);
-            this.panel_MonthlyDay.Controls.Add(this.comboBox2);
-            this.panel_MonthlyDay.Controls.Add(this.comboBox3);
-            this.panel_MonthlyDay.Controls.Add(this.button1);
-            this.panel_MonthlyDay.Controls.Add(this.button2);
-            this.panel_MonthlyDay.Controls.Add(this.dateTimePicker1);
-            this.panel_MonthlyDay.Controls.Add(this.dateTimePicker2);
-            this.panel_MonthlyDay.Controls.Add(this.dateTimePicker3);
-            this.panel_MonthlyDay.Location = new System.Drawing.Point(0, 92);
-            this.panel_MonthlyDay.Name = "panel_MonthlyDay";
-            this.panel_MonthlyDay.Size = new System.Drawing.Size(160, 224);
-            this.panel_MonthlyDay.TabIndex = 63;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup ",
-            "Differential backup"});
-            this.comboBox1.Location = new System.Drawing.Point(29, 187);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(85, 29);
-            this.comboBox1.TabIndex = 32;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup ",
-            "Differential backup"});
-            this.comboBox2.Location = new System.Drawing.Point(29, 116);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(85, 29);
-            this.comboBox2.TabIndex = 31;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "Full backup",
-            "Incremental backup ",
-            "Differential backup"});
-            this.comboBox3.Location = new System.Drawing.Point(29, 43);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(85, 29);
-            this.comboBox3.TabIndex = 30;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(120, 52);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 29);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "-";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(120, 17);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(25, 29);
-            this.button2.TabIndex = 28;
-            this.button2.Text = "+";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Location = new System.Drawing.Point(29, 90);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(85, 29);
-            this.dateTimePicker1.TabIndex = 27;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Enabled = false;
-            this.dateTimePicker2.Location = new System.Drawing.Point(29, 17);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(85, 29);
-            this.dateTimePicker2.TabIndex = 21;
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.Enabled = false;
-            this.dateTimePicker3.Location = new System.Drawing.Point(29, 160);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(85, 29);
-            this.dateTimePicker3.TabIndex = 26;
-            // 
             // Form_NewMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1802,13 +929,14 @@
             this.tabPage_OneTime.PerformLayout();
             this.tabPage_Daily.ResumeLayout(false);
             this.tabPage_Daily.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tabPage_Weekly.ResumeLayout(false);
             this.tabPage_Weekly.PerformLayout();
-            this.panel_WeeklyDay.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.tabPage_Monthly.ResumeLayout(false);
             this.tabPage_Monthly.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.panel_MonthlyDay.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1874,86 +1002,15 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_OneTimeYMD;
         private System.Windows.Forms.DateTimePicker dateTimePicker_OneTimeTime;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_DailyTime1;
-        private System.Windows.Forms.Button button_DailyAddTime2;
-        private System.Windows.Forms.Button button_DailyRemoveTime2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_DailyTime4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_DailyTime3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_DailyTime2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_DailyTime5;
-        private System.Windows.Forms.Button button_DailyRemoveTime5;
-        private System.Windows.Forms.Button button_DailyRemoveTime4;
-        private System.Windows.Forms.Button button_DailyRemoveTime3;
-        private System.Windows.Forms.Button button_DailyAddTime5;
-        private System.Windows.Forms.Button button_DailyAddTime4;
-        private System.Windows.Forms.Button button_DailyAddTime3;
-        private System.Windows.Forms.TextBox textBox_DailyKeepingBackups;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox comboBox_DailyMethod1;
-        private System.Windows.Forms.ComboBox comboBox_DailyMethod5;
-        private System.Windows.Forms.ComboBox comboBox_DailyMethod4;
-        private System.Windows.Forms.ComboBox comboBox_DailyMethod3;
-        private System.Windows.Forms.ComboBox comboBox_DailyMethod2;
-        private System.Windows.Forms.CheckBox checkBox_Tue;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_WeeklyTime3;
-        private System.Windows.Forms.CheckBox checkBox_Sun;
-        private System.Windows.Forms.CheckBox checkBox_Sat;
-        private System.Windows.Forms.CheckBox checkBox_Fri;
-        private System.Windows.Forms.CheckBox checkBox_Thu;
-        private System.Windows.Forms.CheckBox checkBox_Wed;
-        private System.Windows.Forms.CheckBox checkBox_Mon;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay14;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay13;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay11;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay4;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay3;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay27;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay26;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay21;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay7;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay6;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay9;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay20;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay19;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay18;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay24;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay17;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay12;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay10;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay22;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay15;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay8;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay5;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay25;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay23;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay28;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay29;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay30;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay31;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay16;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay2;
-        private System.Windows.Forms.CheckBox checkBox_MonthlyDay1;
-        private System.Windows.Forms.TextBox textBox_WeeklyKeepingBackups;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox_MonthlyKeepingBackups;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Panel panel_WeeklyDay;
-        private System.Windows.Forms.Button button_WeeklyAddTime;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_WeeklyTime2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_WeeklyTime1;
-        private System.Windows.Forms.Button button_WeeklyRemoveTime;
-        private System.Windows.Forms.ComboBox comboBox_WeeklyDay3;
-        private System.Windows.Forms.ComboBox comboBox_WeeklyDay2;
-        private System.Windows.Forms.ComboBox comboBox_WeeklyDay1;
-        private System.Windows.Forms.Panel panel_MonthlyDay;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBox_SFTPPath;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox textBox_FTPPath;
+        private System.Windows.Forms.Label label22;
     }
 }
