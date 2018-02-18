@@ -87,7 +87,7 @@
             this.tabPage_EmailNotification.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_EmailNotification.Size = new System.Drawing.Size(759, 449);
             this.tabPage_EmailNotification.TabIndex = 0;
-            this.tabPage_EmailNotification.Text = "Email notification";
+            this.tabPage_EmailNotification.Text = "Email notification settings";
             // 
             // textBox_SMTPServerName
             // 
@@ -214,7 +214,7 @@
             this.tabPage_Administration.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_Administration.Size = new System.Drawing.Size(759, 449);
             this.tabPage_Administration.TabIndex = 1;
-            this.tabPage_Administration.Text = "Administration";
+            this.tabPage_Administration.Text = "Daemons settings";
             this.tabPage_Administration.UseVisualStyleBackColor = true;
             // 
             // tabControl_Daemon
