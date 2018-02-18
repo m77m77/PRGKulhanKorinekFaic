@@ -34,15 +34,21 @@ namespace AdminApp
                 ap.Password = textBox_Password.Text;
 
                 //DEBUG
-                //res = await gt.GetTokenMethod(ap,label_error,textBox_serverAdress);
-                res = true;
+                res = await gt.GetTokenMethod(ap,label_error,textBox_serverAdress);
+                //res = true;
 
                 if(res == true)
                 {
-                this.Hide();
-                Form_NewMenu frm = new Form_NewMenu(gt);
-                if (frm.ShowDialog() == DialogResult.OK) { }
-                    this.Close();
+                    
+                    Form_NewMenu frm = new Form_NewMenu(gt);
+                    bool dRes = await frm.GetAllSettings(this.label_error);
+
+                    if (dRes)
+                    {
+                        this.Hide();
+                        if (frm.ShowDialog() == DialogResult.OK) { }
+                        this.Close();
+                    }
                 }
                 
             }
