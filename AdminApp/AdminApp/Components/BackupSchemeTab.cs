@@ -78,27 +78,36 @@ namespace AdminApp.Components
             {
                 this.tabControl_Scheme.SelectedIndex = 1;
                 this.daily.LoadSettings(settings);
-                this.dailyKeepBackups.ValueChanged -= this.EventValChanged;
-                this.dailyKeepBackups.Value = settings.BackupScheme.MaxBackups;
-                this.dailyKeepBackups.ValueChanged += this.EventValChanged;
+                this.SetMaxBackups(settings);
             }
             else if (settings.BackupScheme.Type == "WEEKLY")
             {
                 this.tabControl_Scheme.SelectedIndex = 2;
                 this.weekly.LoadSettings(settings);
-                this.weeklyKeepBackups.ValueChanged -= this.EventValChanged;
-                this.weeklyKeepBackups.Value = settings.BackupScheme.MaxBackups;
-                this.weeklyKeepBackups.ValueChanged += this.EventValChanged;
+                this.SetMaxBackups(settings);
             }
             else if (settings.BackupScheme.Type == "MONTHLY")
             {
                 this.tabControl_Scheme.SelectedIndex = 3;
                 this.monthly.LoadSettings(settings);
-                this.monthlyKeepBackups.ValueChanged -= this.EventValChanged;
-                this.monthlyKeepBackups.Value = settings.BackupScheme.MaxBackups;
-                this.monthlyKeepBackups.ValueChanged += this.EventValChanged;
+                this.SetMaxBackups(settings);
             }
             this.tabControl_Scheme.SelectedIndexChanged += this.EventValChanged;
+        }
+
+        private void SetMaxBackups(Settings settings)
+        {
+            this.dailyKeepBackups.ValueChanged -= this.EventValChanged;
+            this.dailyKeepBackups.Value = settings.BackupScheme.MaxBackups;
+            this.dailyKeepBackups.ValueChanged += this.EventValChanged;
+
+            this.weeklyKeepBackups.ValueChanged -= this.EventValChanged;
+            this.weeklyKeepBackups.Value = settings.BackupScheme.MaxBackups;
+            this.weeklyKeepBackups.ValueChanged += this.EventValChanged;
+
+            this.monthlyKeepBackups.ValueChanged -= this.EventValChanged;
+            this.monthlyKeepBackups.Value = settings.BackupScheme.MaxBackups;
+            this.monthlyKeepBackups.ValueChanged += this.EventValChanged;
         }
 
         public void SaveSettings(Settings settings)

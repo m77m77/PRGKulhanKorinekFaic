@@ -52,6 +52,7 @@
     <Compile Include="CommunicationClasses\IData.cs" />
     <Compile Include="CommunicationClasses\ListSettingsData.cs" />
     <Compile Include="CommunicationClasses\Response.cs" />
+    <Compile Include="Components\AllDaemonSettings.cs" />
     <Compile Include="Components\BackupCalendar.cs" />
     <Compile Include="Components\BackupSchemeTab.cs" />
     <Compile Include="Components\BackupSettingsTab.cs" />

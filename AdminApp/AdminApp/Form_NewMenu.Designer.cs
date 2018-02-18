@@ -44,10 +44,11 @@
             this.textBox_SMTPPassword = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage_Administration = new System.Windows.Forms.TabPage();
+            this.tabControl_Daemon = new System.Windows.Forms.TabControl();
             this.button_Cancel = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.tabControl_Daemon = new System.Windows.Forms.TabControl();
+            this.label_error = new System.Windows.Forms.Label();
             this.tabControl_DefaultMenu.SuspendLayout();
             this.tabPage_EmailNotification.SuspendLayout();
             this.tabPage_Administration.SuspendLayout();
@@ -216,6 +217,14 @@
             this.tabPage_Administration.Text = "Administration";
             this.tabPage_Administration.UseVisualStyleBackColor = true;
             // 
+            // tabControl_Daemon
+            // 
+            this.tabControl_Daemon.Location = new System.Drawing.Point(0, 0);
+            this.tabControl_Daemon.Name = "tabControl_Daemon";
+            this.tabControl_Daemon.SelectedIndex = 0;
+            this.tabControl_Daemon.Size = new System.Drawing.Size(759, 449);
+            this.tabControl_Daemon.TabIndex = 0;
+            // 
             // button_Cancel
             // 
             this.button_Cancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -223,7 +232,7 @@
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(111, 45);
             this.button_Cancel.TabIndex = 1;
-            this.button_Cancel.Text = "Cancel";
+            this.button_Cancel.Text = "Exit";
             this.button_Cancel.UseVisualStyleBackColor = true;
             this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
             // 
@@ -242,19 +251,25 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // tabControl_Daemon
+            // label_error
             // 
-            this.tabControl_Daemon.Location = new System.Drawing.Point(0, 0);
-            this.tabControl_Daemon.Name = "tabControl_Daemon";
-            this.tabControl_Daemon.SelectedIndex = 0;
-            this.tabControl_Daemon.Size = new System.Drawing.Size(759, 449);
-            this.tabControl_Daemon.TabIndex = 0;
+            this.label_error.BackColor = System.Drawing.Color.Red;
+            this.label_error.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.label_error.ForeColor = System.Drawing.Color.Black;
+            this.label_error.Location = new System.Drawing.Point(12, 496);
+            this.label_error.Name = "label_error";
+            this.label_error.Size = new System.Drawing.Size(493, 29);
+            this.label_error.TabIndex = 8;
+            this.label_error.Text = "error";
+            this.label_error.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_error.Visible = false;
             // 
             // Form_NewMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(765, 546);
+            this.Controls.Add(this.label_error);
             this.Controls.Add(this.button_Save);
             this.Controls.Add(this.button_Cancel);
             this.Controls.Add(this.tabControl_DefaultMenu);
@@ -290,5 +305,6 @@
         private System.Windows.Forms.Button button_Save;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TabControl tabControl_Daemon;
+        private System.Windows.Forms.Label label_error;
     }
 }

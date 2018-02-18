@@ -1,6 +1,7 @@
 ﻿using AdminApp.Models.Settings;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -470,6 +471,108 @@ namespace AdminApp.Components
             page.Controls.Add(this.label_FTPport);
             page.Controls.Add(this.label_FTPPassword);
             page.Controls.Add(this.label_AfterBackup);
+        }
+
+        public bool IsValid(ErrorProvider errProvider)
+        {
+            bool result = true;
+
+            if(String.IsNullOrWhiteSpace(this.textBox_Path.Text) || !Path.IsPathRooted(this.textBox_Path.Text))
+            {
+                result = false;
+                errProvider.SetError(this.textBox_Path, "Not a valid path");
+            }
+
+            if(this.radioButton_Localnetwork.Checked)
+            {
+                if(String.IsNullOrWhiteSpace(this.textBox_Selectdestination.Text) || !Path.IsPathRooted(this.textBox_Selectdestination.Text))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_Selectdestination, "Not a valid path");
+                }
+            }
+
+            if (this.radioButton_FTP.Checked)
+            {
+                if (String.IsNullOrWhiteSpace(this.textBox_FTPAdress.Text))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_FTPAdress, "Cannot be empty");
+                }
+
+                if (String.IsNullOrWhiteSpace(this.textBox_FTPPort.Text))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_FTPPort, "Cannot be empty");
+                }
+
+                int port = 0;
+                if (int.TryParse(this.textBox_FTPPort.Text,out port))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_FTPPort, "Port must be a number");
+                }
+
+                if (String.IsNullOrWhiteSpace(this.textBox_FTPUsername.Text))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_FTPUsername, "Cannot be empty");
+                }
+
+                if (String.IsNullOrWhiteSpace(this.textBox_FTPPassword.Text))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_FTPPassword, "Cannot be empty");
+                }
+
+                if (String.IsNullOrWhiteSpace(this.textBox_FTPPath.Text))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_FTPPath, "Not a valid path");
+                }
+            }
+
+            if (this.radioButton_SFTP.Checked)
+            {
+                if (String.IsNullOrWhiteSpace(this.textBox_SFTPAdress.Text))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_SFTPAdress, "Cannot be empty");
+                }
+
+                if (String.IsNullOrWhiteSpace(this.textBox_SFTPPort.Text))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_SFTPPort, "Cannot be empty");
+                }
+
+                int port = 0;
+                if (int.TryParse(this.textBox_SFTPPort.Text, out port))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_SFTPPort, "Port must be a number");
+                }
+
+                if (String.IsNullOrWhiteSpace(this.textBox_SFTPUsername.Text))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_SFTPUsername, "Cannot be empty");
+                }
+
+                if (String.IsNullOrWhiteSpace(this.textBox_SFTPPassword.Text))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_SFTPPassword, "Cannot be empty");
+                }
+
+                if (String.IsNullOrWhiteSpace(this.textBox_SFTPPath.Text))
+                {
+                    result = false;
+                    errProvider.SetError(this.textBox_SFTPPath, "Not a valid path");
+                }
+            }
+
+            return result;
         }
 
         private void ValsChanged(object sender,EventArgs args)

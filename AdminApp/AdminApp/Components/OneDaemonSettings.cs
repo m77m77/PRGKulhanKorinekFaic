@@ -129,10 +129,31 @@ namespace AdminApp.Components
             tabControl.Controls.Add(this.tabPage_daemon);
         }
 
+        public bool IsValid(ErrorProvider errProvider)
+        {
+            bool result = true;
+
+            if(!this.IsDefault)
+            {
+                if(String.IsNullOrWhiteSpace(this.textBox_daemonName.Text))
+                {
+                    errProvider.SetError(this.textBox_daemonName, "Cannot be empty");
+                    result = false;
+                }
+            }
+
+            if(!this.settingsTab.IsValid(errProvider))
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
         public Settings SaveSettings()
         {
             Settings settings = new Settings();
-            settings.DaemonName = this.textBox_daemonName.Text;
+            settings.DaemonName = this.IsDefault? null : this.textBox_daemonName.Text;
             settings.DaemonID = this.DaemonID;
             this.settingsTab.SaveSettings(settings);
             this.schemeTab.SaveSettings(settings);
@@ -166,6 +187,12 @@ namespace AdminApp.Components
             {
                 this.tabPage_daemon.Text = this.IsDefault ? "Default" : this.textBox_daemonName.Text;
             }
+        }
+
+        public void Saved()
+        {
+            this.HasBeenChanged = false;
+            this.ChangeName();
         }
     }
 }
