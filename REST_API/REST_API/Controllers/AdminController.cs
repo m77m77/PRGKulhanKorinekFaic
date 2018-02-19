@@ -37,6 +37,11 @@ namespace REST_API.Controllers
 
             Query.CommandText = "SELECT settings,id FROM daemons"; //WHERE @id = id";
 
+
+            MySqlCommand defaultSettingsQuery = Connection.CreateCommand();
+
+            defaultSettingsQuery.CommandText = "SELECT value FROM systemSettings WHERE name='defaultDaemonSettings'";
+
             //Query.Parameters.AddWithValue("@id", id);
 
             Response r = new Response();
@@ -44,7 +49,7 @@ namespace REST_API.Controllers
             ListSettingsData data = new ListSettingsData();
             data.ListSettings = new List<Settings>();
             r.Data = data;
-            
+
             try
             {
                 Connection.Open();
@@ -60,8 +65,12 @@ namespace REST_API.Controllers
                     i++;
                 }
                 Reader.Close();
+
+                string defaultSettingsJson = defaultSettingsQuery.ExecuteScalar().ToString();
+                data.DefaultSettings = JsonConvert.DeserializeObject<Settings>(defaultSettingsJson, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+
             }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
+            catch (Exception ex)
             {
                 r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
             }

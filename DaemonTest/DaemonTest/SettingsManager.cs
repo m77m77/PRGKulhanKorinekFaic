@@ -50,24 +50,27 @@ namespace DaemonTest
             return null;
         }
 
-        public async static Task<bool> GetNewSettings()
+        public async static Task<Response> GetNewSettings()
         {
             HttpClient client = new HttpClient();
+            Response response = new Response();
             try
             {
                 HttpResponseMessage httpResponse = await client.GetAsync("http://localhost:63058/api/daemon/rBBthQbuOrwM40e3-yvKLk5bspE7,N8Y");
-                Response response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
-                if(response.Status == "OK")
-                {
-                    CurrentSettings = (Settings)response.Data;
-                }
-                return true;
+                response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
             }
             catch (Exception)
             {
-                return false;
+                response = new Response("ERROR", "ConnectionError", null, null);
             }
-            
+
+            if (response.Status == "OK")
+            {
+                CurrentSettings = (Settings)response.Data;
+            }
+
+            return response;
+
         }
     }
 }

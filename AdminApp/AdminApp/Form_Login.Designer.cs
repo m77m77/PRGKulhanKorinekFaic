@@ -68,7 +68,7 @@
             this.label_Password.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Password.Location = new System.Drawing.Point(98, 158);
             this.label_Password.Name = "label_Password";
-            this.label_Password.Size = new System.Drawing.Size(92, 25);
+            this.label_Password.Size = new System.Drawing.Size(91, 25);
             this.label_Password.TabIndex = 2;
             this.label_Password.Text = "Password";
             // 
@@ -115,14 +115,15 @@
             // 
             // label_error
             // 
-            this.label_error.AutoSize = true;
+            this.label_error.BackColor = System.Drawing.Color.Red;
             this.label_error.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.label_error.ForeColor = System.Drawing.Color.Red;
-            this.label_error.Location = new System.Drawing.Point(178, 281);
+            this.label_error.ForeColor = System.Drawing.Color.Black;
+            this.label_error.Location = new System.Drawing.Point(12, 277);
             this.label_error.Name = "label_error";
-            this.label_error.Size = new System.Drawing.Size(54, 25);
+            this.label_error.Size = new System.Drawing.Size(381, 29);
             this.label_error.TabIndex = 7;
             this.label_error.Text = "error";
+            this.label_error.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Form_Login
             // 
