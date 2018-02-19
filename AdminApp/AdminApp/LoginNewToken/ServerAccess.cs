@@ -46,31 +46,31 @@ namespace AdminApp.LoginNewToken
 
             if(r.Error == "ConnectionError")
             {
-                label.Text = "ConnectionError";
+                label.Text = "Connection error";
                 label.Visible = true;
                 ret = false;
             }
             if (r.Error == "TokenGenerationFailed")
             {
-                label.Text = "TokenGenerationFailed";
+                label.Text = "Token generation failed";
                 label.Visible = true;
                 ret = false;
             }
             if (r.Error == "BadPassword")
             {
-                label.Text = "BadPassword";
+                label.Text = "Bad password";
                 label.Visible = true;
                 ret = false;
             }
             if (r.Error == "BadUserName")
             {
-                label.Text = "BadUserName";
+                label.Text = "Bad username";
                 label.Visible = true;
                 ret = false;
             }
             if (r.Error == "ConnectionWithDatabaseProblem")
             {
-                label.Text = "ConnectionWithDatabaseProblem";
+                label.Text = "Connection with database problem";
                 label.Visible = true;
                 ret = false;
             }
@@ -133,6 +133,7 @@ namespace AdminApp.LoginNewToken
             {
                 label.Visible = true;
                 label.Text = r.Error;
+                
             }
 
             return r;

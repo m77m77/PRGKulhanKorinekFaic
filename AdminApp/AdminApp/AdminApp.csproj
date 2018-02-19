@@ -68,19 +68,13 @@
     <Compile Include="Form_Login.Designer.cs">
       <DependentUpon>Form_Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_Menu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_Menu.Designer.cs">
-      <DependentUpon>Form_Menu.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form_NewMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_NewMenu.Designer.cs">
       <DependentUpon>Form_NewMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginNewToken\GetToken.cs" />
+    <Compile Include="LoginNewToken\ServerAccess.cs" />
     <Compile Include="Models\Settings\BackupScheme.cs" />
     <Compile Include="Models\Settings\BackupTime.cs" />
     <Compile Include="Models\Settings\FTPDestination.cs" />
@@ -95,9 +89,6 @@
     <Compile Include="SettingsSerializationBinder.cs" />
     <EmbeddedResource Include="Form_Login.resx">
       <DependentUpon>Form_Login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Menu.resx">
-      <DependentUpon>Form_Menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_NewMenu.resx">
       <DependentUpon>Form_NewMenu.cs</DependentUpon>
