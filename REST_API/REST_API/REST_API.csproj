@@ -195,6 +195,7 @@
     <Compile Include="CommunicationClasses\ListSettingsData.cs" />
     <Compile Include="CommunicationClasses\Response.cs" />
     <Compile Include="Controllers\DaemonController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\NewTokenController.cs" />
     <Compile Include="Models\Settings\BackupScheme.cs" />
     <Compile Include="Models\Settings\BackupTime.cs" />
