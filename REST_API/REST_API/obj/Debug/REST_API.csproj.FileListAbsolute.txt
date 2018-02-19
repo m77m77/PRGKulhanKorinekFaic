@@ -189,3 +189,4 @@ X:\++PRG++\PRGKulhanKorinetFaicGIT_2\REST_API\REST_API\obj\Debug\REST_API.csproj
 X:\++PRG++\PRGKulhanKorinetFaicGIT_2\REST_API\REST_API\obj\Debug\REST_API.csproj.CoreCompileInputs.cache
 X:\++PRG++\PRGKulhanKorinetFaicGIT_2\REST_API\REST_API\obj\Debug\REST_API.dll
 X:\++PRG++\PRGKulhanKorinetFaicGIT_2\REST_API\REST_API\obj\Debug\REST_API.pdb
+D:\Projekty\PRG_KulhanKořínekFaic_4\REST_API\REST_API\obj\Debug\REST_API.csproj.CoreCompileInputs.cache
