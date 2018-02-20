@@ -81,6 +81,7 @@ namespace AdminApp
             lesd.ListEmailSettings = new List<EmailSettings>();
 
             lesd.ListEmailSettings.Add(new EmailSettings());
+            lesd.ListEmailSettings[0].AdminId = 1;
             lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
             lesd.ListEmailSettings[0].SslTls = this.checkBox1.Checked;
             lesd.ListEmailSettings[0].Port = Convert.ToInt32(this.textBox_SMTPPort.Text);
