@@ -87,7 +87,7 @@ namespace REST_API.Controllers
             MySqlCommand Query = Connection.CreateCommand();
 
             //Query.CommandText = "INSERT INTO `3b2_kulhanmatous_db2`.`daemons` (`settings`) VALUES (@value);";
-            Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`emails` SET `emailSettings` = @value WHERE `emails`.`AdminId` = @AdminId;";
+            Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`emails` SET `emailSettings` = @value";// WHERE `emails`.`AdminId` = @AdminId;";
 
             Query.Parameters.AddWithValue("@AdminId", value.AdminId);
 
