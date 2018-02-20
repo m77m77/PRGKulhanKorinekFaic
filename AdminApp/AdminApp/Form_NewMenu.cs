@@ -75,6 +75,12 @@ namespace AdminApp
         {
             this.label_error.Visible = false;
             this.allDaemonSettings.SaveSettings(this.serverAccess,this.label_error,this.errorProvider1);
+
+            ListEmailSettingsData lesd = new ListEmailSettingsData();   // testovací
+            lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
+            lesd.ListEmailSettings[0].SslTls = this.checkBox1.Checked;
+            lesd.ListEmailSettings[0].Port = Convert.ToInt32(this.textBox_SMTPPort.Text);
+            this.serverAccess.PostEmailSettings(lesd.ListEmailSettings[0], this.label_error);
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)

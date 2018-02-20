@@ -8,6 +8,7 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Windows.Forms;
 using AdminApp.Models.Settings;
+using AdminApp.Models.EmailSettings;
 
 namespace AdminApp.LoginNewToken
 {
@@ -164,6 +165,35 @@ namespace AdminApp.LoginNewToken
             {
                 label.Visible = true;
                 label.Text = r.Error;
+            }
+
+            return r;
+        }
+
+        public async Task<Response> PostEmailSettings(EmailSettings emailsettings, Label label)
+        {
+            Response r = new Response();
+
+            string json = JsonConvert.SerializeObject(emailsettings, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+
+            HttpClient http = new HttpClient();
+            StringContent sc = new StringContent(json, Encoding.UTF8, "application/json");
+
+            try
+            {
+                HttpResponseMessage res = await http.PostAsync(this.Server + "/api/email/" + this.Token, sc);
+                r = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            }
+            catch (Exception ex)
+            {
+                r = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            if (r.Status == "ERROR")
+            {
+                label.Visible = true;
+                label.Text = r.Error;
+
             }
 
             return r;
