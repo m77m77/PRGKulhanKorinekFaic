@@ -30,7 +30,7 @@ namespace REST_API.Controllers
                 //token nepatří daemonovi
                 return new Response("ERROR", "TokenIsNotMatched", null, null);
             }
-
+            
             MySqlCommand Query = Connection.CreateCommand();
 
             Query.CommandText = "SELECT settings FROM daemons WHERE @id = id";
