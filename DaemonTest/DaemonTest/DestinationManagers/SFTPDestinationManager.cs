@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DaemonTest.Models.Settings;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,19 @@ namespace DaemonTest.DestinationManagers
 {
     public class SFTPDestinationManager : IDestinationManager
     {
-        public string GetPath()
+        private SFTPDestination destination;
+
+        public SFTPDestinationManager(SFTPDestination destination)
+        {
+            this.destination = destination;
+        }
+
+        public string GetDownloadPath()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetUploadPath()
         {
             throw new NotImplementedException();
         }
