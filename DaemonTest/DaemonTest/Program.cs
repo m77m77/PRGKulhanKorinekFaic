@@ -24,7 +24,7 @@ namespace DaemonTest
             Task<Response> res =  SettingsManager.GetNewSettings();
             res.Wait();
 
-            IBackupMethod bcMethod = new DifferentialBackupMethod();
+            IBackupMethod bcMethod = new IncrementalBackupMethod();
             bcMethod.Backup();
             Console.ReadLine();
         }

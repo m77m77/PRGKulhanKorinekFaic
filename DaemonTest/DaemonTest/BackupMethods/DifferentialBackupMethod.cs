@@ -19,11 +19,6 @@ namespace DaemonTest.BackupMethods
             this.saveMethod = SettingsManager.GetSaveMethod();
             this.destinationManager = SettingsManager.GetDestinationManager();
 
-            foreach (KeyValuePair<string,DateTime> item in this.saveMethod.GetListOfPreviusBackups(this.destinationManager)[0].Files)
-            {
-                Console.WriteLine(" " + item);
-            }
-
             this.sourceDir = new DirectoryInfo(SettingsManager.CurrentSettings.BackupSourcePath);
         }
 
@@ -58,6 +53,9 @@ namespace DaemonTest.BackupMethods
                     }
                 }
 
+                if(lastFullBackup == null)
+                    return new BackupStatus() { Status = "FAIL", FailMessage = "There is no full backup" };
+
 
                 this.saveMethod.Start(this.destinationManager, "DIFF");
 
@@ -86,7 +84,6 @@ namespace DaemonTest.BackupMethods
                 try
                 {
                     string fullName = Path.Combine(path, item.Name);
-                    Console.WriteLine(fullName + " - " + item.LastWriteTime);
                     
                     if (fullBackup.ContainsKey(fullName))
                     {
