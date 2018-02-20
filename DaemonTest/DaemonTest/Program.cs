@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 using DaemonTest.Models.Settings;
 using System.Threading.Tasks;
 using DaemonTest.CommunicationClasses;
+using DaemonTest.BackupMethods;
+using DaemonTest.Models;
 
 namespace DaemonTest
 {
@@ -21,7 +23,9 @@ namespace DaemonTest
 
             Task<Response> res =  SettingsManager.GetNewSettings();
             res.Wait();
-            Console.WriteLine(res.Result.Error);
+
+            IBackupMethod bcMethod = new IncrementalBackupMethod();
+            bcMethod.Backup();
             Console.ReadLine();
         }
     }

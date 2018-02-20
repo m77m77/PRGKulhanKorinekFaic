@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\AdminApp",
-    "\\AdminApp\\AdminApp"
+    "\\AdminApp\\AdminApp",
+    "\\AdminApp\\AdminApp\\Models",
+    "\\AdminApp\\AdminApp\\Models\\Settings"
   ],
-  "SelectedNode": "\\AdminApp\\AdminApp.sln",
+  "SelectedNode": "\\AdminApp\\AdminApp\\Models\\Settings\\Settings.cs",
   "PreviewInSolutionExplorer": false
 }

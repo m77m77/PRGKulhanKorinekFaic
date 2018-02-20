@@ -15,6 +15,7 @@ namespace DaemonTest
     public static class SettingsManager
     {
         public static Settings CurrentSettings { get; private set; }
+        
 
         public static ISaveMethod GetSaveMethod()
         {
@@ -36,18 +37,49 @@ namespace DaemonTest
             string destType = CurrentSettings.Destination.Type;
             if (destType == "LOCAL_NETWORK")
             {
-                return new LocalNetworkDestinationManager();
+                return new LocalNetworkDestinationManager((LocalNetworkDestination)CurrentSettings.Destination);
             }
             else if(destType == "FTP")
             {
-                return new FTPDestinationManager();
+                return new FTPDestinationManager((FTPDestination)CurrentSettings.Destination);
             }
             else if(destType == "SFTP")
             {
-                return new SFTPDestinationManager();
+                return new SFTPDestinationManager((SFTPDestination)CurrentSettings.Destination);
             }
 
             return null;
+        }
+
+        public static string GetFolderNameBasedOnDate()
+        {
+            string type = CurrentSettings.BackupScheme.Type;
+
+            if (type == "ONE_TIME")
+            {
+                return type;
+            }
+            else if (type == "DAILY")
+            {
+                return type + " " + DateTime.Now.ToString("dd.MM.yyyy");
+            }
+            else if (type == "WEEKLY")
+            {
+                int diff = (7 + (DateTime.Now.DayOfWeek - DayOfWeek.Monday)) % 7;
+                DateTime monday = DateTime.Now.AddDays(-1 * diff).Date;
+                DateTime sunday = monday.AddDays(6);
+
+                return type + " " + monday.ToString("dd.MM.yyyy") + " - " + sunday.ToString("dd.MM.yyyy");
+            }
+            else if (type == "MONTHLY")
+            {
+                DateTime first = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                DateTime last = first.AddMonths(1).AddDays(-1);
+
+                return type + " " + first.ToString("dd.MM.yyyy") + " - " + last.ToString("dd.MM.yyyy");
+            }
+
+            return "";
         }
 
         public async static Task<Response> GetNewSettings()
