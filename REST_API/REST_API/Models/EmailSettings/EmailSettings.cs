@@ -8,6 +8,7 @@ namespace REST_API.Models.EmailSettings
 {
     public class EmailSettings : IData
     {
+        public int AdminId { get; set; }
         public string EmailAddress { get; set; }
         public string ServerName { get; set; }
         public int Port { get; set; }

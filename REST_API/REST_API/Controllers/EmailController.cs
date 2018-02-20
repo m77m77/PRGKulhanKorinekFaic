@@ -66,5 +66,57 @@ namespace REST_API.Controllers
 
             return r;
         }
+
+        [Route("api/email/{token}")]
+        public Response Post(string token, [FromBody]EmailSettings value)
+        {
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            //if (!t.IsAdmin)
+            //{
+            //    //token nepatří adminovi  
+            //    return new Response("ERROR", "TokenIsNotMatched", null, null);
+            //}
+
+            MySqlCommand Query = Connection.CreateCommand();
+
+            //Query.CommandText = "INSERT INTO `3b2_kulhanmatous_db2`.`daemons` (`settings`) VALUES (@value);";
+            Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`emails` SET `emailSettings` = @value WHERE `emails`.`AdminId` = @AdminId;";
+
+            Query.Parameters.AddWithValue("@AdminId", value.AdminId);
+
+            Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(value, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+
+
+            Response r = new Response();
+
+            //ListSettingsData data = new ListSettingsData();
+            //data.ListSettings = new List<Settings>();
+            //r.Data = data;
+
+            try
+            {
+                Connection.Open();
+                Query.ExecuteNonQuery();
+
+                //data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(value.ToString()));
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
     }
 }
