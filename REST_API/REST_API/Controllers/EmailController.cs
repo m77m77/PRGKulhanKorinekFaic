@@ -34,9 +34,9 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT emailSettings FROM emails WHERE @id = id";
+            Query.CommandText = "SELECT emailSettings FROM emails"; // WHERE @id = id";
 
-            Query.Parameters.AddWithValue("@id", t.AdminID);
+            //Query.Parameters.AddWithValue("@id", t.AdminID);
 
             Response r = new Response();
             
