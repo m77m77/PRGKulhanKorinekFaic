@@ -20,6 +20,7 @@ namespace AdminApp
             InitializeComponent();
             label_error.Visible = false;
             textBox_Password.PasswordChar = '•';
+
         }
 
         private async void button_Login_Click(object sender, EventArgs e)
