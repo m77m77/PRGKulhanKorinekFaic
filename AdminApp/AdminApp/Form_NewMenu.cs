@@ -60,6 +60,7 @@ namespace AdminApp
         {
             this.textBox_To.Text = data.From;
             this.textBox_SMTPPort.Text = Convert.ToString(data.Port);
+            this.textBox_SMTPUsername.Text = Convert.ToString(data.AdminId);
         }
 
         private bool IsValid()

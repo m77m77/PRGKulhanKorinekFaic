@@ -204,9 +204,9 @@ namespace AdminApp.LoginNewToken
             HttpClient http = new HttpClient();
             Response response = new Response();
 
-            ListEmailSettingsData data = new ListEmailSettingsData();
-            data.ListEmailSettings = new List<EmailSettings>();
-            response.Data = data;
+            //ListEmailSettingsData data = new ListEmailSettingsData();
+            //data.ListEmailSettings = new List<EmailSettings>();
+            //response.Data = data;
 
 
             try
