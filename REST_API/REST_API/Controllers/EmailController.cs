@@ -120,7 +120,7 @@ namespace REST_API.Controllers
         }
 
 
-        [Route("api/email/adminId/{token}")]
+        [Route("api/email/OneAdmin/{token}")]
         public Response Get(string token,int adminId)
         {
             MySqlConnection Connection = WebApiConfig.Connection();
@@ -131,17 +131,17 @@ namespace REST_API.Controllers
                 //token není v databázi  
                 return new Response("ERROR", "TokenNotFound", null, null);
             }
-            //if (!t.IsAdmin)
-            //{
-            //    //token nepatří adminovi  
-            //    return new Response("ERROR", "TokenIsNotMatched", null, null);
-            //}
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
 
             MySqlCommand Query = Connection.CreateCommand();
 
             Query.CommandText = "SELECT emailSettings FROM emails WHERE @adminId = adminId";
 
-            Query.Parameters.AddWithValue("@adminId", adminId);
+            Query.Parameters.AddWithValue("@adminId", t.AdminID);
 
             Response r = new Response();
 

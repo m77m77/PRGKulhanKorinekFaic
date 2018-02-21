@@ -211,8 +211,8 @@ namespace AdminApp.LoginNewToken
 
             try
             {
-                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/adminId/" + this.Token);
-                data.ListEmailSettings.Add(JsonConvert.DeserializeObject<EmailSettings>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/OneAdmin/" + this.Token);
+                response = (JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
 
             }
             catch

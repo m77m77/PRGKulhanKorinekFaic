@@ -52,14 +52,14 @@ namespace AdminApp
 
             if (response.Status == "OK")
             {
-                addParams((ListEmailSettingsData)response.Data);
+                addParams((EmailSettings)response.Data);
             }
 
         }
-        public void addParams(ListEmailSettingsData data)
+        public void addParams(EmailSettings data)
         {
-            this.textBox_To.Text = data.ListEmailSettings[0].EmailAddress;
-            this.textBox_SMTPPort.Text = Convert.ToString(data.ListEmailSettings[0].Port);
+            this.textBox_To.Text = data.From;
+            this.textBox_SMTPPort.Text = Convert.ToString(data.Port);
         }
 
         private bool IsValid()
