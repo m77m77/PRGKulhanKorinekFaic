@@ -199,5 +199,29 @@ namespace AdminApp.LoginNewToken
             return r;
         }
 
+        public async Task<Response> OneGetEmailSettings(EmailSettings emailsettings, Label label)
+        {
+            HttpClient http = new HttpClient();
+            Response response;
+
+            try
+            {
+                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/id/" + this.Token);
+                response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            }
+            catch
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            label.Visible = false;
+            if (response.Status == "ERROR")
+            {
+                label.Visible = true;
+                label.Text = response.Error;
+            }
+
+            return response;
+        }
     }
 }
