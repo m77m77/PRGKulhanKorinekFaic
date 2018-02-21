@@ -5,6 +5,7 @@ using System.Web;
 using Newtonsoft.Json.Serialization;
 using AdminApp.Models.Settings;
 using AdminApp.CommunicationClasses;
+using AdminApp.Models.EmailSettings;
 
 namespace AdminApp
 {
@@ -30,6 +31,10 @@ namespace AdminApp
                     return typeof(ListSettingsData);
                 case "Settings":
                     return typeof(Settings);
+                case "EmailSettings":
+                    return typeof(EmailSettings);
+                case "ListEmailSettingsData":
+                    return typeof(ListEmailSettingsData);
             }
 
             return null;
