@@ -27,6 +27,7 @@ namespace AdminApp
             InitializeComponent();
             this.serverAccess = gettoken;
             this.allDaemonSettings = new AllDaemonSettings();
+
         }
 
         public async Task<bool> GetAllSettings(Label label)
