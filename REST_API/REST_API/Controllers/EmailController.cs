@@ -120,8 +120,8 @@ namespace REST_API.Controllers
         }
 
 
-        [Route("api/email/id/{token}")]
-        public Response Get(string token,int id)
+        [Route("api/email/adminId/{token}")]
+        public Response Get(string token,int adminId)
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
@@ -139,9 +139,9 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT emailSettings FROM emails WHERE @id = id";
+            Query.CommandText = "SELECT emailSettings FROM emails WHERE @adminId = adminId";
 
-            Query.Parameters.AddWithValue("@id", id);
+            Query.Parameters.AddWithValue("@adminId", adminId);
 
             Response r = new Response();
 
