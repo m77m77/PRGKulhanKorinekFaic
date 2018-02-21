@@ -63,7 +63,7 @@ namespace REST_API.Controllers
 
             if (r.Status == null)
                 r.Status = "OK";
-
+            
             return r;
         }
 
@@ -145,9 +145,9 @@ namespace REST_API.Controllers
 
             Response r = new Response();
 
-            ListEmailSettingsData data = new ListEmailSettingsData();
-            data.ListEmailSettings = new List<EmailSettings>();
-            r.Data = data;
+            //ListEmailSettingsData data = new ListEmailSettingsData();
+            //data.ListEmailSettings = new List<EmailSettings>();
+            //r.Data = data;
 
             try
             {
@@ -156,7 +156,9 @@ namespace REST_API.Controllers
 
                 while (Reader.Read())
                 {
-                    data.ListEmailSettings.Add(JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    EmailSettings es = JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                    r.Data = es;
+                    //data.ListEmailSettings.Add(JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
                 }
                 Reader.Close();
             }

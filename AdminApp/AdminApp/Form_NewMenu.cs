@@ -27,6 +27,7 @@ namespace AdminApp
             InitializeComponent();
             this.serverAccess = gettoken;
             this.allDaemonSettings = new AllDaemonSettings();
+            GetEmailSettings();
 
         }
 
@@ -42,6 +43,23 @@ namespace AdminApp
             }
 
             return false;
+        }
+
+        public async void GetEmailSettings()
+        {
+
+            Response response = await serverAccess.OneGetEmailSettings(label1);
+
+            if (response.Status == "OK")
+            {
+                addParams((ListEmailSettingsData)response.Data);
+            }
+
+        }
+        public void addParams(ListEmailSettingsData data)
+        {
+            this.textBox_To.Text = data.ListEmailSettings[0].EmailAddress;
+            this.textBox_SMTPPort.Text = Convert.ToString(data.ListEmailSettings[0].Port);
         }
 
         private bool IsValid()

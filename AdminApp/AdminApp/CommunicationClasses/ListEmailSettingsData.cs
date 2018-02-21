@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AdminApp.CommunicationClasses
 {
-    public class ListEmailSettingsData
+    public class ListEmailSettingsData : IData
     {
         public List<EmailSettings> ListEmailSettings { get; set; }
         //public EmailSettings DefaultEmailSettings { get; set; }

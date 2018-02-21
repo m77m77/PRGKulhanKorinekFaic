@@ -199,15 +199,21 @@ namespace AdminApp.LoginNewToken
             return r;
         }
 
-        public async Task<Response> OneGetEmailSettings(EmailSettings emailsettings, Label label)
+        public async Task<Response> OneGetEmailSettings(Label label)
         {
             HttpClient http = new HttpClient();
-            Response response;
+            Response response = new Response();
+
+            ListEmailSettingsData data = new ListEmailSettingsData();
+            data.ListEmailSettings = new List<EmailSettings>();
+            response.Data = data;
+
 
             try
             {
-                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/id/" + this.Token);
-                response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/adminId/" + this.Token);
+                data.ListEmailSettings.Add(JsonConvert.DeserializeObject<EmailSettings>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+
             }
             catch
             {
@@ -220,7 +226,7 @@ namespace AdminApp.LoginNewToken
                 label.Visible = true;
                 label.Text = response.Error;
             }
-
+            
             return response;
         }
     }
