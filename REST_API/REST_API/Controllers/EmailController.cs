@@ -118,5 +118,58 @@ namespace REST_API.Controllers
 
             return r;
         }
+
+
+        [Route("api/email/id/{token}")]
+        public Response Get(string token,int id)
+        {
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            //if (!t.IsAdmin)
+            //{
+            //    //token nepatří adminovi  
+            //    return new Response("ERROR", "TokenIsNotMatched", null, null);
+            //}
+
+            MySqlCommand Query = Connection.CreateCommand();
+
+            Query.CommandText = "SELECT emailSettings FROM emails WHERE @id = id";
+
+            Query.Parameters.AddWithValue("@id", id);
+
+            Response r = new Response();
+
+            ListEmailSettingsData data = new ListEmailSettingsData();
+            data.ListEmailSettings = new List<EmailSettings>();
+            r.Data = data;
+
+            try
+            {
+                Connection.Open();
+                MySqlDataReader Reader = Query.ExecuteReader();
+
+                while (Reader.Read())
+                {
+                    data.ListEmailSettings.Add(JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                }
+                Reader.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
     }
 }
