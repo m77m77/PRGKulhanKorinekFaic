@@ -5,6 +5,7 @@ using System.Web;
 using Newtonsoft.Json.Serialization;
 using REST_API.Models.Settings;
 using REST_API.CommunicationClasses;
+using REST_API.Models.EmailSettings;
 
 namespace REST_API
 {
@@ -30,6 +31,10 @@ namespace REST_API
                     return typeof(ListSettingsData);
                 case "Settings":
                     return typeof(Settings);
+                case "EmailSettings":
+                    return typeof(EmailSettings);
+                case "ListEmailSettingsData":
+                    return typeof(ListEmailSettingsData);
             }
 
             return null;
