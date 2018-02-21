@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EASendMail;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace EmailTest
 {
@@ -11,13 +13,17 @@ namespace EmailTest
     {
         public EmailSettings settings { get; set; }
 
+        public string Server { get; private set; }
+
+        public string Token { get; private set; }
+
         public void SendingEmail()
         {
             SmtpMail oMail = new SmtpMail("TryIt");
             SmtpClient oSmtp = new SmtpClient();
 
             
-            oMail.From = "faic@david";
+            oMail.From = "faicdavid@sssvt.cz";
 
             oMail.To = settings.EmailAddress;
             
@@ -39,5 +45,25 @@ namespace EmailTest
                 Console.WriteLine(ep.Message);
             }
         }
+        public async Task<Response> GetEmailSettings()
+        {
+            HttpClient http = new HttpClient();
+            Response response;
+
+            try
+            {
+                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/emailSettings/" + this.Token);
+                response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            }
+            catch
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+          
+
+            return response;
+        }
+
     }
 }
