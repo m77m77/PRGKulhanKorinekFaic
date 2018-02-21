@@ -1,12 +1,12 @@
-﻿using REST_API.CommunicationClasses;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace REST_API.Models.EmailSettings
+namespace AdminApp.Models.EmailSettings
 {
-    public class EmailSettings : IData
+    public class EmailSettings
     {
         public int AdminId { get; set; }
         public string EmailAddress { get; set; }

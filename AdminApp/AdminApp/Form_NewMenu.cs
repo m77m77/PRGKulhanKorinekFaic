@@ -13,6 +13,7 @@ using AdminApp.Components;
 using AdminApp.Models.Settings;
 using Newtonsoft.Json;
 using AdminApp.CommunicationClasses;
+using AdminApp.Models.EmailSettings;
 
 namespace AdminApp
 {
@@ -71,10 +72,20 @@ namespace AdminApp
             }
         }
 
-        private void button_Save_Click(object sender, EventArgs e)
+        private async void button_Save_Click(object sender, EventArgs e)
         {
             this.label_error.Visible = false;
             this.allDaemonSettings.SaveSettings(this.serverAccess,this.label_error,this.errorProvider1);
+
+            ListEmailSettingsData lesd = new ListEmailSettingsData();   // testovací
+            lesd.ListEmailSettings = new List<EmailSettings>();
+
+            lesd.ListEmailSettings.Add(new EmailSettings());
+            lesd.ListEmailSettings[0].AdminId = 1;
+            lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
+            lesd.ListEmailSettings[0].SslTls = this.checkBox1.Checked;
+            lesd.ListEmailSettings[0].Port = Convert.ToInt32(this.textBox_SMTPPort.Text);
+            await this.serverAccess.PostEmailSettings(lesd.ListEmailSettings[0], this.label_error);
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="CommunicationClasses\AdminPost.cs" />
     <Compile Include="CommunicationClasses\IData.cs" />
+    <Compile Include="CommunicationClasses\ListEmailSettingsData.cs" />
     <Compile Include="CommunicationClasses\ListSettingsData.cs" />
     <Compile Include="CommunicationClasses\Response.cs" />
     <Compile Include="Components\AllDaemonSettings.cs" />
@@ -75,6 +76,7 @@
       <DependentUpon>Form_NewMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginNewToken\ServerAccess.cs" />
+    <Compile Include="Models\EmailSettings\EmailSettings.cs" />
     <Compile Include="Models\Settings\BackupScheme.cs" />
     <Compile Include="Models\Settings\BackupTime.cs" />
     <Compile Include="Models\Settings\FTPDestination.cs" />
