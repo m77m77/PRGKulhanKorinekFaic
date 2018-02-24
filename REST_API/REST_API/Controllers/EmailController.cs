@@ -88,7 +88,7 @@ namespace REST_API.Controllers
 
             //Query.CommandText = "INSERT INTO `3b2_kulhanmatous_db2`.`daemons` (`settings`) VALUES (@value);";
             Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`emails` SET `emailSettings` = @value WHERE `emails`.`adminId` = @AdminId;";
-
+            value.AdminId = t.AdminID;
             Query.Parameters.AddWithValue("@AdminId", value.AdminId);
 
             Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(value, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
@@ -121,7 +121,7 @@ namespace REST_API.Controllers
 
 
         [Route("api/email/OneAdmin/{token}")]
-        public Response Get(string token,int adminId)
+        public Response GetOneAdminEmailSetting(string token)
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
@@ -144,7 +144,7 @@ namespace REST_API.Controllers
             Query.Parameters.AddWithValue("@adminId", t.AdminID);
 
             Response r = new Response();
-
+            EmailSettings es = new EmailSettings();
             //ListEmailSettingsData data = new ListEmailSettingsData();
             //data.ListEmailSettings = new List<EmailSettings>();
             //r.Data = data;
@@ -156,7 +156,7 @@ namespace REST_API.Controllers
 
                 while (Reader.Read())
                 {
-                    EmailSettings es = JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                    es = JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
                     r.Data = es;
                     //data.ListEmailSettings.Add(JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
                 }
