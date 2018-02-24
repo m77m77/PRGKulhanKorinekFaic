@@ -19,13 +19,14 @@ namespace DaemonTest
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
 
-            Task<Response> res =  SettingsManager.GetNewSettings();
+            Task<Response> res = SettingsManager.GetNewSettings();
             res.Wait();
 
             IBackupMethod bcMethod = new IncrementalBackupMethod();
-            bcMethod.Backup();
+            BackupStatus status = bcMethod.Backup();
+            Console.WriteLine(JsonConvert.SerializeObject(status));
+            Console.WriteLine("DONE");
             Console.ReadLine();
         }
     }

@@ -506,8 +506,11 @@ namespace AdminApp.Components
                     errProvider.SetError(this.textBox_FTPPort, "Cannot be empty");
                 }
 
-                int port = 0;
-                if (int.TryParse(this.textBox_FTPPort.Text,out port))
+                try
+                {
+                    Convert.ToInt32(this.textBox_FTPPort.Text);
+                }
+                catch (Exception)
                 {
                     result = false;
                     errProvider.SetError(this.textBox_FTPPort, "Port must be a number");
@@ -546,8 +549,11 @@ namespace AdminApp.Components
                     errProvider.SetError(this.textBox_SFTPPort, "Cannot be empty");
                 }
 
-                int port = 0;
-                if (int.TryParse(this.textBox_SFTPPort.Text, out port))
+                try
+                {
+                    Convert.ToInt32(this.textBox_SFTPPort.Text);
+                }
+                catch (Exception)
                 {
                     result = false;
                     errProvider.SetError(this.textBox_SFTPPort, "Port must be a number");

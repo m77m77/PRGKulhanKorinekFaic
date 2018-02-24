@@ -32,6 +32,8 @@ namespace DaemonTest.BackupMethods
 
             try
             {
+                this.destinationManager.DownloadFiles("FULL","DIFF","INC");
+
                 List<BackupDirectory> prevBackups = this.saveMethod.GetListOfPreviusBackups(this.destinationManager);
                 if (prevBackups.Count <= 0)
                     return new BackupStatus() { Status = "FAIL", FailMessage = "There is no previous backup" };

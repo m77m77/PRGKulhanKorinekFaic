@@ -32,6 +32,7 @@ namespace AdminApp.Components
 
         public async void SaveSettings(ServerAccess serverAccess,Label label,ErrorProvider provider)
         {
+            provider.Clear();
             foreach (OneDaemonSettings item in this.daemonSettings)
             {
                 if(item.HasBeenChanged)

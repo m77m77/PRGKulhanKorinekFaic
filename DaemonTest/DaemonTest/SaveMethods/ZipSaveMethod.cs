@@ -84,6 +84,8 @@ namespace DaemonTest.SaveMethods
                 list.Add(item.FullName, item.LastWriteTime.DateTime);
             }
 
+            archive.Dispose();
+
             return list;
         }
     }
