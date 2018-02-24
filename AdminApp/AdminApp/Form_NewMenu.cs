@@ -58,7 +58,7 @@ namespace AdminApp
         }
         public void addParams(EmailSettings data)
         {
-            this.textBox_To.Text = data.From;
+            this.textBox_To.Text = data.EmailAddress; //dodělat
             this.textBox_SMTPPort.Text = Convert.ToString(data.Port);
             this.textBox_SMTPUsername.Text = Convert.ToString(data.AdminId);
         }
@@ -100,12 +100,18 @@ namespace AdminApp
             ListEmailSettingsData lesd = new ListEmailSettingsData();   // testovací
             lesd.ListEmailSettings = new List<EmailSettings>();
 
-            lesd.ListEmailSettings.Add(new EmailSettings());
-            lesd.ListEmailSettings[0].AdminId = 1;
-            lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
-            lesd.ListEmailSettings[0].SslTls = this.checkBox1.Checked;
-            lesd.ListEmailSettings[0].Port = Convert.ToInt32(this.textBox_SMTPPort.Text);
-            await this.serverAccess.PostEmailSettings(lesd.ListEmailSettings[0], this.label_error);
+            try
+            {
+                lesd.ListEmailSettings.Add(new EmailSettings());
+                lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
+                lesd.ListEmailSettings[0].SslTls = this.checkBox1.Checked;
+                lesd.ListEmailSettings[0].Port = Convert.ToInt32(this.textBox_SMTPPort.Text);
+                await this.serverAccess.PostEmailSettings(lesd.ListEmailSettings[0], this.label_error);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)
