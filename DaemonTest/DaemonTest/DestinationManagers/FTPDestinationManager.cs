@@ -1,4 +1,5 @@
 ﻿using DaemonTest.Models.Settings;
+using FluentFTP;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,15 +16,9 @@ namespace DaemonTest.DestinationManagers
         private string uploadFullDirName;
         private string downloadFullDirName;
 
-        private NetworkCredential credentials;
-        private string connectionString;
-
         public FTPDestinationManager(FTPDestination destination)
         {
             this.destination = destination;
-
-            this.credentials = new NetworkCredential(destination.Username, destination.Password);
-            this.connectionString = "ftp://" + destination.Adress + ":" + destination.Port + "/" + destination.Path + "/" + SettingsManager.GetFolderNameBasedOnDate() + "/";
 
             this.tempDir = Path.Combine(Path.GetTempPath(),"PRGKulhanKorinekFaic","FTP");
 
@@ -37,49 +32,37 @@ namespace DaemonTest.DestinationManagers
                 Directory.Delete(this.downloadFullDirName, true);
             Directory.CreateDirectory(this.downloadFullDirName);
 
+            //FtpClient client = new FtpClient(this.destination.Adress, Convert.ToInt32(this.destination.Port), this.destination.Username, this.destination.Password);
+            //client.Connect();
 
+            //Console.WriteLine(client.GetModifiedTime("/prgkulhankorinekfaic.g6.cz/web/BACKUP/WEEKLY 19.02.2018 - 25.02.2018/DIFF_24_02_2018_22_23/gtsshhs.xlsx"));
+
+            //client.Dispose();
         }
 
         public void DownloadFiles(params string[] startsWith)
         {
-            this.DownloadDirectory(this.connectionString, this.downloadFullDirName, startsWith.Length > 0 ? startsWith : null);
+            using (FtpClient client = new FtpClient(this.destination.Adress, Convert.ToInt32(this.destination.Port), this.destination.Username, this.destination.Password))
+            {
+                client.Connect();
+                client.UploadDataType = FtpDataType.Binary;
+                this.DownloadDirectory(this.destination.Path + "/" + SettingsManager.GetFolderNameBasedOnDate() + "/", new DirectoryInfo(this.downloadFullDirName),client, startsWith.Length > 0 ? startsWith : null);
+            }
         }
 
-        private void DownloadDirectory(string url, string localPath,string[] startsWith = null)
+        private void DownloadDirectory(string url, DirectoryInfo localDirectory,FtpClient client, string[] startsWith = null)
         {
-            FtpWebRequest listRequest = (FtpWebRequest)WebRequest.Create(url);
-            listRequest.Method = WebRequestMethods.Ftp.ListDirectoryDetails;
-            listRequest.Credentials = this.credentials;
-
-            List<string> lines = new List<string>();
-
-            using (FtpWebResponse listResponse = (FtpWebResponse)listRequest.GetResponse())
-            using (Stream listStream = listResponse.GetResponseStream())
-            using (StreamReader listReader = new StreamReader(listStream))
+            foreach (FtpListItem item in client.GetListing(url))
             {
-                while (!listReader.EndOfStream)
-                {
-                    lines.Add(listReader.ReadLine());
-                }
-            }
-
-            foreach (string line in lines)
-            {
-                string[] tokens =
-                    line.Split(new[] { ' ' }, 9, StringSplitOptions.RemoveEmptyEntries);
-                string name = tokens[8];
-                string permissions = tokens[0];
-
-                if (name == "." || name == "..")
-                {
+                if (item.Name == "." || item.Name == "..")
                     continue;
-                }
-                if(startsWith != null)
+
+                if (startsWith != null)
                 {
                     bool contains = false;
-                    foreach (string item in startsWith)
+                    foreach (string start in startsWith)
                     {
-                        if (name.StartsWith(item))
+                        if (item.Name.StartsWith(start))
                             contains = true;
                     }
 
@@ -87,78 +70,43 @@ namespace DaemonTest.DestinationManagers
                         continue;
                 }
 
-                string localFilePath = Path.Combine(localPath, name);
-                string fileUrl = url + name;
-
-                if (permissions[0] == 'd')
+                if (item.Type == FtpFileSystemObjectType.File)
                 {
-                    if (!Directory.Exists(localFilePath))
-                    {
-                        Directory.CreateDirectory(localFilePath);
-                    }
+                    DateTime time = item.Modified;
+                    Console.WriteLine("D " +time+ " " + item.FullName);
 
-                    this.DownloadDirectory(fileUrl + "/", localFilePath);
-                }
-                else
+                    string localPath = Path.Combine(localDirectory.FullName, item.Name);
+
+                    client.DownloadFile(localPath, item.FullName);
+
+                    FileInfo file = new FileInfo(localPath);
+                    file.LastWriteTime = time;
+                }else if(item.Type == FtpFileSystemObjectType.Directory)
                 {
-                    Console.WriteLine(line);
-                    FtpWebRequest downloadRequest = (FtpWebRequest)WebRequest.Create(fileUrl);
-                    downloadRequest.Method = WebRequestMethods.Ftp.DownloadFile;
-                    downloadRequest.Credentials = this.credentials;
-                    downloadRequest.UseBinary = true;
-                    
+                    DirectoryInfo subDir = localDirectory.CreateSubdirectory(item.Name);
 
-                    using (FtpWebResponse downloadResponse =
-                              (FtpWebResponse)downloadRequest.GetResponse())
-                    using (Stream sourceStream = downloadResponse.GetResponseStream())
-                    using (Stream targetStream = File.Create(localFilePath))
-                    {
-                        sourceStream.CopyTo(targetStream);
-                        
-                    }
+                    DownloadDirectory(item.FullName,subDir,  client);
+                    subDir.LastWriteTime = item.Modified;
                 }
             }
         }
 
-        private void UploadDirectory(string url, DirectoryInfo directory)
+        private void UploadDirectory(string url, DirectoryInfo directory,FtpClient client)
         {
-            try
-            {
-                FtpWebRequest uploadDir = (FtpWebRequest)WebRequest.Create(url);
-                uploadDir.Method = WebRequestMethods.Ftp.MakeDirectory;
-                uploadDir.Credentials = this.credentials;
-                uploadDir.UseBinary = true;
-
-                FtpWebResponse response = (FtpWebResponse)uploadDir.GetResponse();
-                Stream ftpStream = response.GetResponseStream();
-
-                ftpStream.Close();
-                response.Close();
-            }
-            catch (Exception)
-            {
-
-            }
-
+            client.CreateDirectory(url);
             foreach (FileInfo item in directory.GetFiles())
             {
                 string fileUrl = url + item.Name;
-                Console.WriteLine(fileUrl);
-                FtpWebRequest uploadRequest = (FtpWebRequest)WebRequest.Create(fileUrl);
-                uploadRequest.Method = WebRequestMethods.Ftp.UploadFile;
-                uploadRequest.Credentials = this.credentials;
-                uploadRequest.UseBinary = true;
+                DateTime lastWriteTime = item.LastWriteTime;
+                Console.WriteLine("U " + fileUrl);
+                client.UploadFile(item.FullName, fileUrl);
+                client.SetModifiedTime(fileUrl, lastWriteTime);
 
-                using (Stream targetStream = uploadRequest.GetRequestStream())
-                using (Stream sourceStream = item.OpenRead())
-                {
-                    sourceStream.CopyTo(targetStream);
-                }
             }
 
             foreach (DirectoryInfo item in directory.GetDirectories())
             {
-                this.UploadDirectory(url + item.Name + "/", item);
+                this.UploadDirectory(url + item.Name + "/", item,client);
             }
         }
 
@@ -174,9 +122,15 @@ namespace DaemonTest.DestinationManagers
 
         public void Save()
         {
-            this.UploadDirectory(this.connectionString, new DirectoryInfo(this.uploadFullDirName));
+            using (FtpClient client = new FtpClient(this.destination.Adress, Convert.ToInt32(this.destination.Port), this.destination.Username, this.destination.Password))
+            {
+                client.Connect();
+                client.UploadDataType = FtpDataType.Binary;
+                this.UploadDirectory(this.destination.Path + "/" + SettingsManager.GetFolderNameBasedOnDate() + "/", new DirectoryInfo(this.uploadFullDirName),client);
+            }
 
-            Directory.Delete(this.tempDir, true);
+            
+            //Directory.Delete(this.tempDir, true);
         }
 
     }

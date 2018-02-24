@@ -23,7 +23,12 @@ namespace DaemonTest
             Task<Response> res = SettingsManager.GetNewSettings();
             res.Wait();
 
-            IBackupMethod bcMethod = new IncrementalBackupMethod();
+            //Uri uri = new Uri("prgkulhankorinekfaic.g6.cz/web/BACKUP/WEEKLY 19.02.2018 - 25.02.2018/FULL_24_02_2018_21_21/a.txt", UriKind.Absolute);
+
+            //IDestinationManager manager = SettingsManager.GetDestinationManager();
+            //manager.Save();
+            //SettingsManager.CurrentSettings.Destination = new LocalNetworkDestination() { Path = @"E:\BACKUP" };
+            IBackupMethod bcMethod = new DifferentialBackupMethod();
             BackupStatus status = bcMethod.Backup();
             Console.WriteLine(JsonConvert.SerializeObject(status));
             Console.WriteLine("DONE");

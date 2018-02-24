@@ -11,6 +11,7 @@ namespace DaemonTest.DestinationManagers
 
         public SFTPDestinationManager()
         {
+
         }
 
         public SFTPDestinationManager(SFTPDestination destination)
