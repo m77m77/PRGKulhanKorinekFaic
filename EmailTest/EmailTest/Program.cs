@@ -11,7 +11,7 @@ namespace EmailTest
         static void Main(string[] args)
         {
             SendEmail se = new SendEmail();
-
+            for(int i = 0;i < 10;i++)
             se.SendingEmail();
             Console.ReadLine();
         }

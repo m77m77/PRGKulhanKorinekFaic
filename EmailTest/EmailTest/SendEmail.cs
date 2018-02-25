@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EASendMail;
 using System.Net.Http;
 using Newtonsoft.Json;
+using EmailTest.CommunicationClasses;
 
 namespace EmailTest
 {
@@ -15,7 +16,7 @@ namespace EmailTest
 
         public string Server { get; private set; } = "http://localhost:63058";
 
-        public string Token { get; private set; } = "VXmWiky6lx7n4B8TlEfYnmXx2T2qBd9a";
+        public string Token { get; private set; } = "ieJXXqXme7lSFiyzecjcctE46nm23DiS";
 
         public async void SendingEmail()
         {
@@ -24,9 +25,14 @@ namespace EmailTest
 
             Response r = new Response();
             r = await GetEmailSettings();
-            string emailaddress = ((EmailSettings)r.Data).EmailAddress;
 
-            oMail.From = "faicdavid@seznam.cz";
+            
+            ListEmailSettingsData lesd = (ListEmailSettingsData)r.Data;
+            List<EmailSettings> l = lesd.ListEmailSettings;
+            string emailaddress = lesd.ListEmailSettings[0].EmailAddress;
+            //string emailaddress = ((ListEmailSettingsData)r.Data).ListEmailSettings[0].EmailAddress;
+
+            oMail.From = "davidfaic@seznam.cz";
 
             oMail.To = emailaddress;
             
@@ -35,7 +41,7 @@ namespace EmailTest
             oMail.TextBody = "";
             
             SmtpServer oServer = new SmtpServer("");
-            Console.WriteLine(emailaddress);
+            //Console.WriteLine(emailaddress);
 
 
             try
@@ -56,7 +62,7 @@ namespace EmailTest
 
             try
             {
-                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/" + this.Token);
+                HttpResponseMessage res = await http.GetAsync(this.Server + "api/email/" + this.Token);
                 response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
             }
             catch
