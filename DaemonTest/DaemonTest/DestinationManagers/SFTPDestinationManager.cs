@@ -9,9 +9,19 @@ namespace DaemonTest.DestinationManagers
     {
         private SFTPDestination destination;
 
+        public SFTPDestinationManager()
+        {
+
+        }
+
         public SFTPDestinationManager(SFTPDestination destination)
         {
             this.destination = destination;
+        }
+
+        public void DownloadFiles(params string[] startsWith)
+        {
+            throw new NotImplementedException();
         }
 
         public string GetDownloadPath()
