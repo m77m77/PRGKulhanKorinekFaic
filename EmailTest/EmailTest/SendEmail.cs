@@ -26,7 +26,8 @@ namespace EmailTest
             Response r = new Response();
             r = await GetEmailSettings();
 
-            
+            if(r.Status == "OK")
+            {
             ListEmailSettingsData lesd = (ListEmailSettingsData)r.Data;
             List<EmailSettings> l = lesd.ListEmailSettings;
             string emailaddress = lesd.ListEmailSettings[0].EmailAddress;
@@ -36,14 +37,16 @@ namespace EmailTest
 
             oMail.To = emailaddress;
             
-            oMail.Subject = "";
+            oMail.Subject = "FAJCY";
             
-            oMail.TextBody = "";
+            oMail.TextBody = "JDI SPÁT";
             
-            SmtpServer oServer = new SmtpServer("");
+            
+            }
+            
             //Console.WriteLine(emailaddress);
 
-
+            SmtpServer oServer = new SmtpServer("");
             try
             {
                 //Console.WriteLine("start to send email directly ...");
@@ -62,7 +65,7 @@ namespace EmailTest
 
             try
             {
-                HttpResponseMessage res = await http.GetAsync(this.Server + "api/email/" + this.Token);
+                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/" + this.Token);
                 response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
             }
             catch

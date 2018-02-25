@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EmailTest.CommunicationClasses;
 using Newtonsoft.Json.Serialization;
 
 namespace EmailTest
@@ -29,6 +30,10 @@ namespace EmailTest
                     return typeof(ListSettingsData);
                 case "Settings":
                     return typeof(Settings);
+                case "EmailSettings":
+                    return typeof(EmailSettings);
+                case "ListEmailSettingsData":
+                    return typeof(ListEmailSettingsData);
             }
 
             return null;

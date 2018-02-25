@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmailTest.CommunicationClasses
 {
-    public class ListEmailSettingsData
+    public class ListEmailSettingsData : IData
     {
 
          public List<EmailSettings> ListEmailSettings { get; set; }
