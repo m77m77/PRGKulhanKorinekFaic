@@ -8,11 +8,10 @@ namespace EmailTest
 {
     public class EmailSettings
     {
+        public int AdminId { get; set; }
         public string EmailAddress { get; set; }
-        public string ServerName { get; set; }
-        public int Port { get; set; }
-        public string From { get; set; }
-        public bool SslTls { get; set; }
-        public DateTime When { get; set; }
+        public List<int> FromDaemons { get; set; }
+        public bool SendEmails { get; set; }
+        public string HowOften { get; set; }
     }
 }
