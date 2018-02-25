@@ -31,24 +31,21 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl_DefaultMenu = new System.Windows.Forms.TabControl();
             this.tabPage_EmailNotification = new System.Windows.Forms.TabPage();
-            this.textBox_SMTPServerName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.textBox_To = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox_SMTPUsername = new System.Windows.Forms.TextBox();
-            this.textBox_SMTPPort = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox_SMTPPassword = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.tabPage_Administration = new System.Windows.Forms.TabPage();
             this.tabControl_Daemon = new System.Windows.Forms.TabControl();
             this.button_Cancel = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label_error = new System.Windows.Forms.Label();
+            this.checkBox_sendemails = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox_howoften = new System.Windows.Forms.ComboBox();
+            this.checkedListBox_fromdaemons = new System.Windows.Forms.CheckedListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl_DefaultMenu.SuspendLayout();
             this.tabPage_EmailNotification.SuspendLayout();
             this.tabPage_Administration.SuspendLayout();
@@ -70,18 +67,15 @@
             // tabPage_EmailNotification
             // 
             this.tabPage_EmailNotification.BackColor = System.Drawing.Color.Transparent;
-            this.tabPage_EmailNotification.Controls.Add(this.textBox_SMTPServerName);
-            this.tabPage_EmailNotification.Controls.Add(this.label1);
-            this.tabPage_EmailNotification.Controls.Add(this.label2);
-            this.tabPage_EmailNotification.Controls.Add(this.label3);
             this.tabPage_EmailNotification.Controls.Add(this.label4);
+            this.tabPage_EmailNotification.Controls.Add(this.label2);
+            this.tabPage_EmailNotification.Controls.Add(this.checkedListBox_fromdaemons);
+            this.tabPage_EmailNotification.Controls.Add(this.comboBox_howoften);
+            this.tabPage_EmailNotification.Controls.Add(this.label1);
+            this.tabPage_EmailNotification.Controls.Add(this.checkBox_sendemails);
+            this.tabPage_EmailNotification.Controls.Add(this.label3);
             this.tabPage_EmailNotification.Controls.Add(this.textBox_To);
-            this.tabPage_EmailNotification.Controls.Add(this.label5);
-            this.tabPage_EmailNotification.Controls.Add(this.textBox_SMTPUsername);
-            this.tabPage_EmailNotification.Controls.Add(this.textBox_SMTPPort);
             this.tabPage_EmailNotification.Controls.Add(this.label6);
-            this.tabPage_EmailNotification.Controls.Add(this.textBox_SMTPPassword);
-            this.tabPage_EmailNotification.Controls.Add(this.checkBox1);
             this.tabPage_EmailNotification.Location = new System.Drawing.Point(4, 30);
             this.tabPage_EmailNotification.Name = "tabPage_EmailNotification";
             this.tabPage_EmailNotification.Padding = new System.Windows.Forms.Padding(3);
@@ -89,122 +83,34 @@
             this.tabPage_EmailNotification.TabIndex = 0;
             this.tabPage_EmailNotification.Text = "Email notification settings";
             // 
-            // textBox_SMTPServerName
-            // 
-            this.textBox_SMTPServerName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_SMTPServerName.Location = new System.Drawing.Point(195, 156);
-            this.textBox_SMTPServerName.Multiline = true;
-            this.textBox_SMTPServerName.Name = "textBox_SMTPServerName";
-            this.textBox_SMTPServerName.Size = new System.Drawing.Size(146, 25);
-            this.textBox_SMTPServerName.TabIndex = 33;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(72, 156);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 21);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "Server name";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(72, 197);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 21);
-            this.label2.TabIndex = 28;
-            this.label2.Text = "Port";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(72, 71);
+            this.label3.Location = new System.Drawing.Point(72, 164);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(25, 21);
+            this.label3.Size = new System.Drawing.Size(27, 21);
             this.label3.TabIndex = 25;
             this.label3.Text = "To";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(387, 156);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 21);
-            this.label4.TabIndex = 29;
-            this.label4.Text = "Username";
             // 
             // textBox_To
             // 
             this.textBox_To.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_To.Location = new System.Drawing.Point(131, 71);
+            this.textBox_To.Location = new System.Drawing.Point(149, 164);
             this.textBox_To.Multiline = true;
             this.textBox_To.Name = "textBox_To";
             this.textBox_To.Size = new System.Drawing.Size(519, 25);
             this.textBox_To.TabIndex = 26;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(387, 197);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 21);
-            this.label5.TabIndex = 30;
-            this.label5.Text = "Password";
-            // 
-            // textBox_SMTPUsername
-            // 
-            this.textBox_SMTPUsername.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_SMTPUsername.Location = new System.Drawing.Point(504, 156);
-            this.textBox_SMTPUsername.Multiline = true;
-            this.textBox_SMTPUsername.Name = "textBox_SMTPUsername";
-            this.textBox_SMTPUsername.Size = new System.Drawing.Size(147, 25);
-            this.textBox_SMTPUsername.TabIndex = 31;
-            // 
-            // textBox_SMTPPort
-            // 
-            this.textBox_SMTPPort.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_SMTPPort.Location = new System.Drawing.Point(195, 197);
-            this.textBox_SMTPPort.Multiline = true;
-            this.textBox_SMTPPort.Name = "textBox_SMTPPort";
-            this.textBox_SMTPPort.Size = new System.Drawing.Size(146, 25);
-            this.textBox_SMTPPort.TabIndex = 32;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(72, 118);
+            this.label6.Location = new System.Drawing.Point(72, 119);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(108, 21);
             this.label6.TabIndex = 36;
             this.label6.Text = "SMTP settings";
-            // 
-            // textBox_SMTPPassword
-            // 
-            this.textBox_SMTPPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_SMTPPassword.Location = new System.Drawing.Point(504, 197);
-            this.textBox_SMTPPassword.Multiline = true;
-            this.textBox_SMTPPassword.Name = "textBox_SMTPPassword";
-            this.textBox_SMTPPassword.PasswordChar = '•';
-            this.textBox_SMTPPassword.Size = new System.Drawing.Size(147, 25);
-            this.textBox_SMTPPassword.TabIndex = 34;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox1.Location = new System.Drawing.Point(391, 245);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(86, 25);
-            this.checkBox1.TabIndex = 35;
-            this.checkBox1.Text = "SSL/TLS";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // tabPage_Administration
             // 
@@ -264,6 +170,64 @@
             this.label_error.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label_error.Visible = false;
             // 
+            // checkBox_sendemails
+            // 
+            this.checkBox_sendemails.AutoSize = true;
+            this.checkBox_sendemails.Location = new System.Drawing.Point(182, 56);
+            this.checkBox_sendemails.Name = "checkBox_sendemails";
+            this.checkBox_sendemails.Size = new System.Drawing.Size(15, 14);
+            this.checkBox_sendemails.TabIndex = 38;
+            this.checkBox_sendemails.UseVisualStyleBackColor = true;
+            this.checkBox_sendemails.CheckedChanged += new System.EventHandler(this.checkBox_sendemails_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(72, 210);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 21);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "How often";
+            // 
+            // comboBox_howoften
+            // 
+            this.comboBox_howoften.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_howoften.FormattingEnabled = true;
+            this.comboBox_howoften.Items.AddRange(new object[] {
+            "Daily",
+            "Weekly",
+            "Monthly"});
+            this.comboBox_howoften.Location = new System.Drawing.Point(211, 210);
+            this.comboBox_howoften.Name = "comboBox_howoften";
+            this.comboBox_howoften.Size = new System.Drawing.Size(121, 29);
+            this.comboBox_howoften.TabIndex = 40;
+            // 
+            // checkedListBox_fromdaemons
+            // 
+            this.checkedListBox_fromdaemons.FormattingEnabled = true;
+            this.checkedListBox_fromdaemons.Location = new System.Drawing.Point(211, 264);
+            this.checkedListBox_fromdaemons.Name = "checkedListBox_fromdaemons";
+            this.checkedListBox_fromdaemons.Size = new System.Drawing.Size(120, 76);
+            this.checkedListBox_fromdaemons.TabIndex = 41;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(72, 264);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 21);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "From daemons";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(72, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 21);
+            this.label4.TabIndex = 43;
+            this.label4.Text = "Send emails";
+            // 
             // Form_NewMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,22 +253,19 @@
         private System.Windows.Forms.TabControl tabControl_DefaultMenu;
         private System.Windows.Forms.TabPage tabPage_EmailNotification;
         private System.Windows.Forms.TabPage tabPage_Administration;
-        private System.Windows.Forms.TextBox textBox_SMTPServerName;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox_To;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox_SMTPUsername;
-        private System.Windows.Forms.TextBox textBox_SMTPPort;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox_SMTPPassword;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button button_Cancel;
         private System.Windows.Forms.Button button_Save;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TabControl tabControl_Daemon;
         private System.Windows.Forms.Label label_error;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckedListBox checkedListBox_fromdaemons;
+        private System.Windows.Forms.ComboBox comboBox_howoften;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox_sendemails;
+        private System.Windows.Forms.Label label4;
     }
 }

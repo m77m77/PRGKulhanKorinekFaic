@@ -59,8 +59,9 @@ namespace AdminApp
         public void addParams(EmailSettings data)
         {
             this.textBox_To.Text = data.EmailAddress; //dodělat
-            this.textBox_SMTPPort.Text = Convert.ToString(data.Port);
-            this.textBox_SMTPUsername.Text = Convert.ToString(data.AdminId);
+            this.checkBox_sendemails.Checked = data.SendEmails;
+            //this.checkedListBox_fromdaemons.Text = data.FromDaemons;
+            this.comboBox_howoften.SelectedItem = data.HowOften;
         }
 
         private bool IsValid()
@@ -104,8 +105,9 @@ namespace AdminApp
             {
                 lesd.ListEmailSettings.Add(new EmailSettings());
                 lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
-                lesd.ListEmailSettings[0].SslTls = this.checkBox1.Checked;
-                lesd.ListEmailSettings[0].Port = Convert.ToInt32(this.textBox_SMTPPort.Text);
+                lesd.ListEmailSettings[0].SendEmails = this.checkBox_sendemails.Checked;
+                //lesd.ListEmailSettings[0].FromDaemons = this.checkedListBox_fromdaemons.;
+                lesd.ListEmailSettings[0].HowOften = this.comboBox_howoften.Text;
                 await this.serverAccess.PostEmailSettings(lesd.ListEmailSettings[0], this.label_error);
             }
             catch (Exception ex)
@@ -118,6 +120,22 @@ namespace AdminApp
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void checkBox_sendemails_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkBox_sendemails.Checked == false)
+            {
+                this.checkedListBox_fromdaemons.Enabled = false;
+                this.comboBox_howoften.Enabled = false;
+                this.textBox_To.Enabled = false;
+            }
+            else
+            {
+                this.checkedListBox_fromdaemons.Enabled = true;
+                this.comboBox_howoften.Enabled = true;
+                this.textBox_To.Enabled = true;
+            }
         }
     }
 }
