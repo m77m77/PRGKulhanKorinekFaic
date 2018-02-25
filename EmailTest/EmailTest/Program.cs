@@ -10,6 +10,10 @@ namespace EmailTest
     {
         static void Main(string[] args)
         {
+            SendEmail se = new SendEmail();
+
+            se.SendingEmail();
+            Console.ReadLine();
         }
     }
 }

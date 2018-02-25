@@ -13,9 +13,9 @@ namespace EmailTest
     {
         public EmailSettings settings { get; set; }
 
-        public string Server { get; private set; }
+        public string Server { get; private set; } = "http://localhost:63058";
 
-        public string Token { get; private set; }
+        public string Token { get; private set; } = "VXmWiky6lx7n4B8TlEfYnmXx2T2qBd9a";
 
         public async void SendingEmail()
         {
@@ -26,7 +26,7 @@ namespace EmailTest
             r = await GetEmailSettings();
             string emailaddress = ((EmailSettings)r.Data).EmailAddress;
 
-            oMail.From = "faicdavid@sssvt.cz";
+            oMail.From = "faicdavid@seznam.cz";
 
             oMail.To = emailaddress;
             
@@ -35,6 +35,7 @@ namespace EmailTest
             oMail.TextBody = "";
             
             SmtpServer oServer = new SmtpServer("");
+            Console.WriteLine(emailaddress);
 
 
             try
@@ -63,8 +64,6 @@ namespace EmailTest
                 response = new Response("ERROR", "ConnectionError", null, null);
             }
 
-          
-            
             return response;
         }
 
