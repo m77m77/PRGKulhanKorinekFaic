@@ -17,15 +17,18 @@ namespace EmailTest
 
         public string Token { get; private set; }
 
-        public void SendingEmail()
+        public async void SendingEmail()
         {
             SmtpMail oMail = new SmtpMail("TryIt");
             SmtpClient oSmtp = new SmtpClient();
 
-            
+            Response r = new Response();
+            r = await GetEmailSettings();
+            string emailaddress = ((EmailSettings)r.Data).EmailAddress;
+
             oMail.From = "faicdavid@sssvt.cz";
 
-            oMail.To = settings.EmailAddress;
+            oMail.To = emailaddress;
             
             oMail.Subject = "";
             
@@ -52,7 +55,7 @@ namespace EmailTest
 
             try
             {
-                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/emailSettings/" + this.Token);
+                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/" + this.Token);
                 response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
             }
             catch
