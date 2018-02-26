@@ -12,7 +12,8 @@ namespace AdminApp.Components
 {
     public class AllDaemonSettings
     {
-        List<OneDaemonSettings> daemonSettings;
+        private List<OneDaemonSettings> daemonSettings;
+        Dictionary<string, int> NameToIdDaemons = new Dictionary<string, int>();
 
         public AllDaemonSettings()
         {
@@ -24,10 +25,17 @@ namespace AdminApp.Components
             Settings defaultSettings = data.DefaultSettings;
             this.daemonSettings.Add(new OneDaemonSettings(tabControl, form, true, defaultSettings));
 
+
             foreach (Settings item in data.ListSettings)
             {
                 this.daemonSettings.Add(new OneDaemonSettings(tabControl, form, false, item));
+                this.GetEmailFromDaemons(form.GetEmailDaemonsListBox(), item);
             }
+        }
+        public void GetEmailFromDaemons(CheckedListBox checkedlistbox,Settings settings )
+        {
+            this.NameToIdDaemons.Add(settings.DaemonName, settings.DaemonID);
+            checkedlistbox.Items.Add(settings.DaemonName);
         }
 
         public async void SaveSettings(ServerAccess serverAccess,Label label,ErrorProvider provider)

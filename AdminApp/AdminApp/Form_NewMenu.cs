@@ -31,14 +31,18 @@ namespace AdminApp
 
         }
 
+        public CheckedListBox GetEmailDaemonsListBox()
+        {
+            return this.checkedListBox_fromdaemons;
+        }
         public async Task<bool> GetAllSettings(Label label)
         {
             Response response = await this.serverAccess.GetAllSettings(label);
+            
 
             if (response.Status == "OK")
             {
                 allDaemonSettings.CreateDaemons((ListSettingsData)response.Data, this.tabControl_Daemon, this);
-
                 return true;
             }
 
