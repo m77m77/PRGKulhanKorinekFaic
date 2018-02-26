@@ -31,6 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl_DefaultMenu = new System.Windows.Forms.TabControl();
             this.tabPage_EmailNotification = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.checkedListBox_fromdaemons = new System.Windows.Forms.CheckedListBox();
+            this.comboBox_howoften = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkBox_sendemails = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox_To = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -40,12 +46,6 @@
             this.button_Save = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label_error = new System.Windows.Forms.Label();
-            this.checkBox_sendemails = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox_howoften = new System.Windows.Forms.ComboBox();
-            this.checkedListBox_fromdaemons = new System.Windows.Forms.CheckedListBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.tabControl_DefaultMenu.SuspendLayout();
             this.tabPage_EmailNotification.SuspendLayout();
             this.tabPage_Administration.SuspendLayout();
@@ -82,6 +82,64 @@
             this.tabPage_EmailNotification.Size = new System.Drawing.Size(759, 449);
             this.tabPage_EmailNotification.TabIndex = 0;
             this.tabPage_EmailNotification.Text = "Email notification settings";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(72, 49);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 21);
+            this.label4.TabIndex = 43;
+            this.label4.Text = "Send emails";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(72, 264);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 21);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "From daemons";
+            // 
+            // checkedListBox_fromdaemons
+            // 
+            this.checkedListBox_fromdaemons.FormattingEnabled = true;
+            this.checkedListBox_fromdaemons.Location = new System.Drawing.Point(211, 264);
+            this.checkedListBox_fromdaemons.Name = "checkedListBox_fromdaemons";
+            this.checkedListBox_fromdaemons.Size = new System.Drawing.Size(120, 76);
+            this.checkedListBox_fromdaemons.TabIndex = 41;
+            // 
+            // comboBox_howoften
+            // 
+            this.comboBox_howoften.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_howoften.FormattingEnabled = true;
+            this.comboBox_howoften.Items.AddRange(new object[] {
+            "Daily",
+            "Weekly",
+            "Monthly"});
+            this.comboBox_howoften.Location = new System.Drawing.Point(211, 210);
+            this.comboBox_howoften.Name = "comboBox_howoften";
+            this.comboBox_howoften.Size = new System.Drawing.Size(121, 29);
+            this.comboBox_howoften.TabIndex = 40;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(72, 210);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 21);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "How often";
+            // 
+            // checkBox_sendemails
+            // 
+            this.checkBox_sendemails.AutoSize = true;
+            this.checkBox_sendemails.Location = new System.Drawing.Point(182, 56);
+            this.checkBox_sendemails.Name = "checkBox_sendemails";
+            this.checkBox_sendemails.Size = new System.Drawing.Size(15, 14);
+            this.checkBox_sendemails.TabIndex = 38;
+            this.checkBox_sendemails.UseVisualStyleBackColor = true;
+            this.checkBox_sendemails.CheckedChanged += new System.EventHandler(this.checkBox_sendemails_CheckedChanged);
             // 
             // label3
             // 
@@ -169,64 +227,6 @@
             this.label_error.Text = "error";
             this.label_error.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label_error.Visible = false;
-            // 
-            // checkBox_sendemails
-            // 
-            this.checkBox_sendemails.AutoSize = true;
-            this.checkBox_sendemails.Location = new System.Drawing.Point(182, 56);
-            this.checkBox_sendemails.Name = "checkBox_sendemails";
-            this.checkBox_sendemails.Size = new System.Drawing.Size(15, 14);
-            this.checkBox_sendemails.TabIndex = 38;
-            this.checkBox_sendemails.UseVisualStyleBackColor = true;
-            this.checkBox_sendemails.CheckedChanged += new System.EventHandler(this.checkBox_sendemails_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(72, 210);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 21);
-            this.label1.TabIndex = 39;
-            this.label1.Text = "How often";
-            // 
-            // comboBox_howoften
-            // 
-            this.comboBox_howoften.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_howoften.FormattingEnabled = true;
-            this.comboBox_howoften.Items.AddRange(new object[] {
-            "Daily",
-            "Weekly",
-            "Monthly"});
-            this.comboBox_howoften.Location = new System.Drawing.Point(211, 210);
-            this.comboBox_howoften.Name = "comboBox_howoften";
-            this.comboBox_howoften.Size = new System.Drawing.Size(121, 29);
-            this.comboBox_howoften.TabIndex = 40;
-            // 
-            // checkedListBox_fromdaemons
-            // 
-            this.checkedListBox_fromdaemons.FormattingEnabled = true;
-            this.checkedListBox_fromdaemons.Location = new System.Drawing.Point(211, 264);
-            this.checkedListBox_fromdaemons.Name = "checkedListBox_fromdaemons";
-            this.checkedListBox_fromdaemons.Size = new System.Drawing.Size(120, 76);
-            this.checkedListBox_fromdaemons.TabIndex = 41;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(72, 264);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 21);
-            this.label2.TabIndex = 42;
-            this.label2.Text = "From daemons";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(72, 49);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 21);
-            this.label4.TabIndex = 43;
-            this.label4.Text = "Send emails";
             // 
             // Form_NewMenu
             // 
