@@ -13,7 +13,7 @@ namespace AdminApp.Components
     public class AllDaemonSettings
     {
         private List<OneDaemonSettings> daemonSettings;
-        Dictionary<string, int> NameToIdDaemons = new Dictionary<string, int>();
+        public Dictionary<string, int> NameToIdDaemons = new Dictionary<string, int>();
 
         public AllDaemonSettings()
         {

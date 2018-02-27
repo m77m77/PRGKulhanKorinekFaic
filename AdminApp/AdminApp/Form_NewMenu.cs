@@ -104,12 +104,17 @@ namespace AdminApp
 
             ListEmailSettingsData lesd = new ListEmailSettingsData();   // testovací
             lesd.ListEmailSettings = new List<EmailSettings>();
-
+            
             try
             {
                 lesd.ListEmailSettings.Add(new EmailSettings());
+                lesd.ListEmailSettings[0].FromDaemons = new List<int>();
                 lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
                 lesd.ListEmailSettings[0].SendEmails = this.checkBox_sendemails.Checked;
+                foreach(string item in checkedListBox_fromdaemons.CheckedItems)
+                {
+                    lesd.ListEmailSettings[0].FromDaemons.Add(allDaemonSettings.NameToIdDaemons[item]);
+                }
                 //lesd.ListEmailSettings[0].FromDaemons = this.checkedListBox_fromdaemons.;
                 lesd.ListEmailSettings[0].HowOften = this.comboBox_howoften.Text;
                 await this.serverAccess.PostEmailSettings(lesd.ListEmailSettings[0], this.label_error);
