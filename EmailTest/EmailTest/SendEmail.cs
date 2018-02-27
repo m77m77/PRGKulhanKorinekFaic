@@ -26,32 +26,60 @@ namespace EmailTest
             Response r = new Response();
             r = await GetEmailSettings();
 
-            if(r.Status == "OK")
-            {
-            ListEmailSettingsData lesd = (ListEmailSettingsData)r.Data;
-            List<EmailSettings> l = lesd.ListEmailSettings;
-            string emailaddress = lesd.ListEmailSettings[0].EmailAddress;
-            //string emailaddress = ((ListEmailSettingsData)r.Data).ListEmailSettings[0].EmailAddress;
-
-            oMail.From = "davidfaic@seznam.cz";
-
-            oMail.To = emailaddress;
             
-            oMail.Subject = "FAJCY";
-            
-            oMail.TextBody = "JDI SPÁT";
-            
-            
-            }
             
             //Console.WriteLine(emailaddress);
 
             SmtpServer oServer = new SmtpServer("");
             try
             {
-                //Console.WriteLine("start to send email directly ...");
-                oSmtp.SendMail(oServer, oMail);
-                //Console.WriteLine("email was sent successfully!");
+            if(r.Status == "OK")
+            {
+            ListEmailSettingsData lesd = (ListEmailSettingsData)r.Data;
+            List<EmailSettings> l = lesd.ListEmailSettings;
+            
+            for(int i = 0;i < l.Count;i++)
+            {
+                    oMail.From = "info@gmail.com";
+
+                        if (l[i].HowOften == "Daily")
+                        {
+                            
+                        }
+                        else if (l[i].HowOften == "Weekly")
+                        {
+                            int diff = (7 + (DateTime.Now.DayOfWeek - DayOfWeek.Monday)) % 7;
+                            DateTime monday = DateTime.Now.AddDays(-1 * diff).Date;
+                            DateTime sunday = monday.AddDays(6);
+                            
+                            DateTime time = DateTime.Now;
+                            string now = time.ToString("dd.mm.yyyy");
+                            if(now != sunday.ToString("dd.mm.yyyy"))
+                            {
+                                continue;
+                            }
+                        }
+                        else if (l[i].HowOften == "Monthly")
+                        {
+                            DateTime first = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                            DateTime last = first.AddMonths(1).AddDays(-1);
+
+                            DateTime time = DateTime.Now;
+                            string now = time.ToString("dd.mm.yyyy");
+                            if (now != last.ToString("dd.mm.yyyy"))
+                            {
+                                continue;
+                            }
+                        }
+                    oMail.To = l[i].EmailAddress;
+
+                    oMail.Subject = "Subject";
+
+                    oMail.TextBody = "Text";
+
+                    oSmtp.SendMail(oServer, oMail);
+                }
+            }
             }
             catch (Exception ep)
             {
