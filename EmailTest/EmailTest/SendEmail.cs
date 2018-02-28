@@ -7,6 +7,7 @@ using EASendMail;
 using System.Net.Http;
 using Newtonsoft.Json;
 using EmailTest.CommunicationClasses;
+using System.Configuration;
 
 namespace EmailTest
 {
@@ -26,11 +27,8 @@ namespace EmailTest
             Response emailResponse = new Response();
             emailResponse = await GetEmailSettings();
 
-            Response daemonResponse = new Response();
-            daemonResponse = await GetAllDaemonSettings();
 
-            
-            
+
             //Console.WriteLine(emailaddress);
 
             SmtpServer oServer = new SmtpServer("");
@@ -47,40 +45,40 @@ namespace EmailTest
             {
                     oMail.From = "info@gmail.com";
 
-                        if (l[i].HowOften == "Daily")
-                        {
+                        //if (l[i].HowOften == "Daily")
+                        //{
                             
-                        }
-                        else if (l[i].HowOften == "Weekly")
-                        {
-                            int diff = (7 + (DateTime.Now.DayOfWeek - DayOfWeek.Monday)) % 7;
-                            DateTime monday = DateTime.Now.AddDays(-1 * diff).Date;
-                            DateTime sunday = monday.AddDays(6);
+                        //}
+                        //else if (l[i].HowOften == "Weekly")
+                        //{
+                        //    int diff = (7 + (DateTime.Now.DayOfWeek - DayOfWeek.Monday)) % 7;
+                        //    DateTime monday = DateTime.Now.AddDays(-1 * diff).Date;
+                        //    DateTime sunday = monday.AddDays(6);
                             
-                            DateTime time = DateTime.Now;
-                            string now = time.ToString("dd.mm.yyyy");
-                            if(now != sunday.ToString("dd.mm.yyyy"))
-                            {
-                                continue;
-                            }
-                        }
-                        else if (l[i].HowOften == "Monthly")
-                        {
-                            DateTime first = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                            DateTime last = first.AddMonths(1).AddDays(-1);
+                        //    DateTime time = DateTime.Now;
+                        //    string now = time.ToString("dd.mm.yyyy");
+                        //    if(now != sunday.ToString("dd.mm.yyyy"))
+                        //    {
+                        //        continue;
+                        //    }
+                        //}
+                        //else if (l[i].HowOften == "Monthly")
+                        //{
+                        //    DateTime first = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                        //    DateTime last = first.AddMonths(1).AddDays(-1);
 
-                            DateTime time = DateTime.Now;
-                            string now = time.ToString("dd.mm.yyyy");
-                            if (now != last.ToString("dd.mm.yyyy"))
-                            {
-                                continue;
-                            }
-                        }
+                        //    DateTime time = DateTime.Now;
+                        //    string now = time.ToString("dd.mm.yyyy");
+                        //    if (now != last.ToString("dd.mm.yyyy"))
+                        //    {
+                        //        continue;
+                        //    }
+                        //}
                     oMail.To = l[i].EmailAddress;
 
                     oMail.Subject = "Subject";
 
-                    oMail.TextBody = "Text";
+                    oMail.TextBody = lesd.ListEmailSettings[i].Template;
 
                     oSmtp.SendMail(oServer, oMail);
                 }
