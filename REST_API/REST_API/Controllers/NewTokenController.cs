@@ -10,12 +10,13 @@ using REST_API.CommunicationClasses;
 using REST_API.Models;
 using REST_API.Utilities;
 using REST_API.Models.Settings;
+using REST_API.Models.BackupStatus;
 
 namespace REST_API.Controllers
 {
     public class NewTokenController : ApiController
     {
-        public Settings Get()
+        public BackupStatus Get()
         {
             Settings s = new Settings();
             s.ActionAfterBackup = "RESTART";
@@ -33,7 +34,8 @@ namespace REST_API.Controllers
 
             s.BackupScheme = scheme;
 
-            return s;
+            return new BackupStatus() { Status = "OK", TimeOfBackup = DateTime.Now, Errors = null, FailMessage = null };
+            //return s;
             //return JsonConvert.DeserializeObject<Settings>("{\"DataType\":null,\"BeforeBackup\":null,\"AfterBackup\":null,\"SaveFormat\":null,\"Destination\":{\"$type\":\"REST_API.Models.Settings.FTPDestination, REST_API\",\"Adress\":null,\"Port\":null,\"Username\":null,\"Password\":null,\"Path\":null,\"Type\":\"FTP\"}}", new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto});
             //return JsonConvert.SerializeObject(new Settings() { Destination = new FTPDestination() }, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
         }

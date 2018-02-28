@@ -8,6 +8,7 @@ namespace DaemonTest.Models
     public class BackupStatus : IData
     {
         public string Status { get; set; }
+	public DateTime TimeOfBackup { get; set; }
         public string FailMessage { get; set; }
         public List<BackupError> Errors { get; set; }
     }
