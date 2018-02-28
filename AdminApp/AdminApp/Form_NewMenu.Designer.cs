@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl_DefaultMenu = new System.Windows.Forms.TabControl();
             this.tabPage_EmailNotification = new System.Windows.Forms.TabPage();
-            this.webBrowser_template = new System.Windows.Forms.WebBrowser();
             this.label5 = new System.Windows.Forms.Label();
             this.listBox_template = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -70,7 +69,6 @@
             // tabPage_EmailNotification
             // 
             this.tabPage_EmailNotification.BackColor = System.Drawing.Color.Transparent;
-            this.tabPage_EmailNotification.Controls.Add(this.webBrowser_template);
             this.tabPage_EmailNotification.Controls.Add(this.label5);
             this.tabPage_EmailNotification.Controls.Add(this.listBox_template);
             this.tabPage_EmailNotification.Controls.Add(this.label1);
@@ -89,18 +87,10 @@
             this.tabPage_EmailNotification.TabIndex = 0;
             this.tabPage_EmailNotification.Text = "Email notification settings";
             // 
-            // webBrowser_template
-            // 
-            this.webBrowser_template.Location = new System.Drawing.Point(493, 193);
-            this.webBrowser_template.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser_template.Name = "webBrowser_template";
-            this.webBrowser_template.Size = new System.Drawing.Size(250, 250);
-            this.webBrowser_template.TabIndex = 47;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(287, 256);
+            this.label5.Location = new System.Drawing.Point(376, 256);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 21);
             this.label5.TabIndex = 46;
@@ -113,7 +103,7 @@
             this.listBox_template.Items.AddRange(new object[] {
             "1",
             "2"});
-            this.listBox_template.Location = new System.Drawing.Point(367, 256);
+            this.listBox_template.Location = new System.Drawing.Point(481, 256);
             this.listBox_template.Name = "listBox_template";
             this.listBox_template.Size = new System.Drawing.Size(120, 88);
             this.listBox_template.TabIndex = 45;
@@ -305,6 +295,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBox_template;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.WebBrowser webBrowser_template;
     }
 }

@@ -149,14 +149,7 @@ namespace AdminApp
 
         private void listBox_template_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox_template.Text == "1")
-            {
-                webBrowser_template.Url = new Uri("http://localhost:63058/");
-            }
-            else if(listBox_template.Text == "2")
-            {
-                webBrowser_template.Url = new Uri("http://localhost:63058/");
-            }
+            
         }
     }
 }
