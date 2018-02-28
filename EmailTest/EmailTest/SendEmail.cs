@@ -23,8 +23,11 @@ namespace EmailTest
             SmtpMail oMail = new SmtpMail("TryIt");
             SmtpClient oSmtp = new SmtpClient();
 
-            Response r = new Response();
-            r = await GetEmailSettings();
+            Response emailResponse = new Response();
+            emailResponse = await GetEmailSettings();
+
+            Response daemonResponse = new Response();
+            daemonResponse = await GetAllDaemonSettings();
 
             
             
@@ -33,10 +36,12 @@ namespace EmailTest
             SmtpServer oServer = new SmtpServer("");
             try
             {
-            if(r.Status == "OK")
+            if(emailResponse.Status == "OK")
             {
-            ListEmailSettingsData lesd = (ListEmailSettingsData)r.Data;
+            ListEmailSettingsData lesd = (ListEmailSettingsData)emailResponse.Data;
             List<EmailSettings> l = lesd.ListEmailSettings;
+
+            
             
             for(int i = 0;i < l.Count;i++)
             {
@@ -104,5 +109,23 @@ namespace EmailTest
             return response;
         }
 
+        public async Task<Response> GetAllDaemonSettings()
+        {
+
+            HttpClient http = new HttpClient();
+            Response response;
+
+            try
+            {
+                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/daemon/" + this.Token);
+                response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            }
+            catch
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            return response;
+        }
     }
 }
