@@ -111,14 +111,13 @@ namespace AdminApp
                 lesd.ListEmailSettings[0].FromDaemons = new List<int>();
                 lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
                 lesd.ListEmailSettings[0].SendEmails = this.checkBox_sendemails.Checked;
-                lesd.ListEmailSettings[0].Template = "ahooooj";
+                if (listBox_template.Text == "1")
+                    lesd.ListEmailSettings[0].Template = "email template";
                 foreach(string item in checkedListBox_fromdaemons.CheckedItems)
                 {
                     lesd.ListEmailSettings[0].FromDaemons.Add(allDaemonSettings.NameToIdDaemons[item]);
                 }
                 lesd.ListEmailSettings[0].HowOften = this.comboBox_howoften.Text;
-                //if (listBox_template.Text == "1")
-                //    lesd.ListEmailSettings[0].Template = "ahoj";
                 await this.serverAccess.PostEmailSettings(lesd.ListEmailSettings[0], this.label_error);
             }
             catch (Exception ex)

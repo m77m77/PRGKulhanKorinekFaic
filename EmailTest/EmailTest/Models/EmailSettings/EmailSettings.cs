@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmailTest
 {
-    public class EmailSettings
+    public class EmailSettings : IData
     {
         public int AdminId { get; set; }
         public string EmailAddress { get; set; }
