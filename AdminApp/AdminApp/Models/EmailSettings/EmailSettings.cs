@@ -14,5 +14,6 @@ namespace AdminApp.Models.EmailSettings
         public List<int> FromDaemons { get; set; }
         public bool SendEmails { get; set; }
         public string HowOften { get; set; }
+        public string Template { get; set; }
     }
 }

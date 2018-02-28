@@ -78,11 +78,11 @@ namespace REST_API.Controllers
                 //token není v databázi  
                 return new Response("ERROR", "TokenNotFound", null, null);
             }
-            //if (!t.IsAdmin)
-            //{
-            //    //token nepatří adminovi  
-            //    return new Response("ERROR", "TokenIsNotMatched", null, null);
-            //}
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
 
             MySqlCommand Query = Connection.CreateCommand();
 

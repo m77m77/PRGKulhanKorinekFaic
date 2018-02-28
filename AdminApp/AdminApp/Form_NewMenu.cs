@@ -146,5 +146,10 @@ namespace AdminApp
                 this.textBox_To.Enabled = true;
             }
         }
+
+        private void listBox_template_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
