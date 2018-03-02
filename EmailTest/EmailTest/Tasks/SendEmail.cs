@@ -13,7 +13,7 @@ using System.Net;
 
 namespace EmailTest
 {
-    public class SendEmail
+    public class SendEmail : ITask
     {
         public EmailSettings settings { get; set; }
 
@@ -150,6 +150,12 @@ namespace EmailTest
             }
 
             return response;
+        }
+
+        public void Play()
+        {
+            SendEmail se = new SendEmail();
+            se.SendingEmail();
         }
     }
 }
