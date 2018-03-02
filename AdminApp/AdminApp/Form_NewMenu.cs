@@ -112,7 +112,7 @@ namespace AdminApp
                 lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
                 lesd.ListEmailSettings[0].SendEmails = this.checkBox_sendemails.Checked;
                 if (listBox_template.Text == "1")
-                    lesd.ListEmailSettings[0].Template = "email template";
+                    lesd.ListEmailSettings[0].Template = "Odesláno od daemona: ...";
                 foreach(string item in checkedListBox_fromdaemons.CheckedItems)
                 {
                     lesd.ListEmailSettings[0].FromDaemons.Add(allDaemonSettings.NameToIdDaemons[item]);
