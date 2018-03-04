@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommunicationClasses\ITask.cs" />
+    <Compile Include="Tasks\ITask.cs" />
     <Compile Include="CommunicationClasses\ListEmailSettingsData.cs" />
     <Compile Include="CommunicationClasses\TaskClass.cs" />
     <Compile Include="Models\Settings\BackupScheme.cs" />
