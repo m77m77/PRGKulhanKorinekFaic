@@ -102,7 +102,7 @@ namespace AdminApp
             this.label_error.Visible = false;
             this.allDaemonSettings.SaveSettings(this.serverAccess,this.label_error,this.errorProvider1);
 
-            ListEmailSettingsData lesd = new ListEmailSettingsData();   // testovací
+            ListEmailSettingsData lesd = new ListEmailSettingsData();
             lesd.ListEmailSettings = new List<EmailSettings>();
             
             try
@@ -111,11 +111,15 @@ namespace AdminApp
                 lesd.ListEmailSettings[0].FromDaemons = new List<int>();
                 lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
                 lesd.ListEmailSettings[0].SendEmails = this.checkBox_sendemails.Checked;
-                foreach(string item in checkedListBox_fromdaemons.CheckedItems)
+                if (listBox_template.Text == "1")
+                    lesd.ListEmailSettings[0].Template = "Odesláno od daemona: ... a cesta ke zdroji je: ---";
+                else if (listBox_template.Text == "2")
+                    lesd.ListEmailSettings[0].Template = "Jméno daemona: ... a sourcepath je: ---";
+
+                foreach (string item in checkedListBox_fromdaemons.CheckedItems)
                 {
                     lesd.ListEmailSettings[0].FromDaemons.Add(allDaemonSettings.NameToIdDaemons[item]);
                 }
-                //lesd.ListEmailSettings[0].FromDaemons = this.checkedListBox_fromdaemons.;
                 lesd.ListEmailSettings[0].HowOften = this.comboBox_howoften.Text;
                 await this.serverAccess.PostEmailSettings(lesd.ListEmailSettings[0], this.label_error);
             }
@@ -145,6 +149,11 @@ namespace AdminApp
                 this.comboBox_howoften.Enabled = true;
                 this.textBox_To.Enabled = true;
             }
+        }
+
+        private void listBox_template_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
