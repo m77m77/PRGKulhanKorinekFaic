@@ -1,0 +1,58 @@
+﻿body {
+    font-family: "Segoe UI"
+}
+
+.tdformat {
+    text-align: left;
+    color: #2a5069;
+    font-size: 40px;
+}
+
+.submitformat {
+    height: 41px;
+    width: 300px;
+
+}
+
+article section {
+    bottom: 0;
+    height: 350px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+
+    right: 0;
+    top: 0;
+    width: 340px;
+
+}
+
+
+.textinputformat {
+    font-size: 35px;
+    height: 40px;
+    width: 300px;
+
+}
+
+
+.loginlink {
+    margin: 0px;
+    float: left;
+    padding: 2px 108px 18px 80px;
+    border: solid;
+    border-width: 3px;
+    border-color: #2a5069;
+    font-size: 41px;
+    height: 40px;
+    text-align: center;
+    color: #0a294b;
+    text-decoration: none;
+}
+.loginlink:hover {
+        background: #ffbb00;
+        box-shadow: 0px 0px 5px black;
+    }
+
+
+
