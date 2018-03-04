@@ -84,7 +84,6 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\ServerAccess.js" />
     <Content Include="Scripts\styl.css" />
     <Content Include="Scripts\stylmenu.css" />
     <Content Include="Web.config" />
