@@ -11,13 +11,13 @@
 //    }]);
 
 
-//angular.module('ES', [])
-//    .controller('emailcontroller', ['$scope', function ($scope) {
+angular.module('ES', [])
+    .controller('emailcontroller', ['$scope', function ($scope) {
   
-//        $scope.myFunc = function () {
-//            alert("connected");
-//        };
-//    }]);
+        $scope.myFunc = function () {
+            alert("connected");
+        };
+    }]);
 
    
     
