@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using REST_API.Models.BackupStatus;
 
 namespace REST_API.Controllers
 {
@@ -159,6 +160,58 @@ namespace REST_API.Controllers
                     es = JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
                     r.Data = es;
                     //data.ListEmailSettings.Add(JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                }
+                Reader.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
+
+        [Route("api/email/backup/{token}")]
+        public Response GetBackupInfo(string token)
+        {
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            //if (!t.IsAdmin)
+            //{
+            //    //token nepatří adminovi  
+            //    return new Response("ERROR", "TokenIsNotMatched", null, null);
+            //}
+
+            MySqlCommand Query = Connection.CreateCommand();
+
+            Query.CommandText = "SELECT info FROM backupsInfo WHERE backupDate > @LastMonth";
+
+            Query.Parameters.AddWithValue("@LastMonth", DateTime.Now.AddMonths(-1));
+
+            Response r = new Response();
+
+            ListDaemonBackupInfoData data = new ListDaemonBackupInfoData();
+            data.ListDaemonBackupInfo = new List<BackupStatus>();
+            r.Data = data;
+
+            try
+            {
+                Connection.Open();
+                MySqlDataReader Reader = Query.ExecuteReader();
+
+                while (Reader.Read())
+                {
+                    data.ListDaemonBackupInfo.Add(JsonConvert.DeserializeObject<BackupStatus>(Reader["info"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
                 }
                 Reader.Close();
             }
