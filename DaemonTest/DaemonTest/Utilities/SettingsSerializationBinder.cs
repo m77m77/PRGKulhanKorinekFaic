@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using DaemonTest.Models.Settings;
+using DaemonTest.Models;
 
 namespace DaemonTest.Utilities
 {
@@ -26,6 +27,8 @@ namespace DaemonTest.Utilities
                     return typeof(SFTPDestination);
                 case "Settings":
                     return typeof(Settings);
+                case "BackupStatus":
+                    return typeof(BackupStatus);
             }
 
             return null;

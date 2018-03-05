@@ -29,13 +29,15 @@ namespace AdminApp.Components
             foreach (Settings item in data.ListSettings)
             {
                 this.daemonSettings.Add(new OneDaemonSettings(tabControl, form, false, item));
-                this.GetEmailFromDaemons(form.GetEmailDaemonsListBox(), item);
+                this.GetEmailFromDaemons(form.GetEmailDaemonsListBoxDaily(),form.GetEmailDaemonsListBoxWeekly(),form.GetEmailDaemonsListBoxMonthly(), item);
             }
         }
-        public void GetEmailFromDaemons(CheckedListBox checkedlistbox,Settings settings )
+        public void GetEmailFromDaemons(CheckedListBox checkedlistboxdaily,CheckedListBox checkedlistboxmonthly,CheckedListBox checkedlistboxweekly, Settings settings )
         {
             this.NameToIdDaemons.Add(settings.DaemonName, settings.DaemonID);
-            checkedlistbox.Items.Add(settings.DaemonName);
+            checkedlistboxdaily.Items.Add(settings.DaemonName);
+            checkedlistboxweekly.Items.Add(settings.DaemonName);
+            checkedlistboxmonthly.Items.Add(settings.DaemonName);
         }
 
         public async void SaveSettings(ServerAccess serverAccess,Label label,ErrorProvider provider)

@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tasks\ITask.cs" />
     <Compile Include="CommunicationClasses\ListEmailSettingsData.cs" />
+    <Compile Include="CommunicationClasses\TaskClass.cs" />
     <Compile Include="Models\Settings\BackupScheme.cs" />
     <Compile Include="Models\Settings\BackupTime.cs" />
     <Compile Include="Models\EmailSettings\EmailSettings.cs" />
@@ -62,9 +64,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommunicationClasses\Response.cs" />
-    <Compile Include="SendEmail.cs" />
+    <Compile Include="StartTask.cs" />
+    <Compile Include="Tasks\SendEmail.cs" />
     <Compile Include="SettingsSerializationBinder.cs" />
     <Compile Include="Models\Settings\SFTPDestination.cs" />
+    <Compile Include="TimerClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

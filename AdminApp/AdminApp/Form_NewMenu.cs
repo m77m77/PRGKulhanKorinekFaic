@@ -31,9 +31,18 @@ namespace AdminApp
 
         }
 
-        public CheckedListBox GetEmailDaemonsListBox()
+        public CheckedListBox GetEmailDaemonsListBoxDaily()
         {
-            return this.checkedListBox_fromdaemons;
+            return this.checkedListBox_fromdaemonsdaily;
+        }
+        public CheckedListBox GetEmailDaemonsListBoxWeekly()
+        {
+
+            return this.checkedListBox_fromdaemonsweekly;
+        }
+        public CheckedListBox GetEmailDaemonsListBoxMonthly()
+        {
+            return this.checkedListBox_fromdaemonsmonthly;
         }
         public async Task<bool> GetAllSettings(Label label)
         {
@@ -52,7 +61,7 @@ namespace AdminApp
         public async void GetEmailSettings()
         {
 
-            Response response = await serverAccess.OneGetEmailSettings(label1);
+            Response response = await serverAccess.OneGetEmailSettings(label6);
 
             if (response.Status == "OK")
             {
@@ -65,7 +74,7 @@ namespace AdminApp
             this.textBox_To.Text = data.EmailAddress; //dodělat
             this.checkBox_sendemails.Checked = data.SendEmails;
             //this.checkedListBox_fromdaemons.Text = data.FromDaemons;
-            this.comboBox_howoften.SelectedItem = data.HowOften;
+            //this.comboBox_howoften.SelectedItem = data.HowOften;
         }
 
         private bool IsValid()
@@ -102,21 +111,35 @@ namespace AdminApp
             this.label_error.Visible = false;
             this.allDaemonSettings.SaveSettings(this.serverAccess,this.label_error,this.errorProvider1);
 
-            ListEmailSettingsData lesd = new ListEmailSettingsData();   // testovací
+            ListEmailSettingsData lesd = new ListEmailSettingsData();
             lesd.ListEmailSettings = new List<EmailSettings>();
             
             try
             {
                 lesd.ListEmailSettings.Add(new EmailSettings());
-                lesd.ListEmailSettings[0].FromDaemons = new List<int>();
+                lesd.ListEmailSettings[0].FromDaemonsDaily = new List<int>();
+                lesd.ListEmailSettings[0].FromDaemonsWeekly = new List<int>();
+                lesd.ListEmailSettings[0].FromDaemonsMonthly = new List<int>();
                 lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
                 lesd.ListEmailSettings[0].SendEmails = this.checkBox_sendemails.Checked;
-                foreach(string item in checkedListBox_fromdaemons.CheckedItems)
+                if (listBox_template.Text == "1")
+                    lesd.ListEmailSettings[0].Template = "Odesláno od daemona: ... a cesta ke zdroji je: ---";
+                else if (listBox_template.Text == "2")
+                    lesd.ListEmailSettings[0].Template = "Jméno daemona: ... a sourcepath je: ---";
+
+                foreach (string item in checkedListBox_fromdaemonsdaily.CheckedItems)
                 {
-                    lesd.ListEmailSettings[0].FromDaemons.Add(allDaemonSettings.NameToIdDaemons[item]);
+                    lesd.ListEmailSettings[0].FromDaemonsDaily.Add(allDaemonSettings.NameToIdDaemons[item]);
                 }
-                //lesd.ListEmailSettings[0].FromDaemons = this.checkedListBox_fromdaemons.;
-                lesd.ListEmailSettings[0].HowOften = this.comboBox_howoften.Text;
+                foreach (string item in checkedListBox_fromdaemonsweekly.CheckedItems)
+                {
+                    lesd.ListEmailSettings[0].FromDaemonsWeekly.Add(allDaemonSettings.NameToIdDaemons[item]);
+                }
+                foreach (string item in checkedListBox_fromdaemonsmonthly.CheckedItems)
+                {
+                    lesd.ListEmailSettings[0].FromDaemonsMonthly.Add(allDaemonSettings.NameToIdDaemons[item]);
+                }
+                //lesd.ListEmailSettings[0].HowOften = this.comboBox_howoften.Text;
                 await this.serverAccess.PostEmailSettings(lesd.ListEmailSettings[0], this.label_error);
             }
             catch (Exception ex)
@@ -135,14 +158,14 @@ namespace AdminApp
         {
             if (this.checkBox_sendemails.Checked == false)
             {
-                this.checkedListBox_fromdaemons.Enabled = false;
-                this.comboBox_howoften.Enabled = false;
+                this.checkedListBox_fromdaemonsdaily.Enabled = false;
+                //this.comboBox_howoften.Enabled = false;
                 this.textBox_To.Enabled = false;
             }
             else
             {
-                this.checkedListBox_fromdaemons.Enabled = true;
-                this.comboBox_howoften.Enabled = true;
+                this.checkedListBox_fromdaemonsdaily.Enabled = true;
+                //this.comboBox_howoften.Enabled = true;
                 this.textBox_To.Enabled = true;
             }
         }
@@ -151,5 +174,6 @@ namespace AdminApp
         {
             
         }
+
     }
 }

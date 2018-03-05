@@ -198,6 +198,8 @@
     <Compile Include="Controllers\DaemonController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\NewTokenController.cs" />
+    <Compile Include="Models\BackupStatus\BackupError.cs" />
+    <Compile Include="Models\BackupStatus\BackupStatus.cs" />
     <Compile Include="Models\EmailSettings\EmailSettings.cs" />
     <Compile Include="Models\Settings\BackupScheme.cs" />
     <Compile Include="Models\Settings\BackupTime.cs" />

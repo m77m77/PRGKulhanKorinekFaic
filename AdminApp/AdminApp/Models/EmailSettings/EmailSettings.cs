@@ -11,9 +11,11 @@ namespace AdminApp.Models.EmailSettings
     {
         public int AdminId { get; set; }
         public string EmailAddress { get; set; }
-        public List<int> FromDaemons { get; set; }
+        public List<int> FromDaemonsDaily { get; set; }
+        public List<int> FromDaemonsWeekly { get; set; }
+        public List<int> FromDaemonsMonthly { get; set; }
         public bool SendEmails { get; set; }
-        public string HowOften { get; set; }
+        //public string HowOften { get; set; }
         public string Template { get; set; }
     }
 }

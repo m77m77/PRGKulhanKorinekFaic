@@ -28,6 +28,7 @@ namespace DaemonTest
             //IDestinationManager manager = SettingsManager.GetDestinationManager();
             //manager.Save();
             //SettingsManager.CurrentSettings.Destination = new LocalNetworkDestination() { Path = @"E:\BACKUP" };
+
             IBackupMethod bcMethod = new DifferentialBackupMethod();
             BackupStatus status = bcMethod.Backup();
             Console.WriteLine(JsonConvert.SerializeObject(status));

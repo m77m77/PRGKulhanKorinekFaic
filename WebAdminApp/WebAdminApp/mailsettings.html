@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="cs-cz" ng-app="ES">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="Scripts/stylmenu.css" type="text/css" />
+    <title>Menu</title>
+</head>
+
+<body ng-controller="emailcontroller">
+    <header>
+   
+        <nav>
+            <ul>
+                <li class="aktivni"><a href="mailsettings.html">Email notification settings</a></li>
+                <li>Daemon settings</li>
+             
+            </ul>
+        </nav>
+    </header>
+
+    <article>
+        <div id="middle">
+            <header>
+                <h1>Settings</h1>
+            </header>
+
+            <section>
+                <p>Send emails  <input type="checkbox" name="chkbox" ng-checked="myFunc()"/></p>
+                <p class="nadpis"> SMTP settings</p>
+                <p> To <input type="text" class="textto"/></p>
+                <p> How often 
+                    <select id="selecttime">
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Monthly">Monthly</option>
+                   </select> 
+               </p>
+                <p>
+                     From deamons  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Template <select id="selecttemplate">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+
+                    </select>
+                </p> 
+            </section>
+            <div class="clear"></div>
+        </div>
+    </article>
+
+
+    <footer>
+  
+    </footer>
+</body>
+</html>
