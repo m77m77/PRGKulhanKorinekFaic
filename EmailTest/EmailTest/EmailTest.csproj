@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommunicationClasses\ListDaemonBackupInfoData.cs" />
+    <Compile Include="Models\BackupInfo\BackupError.cs" />
+    <Compile Include="Models\BackupInfo\BackupStatus.cs" />
     <Compile Include="Tasks\ITask.cs" />
     <Compile Include="CommunicationClasses\ListEmailSettingsData.cs" />
     <Compile Include="CommunicationClasses\TaskClass.cs" />

@@ -19,7 +19,7 @@ namespace EmailTest
 
         public string Server { get; private set; } = "http://localhost:63058";
 
-        public string Token { get; private set; } = "ieJXXqXme7lSFiyzecjcctE46nm23DiS";
+        public string Token { get; private set; } = "VXmWiky6lx7n4B8TlEfYnmXx2T2qBd9a";
 
         public async void SendingEmail()
         {

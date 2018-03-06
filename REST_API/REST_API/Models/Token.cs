@@ -56,25 +56,7 @@ namespace REST_API.Models
         /// <returns>Instance třídy Token nebo null</returns>
         public static Token GenerateNewTokenForAdmin(int idAdmin)
         {
-            string sqlInsertIntoTokensAdmins = "INSERT INTO tokensAdmins(idToken,idAdmin) VALUES(@idToken,@idAdmin);";
-
-            MySqlCommand queryInsertIntoTokensAdmins = new MySqlCommand(sqlInsertIntoTokensAdmins);
-            queryInsertIntoTokensAdmins.Parameters.AddWithValue("@idAdmin", idAdmin);
-
-            Token token = InsertIntoTokens(queryInsertIntoTokensAdmins);
-
-            if(token != null)
-            {
-                token.AdminID = idAdmin;
-            }
-
-            return token;
-        }
-
-        private static Token InsertIntoTokens(MySqlCommand additionalCommand)
-        {
             Token result = null;
-
             using (MySqlConnection connection = WebApiConfig.Connection())
             {
                 try
@@ -82,25 +64,45 @@ namespace REST_API.Models
                     string newToken = Token.GenerateNewToken();
                     connection.Open();
 
-                    string sqlInsertIntoTokens =
-                    "INSERT INTO tokens(token,status) VALUES(@token,'current');" +
-                    "SELECT last_insert_id();";
+                    string sqlUpdate = 
+                    "UPDATE tokens INNER JOIN tokensAdmins ON tokens.id = tokensAdmins.idToken " +
+                    "SET tokens.token = @newToken " +
+                    "WHERE tokensAdmins.idAdmin = @adminId AND status='current'";
 
-                    MySqlCommand queryInsertIntoTokens = new MySqlCommand(sqlInsertIntoTokens, connection);
-                    queryInsertIntoTokens.Parameters.AddWithValue("@token", newToken);
+                    MySqlCommand queryUpdate = new MySqlCommand(sqlUpdate, connection);
+                    queryUpdate.Parameters.AddWithValue("@newToken", newToken);
+                    queryUpdate.Parameters.AddWithValue("@adminId", idAdmin);
+
+                    int rows = queryUpdate.ExecuteNonQuery();
+
+                    if(rows <= 0)
+                    {
+                        string sqlInsertIntoTokens =
+                        "INSERT INTO tokens(token,status) VALUES(@token,'current');" +
+                        "SELECT last_insert_id();";
+
+                        MySqlCommand queryInsertIntoTokens = new MySqlCommand(sqlInsertIntoTokens, connection);
+                        queryInsertIntoTokens.Parameters.AddWithValue("@token", newToken);
 
 
-                    int id =  Convert.ToInt32(queryInsertIntoTokens.ExecuteScalar());
+                        int id = Convert.ToInt32(queryInsertIntoTokens.ExecuteScalar());
 
-                    additionalCommand.Connection = connection;
-                    additionalCommand.Parameters.AddWithValue("@idToken", id);
-                    additionalCommand.ExecuteNonQuery();
+                        string sqlInsertIntoTokensAdmins = "INSERT INTO tokensAdmins(idToken,idAdmin) VALUES(@idToken,@idAdmin);";
 
-                    result = new Token(newToken, id, 0, 0);
+                        MySqlCommand queryInsertIntoTokensAdmins = new MySqlCommand(sqlInsertIntoTokensAdmins,connection);
+                        queryInsertIntoTokensAdmins.Parameters.AddWithValue("@idAdmin", idAdmin);
+                        queryInsertIntoTokensAdmins.Parameters.AddWithValue("@idToken", id);
+                        queryInsertIntoTokensAdmins.ExecuteNonQuery();
 
+                        result = new Token(newToken, id, idAdmin, 0);
+                    }else
+                    {
+                        result = Exists(newToken);
+                    }
                 }
                 catch (Exception)
                 {
+
                 }
             }
 
