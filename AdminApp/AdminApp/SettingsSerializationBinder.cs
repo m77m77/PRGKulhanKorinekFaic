@@ -35,6 +35,7 @@ namespace AdminApp
                     return typeof(EmailSettings);
                 case "ListEmailSettingsData":
                     return typeof(ListEmailSettingsData);
+
             }
 
             return null;

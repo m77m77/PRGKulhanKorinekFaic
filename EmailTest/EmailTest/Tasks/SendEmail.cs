@@ -35,6 +35,9 @@ namespace EmailTest
             Response daemonResponse = new Response();
             daemonResponse = await GetAllDaemonSettings();
 
+            Response daemonBackupInfoResponse = new Response();
+            daemonBackupInfoResponse = await GetAllDaemonBackupInfo();
+            
             //Console.WriteLine(emailaddress);
 
             //SmtpServer oServer = new SmtpServer("");
@@ -56,36 +59,6 @@ namespace EmailTest
             for(int i = 0;i < l.Count;i++)
             {
                         //oMail.From = "info@gmail.com";
-
-                        //if (l[i].HowOften == "Daily")
-                        //{
-
-                        //}
-                        //else if (l[i].HowOften == "Weekly")
-                        //{
-                        //    int diff = (7 + (DateTime.Now.DayOfWeek - DayOfWeek.Monday)) % 7;
-                        //    DateTime monday = DateTime.Now.AddDays(-1 * diff).Date;
-                        //    DateTime sunday = monday.AddDays(6);
-
-                        //    DateTime time = DateTime.Now;
-                        //    string now = time.ToString("dd.mm.yyyy");
-                        //    if (now != sunday.ToString("dd.mm.yyyy"))
-                        //    {
-                        //        continue;
-                        //    }
-                        //}
-                        //else if (l[i].HowOften == "Monthly")
-                        //{
-                        //    DateTime first = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                        //    DateTime last = first.AddMonths(1).AddDays(-1);
-
-                        //    DateTime time = DateTime.Now;
-                        //    string now = time.ToString("dd.mm.yyyy");
-                        //    if (now != last.ToString("dd.mm.yyyy"))
-                        //    {
-                        //        continue;
-                        //    }
-                        //}
 
                         if(l[i].FromDaemonsDaily != null)
                         {
@@ -226,6 +199,23 @@ namespace EmailTest
             try
             {
                 HttpResponseMessage res = await http.GetAsync(this.Server + "/api/admin/" + this.Token);
+                response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            }
+            catch
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            return response;
+        }
+        public async Task<Response> GetAllDaemonBackupInfo()
+        {
+            HttpClient http = new HttpClient();
+            Response response;
+
+            try
+            {
+                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/backup/" + this.Token);
                 response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
             }
             catch

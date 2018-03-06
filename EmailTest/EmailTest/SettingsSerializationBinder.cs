@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EmailTest.CommunicationClasses;
 using Newtonsoft.Json.Serialization;
+using EmailTest.Models.BackupInfo;
 
 namespace EmailTest
 {
@@ -34,6 +35,12 @@ namespace EmailTest
                     return typeof(EmailSettings);
                 case "ListEmailSettingsData":
                     return typeof(ListEmailSettingsData);
+                case "ListDaemonBackupInfo":
+                    return typeof(ListDaemonBackupInfoData);
+                case "BackupStatus":
+                    return typeof(BackupStatus);
+                case "Errors":
+                    return typeof(BackupError);
             }
 
             return null;
