@@ -67,7 +67,7 @@ namespace REST_API.Models
                     string sqlUpdate = 
                     "UPDATE tokens INNER JOIN tokensAdmins ON tokens.id = tokensAdmins.idToken " +
                     "SET tokens.token = @newToken " +
-                    "WHERE tokensAdmins.idAdmin = @adminId ";
+                    "WHERE tokensAdmins.idAdmin = @adminId AND status='current'";
 
                     MySqlCommand queryUpdate = new MySqlCommand(sqlUpdate, connection);
                     queryUpdate.Parameters.AddWithValue("@newToken", newToken);
