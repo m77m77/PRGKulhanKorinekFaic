@@ -40,6 +40,8 @@ namespace REST_API
                     return typeof(ListDaemonBackupInfoData);
                 case "BackupStatus":
                     return typeof(BackupStatus);
+                case "Errors":
+                    return typeof(BackupError);
 
             }
 
