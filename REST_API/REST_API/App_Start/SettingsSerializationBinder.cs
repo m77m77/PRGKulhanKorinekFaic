@@ -36,7 +36,7 @@ namespace REST_API
                     return typeof(EmailSettings);
                 case "ListEmailSettingsData":
                     return typeof(ListEmailSettingsData);
-                case "ListDaemonBackupInfo":
+                case "ListDaemonBackupInfoData":
                     return typeof(ListDaemonBackupInfoData);
                 case "BackupStatus":
                     return typeof(BackupStatus);

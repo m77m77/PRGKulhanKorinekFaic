@@ -194,7 +194,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT info FROM backupsInfo WHERE backupDate > @LastMonth";
+            Query.CommandText = "SELECT info,idDaemon,backupType FROM backupsInfo WHERE backupDate > @LastMonth";
 
             Query.Parameters.AddWithValue("@LastMonth", DateTime.Now.AddMonths(-1));
 
@@ -204,14 +204,19 @@ namespace REST_API.Controllers
             data.ListDaemonBackupInfo = new List<BackupStatus>();
             r.Data = data;
 
+            
             try
             {
                 Connection.Open();
                 MySqlDataReader Reader = Query.ExecuteReader();
 
+                int i = 0;
                 while (Reader.Read())
                 {
                     data.ListDaemonBackupInfo.Add(JsonConvert.DeserializeObject<BackupStatus>(Reader["info"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    data.ListDaemonBackupInfo[i].daemonId = Convert.ToInt32(Reader["idDaemon"]);
+                    data.ListDaemonBackupInfo[i].backupType = (Reader["backupType"]).ToString();
+                    i++;
                 }
                 Reader.Close();
             }

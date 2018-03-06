@@ -106,7 +106,7 @@ namespace REST_API.Controllers
             Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`daemons` SET `settings` = @value WHERE `daemons`.`id` = @DaemonID;";
 
             Query.Parameters.AddWithValue("@DaemonID", value.DaemonID);
-            value.DaemonID = 0;
+            value.DaemonID = t.DaemonID;
             Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(value, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
             
             

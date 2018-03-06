@@ -10,6 +10,7 @@ using EmailTest.CommunicationClasses;
 using System.Configuration;
 using System.Net.Mail;
 using System.Net;
+using EmailTest.Models.BackupInfo;
 
 namespace EmailTest
 {
@@ -47,17 +48,20 @@ namespace EmailTest
             {
             ListEmailSettingsData lesd = (ListEmailSettingsData)emailResponse.Data;
             List<EmailSettings> l = lesd.ListEmailSettings;
-            
-            
 
-            ListSettingsData lsd = (ListSettingsData)daemonResponse.Data;
-            List<Settings> ls = lsd.ListSettings;
+            ListDaemonBackupInfoData ldbid = (ListDaemonBackupInfoData)daemonBackupInfoResponse.Data;
+            List<BackupStatus> lb = ldbid.ListDaemonBackupInfo;
+
+
+            //ListSettingsData lsd = (ListSettingsData)daemonResponse.Data;
+            //List<Settings> ls = lsd.ListSettings;
             
             message.Body = "";
             
             
             for(int i = 0;i < l.Count;i++)
             {
+                        
                         //oMail.From = "info@gmail.com";
 
                         if(l[i].FromDaemonsDaily != null)
@@ -65,10 +69,19 @@ namespace EmailTest
 
                             for (int a = 0; a < lesd.ListEmailSettings[i].FromDaemonsDaily.Count; a++)
                             {
-                                message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", ls[a].DaemonName);
-                                message.Body = message.Body.Replace("---", ls[a].BackupSourcePath) + "<br />";
+                                for(int e = 0; e < lb.Count;e++)
+                                {
+                                    if(l[i].FromDaemonsDaily[a] == lb[e].daemonId)
+                                    {
+                                        message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", lb[e].daemonId.ToString());
+                                        message.Body = message.Body.Replace("---", lb[e].backupType) + "<br />";
+                                    }
+                                }
+                                //message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", ls[a].DaemonName);
+                                //message.Body = message.Body.Replace("---", ls[a].BackupSourcePath) + "<br />";
                             }
 
+                            Console.WriteLine(message.Body);
                             message.To.Add(lesd.ListEmailSettings[i].EmailAddress);
                             message.From = new MailAddress("programovanismtp@gmail.com");
                             oSmtp.EnableSsl = true;
@@ -90,9 +103,17 @@ namespace EmailTest
                             {
                                 for (int a = 0; a < lesd.ListEmailSettings[i].FromDaemonsWeekly.Count; a++)
                             {
-                                message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", ls[a].DaemonName);
-                                message.Body = message.Body.Replace("---", ls[a].BackupSourcePath) + "<br />";
-                            }
+                                    for (int e = 0; e < lb.Count; e++)
+                                    {
+                                        if (l[i].FromDaemonsDaily[a] == lb[e].daemonId)
+                                        {
+                                            message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", lb[e].daemonId.ToString());
+                                            message.Body = message.Body.Replace("---", lb[e].backupType) + "<br />";
+                                        }
+                                    }
+                                    //message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", ls[a].DaemonName);
+                                    //message.Body = message.Body.Replace("---", ls[a].BackupSourcePath) + "<br />";
+                                }
 
                             message.To.Add(lesd.ListEmailSettings[i].EmailAddress);
                             message.From = new MailAddress("programovanismtp@gmail.com");
@@ -115,8 +136,16 @@ namespace EmailTest
                             {
                                 for (int a = 0; a < lesd.ListEmailSettings[i].FromDaemonsMonthly.Count; a++)
                                 {
-                                    message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", ls[a].DaemonName);
-                                    message.Body = message.Body.Replace("---", ls[a].BackupSourcePath) + "<br />";
+                                    for (int e = 0; e < lb.Count; e++)
+                                    {
+                                        if (l[i].FromDaemonsDaily[a] == lb[e].daemonId)
+                                        {
+                                            message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", lb[e].daemonId.ToString());
+                                            message.Body = message.Body.Replace("---", lb[e].backupType) + "<br />";
+                                        }
+                                    }
+                                    //message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", ls[a].DaemonName);
+                                    //message.Body = message.Body.Replace("---", ls[a].BackupSourcePath) + "<br />";
                                 }
 
                                 message.To.Add(lesd.ListEmailSettings[i].EmailAddress);
