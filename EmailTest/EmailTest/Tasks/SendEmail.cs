@@ -105,7 +105,7 @@ namespace EmailTest
                             {
                                     for (int e = 0; e < lb.Count; e++)
                                     {
-                                        if (l[i].FromDaemonsDaily[a] == lb[e].daemonId)
+                                        if (l[i].FromDaemonsWeekly[a] == lb[e].daemonId)
                                         {
                                             message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", lb[e].daemonId.ToString());
                                             message.Body = message.Body.Replace("---", lb[e].backupType) + "<br />";
@@ -138,7 +138,7 @@ namespace EmailTest
                                 {
                                     for (int e = 0; e < lb.Count; e++)
                                     {
-                                        if (l[i].FromDaemonsDaily[a] == lb[e].daemonId)
+                                        if (l[i].FromDaemonsMonthly[a] == lb[e].daemonId)
                                         {
                                             message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", lb[e].daemonId.ToString());
                                             message.Body = message.Body.Replace("---", lb[e].backupType) + "<br />";
