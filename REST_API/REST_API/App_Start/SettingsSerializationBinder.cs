@@ -6,7 +6,7 @@ using Newtonsoft.Json.Serialization;
 using REST_API.Models.Settings;
 using REST_API.CommunicationClasses;
 using REST_API.Models.EmailSettings;
-using REST_API.Models.BackupStatus;
+using REST_API.Models.BackupInfo;
 
 namespace REST_API
 {

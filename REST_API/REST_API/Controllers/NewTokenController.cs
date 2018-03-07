@@ -10,7 +10,7 @@ using REST_API.CommunicationClasses;
 using REST_API.Models;
 using REST_API.Utilities;
 using REST_API.Models.Settings;
-using REST_API.Models.BackupStatus;
+using REST_API.Models.BackupInfo;
 
 namespace REST_API.Controllers
 {

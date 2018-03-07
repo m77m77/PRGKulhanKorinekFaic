@@ -28,7 +28,7 @@ namespace DaemonTest.BackupMethods
                 return new BackupStatus() { Status = "FAIL", FailMessage = "Source path doesnt exist" };
 
             List<BackupError> errors = new List<BackupError>();
-            BackupStatus status = new BackupStatus();
+            BackupStatus status = new BackupStatus() { BackupType = "FULL" };
 
             try
             {

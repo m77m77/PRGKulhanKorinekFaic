@@ -10,7 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using REST_API.Models.BackupStatus;
+using REST_API.Models.BackupInfo;
 
 namespace REST_API.Controllers
 {
@@ -175,6 +175,12 @@ namespace REST_API.Controllers
             return r;
         }
 
+
+        /* 
+         * 
+         * POTREBUJE PREDELAT
+         * 
+         */
         [Route("api/email/backup/{token}")]
         public Response GetBackupInfo(string token)
         {
@@ -213,9 +219,9 @@ namespace REST_API.Controllers
                 int i = 0;
                 while (Reader.Read())
                 {
-                    data.ListDaemonBackupInfo.Add(JsonConvert.DeserializeObject<BackupStatus>(Reader["info"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
-                    data.ListDaemonBackupInfo[i].daemonId = Convert.ToInt32(Reader["idDaemon"]);
-                    data.ListDaemonBackupInfo[i].backupType = (Reader["backupType"]).ToString();
+                    //data.ListDaemonBackupInfo.Add(JsonConvert.DeserializeObject<BackupStatus>(Reader["info"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    //data.ListDaemonBackupInfo[i].daemonId = Convert.ToInt32(Reader["idDaemon"]);
+                    //data.ListDaemonBackupInfo[i].backupType = (Reader["backupType"]).ToString();
                     i++;
                 }
                 Reader.Close();

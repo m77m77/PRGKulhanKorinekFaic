@@ -9,7 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using REST_API.Models.BackupStatus;
+using REST_API.Models.BackupInfo;
 
 namespace REST_API.Controllers
 {
@@ -88,12 +88,17 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                    string sql = "INSERT INTO backupsInfo(idDaemon, info, backupDate) VALUES (@idDaemon,@info,@date)";
+                    string sql = "INSERT INTO backupsInfo(idDaemon, info, backupDate) VALUES (@idDaemon,@status,@date,@type,@failMessage,@errors,@files)";
 
                     MySqlCommand query = new MySqlCommand(sql, connection);
                     query.Parameters.AddWithValue("@idDaemon", t.DaemonID);
-                    query.Parameters.AddWithValue("@info", JsonConvert.SerializeObject(status, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    query.Parameters.AddWithValue("@status", status.Status);
                     query.Parameters.AddWithValue("@date", status.TimeOfBackup);
+                    query.Parameters.AddWithValue("@type", status.BackupType);
+                    query.Parameters.AddWithValue("@failMessage", status.FailMessage);
+                    query.Parameters.AddWithValue("@errors", JsonConvert.SerializeObject(status.Errors, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    query.Parameters.AddWithValue("@files", JsonConvert.SerializeObject(status.Files, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+
 
                     query.ExecuteNonQuery();
 
