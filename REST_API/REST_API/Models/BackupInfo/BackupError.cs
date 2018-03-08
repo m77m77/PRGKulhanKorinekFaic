@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace REST_API.Models.BackupStatus
+namespace REST_API.Models.BackupInfo
 {
     public class BackupError
     {

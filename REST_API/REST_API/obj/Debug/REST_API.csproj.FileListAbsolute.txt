@@ -382,3 +382,7 @@ X:\++PRG++\PRGKulhanKorinekFaic_3\REST_API\REST_API\obj\Debug\REST_API.csprojRes
 X:\++PRG++\PRGKulhanKorinekFaic_3\REST_API\REST_API\obj\Debug\REST_API.csproj.CoreCompileInputs.cache
 X:\++PRG++\PRGKulhanKorinekFaic_3\REST_API\REST_API\obj\Debug\REST_API.dll
 X:\++PRG++\PRGKulhanKorinekFaic_3\REST_API\REST_API\obj\Debug\REST_API.pdb
+X:\++PRG++\PRGKulhanKorinekFaicGIT\REST_API\REST_API\obj\Debug\REST_API.csprojResolveAssemblyReference.cache
+X:\++PRG++\PRGKulhanKorinekFaicGIT\REST_API\REST_API\obj\Debug\REST_API.csproj.CoreCompileInputs.cache
+X:\++PRG++\PRGKulhanKorinekFaicGIT\REST_API\REST_API\obj\Debug\REST_API.dll
+X:\++PRG++\PRGKulhanKorinekFaicGIT\REST_API\REST_API\obj\Debug\REST_API.pdb

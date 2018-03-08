@@ -9,6 +9,9 @@ namespace DaemonTest
         private static string serverAddress;
         private static string token;
 
-        
+        static ServerAccess()
+        {
+
+        }
     }
 }
