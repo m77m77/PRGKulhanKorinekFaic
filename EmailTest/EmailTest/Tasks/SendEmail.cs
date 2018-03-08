@@ -49,14 +49,14 @@ namespace EmailTest
             ListEmailSettingsData lesd = (ListEmailSettingsData)emailResponse.Data;
             List<EmailSettings> l = lesd.ListEmailSettings;
 
-                    ListDaemonBackupInfoData ldbid = (ListDaemonBackupInfoData)daemonBackupInfoResponse.Data;
-                    List<BackupStatus> lb = ldbid.ListDaemonBackupInfo;
+            ListDaemonBackupInfoData ldbid = (ListDaemonBackupInfoData)daemonBackupInfoResponse.Data;
+            List<BackupStatus> lb = ldbid.ListDaemonBackupInfo;
 
 
                     //ListSettingsData lsd = (ListSettingsData)daemonResponse.Data;
                     //List<Settings> ls = lsd.ListSettings;
 
-                    message.IsBodyHtml = true;
+                    //message.IsBodyHtml = true;
 
             for(int i = 0;i < l.Count;i++)
             {
@@ -68,21 +68,19 @@ namespace EmailTest
 
                             for (int a = 0; a < lesd.ListEmailSettings[i].FromDaemonsDaily.Count; a++)
                             {
-                                message.Body = lesd.ListEmailSettings[i].Template;
                                 for (int e = 0; e < lb.Count; e++)
                                 {
-                                    if (l[i].FromDaemonsDaily[a] == lb[e].daemonId)
+                                    if (l[i].FromDaemonsDaily[a] == lb[e].DaemonId)
                                     {
-                                        message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", lb[e].daemonId.ToString());
-                                        message.Body = message.Body.Replace("---", lb[e].backupType) + "<br />";
+                                        message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", lb[e].DaemonId.ToString());
+                                        message.Body = message.Body.Replace("---", lb[e].BackupType) + "<br />";
                                     }
                                 }
                                 //message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", ls[a].DaemonName);
                                 //message.Body = message.Body.Replace("---", ls[a].BackupSourcePath) + "<br />";
                             }
 
-                            Console.WriteLine(message.Body);
-                            message.IsBodyHtml = true;
+                            //message.IsBodyHtml = true;
                             message.To.Add(lesd.ListEmailSettings[i].EmailAddress);
                             message.From = new MailAddress("programovanismtp@gmail.com");
                             oSmtp.EnableSsl = true;
@@ -106,10 +104,10 @@ namespace EmailTest
                             {
                                     for (int e = 0; e < lb.Count; e++)
                                     {
-                                        if (l[i].FromDaemonsWeekly[a] == lb[e].daemonId)
+                                        if (l[i].FromDaemonsWeekly[a] == lb[e].DaemonId)
                                         {
-                                            message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", lb[e].daemonId.ToString());
-                                            message.Body = message.Body.Replace("---", lb[e].backupType) + "<br />";
+                                            message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", lb[e].DaemonId.ToString());
+                                            message.Body = message.Body.Replace("---", lb[e].BackupType) + "<br />";
                                         }
                                     }
                                     //message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", ls[a].DaemonName);
@@ -139,10 +137,10 @@ namespace EmailTest
                                 {
                                     for (int e = 0; e < lb.Count; e++)
                                     {
-                                        if (l[i].FromDaemonsMonthly[a] == lb[e].daemonId)
+                                        if (l[i].FromDaemonsMonthly[a] == lb[e].DaemonId)
                                         {
-                                            message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", lb[e].daemonId.ToString());
-                                            message.Body = message.Body.Replace("---", lb[e].backupType) + "<br />";
+                                            message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", lb[e].DaemonId.ToString());
+                                            message.Body = message.Body.Replace("---", lb[e].BackupType) + "<br />";
                                         }
                                     }
                                     //message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", ls[a].DaemonName);

@@ -8,12 +8,12 @@ namespace EmailTest.Models.BackupInfo
 {
     public class BackupStatus : IData
     {
+        public int DaemonId { get; set; }
         public string Status { get; set; }
         public DateTime TimeOfBackup { get; set; }
+        public string BackupType { get; set; }
         public string FailMessage { get; set; }
         public List<BackupError> Errors { get; set; }
-
-        public int daemonId { get; set; }
-        public string backupType { get; set; }
+        public Dictionary<string, DateTime> Files { get; set; }
     }
 }

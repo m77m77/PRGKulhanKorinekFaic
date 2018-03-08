@@ -7,6 +7,7 @@ namespace REST_API.Models.BackupInfo
 {
     public class BackupStatus : IData
     {
+        public int DaemonId { get; set; }
         public string Status { get; set; }
 	    public DateTime TimeOfBackup { get; set; }
         public string BackupType { get; set; }

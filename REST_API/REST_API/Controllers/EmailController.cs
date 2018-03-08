@@ -200,7 +200,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT info,idDaemon,backupType FROM backupsInfo WHERE backupDate > @LastMonth";
+            Query.CommandText = "SELECT backupDate,idDaemon,backupStatus,backupType,backupFailMessage,backupErrors,backupFiles FROM backupsInfo WHERE backupDate > @LastMonth";
 
             Query.Parameters.AddWithValue("@LastMonth", DateTime.Now.AddMonths(-1));
 
@@ -219,9 +219,14 @@ namespace REST_API.Controllers
                 int i = 0;
                 while (Reader.Read())
                 {
-                    //data.ListDaemonBackupInfo.Add(JsonConvert.DeserializeObject<BackupStatus>(Reader["info"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
-                    //data.ListDaemonBackupInfo[i].daemonId = Convert.ToInt32(Reader["idDaemon"]);
-                    //data.ListDaemonBackupInfo[i].backupType = (Reader["backupType"]).ToString();
+                    data.ListDaemonBackupInfo.Add(new BackupStatus());
+                    data.ListDaemonBackupInfo[i].Errors = (JsonConvert.DeserializeObject<List<BackupError>>(Reader["backupErrors"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    //data.ListDaemonBackupInfo[i].Files = (JsonConvert.DeserializeObject<BackupStatus>(Reader["backupFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    data.ListDaemonBackupInfo[i].TimeOfBackup = Convert.ToDateTime(Reader["backupDate"]);
+                    data.ListDaemonBackupInfo[i].DaemonId = Convert.ToInt32(Reader["idDaemon"]);
+                    data.ListDaemonBackupInfo[i].BackupType = (Reader["backupType"]).ToString();
+                    data.ListDaemonBackupInfo[i].Status = (Reader["backupStatus"]).ToString();
+                    data.ListDaemonBackupInfo[i].FailMessage = (Reader["backupFailMessage"]).ToString();
                     i++;
                 }
                 Reader.Close();

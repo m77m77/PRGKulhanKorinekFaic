@@ -123,22 +123,11 @@ namespace AdminApp
                 lesd.ListEmailSettings[0].FromDaemonsMonthly = new List<int>();
                 lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
                 lesd.ListEmailSettings[0].SendEmails = this.checkBox_sendemails.Checked;
-                if (listBox_template.Text == "0")
+                if (listBox_template.Text == "1")
                     lesd.ListEmailSettings[0].Template = "Odesláno od daemona: ... a typ backupu je: ---";
                 else if (listBox_template.Text == "2")
                     lesd.ListEmailSettings[0].Template = "Jméno daemona: ... a sourcepath je: ---";
-                else if (listBox_template.Text == "1")
-                    lesd.ListEmailSettings[0].Template = @"<html> 
-                      < body >
-                      < p > Dear xxxx,</ p >
-   
-                         < p > It has been long since we...</ p >
-      
-                            < p > Sincerely,< br > Scott </ br ></ p >
-         
-                               </ body >
-         
-                               </ html > ";
+
                 foreach (string item in checkedListBox_fromdaemonsdaily.CheckedItems)
                 {
                     lesd.ListEmailSettings[0].FromDaemonsDaily.Add(allDaemonSettings.NameToIdDaemons[item]);
