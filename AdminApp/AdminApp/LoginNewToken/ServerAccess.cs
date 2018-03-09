@@ -229,5 +229,36 @@ namespace AdminApp.LoginNewToken
             
             return response;
         }
+
+        public async Task<Response> PostNewAdmin(AdminPost adminpost, Label label)
+        {
+            HttpClient http = new HttpClient();
+            Response response = new Response();
+
+            string json = JsonConvert.SerializeObject(adminpost, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+
+            StringContent sc = new StringContent(json, Encoding.UTF8, "application/json");
+            
+
+            try
+            {
+                HttpResponseMessage res = await http.PostAsync("http://localhost:63058" + "/api/newadmin/",sc);
+                response = (JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+
+            }
+            catch
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            label.Visible = false;
+            if (response.Status == "ERROR")
+            {
+                label.Visible = true;
+                label.Text = response.Error;
+            }
+
+            return response;
+        }
     }
 }

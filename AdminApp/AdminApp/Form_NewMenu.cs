@@ -160,12 +160,18 @@ namespace AdminApp
             if (this.checkBox_sendemails.Checked == false)
             {
                 this.checkedListBox_fromdaemonsdaily.Enabled = false;
+                this.checkedListBox_fromdaemonsweekly.Enabled = false;
+                this.checkedListBox_fromdaemonsmonthly.Enabled = false;
+                this.listBox_template.Enabled = false;
                 //this.comboBox_howoften.Enabled = false;
                 this.textBox_To.Enabled = false;
             }
             else
             {
                 this.checkedListBox_fromdaemonsdaily.Enabled = true;
+                this.checkedListBox_fromdaemonsweekly.Enabled = true;
+                this.checkedListBox_fromdaemonsmonthly.Enabled = true;
+                this.listBox_template.Enabled = true;
                 //this.comboBox_howoften.Enabled = true;
                 this.textBox_To.Enabled = true;
             }

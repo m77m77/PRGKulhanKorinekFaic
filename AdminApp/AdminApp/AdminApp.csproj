@@ -75,6 +75,12 @@
     <Compile Include="Form_NewMenu.Designer.cs">
       <DependentUpon>Form_NewMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Register.Designer.cs">
+      <DependentUpon>Form_Register.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginNewToken\ServerAccess.cs" />
     <Compile Include="Models\EmailSettings\EmailSettings.cs" />
     <Compile Include="Models\Settings\BackupScheme.cs" />
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_NewMenu.resx">
       <DependentUpon>Form_NewMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Register.resx">
+      <DependentUpon>Form_Register.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

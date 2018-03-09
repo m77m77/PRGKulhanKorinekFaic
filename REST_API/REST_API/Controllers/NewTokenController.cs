@@ -91,6 +91,40 @@ namespace REST_API.Controllers
             return response;
         }
 
+
+        [Route("api/newadmin")]
+        public Response PostNewAdmin([FromBody]AdminPost value)
+        {
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            MySqlCommand Query = Connection.CreateCommand();
+
+
+            Query.CommandText = "INSERT INTO admins (name,password) VALUES (@name,@password);";
+
+            Query.Parameters.AddWithValue("@name", value.Name);
+            Query.Parameters.AddWithValue("@password", value.Password);
+
+
+            Response r = new Response();
+
+            try
+            {
+                Connection.Open();
+                Query.ExecuteNonQuery();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
+
         //POST api/newtoken/admin
         [Route("api/newtoken/daemon")]
         public Response PostDaemon([FromBody] string value)

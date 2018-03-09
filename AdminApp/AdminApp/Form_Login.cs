@@ -79,5 +79,14 @@ namespace AdminApp
             return valid;
 
         }
+
+        private void button_register_Click(object sender, EventArgs e)
+        {
+            Form_Register fr = new Form_Register(); 
+
+            this.Hide();
+            if (fr.ShowDialog() == DialogResult.OK) { }
+            this.Close();
+        }
     }
 }
