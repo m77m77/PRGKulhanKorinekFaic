@@ -62,12 +62,36 @@ namespace AdminApp
                 ap.Name = textBox_username.Text;
                 ap.Password = textBox_password.Text;
 
+                ListAdminData list = new ListAdminData();
+                list.ListAdmin = new List<AdminPost>();
+                Response r = new Response();
+                //r = await na.GetAllAdmins(this.label_registererror);
+                //list.ListAdmin.Add((AdminPost)r.Data);
+                //list.Add((AdminPost)r.Data);
+                
+                //if(list.ListAdmin[0].Name != ap.Name)
                 await na.PostNewAdmin(ap, this.label_registererror);
+
                 if(this.label_registererror.Text == "")
                 {
                     this.Close();
                 }
             }
+        }
+
+        private void checkBox_show_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox_show.Checked == true)
+            {
+                textBox_password.PasswordChar = '\0';
+                textBox_confirmpassword.PasswordChar = '\0';
+            }
+            else
+            {
+                textBox_password.PasswordChar = '•';
+                textBox_confirmpassword.PasswordChar = '•';
+            }
+            
         }
     }
 }

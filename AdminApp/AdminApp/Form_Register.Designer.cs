@@ -39,6 +39,7 @@
             this.errorProvider_register = new System.Windows.Forms.ErrorProvider(this.components);
             this.button_register = new System.Windows.Forms.Button();
             this.label_registererror = new System.Windows.Forms.Label();
+            this.checkBox_show = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_register)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,11 +130,23 @@
             this.label_registererror.Size = new System.Drawing.Size(0, 25);
             this.label_registererror.TabIndex = 8;
             // 
+            // checkBox_show
+            // 
+            this.checkBox_show.AutoSize = true;
+            this.checkBox_show.Location = new System.Drawing.Point(347, 128);
+            this.checkBox_show.Name = "checkBox_show";
+            this.checkBox_show.Size = new System.Drawing.Size(53, 17);
+            this.checkBox_show.TabIndex = 9;
+            this.checkBox_show.Text = "Show";
+            this.checkBox_show.UseVisualStyleBackColor = true;
+            this.checkBox_show.CheckedChanged += new System.EventHandler(this.checkBox_show_CheckedChanged);
+            // 
             // Form_Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(396, 374);
+            this.Controls.Add(this.checkBox_show);
             this.Controls.Add(this.label_registererror);
             this.Controls.Add(this.button_register);
             this.Controls.Add(this.textBox_confirmpassword);
@@ -163,5 +176,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider_register;
         private System.Windows.Forms.Button button_register;
         private System.Windows.Forms.Label label_registererror;
+        private System.Windows.Forms.CheckBox checkBox_show;
     }
 }

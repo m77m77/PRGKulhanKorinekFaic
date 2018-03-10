@@ -125,6 +125,45 @@ namespace REST_API.Controllers
             return r;
         }
 
+        [Route("api/admin/all")]
+        public Response GetAllAdmins()
+        {
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            MySqlCommand Query = Connection.CreateCommand();
+
+            Query.CommandText = "SELECT * FROM admins";
+
+            Response r = new Response();
+
+            ListAdminData data = new ListAdminData();
+            data.ListAdmin = new List<AdminPost>();
+            r.Data = data;
+
+            try
+            {
+                Connection.Open();
+                MySqlDataReader Reader = Query.ExecuteReader();
+
+                while (Reader.Read())
+                {
+                    data.ListAdmin.Add(JsonConvert.DeserializeObject<AdminPost>(Reader["*"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                }
+                Reader.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
+
+
         //POST api/newtoken/admin
         [Route("api/newtoken/daemon")]
         public Response PostDaemon([FromBody] string value)

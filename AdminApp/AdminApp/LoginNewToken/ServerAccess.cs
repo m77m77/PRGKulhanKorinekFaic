@@ -260,5 +260,31 @@ namespace AdminApp.LoginNewToken
 
             return response;
         }
+
+        public async Task<Response> GetAllAdmins(Label label)
+        {
+
+            HttpClient http = new HttpClient();
+            Response response;
+
+            try
+            {
+                HttpResponseMessage res = await http.GetAsync("http://localhost:63058" + "/api/admin/all/");
+                response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            }
+            catch
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            label.Visible = false;
+            if (response.Status == "ERROR")
+            {
+                label.Visible = true;
+                label.Text = response.Error;
+            }
+
+            return response;
+        }
     }
 }
