@@ -40,6 +40,7 @@
             this.button_register = new System.Windows.Forms.Button();
             this.label_registererror = new System.Windows.Forms.Label();
             this.checkBox_show = new System.Windows.Forms.CheckBox();
+            this.button_close = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_register)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,7 +114,7 @@
             // button_register
             // 
             this.button_register.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.button_register.Location = new System.Drawing.Point(96, 255);
+            this.button_register.Location = new System.Drawing.Point(28, 255);
             this.button_register.Name = "button_register";
             this.button_register.Size = new System.Drawing.Size(207, 48);
             this.button_register.TabIndex = 7;
@@ -125,7 +126,8 @@
             // 
             this.label_registererror.AutoSize = true;
             this.label_registererror.Font = new System.Drawing.Font("Segoe UI", 14.25F);
-            this.label_registererror.Location = new System.Drawing.Point(174, 340);
+            this.label_registererror.ForeColor = System.Drawing.Color.Red;
+            this.label_registererror.Location = new System.Drawing.Point(91, 325);
             this.label_registererror.Name = "label_registererror";
             this.label_registererror.Size = new System.Drawing.Size(0, 25);
             this.label_registererror.TabIndex = 8;
@@ -141,11 +143,23 @@
             this.checkBox_show.UseVisualStyleBackColor = true;
             this.checkBox_show.CheckedChanged += new System.EventHandler(this.checkBox_show_CheckedChanged);
             // 
+            // button_close
+            // 
+            this.button_close.Font = new System.Drawing.Font("Segoe UI", 14.25F);
+            this.button_close.Location = new System.Drawing.Point(265, 255);
+            this.button_close.Name = "button_close";
+            this.button_close.Size = new System.Drawing.Size(119, 48);
+            this.button_close.TabIndex = 10;
+            this.button_close.Text = "Close";
+            this.button_close.UseVisualStyleBackColor = true;
+            this.button_close.Click += new System.EventHandler(this.button_close_Click);
+            // 
             // Form_Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(396, 374);
+            this.Controls.Add(this.button_close);
             this.Controls.Add(this.checkBox_show);
             this.Controls.Add(this.label_registererror);
             this.Controls.Add(this.button_register);
@@ -156,8 +170,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Name = "Form_Register";
-            this.Text = "Form_Register";
+            this.Text = " ";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_register)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -177,5 +192,6 @@
         private System.Windows.Forms.Button button_register;
         private System.Windows.Forms.Label label_registererror;
         private System.Windows.Forms.CheckBox checkBox_show;
+        private System.Windows.Forms.Button button_close;
     }
 }

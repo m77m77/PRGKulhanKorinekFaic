@@ -62,20 +62,32 @@ namespace AdminApp
                 ap.Name = textBox_username.Text;
                 ap.Password = textBox_password.Text;
 
-                ListAdminData list = new ListAdminData();
-                list.ListAdmin = new List<AdminPost>();
                 Response r = new Response();
-                //r = await na.GetAllAdmins(this.label_registererror);
-                //list.ListAdmin.Add((AdminPost)r.Data);
-                //list.Add((AdminPost)r.Data);
-                
-                //if(list.ListAdmin[0].Name != ap.Name)
-                await na.PostNewAdmin(ap, this.label_registererror);
+                r = await na.GetAllAdmins(this.label_registererror);
 
-                if(this.label_registererror.Text == "")
+                ListAdminData l = new ListAdminData();
+                l = (ListAdminData)r.Data;
+
+                bool valid = true;
+                for (int i = 0; i < l.ListAdmin.Count; i++)
                 {
+                    if (l.ListAdmin[i].Name == ap.Name)
+                        valid = false;
+                }
+                if (valid == true)
+                {
+                    await na.PostNewAdmin(ap, this.label_registererror);
                     this.Close();
                 }
+                else
+                {
+                    this.label_registererror.Visible = true;
+                    this.label_registererror.Text = "Choose a different name";
+                }
+                    
+
+
+
             }
         }
 
@@ -92,6 +104,11 @@ namespace AdminApp
                 textBox_confirmpassword.PasswordChar = '•';
             }
             
+        }
+
+        private void button_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -90,6 +90,7 @@ namespace REST_API.Controllers
             //Query.CommandText = "INSERT INTO `3b2_kulhanmatous_db2`.`daemons` (`settings`) VALUES (@value);";
             Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`emails` SET `emailSettings` = @value WHERE `emails`.`adminId` = @AdminId;";
             value.AdminId = t.AdminID;
+
             Query.Parameters.AddWithValue("@AdminId", value.AdminId);
 
             Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(value, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));

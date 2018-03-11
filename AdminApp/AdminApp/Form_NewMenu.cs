@@ -70,9 +70,17 @@ namespace AdminApp
         }
         public void addParams(EmailSettings data)
         {
-            this.textBox_To.Text = data.EmailAddress; //dodělat
-            this.checkBox_sendemails.Checked = data.SendEmails;
-            this.listBox_template.SelectedIndex = 0;
+            try
+            {
+                this.textBox_To.Text = data.EmailAddress; //dodělat
+                this.checkBox_sendemails.Checked = data.SendEmails;
+                this.listBox_template.SelectedIndex = 0;
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
             
             //this.checkedListBox_fromdaemons.Text = data.FromDaemons;
             //this.comboBox_howoften.SelectedItem = data.HowOften;

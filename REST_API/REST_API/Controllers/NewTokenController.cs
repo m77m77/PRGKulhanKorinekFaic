@@ -95,6 +95,7 @@ namespace REST_API.Controllers
         [Route("api/newadmin")]
         public Response PostNewAdmin([FromBody]AdminPost value)
         {
+
             MySqlConnection Connection = WebApiConfig.Connection();
 
             MySqlCommand Query = Connection.CreateCommand();
@@ -103,7 +104,7 @@ namespace REST_API.Controllers
             Query.CommandText = "INSERT INTO admins (name,password) VALUES (@name,@password);";
 
             Query.Parameters.AddWithValue("@name", value.Name);
-            Query.Parameters.AddWithValue("@password", value.Password);
+            Query.Parameters.AddWithValue("@password", HashUtility.HashPassword(value.Password));
 
 
             Response r = new Response();
@@ -125,14 +126,14 @@ namespace REST_API.Controllers
             return r;
         }
 
-        [Route("api/admin/all")]
+        [Route("api/admins/all")]
         public Response GetAllAdmins()
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT * FROM admins";
+            Query.CommandText = "SELECT name FROM admins";
 
             Response r = new Response();
 
@@ -144,10 +145,12 @@ namespace REST_API.Controllers
             {
                 Connection.Open();
                 MySqlDataReader Reader = Query.ExecuteReader();
-
+                int i = 0;
                 while (Reader.Read())
                 {
-                    data.ListAdmin.Add(JsonConvert.DeserializeObject<AdminPost>(Reader["*"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    data.ListAdmin.Add(new AdminPost());
+                    data.ListAdmin[i].Name = Reader["name"].ToString();
+                    i++;
                 }
                 Reader.Close();
             }

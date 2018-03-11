@@ -269,7 +269,7 @@ namespace AdminApp.LoginNewToken
 
             try
             {
-                HttpResponseMessage res = await http.GetAsync("http://localhost:63058" + "/api/admin/all/");
+                HttpResponseMessage res = await http.GetAsync("http://localhost:63058" + "/api/admins/all/");
                 response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
             }
             catch
