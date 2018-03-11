@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
+using DaemonTest.CommunicationClasses;
 using DaemonTest.DestinationManagers;
 using DaemonTest.Models;
 
@@ -14,14 +16,17 @@ namespace DaemonTest.SaveMethods
         public void Start(IDestinationManager destinationManager, string backupType)
         {
             string dirName = backupType + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm");
-            dir = new DirectoryInfo(Path.Combine(destinationManager.GetUploadPath(),dirName));
+            dir = new DirectoryInfo(Path.Combine(destinationManager.GetPath(),dirName));
             dir.Create();
         }
 
-        public void AddFile(string dirPath, FileInfo file)
+        public void AddFile(string dirPath, FileInfo file, Dictionary<string, DateTime> files)
         {
+            string fileName = Path.Combine(dirPath, file.Name);
+            files.Add(fileName, file.LastWriteTime);
+
             Directory.CreateDirectory(Path.Combine(dir.FullName,dirPath));
-            file.CopyTo(Path.Combine(dir.FullName, dirPath,file.Name));
+            file.CopyTo(Path.Combine(dir.FullName, fileName));
         }
 
         public void End()
@@ -29,61 +34,32 @@ namespace DaemonTest.SaveMethods
             
         }
 
-        public List<BackupDirectory> GetListOfPreviusBackups(IDestinationManager destinationManager)
+        public List<BackupDirectory> GetListOfPreviusBackups()
         {
             List<BackupDirectory> list = new List<BackupDirectory>();
-            DirectoryInfo directory = new DirectoryInfo(destinationManager.GetDownloadPath());
 
-            foreach (DirectoryInfo item in directory.GetDirectories())
+            Task<Response> response = ServerAccess.GetBackupsInfos(SettingsManager.CurrentSettings.BackupScheme.Type);
+            response.Wait();
+
+            if (response.Result.Status == "OK")
             {
-                string type = null;
-                if (item.Name.StartsWith("FULL"))
-                {
-                    type = "FULL";
-                }
-                else if (item.Name.StartsWith("DIFF"))
-                {
-                    type = "DIFF";
-                }
-                else if (item.Name.StartsWith("INC"))
-                {
-                    type = "INC";
-                }
+                ListDaemonBackupInfoData infos = (ListDaemonBackupInfoData)response.Result.Data;
 
-                if (type == null)
-                    continue;
-
-                try
+                foreach (BackupStatus item in infos.ListDaemonBackupInfo)
                 {
-                    BackupDirectory backup = new BackupDirectory();
-                    backup.LastWrite = item.LastWriteTime;
-                    backup.Type = type;
-                    Dictionary<string, DateTime> files = new Dictionary<string, DateTime>();
-                    this.GetListOfFilesInBackup(item,"",files);
-                    backup.Files = files;
+                    if (item.Status != "SUCCESS")
+                        continue;
 
-                    list.Add(backup);
-                }
-                catch (Exception)
-                {
+                    BackupDirectory bd = new BackupDirectory();
+                    bd.Files = item.Files;
+                    bd.Type = item.BackupType;
+                    bd.LastWrite = item.TimeOfBackup;
 
+                    list.Add(bd);
                 }
             }
 
             return list;
-        }
-
-        private void GetListOfFilesInBackup(DirectoryInfo directory,string path, Dictionary<string, DateTime> list)
-        {
-            foreach (FileInfo item in directory.GetFiles())
-            {
-                list.Add(Path.Combine(path, item.Name), item.LastWriteTime);
-            }
-
-            foreach (DirectoryInfo item in directory.GetDirectories())
-            {
-                this.GetListOfFilesInBackup(item, Path.Combine(path, item.Name), list);
-            }
         }
     }
 }

@@ -10,9 +10,9 @@ namespace DaemonTest.SaveMethods
     public interface ISaveMethod
     {
         void Start(IDestinationManager destinationManager,string backupType);
-        void AddFile(string dirPath, FileInfo file);
+        void AddFile(string dirPath, FileInfo file, Dictionary<string, DateTime> files);
         void End();
 
-        List<BackupDirectory> GetListOfPreviusBackups(IDestinationManager destinationManager);
+        List<BackupDirectory> GetListOfPreviusBackups();
     }
 }

@@ -28,13 +28,13 @@ namespace DaemonTest.BackupMethods
                 return new BackupStatus() { Status = "FAIL", FailMessage = "Source path doesnt exist" };
 
             List<BackupError> errors = new List<BackupError>();
-            BackupStatus status = new BackupStatus() { BackupType = "INC" };
+            Dictionary<string, DateTime> files = new Dictionary<string, DateTime>();
+            BackupStatus status = new BackupStatus() { BackupType = "INC",TimeOfBackup = DateTime.Now };
 
             try
             {
-                this.destinationManager.DownloadFiles("FULL","DIFF","INC");
 
-                List<BackupDirectory> prevBackups = this.saveMethod.GetListOfPreviusBackups(this.destinationManager);
+                List<BackupDirectory> prevBackups = this.saveMethod.GetListOfPreviusBackups();
                 if (prevBackups.Count <= 0)
                     return new BackupStatus() { Status = "FAIL", FailMessage = "There is no previous backup" };
 
@@ -94,7 +94,7 @@ namespace DaemonTest.BackupMethods
 
                 this.saveMethod.Start(this.destinationManager, "INC");
 
-                this.BackupRecursively(this.sourceDir, "", errors, prevBackedUpFiles);
+                this.BackupRecursively(this.sourceDir, "", errors, prevBackedUpFiles,files);
 
                 this.saveMethod.End();
                 this.destinationManager.Save();
@@ -108,11 +108,12 @@ namespace DaemonTest.BackupMethods
             }
 
             status.Errors = errors;
+            status.Files = files;
 
             return status;
         }
 
-        private void BackupRecursively(DirectoryInfo dir, string path, List<BackupError> errors, Dictionary<string, DateTime> previousBackups)
+        private void BackupRecursively(DirectoryInfo dir, string path, List<BackupError> errors, Dictionary<string, DateTime> previousBackups, Dictionary<string, DateTime> files)
         {
             foreach (FileInfo item in dir.GetFiles())
             {
@@ -126,13 +127,13 @@ namespace DaemonTest.BackupMethods
                         DateTime lastWrite = previousBackups[fullName];
                         if (lastWrite.AddSeconds(5) < item.LastWriteTime)
                         {
-                            this.saveMethod.AddFile(path, item);
+                            this.saveMethod.AddFile(path, item,files);
                         }
 
                     }
                     else
                     {
-                        this.saveMethod.AddFile(path, item);
+                        this.saveMethod.AddFile(path, item,files);
                     }
                 }
                 catch (Exception ex)
@@ -145,7 +146,7 @@ namespace DaemonTest.BackupMethods
             {
                 try
                 {
-                    this.BackupRecursively(item, Path.Combine(path, item.Name), errors, previousBackups);
+                    this.BackupRecursively(item, Path.Combine(path, item.Name), errors, previousBackups,files);
                 }
                 catch (Exception ex)
                 {

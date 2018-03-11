@@ -6,9 +6,7 @@ namespace DaemonTest.DestinationManagers
 {
     public interface IDestinationManager
     {
-        void DownloadFiles(params string[] startsWith);
-        string GetUploadPath();
-        string GetDownloadPath();
+        string GetPath();
         void Save();
     }
 }

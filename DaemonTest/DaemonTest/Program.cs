@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using DaemonTest.CommunicationClasses;
 using DaemonTest.BackupMethods;
 using DaemonTest.Models;
+using DaemonTest.Utilities;
 
 namespace DaemonTest
 {
@@ -22,17 +23,15 @@ namespace DaemonTest
 
             Task<Response> res = SettingsManager.GetNewSettings();
             res.Wait();
+            Task<bool> sa = ServerAccess.Connect("http://localhost:63058", "rBBthQbuOrwM40e3-yvKLk5bspE7,N8Y");
+            sa.Wait();
+            Console.WriteLine(sa.Result);
 
-            //Uri uri = new Uri("prgkulhankorinekfaic.g6.cz/web/BACKUP/WEEKLY 19.02.2018 - 25.02.2018/FULL_24_02_2018_21_21/a.txt", UriKind.Absolute);
-
-            //IDestinationManager manager = SettingsManager.GetDestinationManager();
-            //manager.Save();
-            //SettingsManager.CurrentSettings.Destination = new LocalNetworkDestination() { Path = @"E:\BACKUP" };
-
-            IBackupMethod bcMethod = new DifferentialBackupMethod();
+            IBackupMethod bcMethod = new IncrementalBackupMethod();
             BackupStatus status = bcMethod.Backup();
-            Console.WriteLine(JsonConvert.SerializeObject(status));
-            Console.WriteLine("DONE");
+            Task<Response> response = ServerAccess.SendBackupStatus(status);
+            response.Wait();
+            Console.WriteLine(JsonSerializationUtility.Serialize(response.Result));
             Console.ReadLine();
         }
     }
