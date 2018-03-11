@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="cs-cz">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="stylmenu.css" type="text/css" />
+    <title>Menu</title>
+</head>
+
+<body >
+    <header>
+   
+        <nav>
+            <ul>
+                <li class="aktivni"><a href="mailsettings.html">Email notification settings</a></li>
+                <li><a href="daemonsettings.html">Daemon settings</a></li>
+             
+            </ul>
+        </nav>
+    </header>
+
+    <article class="mailclass">
+        <div id="middle">
+            <header>
+                <h1>Settings</h1>
+            </header>
+
+            <section>
+                <label class="containeremail" placeholder="example@xxx.com">Send emails
+                            <input type="checkbox">
+                            <span class="checkmarkemail"></span>
+                </label>
+                <p class="nadpis"> SMTP settings</p>
+                <p> To <input type="text" class="textto"/></p>
+            
+                <p>
+                    Template <select id="selecttemplate">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+
+                    </select>
+                </p> 
+                <table>
+                <tr>
+                    <th>Daily</th>
+                    <th></th>
+                <th>    </th>
+                </tr>
+                <tr>
+                    <th>Weekly</th>
+                    
+                   <th></th>
+                <th>
+                    
+                </th>
+                </tr>
+                <tr>
+                    <th>Monthly</th>
+                    <th></th>
+              <th></th>
+                </tr>
+
+                </table>
+            </section>
+            <div class="clear"></div>
+        </div>
+    </article>
+
+
+    <footer>
+  
+    </footer>
+</body>
+</html>

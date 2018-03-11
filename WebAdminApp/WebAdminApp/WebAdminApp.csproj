@@ -69,8 +69,15 @@
     <None Include="packages.config" />
     <Content Include="App\app.module.js" />
     <Content Include="App\main.js" />
-    <Content Include="mailsettings.html" />
     <Content Include="Images\noisetexture.png" />
+    <Content Include="NewWebAdminApp\backupsettings.html" />
+    <Content Include="NewWebAdminApp\daemonsettings.html" />
+    <Content Include="NewWebAdminApp\default.html" />
+    <Content Include="NewWebAdminApp\index.html" />
+    <Content Include="NewWebAdminApp\mailsettings.html" />
+    <Content Include="NewWebAdminApp\register.html" />
+    <Content Include="NewWebAdminApp\styl.css" />
+    <Content Include="NewWebAdminApp\stylmenu.css" />
     <Content Include="Scripts\angular.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -80,13 +87,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.html" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\ServerAccess.js" />
-    <Content Include="Scripts\styl.css" />
-    <Content Include="Scripts\stylmenu.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
