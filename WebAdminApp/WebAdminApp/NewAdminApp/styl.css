@@ -1,7 +1,7 @@
 html
 {
-    background-color: rgb(115, 201, 230);
-    background: rgb(115, 201, 230);
+    background-color: rgb(81, 168, 240);
+    background: rgb(81, 168, 240);
 }
 body {
     font-family: "Segoe UI";
@@ -59,9 +59,9 @@ article
     
 }
 .loginlink:hover {
-        background: rgb(115, 201, 230);
+        background: rgb(81, 168, 240);
         box-shadow: 0px 0px 5px black;
-        border-color: rgb(115, 201, 230);
+        border-color: rgb(81, 168, 240);
     }
 
 

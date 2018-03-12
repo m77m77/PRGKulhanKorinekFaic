@@ -70,14 +70,15 @@
     <Content Include="App\app.module.js" />
     <Content Include="App\main.js" />
     <Content Include="Images\noisetexture.png" />
-    <Content Include="NewWebAdminApp\backupsettings.html" />
-    <Content Include="NewWebAdminApp\daemonsettings.html" />
-    <Content Include="NewWebAdminApp\default.html" />
-    <Content Include="NewWebAdminApp\index.html" />
-    <Content Include="NewWebAdminApp\mailsettings.html" />
-    <Content Include="NewWebAdminApp\register.html" />
-    <Content Include="NewWebAdminApp\styl.css" />
-    <Content Include="NewWebAdminApp\stylmenu.css" />
+    <Content Include="NewAdminApp\backupsettings.html" />
+    <Content Include="NewAdminApp\daemonsettings.html" />
+    <Content Include="NewAdminApp\default.html" />
+    <Content Include="NewAdminApp\disabledelements.js" />
+    <Content Include="NewAdminApp\index.html" />
+    <Content Include="NewAdminApp\mailsettings.html" />
+    <Content Include="NewAdminApp\register.html" />
+    <Content Include="NewAdminApp\styl.css" />
+    <Content Include="NewAdminApp\stylmenu.css" />
     <Content Include="Scripts\angular.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
