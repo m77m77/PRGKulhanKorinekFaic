@@ -19,6 +19,18 @@ namespace DaemonTest
 
         }
 
+        private static void CheckNewToken(Response response)
+        {
+            if (response.Status != "OK")
+                return;
+
+            string newToken = response.NewToken;
+            if(!String.IsNullOrWhiteSpace(newToken))
+            {
+                ServerAccess.token = newToken;
+            }
+        }
+
         public async static Task<bool> Connect(string serverAddress, string token)
         {
             HttpClient client = new HttpClient();
@@ -47,13 +59,15 @@ namespace DaemonTest
             Response response = new Response();
             try
             {
-                HttpResponseMessage httpResponse = await client.GetAsync(serverAddress + "/api/daemon/getInfo/" + token + "/" + type);
+                HttpResponseMessage httpResponse = await client.GetAsync(serverAddress + "/api/backupstatus/daemon/" + token + "/" + type);
                 response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
             }
             catch (Exception)
             {
                 response = new Response("ERROR", "ConnectionError", null, null);
             }
+
+            ServerAccess.CheckNewToken(response);
 
             return response;
         }
@@ -66,13 +80,15 @@ namespace DaemonTest
             
             try
             {
-                HttpResponseMessage httpResponse = await client.PostAsync(serverAddress + "/api/daemon/" + token,sc);
+                HttpResponseMessage httpResponse = await client.PostAsync(serverAddress + "/api/backupstatus/daemon/" + token,sc);
                 response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
             }
             catch (Exception)
             {
                 response = new Response("ERROR", "ConnectionError", null, null);
             }
+
+            ServerAccess.CheckNewToken(response);
 
             return response;
         }
