@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Text;
+using System.Threading.Tasks;
+using DaemonTest.CommunicationClasses;
 using DaemonTest.DestinationManagers;
 using DaemonTest.Models;
 
@@ -15,12 +17,15 @@ namespace DaemonTest.SaveMethods
         public void Start(IDestinationManager destinationManager, string backupType)
         {
             string fileName = backupType + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm") + ".zip";
-            archive = ZipFile.Open(Path.Combine(destinationManager.GetUploadPath(),fileName), ZipArchiveMode.Create);
+            archive = ZipFile.Open(Path.Combine(destinationManager.GetPath(),fileName), ZipArchiveMode.Create);
         }
 
-        public void AddFile(string dirPath, FileInfo file)
+        public void AddFile(string dirPath, FileInfo file,Dictionary<string,DateTime> files)
         {
-            archive.CreateEntryFromFile(file.FullName, Path.Combine(dirPath, file.Name),CompressionLevel.Optimal);
+            string fileName = Path.Combine(dirPath, file.Name);
+            files.Add(fileName, file.LastWriteTime);
+
+            archive.CreateEntryFromFile(file.FullName, fileName,CompressionLevel.Optimal);
         }
 
         public void End()
@@ -28,65 +33,34 @@ namespace DaemonTest.SaveMethods
             archive.Dispose();
         }
 
-        public List<BackupDirectory> GetListOfPreviusBackups(IDestinationManager destinationManager)
+        public List<BackupDirectory> GetListOfPreviusBackups()
         {
             List<BackupDirectory> list = new List<BackupDirectory>();
-            DirectoryInfo directory = new DirectoryInfo(destinationManager.GetDownloadPath());
 
-            foreach (FileInfo item in directory.GetFiles())
+            Task<Response> response = ServerAccess.GetBackupsInfos(SettingsManager.CurrentSettings.BackupScheme.Type);
+            response.Wait();
+
+            if(response.Result.Status == "OK")
             {
-                if (item.Extension != ".zip")
-                    continue;
+                ListDaemonBackupInfoData infos = (ListDaemonBackupInfoData) response.Result.Data;
 
-                string type = null;
-                if(item.Name.StartsWith("FULL"))
+                foreach (BackupStatus item in infos.ListDaemonBackupInfo)
                 {
-                    type = "FULL";
-                }
-                else if (item.Name.StartsWith("DIFF"))
-                {
-                    type = "DIFF";
-                }
-                else if (item.Name.StartsWith("INC"))
-                {
-                    type = "INC";
-                }
+                    if (item.Status != "SUCCESS")
+                        continue;
 
-                if (type == null)
-                    continue;
+                    BackupDirectory bd = new BackupDirectory();
+                    bd.Files = item.Files;
+                    bd.Type = item.BackupType;
+                    bd.LastWrite = item.TimeOfBackup;
 
-                
-                try
-                {
-                    BackupDirectory backup = new BackupDirectory();
-                    backup.LastWrite = item.LastWriteTime;
-                    backup.Type = type;
-                    backup.Files = this.GetListOfFilesInBackup(item);
-
-                    list.Add(backup);
-                }
-                catch (Exception)
-                {
-                    
+                    list.Add(bd);
                 }
             }
 
             return list;
         }
 
-        private Dictionary<string,DateTime> GetListOfFilesInBackup(FileInfo file)
-        {
-            ZipArchive archive = ZipFile.Open(file.FullName, ZipArchiveMode.Read);
-            Dictionary<string, DateTime> list = new Dictionary<string, DateTime>();
-
-            foreach (ZipArchiveEntry item in archive.Entries)
-            {
-                list.Add(item.FullName, item.LastWriteTime.DateTime);
-            }
-
-            archive.Dispose();
-
-            return list;
-        }
+        
     }
 }

@@ -28,13 +28,14 @@ namespace DaemonTest.BackupMethods
                 return new BackupStatus() { Status = "FAIL", FailMessage = "Source path doesnt exist" };
 
             List<BackupError> errors = new List<BackupError>();
-            BackupStatus status = new BackupStatus() { BackupType = "FULL" };
+            Dictionary<string, DateTime> files = new Dictionary<string, DateTime>();
+            BackupStatus status = new BackupStatus() { BackupType = "FULL",TimeOfBackup = DateTime.Now };
 
             try
             {
                 this.saveMethod.Start(this.destinationManager, "FULL");
 
-                this.BackupRecursively(this.sourceDir, "", errors);
+                this.BackupRecursively(this.sourceDir, "", errors,files);
 
                 this.saveMethod.End();
                 this.destinationManager.Save();
@@ -48,17 +49,18 @@ namespace DaemonTest.BackupMethods
             }
 
             status.Errors = errors;
+            status.Files = files;
 
             return status;
         }
 
-        private void BackupRecursively(DirectoryInfo dir,string path,List<BackupError> errors)
+        private void BackupRecursively(DirectoryInfo dir,string path,List<BackupError> errors,Dictionary<string,DateTime> files)
         {
             foreach (FileInfo item in dir.GetFiles())
             {
                 try
                 {
-                    this.saveMethod.AddFile(path, item);
+                    this.saveMethod.AddFile(path, item,files);
                 }
                 catch (Exception ex)
                 {
@@ -70,7 +72,7 @@ namespace DaemonTest.BackupMethods
             {
                 try
                 {
-                    this.BackupRecursively(item,Path.Combine(path,item.Name),errors);       
+                    this.BackupRecursively(item,Path.Combine(path,item.Name),errors,files);       
                 }
                 catch (Exception ex)
                 {

@@ -197,8 +197,10 @@
     <Compile Include="CommunicationClasses\ListEmailSettingsData.cs" />
     <Compile Include="CommunicationClasses\ListSettingsData.cs" />
     <Compile Include="CommunicationClasses\Response.cs" />
+    <Compile Include="Controllers\BackupStatusController.cs" />
     <Compile Include="Controllers\DaemonController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\NewAdminController.cs" />
     <Compile Include="Controllers\NewTokenController.cs" />
     <Compile Include="Models\BackupInfo\BackupError.cs" />
     <Compile Include="Models\BackupInfo\BackupStatus.cs" />

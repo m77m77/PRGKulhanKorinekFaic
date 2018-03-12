@@ -1,6 +1,7 @@
 ﻿using DaemonTest.Models.Settings;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace DaemonTest.DestinationManagers
@@ -8,28 +9,16 @@ namespace DaemonTest.DestinationManagers
     public class SFTPDestinationManager : IDestinationManager
     {
         private SFTPDestination destination;
-
-        public SFTPDestinationManager()
-        {
-
-        }
+        private string tempDir;
 
         public SFTPDestinationManager(SFTPDestination destination)
         {
             this.destination = destination;
+
+            this.tempDir = Path.Combine(Path.GetTempPath(), "PRGKulhanKorinekFaic", "SFTP");
         }
 
-        public void DownloadFiles(params string[] startsWith)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetDownloadPath()
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetUploadPath()
+        public string GetPath()
         {
             throw new NotImplementedException();
         }

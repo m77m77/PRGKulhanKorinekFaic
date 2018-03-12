@@ -19,19 +19,7 @@ namespace DaemonTest.DestinationManagers
 
         }
 
-        public void DownloadFiles(params string[] startsWith)
-        {
-            
-        }
-
-        public string GetDownloadPath()
-        {
-            string path = Path.Combine(this.destination.Path, this.dirName);
-            Directory.CreateDirectory(path);
-            return path;
-        }
-
-        public string GetUploadPath()
+        public string GetPath()
         {
             string path = Path.Combine(this.destination.Path, this.dirName);
             Directory.CreateDirectory(path);

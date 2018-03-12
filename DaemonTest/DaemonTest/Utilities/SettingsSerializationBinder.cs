@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using DaemonTest.Models.Settings;
 using DaemonTest.Models;
+using DaemonTest.CommunicationClasses;
 
 namespace DaemonTest.Utilities
 {
@@ -29,6 +30,10 @@ namespace DaemonTest.Utilities
                     return typeof(Settings);
                 case "BackupStatus":
                     return typeof(BackupStatus);
+                case "ListDaemonBackupInfoData":
+                    return typeof(ListDaemonBackupInfoData);
+
+
             }
 
             return null;

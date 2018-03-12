@@ -1,0 +1,344 @@
+body {
+    background: whitesmoke;
+    margin: 73px 0px 0px 0px;
+    min-width: 960px;
+    font-family: "Segoe UI"
+}
+
+h1 {
+    font-family: "Segoe UI";
+    font-size: 30px;
+}
+nav ul {
+    margin: 0px;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+nav ul li {
+        float: left;
+        padding: 0px 25px;
+        margin: 0 5px;
+        font-size: 22px;
+        height: 73px;
+        line-height: 3em;
+        color: whitesmoke;
+        text-decoration: none;
+}
+
+nav ul li:hover, .aktivni {
+        background: #555;
+       
+        font-size: 22px;
+        color: whitesmoke;
+    }
+
+ .nadpis{
+     font-size: 27px;
+ }
+
+.textto {
+    height: 27px;
+    width: 628px;
+    font-size: 23px;
+}
+
+header {
+    height: 73px;
+    position: fixed;
+    top: 0px;
+    background-color: rgb(115, 201, 230);
+    width: 100%;
+}
+
+article {
+    background: whitesmoke;
+    padding: 30px 0px;
+}
+
+
+article header {
+        width: 250px;
+        float: left;
+        position: static;
+        background: none;
+        font-size: 20px;
+        color: #0a294b;
+    }
+
+article section {
+        width: 666px;
+        float: left;
+        background: whitesmoke;
+        border: 2px solid #555;
+        box-shadow: 2px 2px 7px #555;
+        padding: 20px;
+        font-size: 25px;
+    }
+
+    article header ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 250px;
+        background-color: whitesmoke;
+    }
+footer {
+    height: 40px;
+    color: whitesmoke;
+    margin: 20px 0 0 30px;
+}
+
+
+.clear {
+    clear: both;
+}
+
+article header li a {
+    display: block;
+    color: #555;
+    padding: 13px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+article header li a:hover {
+    background-color: #555;
+    color: whitesmoke;
+}
+nav a {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+#middle {
+    margin: 0px auto;
+    width: 960px;
+}
+
+#selecttime {
+    font-size: 25px;
+}
+
+#selecttemplate {
+    font-size: 25px;
+}
+
+
+
+.pathtext
+{
+    width: 170px;
+    height: 30px;
+    font-size: 23px;
+    margin: 3px 3px 3px 3px ;
+}
+.alignleft
+{
+    float: left;
+}
+.alignright
+{
+    float: right;
+}
+.aligncenter
+{
+    float:center;
+}
+
+article section table th
+{
+   text-align: left;
+   
+}
+
+.mailclass
+{
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.DestinationTypeClass
+{
+    text-align: left;
+    font-size: 10px;
+  
+}
+.tucne
+{
+    font-size: 25px;
+    font-weight: bold;
+}
+.selectafterbackup
+{
+    font-size: 25px;
+    margin: 5px 5px 5px 0px ;
+}
+.pathtextselect
+{
+    width: 674px;
+    height: 30px;
+    font-size: 23px;
+}
+.pathtextdestination
+{
+    width: 300px;
+    height: 30px;
+    font-size: 23px;
+}
+.containeremail {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.containeremail input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+.checkmarkemail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+
+.containeremail:hover input ~ .checkmarkemail {
+    background-color: #ccc;
+}
+
+
+.containeremail input:checked ~ .checkmarkemail {
+    background-color: rgb(115, 201, 230);
+}
+
+
+.checkmarkemail:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+.containeremail input:checked ~ .checkmarkemail:after {
+    display: block;
+}
+
+
+.containeremail .checkmarkemail:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+   
+}
+
+.dropdown-content {
+    display: none;
+    position: fixed;
+    background-color:whitesmoke;
+ 
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content 
+{
+    display: block;
+    color: whitesmoke;
+   
+
+}
+article section menu ul li:hover
+{
+    color: whitesmoke;
+    background-color: #555;
+}
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
