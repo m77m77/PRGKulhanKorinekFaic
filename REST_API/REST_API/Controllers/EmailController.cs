@@ -79,11 +79,11 @@ namespace REST_API.Controllers
                 //token není v databázi  
                 return new Response("ERROR", "TokenNotFound", null, null);
             }
-            if (!t.IsAdmin)
-            {
-                //token nepatří adminovi  
-                return new Response("ERROR", "TokenIsNotMatched", null, null);
-            }
+            //if (!t.IsAdmin)
+            //{
+            //    //token nepatří adminovi  
+            //    return new Response("ERROR", "TokenIsNotMatched", null, null);
+            //}
 
             MySqlCommand Query = Connection.CreateCommand();
 
@@ -133,11 +133,11 @@ namespace REST_API.Controllers
                 //token není v databázi  
                 return new Response("ERROR", "TokenNotFound", null, null);
             }
-            if (!t.IsAdmin)
-            {
-                //token nepatří adminovi  
-                return new Response("ERROR", "TokenIsNotMatched", null, null);
-            }
+            //if (!t.IsAdmin)
+            //{
+            //    //token nepatří adminovi  
+            //    return new Response("ERROR", "TokenIsNotMatched", null, null);
+            //}
 
             MySqlCommand Query = Connection.CreateCommand();
 
@@ -161,74 +161,6 @@ namespace REST_API.Controllers
                     es = JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
                     r.Data = es;
                     //data.ListEmailSettings.Add(JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
-                }
-                Reader.Close();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
-            }
-            Connection.Close();
-
-            if (r.Status == null)
-                r.Status = "OK";
-
-            return r;
-        }
-
-
-        /* 
-         * 
-         * POTREBUJE PREDELAT
-         * 
-         */
-        [Route("api/email/backup/{token}")]
-        public Response GetBackupInfo(string token)
-        {
-            MySqlConnection Connection = WebApiConfig.Connection();
-
-            Token t = Token.Exists(token);
-            if (t == null)
-            {
-                //token není v databázi  
-                return new Response("ERROR", "TokenNotFound", null, null);
-            }
-            //if (!t.IsAdmin)
-            //{
-            //    //token nepatří adminovi  
-            //    return new Response("ERROR", "TokenIsNotMatched", null, null);
-            //}
-
-            MySqlCommand Query = Connection.CreateCommand();
-
-            Query.CommandText = "SELECT backupDate,idDaemon,backupStatus,backupType,backupFailMessage,backupErrors,backupFiles FROM backupsInfo WHERE backupDate > @LastMonth";
-
-            Query.Parameters.AddWithValue("@LastMonth", DateTime.Now.AddMonths(-1));
-
-            Response r = new Response();
-
-            ListDaemonBackupInfoData data = new ListDaemonBackupInfoData();
-            data.ListDaemonBackupInfo = new List<BackupStatus>();
-            r.Data = data;
-
-            
-            try
-            {
-                Connection.Open();
-                MySqlDataReader Reader = Query.ExecuteReader();
-
-                int i = 0;
-                while (Reader.Read())
-                {
-                    data.ListDaemonBackupInfo.Add(new BackupStatus());
-                    data.ListDaemonBackupInfo[i].Errors = (JsonConvert.DeserializeObject<List<BackupError>>(Reader["backupErrors"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
-                    //data.ListDaemonBackupInfo[i].Files = (JsonConvert.DeserializeObject<BackupStatus>(Reader["backupFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
-                    data.ListDaemonBackupInfo[i].TimeOfBackup = Convert.ToDateTime(Reader["backupDate"]);
-                    data.ListDaemonBackupInfo[i].DaemonId = Convert.ToInt32(Reader["idDaemon"]);
-                    data.ListDaemonBackupInfo[i].BackupType = (Reader["backupType"]).ToString();
-                    data.ListDaemonBackupInfo[i].Status = (Reader["backupStatus"]).ToString();
-                    data.ListDaemonBackupInfo[i].FailMessage = (Reader["backupFailMessage"]).ToString();
-                    i++;
                 }
                 Reader.Close();
             }

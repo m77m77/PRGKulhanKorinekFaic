@@ -25,7 +25,7 @@ namespace REST_API.Models
                     connection.Open();
 
                     string sql =
-                    "SELECT id,idAdmin,idDaemon " +
+                    "SELECT id,idAdmin,idDaemon,type " +
                     "FROM tokens " +
                     "LEFT JOIN tokensAdmins ON tokens.id = tokensAdmins.idToken " +
                     "LEFT JOIN tokensDaemons ON tokens.id = tokensDaemons.idToken " +
@@ -37,7 +37,7 @@ namespace REST_API.Models
                     MySqlDataReader reader = query.ExecuteReader();
                     if(reader.Read())
                     {
-                        result = new Token(token, Convert.ToInt32(reader["id"]), reader["idAdmin"], reader["idDaemon"]);
+                        result = new Token(token, Convert.ToInt32(reader["id"]), reader["idAdmin"], reader["idDaemon"], reader["type"]);
                     }
                 }
                 catch (Exception)
@@ -94,7 +94,13 @@ namespace REST_API.Models
                         queryInsertIntoTokensAdmins.Parameters.AddWithValue("@idToken", id);
                         queryInsertIntoTokensAdmins.ExecuteNonQuery();
 
-                        result = new Token(newToken, id, idAdmin, 0);
+
+                        MySqlCommand queryGetAdminType = new MySqlCommand("SELECT type FROM admins WHERE id = @adminId",connection);
+                        queryGetAdminType.Parameters.AddWithValue("@adminId", idAdmin);
+                        string type = queryGetAdminType.ExecuteScalar().ToString();
+
+                        //TODO ADD ADMIN TYPE
+                        result = new Token(newToken, id, idAdmin, 0,type);
                     }else
                     {
                         result = Exists(newToken);
@@ -134,6 +140,7 @@ namespace REST_API.Models
         public string Value { get; private set; }
         public int AdminID { get; private set; }
         public int DaemonID { get; private set; }
+        public string AdminType { get; set; }
         public bool IsAdmin
         {
             get { return this.AdminID > 0; }
@@ -144,12 +151,13 @@ namespace REST_API.Models
         }
 
 
-        private Token(string token, int id, object idAdmin, object idDaemon)
+        private Token(string token, int id, object idAdmin, object idDaemon,object adminType)
         {
             this.ID = id;
             this.Value = token;
             this.AdminID = idAdmin == DBNull.Value ? 0 : ((int)idAdmin);
             this.DaemonID = idDaemon == DBNull.Value ? 0 : ((int) idDaemon);
+            this.AdminType = adminType != null ? adminType.ToString() : null;
         }
     }
 }

@@ -16,29 +16,6 @@ namespace REST_API.Controllers
 {
     public class NewTokenController : ApiController
     {
-        public BackupStatus Get()
-        {
-            Settings s = new Settings();
-            s.ActionAfterBackup = "RESTART";
-            s.BackupSourcePath = @"C:\DATA";
-            s.DaemonName = "Main daemon";
-            s.Destination = new LocalNetworkDestination() { Path = @"E:\BACKUP" };
-            s.SaveFormat = "ZIP";
-            BackupScheme scheme = new BackupScheme();
-            scheme.Type = "WEEKLY";
-            scheme.MaxBackups = 5;
-            scheme.BackupTimes = new List<BackupTime>();
-            scheme.BackupTimes.Add(new BackupTime() { DayNumber = 1, Time = new TimeSpan(5, 0, 0), Type = "FULL" });
-            scheme.BackupTimes.Add(new BackupTime() { DayNumber = 4, Time = new TimeSpan(4, 0, 0), Type = "DIFF" });
-            scheme.BackupTimes.Add(new BackupTime() { DayNumber = 7, Time = new TimeSpan(21, 0, 0), Type = "DIFF" });
-
-            s.BackupScheme = scheme;
-
-            return new BackupStatus() { Status = "OK", TimeOfBackup = DateTime.Now, Errors = null, FailMessage = null };
-            //return s;
-            //return JsonConvert.DeserializeObject<Settings>("{\"DataType\":null,\"BeforeBackup\":null,\"AfterBackup\":null,\"SaveFormat\":null,\"Destination\":{\"$type\":\"REST_API.Models.Settings.FTPDestination, REST_API\",\"Adress\":null,\"Port\":null,\"Username\":null,\"Password\":null,\"Path\":null,\"Type\":\"FTP\"}}", new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.Auto});
-            //return JsonConvert.SerializeObject(new Settings() { Destination = new FTPDestination() }, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-        }
 
         //POST api/newtoken/admin
         /// <summary>
@@ -89,81 +66,6 @@ namespace REST_API.Controllers
             }
 
             return response;
-        }
-
-
-        [Route("api/newadmin")]
-        public Response PostNewAdmin([FromBody]AdminPost value)
-        {
-
-            MySqlConnection Connection = WebApiConfig.Connection();
-
-            MySqlCommand Query = Connection.CreateCommand();
-
-
-            Query.CommandText = "INSERT INTO admins (name,password) VALUES (@name,@password);";
-
-            Query.Parameters.AddWithValue("@name", value.Name);
-            Query.Parameters.AddWithValue("@password", HashUtility.HashPassword(value.Password));
-
-
-            Response r = new Response();
-
-            try
-            {
-                Connection.Open();
-                Query.ExecuteNonQuery();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
-            }
-            Connection.Close();
-
-            if (r.Status == null)
-                r.Status = "OK";
-
-            return r;
-        }
-
-        [Route("api/admins/all")]
-        public Response GetAllAdmins()
-        {
-            MySqlConnection Connection = WebApiConfig.Connection();
-
-            MySqlCommand Query = Connection.CreateCommand();
-
-            Query.CommandText = "SELECT name FROM admins";
-
-            Response r = new Response();
-
-            ListAdminData data = new ListAdminData();
-            data.ListAdmin = new List<AdminPost>();
-            r.Data = data;
-
-            try
-            {
-                Connection.Open();
-                MySqlDataReader Reader = Query.ExecuteReader();
-                int i = 0;
-                while (Reader.Read())
-                {
-                    data.ListAdmin.Add(new AdminPost());
-                    data.ListAdmin[i].Name = Reader["name"].ToString();
-                    i++;
-                }
-                Reader.Close();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
-            }
-            Connection.Close();
-
-            if (r.Status == null)
-                r.Status = "OK";
-
-            return r;
         }
 
 
