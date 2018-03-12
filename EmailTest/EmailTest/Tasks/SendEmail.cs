@@ -20,7 +20,7 @@ namespace EmailTest
 
         public string Server { get; private set; } = "http://localhost:63058";
 
-        public string Token { get; private set; } = "OUAjTGBWKMZwcnr2h4U8bb3wkkT9kPzO";
+        public string Token { get; private set; } = "hvebxgR9lvEug3Vm4lWodz8ApMQkISFw";
 
         public async void SendingEmail()
         {
@@ -82,6 +82,7 @@ namespace EmailTest
                             }
                             Console.WriteLine(message.Body);
                             //message.IsBodyHtml = true;
+                            message.Subject = "Info about backups - daily";
                             message.To.Add(lesd.ListEmailSettings[i].EmailAddress);
                             message.From = new MailAddress("programovanismtp@gmail.com");
                             oSmtp.EnableSsl = true;
@@ -117,6 +118,7 @@ namespace EmailTest
                                 }
 
                             message.To.Add(lesd.ListEmailSettings[i].EmailAddress);
+                            message.Subject = "Info about backups - weekly";
                             message.From = new MailAddress("programovanismtp@gmail.com");
                             oSmtp.EnableSsl = true;
                             oSmtp.Host = "smtp.gmail.com";
@@ -151,6 +153,7 @@ namespace EmailTest
                                 }
 
                                 message.To.Add(lesd.ListEmailSettings[i].EmailAddress);
+                                message.Subject = "Info about backups - monthly";
                                 message.From = new MailAddress("programovanismtp@gmail.com");
                                 oSmtp.EnableSsl = true;
                                 oSmtp.Host = "smtp.gmail.com";
@@ -160,41 +163,6 @@ namespace EmailTest
                                 message.To.RemoveAt(0);
                             }
                         }
-
-                        //for (int a = 0;a < lesd.ListEmailSettings[i].FromDaemonsDaily.Count; a++)
-                        //{
-                        //    message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...",ls[a].DaemonName);
-                        //    message.Body = message.Body.Replace("---", ls[a].BackupSourcePath) + "<br />";
-                        //}
-                        //for (int a = 0; a < lesd.ListEmailSettings[i].FromDaemonsWeekly.Count; a++)
-                        //{
-                        //    message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", ls[a].DaemonName);
-                        //    message.Body = message.Body.Replace("---", ls[a].BackupSourcePath) + "<br />";
-                        //}
-                        //for (int a = 0; a < lesd.ListEmailSettings[i].FromDaemonsMonthly.Count; a++)
-                        //{
-                        //    message.Body = message.Body + lesd.ListEmailSettings[i].Template.Replace("...", ls[a].DaemonName);
-                        //    message.Body = message.Body.Replace("---", ls[a].BackupSourcePath) + "<br />";
-                        //}
-
-                        //Console.WriteLine(message.Body);
-
-                        ////oMail.To = l[i].EmailAddress;
-
-                        ////oMail.Subject = "Daemons report";
-
-                        ////oMail.TextBody = lesd.ListEmailSettings[i].Template;
-
-                        ////oSmtp.SendMail(oServer, oMail);
-
-                        //message.To.Add(lesd.ListEmailSettings[i].EmailAddress);
-                        //message.From = new MailAddress("programovanismtp@gmail.com");
-                        //oSmtp.EnableSsl = true;
-                        //oSmtp.Host = "smtp.gmail.com";
-                        //oSmtp.Credentials = new NetworkCredential("programovanismtp@gmail.com", "heslo123.");
-                        //oSmtp.Send(message);
-                        //message.Body = "";
-                        //message.To.RemoveAt(0);
                 }
             }
             }
