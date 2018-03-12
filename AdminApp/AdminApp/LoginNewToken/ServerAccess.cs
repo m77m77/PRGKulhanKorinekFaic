@@ -15,7 +15,7 @@ namespace AdminApp.LoginNewToken
     public class ServerAccess
     {
         public string Server { get; private set; }
-        public string Token { get; private set; }
+        public string Token { get; private set; }// = ",M41HC,S0qzRx4v80VRvQfsj0cEvrSJq";
 
         public async Task<bool> GetTokenMethod(AdminPost adminpost,Label label,TextBox textbox)
         {
@@ -242,7 +242,7 @@ namespace AdminApp.LoginNewToken
 
             try
             {
-                HttpResponseMessage res = await http.PostAsync("http://localhost:63058" + "/api/newadmin/",sc);
+                HttpResponseMessage res = await http.PostAsync("http://localhost:63058" + "/api/newadmin/" +this.Token,sc);
                 response = (JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
 
             }
@@ -269,7 +269,7 @@ namespace AdminApp.LoginNewToken
 
             try
             {
-                HttpResponseMessage res = await http.GetAsync("http://localhost:63058" + "/api/admins/all/");
+                HttpResponseMessage res = await http.GetAsync("http://localhost:63058" + "/api/newadmin/" + this.Token);
                 response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
             }
             catch
