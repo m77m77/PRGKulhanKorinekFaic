@@ -25,9 +25,10 @@ namespace REST_API.Models
                     connection.Open();
 
                     string sql =
-                    "SELECT id,idAdmin,idDaemon,type " +
+                    "SELECT tokens.id,idAdmin,idDaemon,type " +
                     "FROM tokens " +
                     "LEFT JOIN tokensAdmins ON tokens.id = tokensAdmins.idToken " +
+                    "LEFT JOIN admins ON tokensAdmins.idAdmin = admins.id " +
                     "LEFT JOIN tokensDaemons ON tokens.id = tokensDaemons.idToken " +
                     "WHERE token=@token AND status='current' LIMIT 1";
 
@@ -99,7 +100,6 @@ namespace REST_API.Models
                         queryGetAdminType.Parameters.AddWithValue("@adminId", idAdmin);
                         string type = queryGetAdminType.ExecuteScalar().ToString();
 
-                        //TODO ADD ADMIN TYPE
                         result = new Token(newToken, id, idAdmin, 0,type);
                     }else
                     {
