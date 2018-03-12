@@ -38,7 +38,6 @@
             this.textBox_serverAdress = new System.Windows.Forms.TextBox();
             this.label_server = new System.Windows.Forms.Label();
             this.label_error = new System.Windows.Forms.Label();
-            this.button_register = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,23 +125,12 @@
             this.label_error.Text = "error";
             this.label_error.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button_register
-            // 
-            this.button_register.Location = new System.Drawing.Point(160, 251);
-            this.button_register.Name = "button_register";
-            this.button_register.Size = new System.Drawing.Size(75, 23);
-            this.button_register.TabIndex = 8;
-            this.button_register.Text = "Register";
-            this.button_register.UseVisualStyleBackColor = true;
-            this.button_register.Click += new System.EventHandler(this.button_register_Click);
-            // 
             // Form_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(405, 315);
-            this.Controls.Add(this.button_register);
             this.Controls.Add(this.label_error);
             this.Controls.Add(this.label_server);
             this.Controls.Add(this.textBox_serverAdress);
@@ -174,7 +162,6 @@
         private System.Windows.Forms.TextBox textBox_serverAdress;
         private System.Windows.Forms.Label label_server;
         private System.Windows.Forms.Label label_error;
-        private System.Windows.Forms.Button button_register;
     }
 }
 

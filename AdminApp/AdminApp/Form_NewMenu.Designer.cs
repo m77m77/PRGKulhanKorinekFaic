@@ -50,6 +50,7 @@
             this.button_Save = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label_error = new System.Windows.Forms.Label();
+            this.button_register = new System.Windows.Forms.Button();
             this.tabControl_DefaultMenu.SuspendLayout();
             this.tabPage_EmailNotification.SuspendLayout();
             this.tabPage_Administration.SuspendLayout();
@@ -234,7 +235,7 @@
             // button_Cancel
             // 
             this.button_Cancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_Cancel.Location = new System.Drawing.Point(628, 489);
+            this.button_Cancel.Location = new System.Drawing.Point(642, 489);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(111, 45);
             this.button_Cancel.TabIndex = 1;
@@ -245,7 +246,7 @@
             // button_Save
             // 
             this.button_Save.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_Save.Location = new System.Drawing.Point(511, 489);
+            this.button_Save.Location = new System.Drawing.Point(525, 489);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(111, 45);
             this.button_Save.TabIndex = 2;
@@ -270,11 +271,23 @@
             this.label_error.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label_error.Visible = false;
             // 
+            // button_register
+            // 
+            this.button_register.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.button_register.Location = new System.Drawing.Point(440, 489);
+            this.button_register.Name = "button_register";
+            this.button_register.Size = new System.Drawing.Size(79, 45);
+            this.button_register.TabIndex = 1;
+            this.button_register.Text = "Register";
+            this.button_register.UseVisualStyleBackColor = true;
+            this.button_register.Click += new System.EventHandler(this.button_register_Click);
+            // 
             // Form_NewMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(765, 546);
+            this.Controls.Add(this.button_register);
             this.Controls.Add(this.label_error);
             this.Controls.Add(this.button_Save);
             this.Controls.Add(this.button_Cancel);
@@ -313,5 +326,6 @@
         private System.Windows.Forms.CheckedListBox checkedListBox_fromdaemonsmonthly;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckedListBox checkedListBox_fromdaemonsweekly;
+        private System.Windows.Forms.Button button_register;
     }
 }

@@ -132,9 +132,9 @@ namespace AdminApp
                 lesd.ListEmailSettings[0].EmailAddress = this.textBox_To.Text;
                 lesd.ListEmailSettings[0].SendEmails = this.checkBox_sendemails.Checked;
                 if (listBox_template.Text == "1")
-                    lesd.ListEmailSettings[0].Template = "Odesláno od daemona: ... a typ backupu je: ---";
+                    lesd.ListEmailSettings[0].Template = "Odesláno od daemona: <DaemonID> a typ backupu je: <BackupType> a byl proveden v: <BackupDate>";
                 else if (listBox_template.Text == "2")
-                    lesd.ListEmailSettings[0].Template = "Jméno daemona: ... a sourcepath je: ---";
+                    lesd.ListEmailSettings[0].Template = "Jméno daemona: <DaemonID> a ty backupu je: <BackupType>";
 
                 foreach (string item in checkedListBox_fromdaemonsdaily.CheckedItems)
                 {
@@ -190,5 +190,12 @@ namespace AdminApp
             
         }
 
+        private void button_register_Click(object sender, EventArgs e)
+        {
+            Form_Register fr = new Form_Register();
+
+            //this.Hide();
+            if (fr.ShowDialog() == DialogResult.OK) { }
+        }
     }
 }
