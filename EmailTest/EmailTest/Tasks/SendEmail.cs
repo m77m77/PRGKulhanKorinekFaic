@@ -20,7 +20,7 @@ namespace EmailTest
 
         public string Server { get; private set; } = "http://localhost:63058";
 
-        public string Token { get; private set; } = "VXmWiky6lx7n4B8TlEfYnmXx2T2qBd9a";
+        public string Token { get; private set; } = "OUAjTGBWKMZwcnr2h4U8bb3wkkT9kPzO";
 
         public async void SendingEmail()
         {
@@ -44,7 +44,7 @@ namespace EmailTest
             //SmtpServer oServer = new SmtpServer("");
             try
             {
-            if(emailResponse.Status == "OK")
+            if(emailResponse.Status == "OK" && daemonResponse.Status == "OK" && daemonBackupInfoResponse.Status == "OK")
             {
             ListEmailSettingsData lesd = (ListEmailSettingsData)emailResponse.Data;
             List<EmailSettings> l = lesd.ListEmailSettings;
@@ -246,7 +246,7 @@ namespace EmailTest
 
             try
             {
-                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/backup/" + this.Token);
+                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/backupstatus/email/" + this.Token + "/MONTHLY/");
                 response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
             }
             catch
