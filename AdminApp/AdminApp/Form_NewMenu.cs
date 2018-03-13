@@ -192,7 +192,7 @@ namespace AdminApp
 
         private void button_register_Click(object sender, EventArgs e)
         {
-            Form_Register fr = new Form_Register();
+            Form_Register fr = new Form_Register(serverAccess);
 
             //this.Hide();
             if (fr.ShowDialog() == DialogResult.OK) { }

@@ -37,20 +37,27 @@ namespace REST_API.Controllers
             MySqlConnection Connection = WebApiConfig.Connection();
 
             MySqlCommand Query = Connection.CreateCommand();
-
+            MySqlCommand Query2 = Connection.CreateCommand();
 
             Query.CommandText = "INSERT INTO admins (name,password) VALUES (@name,@password);";
 
             Query.Parameters.AddWithValue("@name", value.Name);
             Query.Parameters.AddWithValue("@password", HashUtility.HashPassword(value.Password));
 
-
+            
             Response r = new Response();
 
             try
             {
                 Connection.Open();
-                Query.ExecuteNonQuery();
+                int adminId = Query.ExecuteNonQuery();
+
+                Query2.CommandText = "INSERT INTO emails (adminId,emailSettings) VALUES (@adminId,@emailSetting);";
+                Query2.Parameters.AddWithValue("@adminId", adminId);
+                Query2.Parameters.AddWithValue("@emailSettings", @"{ ""AdminId"":""@adminId"",""EmailAddress"":"""",""FromDaemonsDaily"":[],""FromDaemonsWeekly"":[],""FromDaemonsMonthly"":[],""SendEmails"":false,""Template"":""""}");
+
+                //Query.ExecuteNonQuery();
+                Query2.ExecuteNonQuery();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
