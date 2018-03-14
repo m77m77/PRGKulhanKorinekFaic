@@ -56,8 +56,6 @@ namespace AdminApp
 
         private async void button_register_Click(object sender, EventArgs e)
         {
-            //ServerAccess na = new ServerAccess();
-
             if (this.IsValid())
             {
                 try
