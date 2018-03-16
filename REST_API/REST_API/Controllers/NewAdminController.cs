@@ -127,5 +127,62 @@ namespace REST_API.Controllers
 
             return r;
         }
+
+        [Route("api/newadmin/type/{token}")]
+        public Response GetType(string token)
+        {
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
+            if (t.AdminType != "master")
+            {
+                return new Response("ERROR", "AdminIsNotMaster", null, null);
+            }
+
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            MySqlCommand Query = Connection.CreateCommand();
+
+            Query.CommandText = "SELECT type FROM admins where id=@AdminID";
+            Query.Parameters.AddWithValue("@AdminID", t.AdminID);
+
+            Response r = new Response();
+            AdminPost ap = new AdminPost();
+            //r.Data = ap;
+
+            try
+            {
+                Connection.Open();
+                MySqlDataReader Reader = Query.ExecuteReader();
+                
+                while (Reader.Read())
+                {
+                    ap.Name = "";
+                    ap.Password = "";
+                    ap.Type = Reader["type"].ToString();
+                }
+                Reader.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            r.Data = ap;
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
     }
 }

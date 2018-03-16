@@ -44,6 +44,8 @@ namespace REST_API
                     return typeof(BackupError);
                 case "ListAdminData":
                     return typeof(ListAdminData);
+                case "AdminPost":
+                    return typeof(AdminPost);
 
             }
 

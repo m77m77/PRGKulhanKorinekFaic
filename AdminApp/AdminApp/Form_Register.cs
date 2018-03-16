@@ -70,13 +70,16 @@ namespace AdminApp
                 ListAdminData l = new ListAdminData();
                 l = (ListAdminData)r.Data;
 
+                Response rType = new Response();
+                rType = await sa.GetAdminType(this.label_registererror);
+
                 bool valid = true;
                 for (int i = 0; i < l.ListAdmin.Count; i++)
                 {
                     if (l.ListAdmin[i].Name == ap.Name)
                         valid = false;
                 }
-                if (valid == true)
+                if (valid == true && ((AdminPost)rType.Data).Type == "master")
                 {
                     await sa.PostNewAdmin(ap, this.label_registererror);
                     this.Close();

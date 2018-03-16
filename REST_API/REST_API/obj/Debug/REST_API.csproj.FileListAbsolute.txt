@@ -577,3 +577,4 @@ X:\PRG_KulhanKořínekFaic_2\REST_API\REST_API\obj\Debug\REST_API.csprojResolveA
 X:\PRG_KulhanKořínekFaic_2\REST_API\REST_API\obj\Debug\REST_API.csproj.CoreCompileInputs.cache
 X:\PRG_KulhanKořínekFaic_2\REST_API\REST_API\obj\Debug\REST_API.dll
 X:\PRG_KulhanKořínekFaic_2\REST_API\REST_API\obj\Debug\REST_API.pdb
+D:\Projekty\PRG_KulhanKořínkFaic_6\PRGKulhanKorinekFaic\REST_API\REST_API\obj\Debug\REST_API.csprojResolveAssemblyReference.cache

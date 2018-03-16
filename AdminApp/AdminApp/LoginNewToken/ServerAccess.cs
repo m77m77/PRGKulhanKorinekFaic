@@ -81,7 +81,7 @@ namespace AdminApp.LoginNewToken
                 this.Token = r.NewToken;
                 this.Server = textbox.Text;
             }
-
+            
             return ret;
         }
 
@@ -271,6 +271,32 @@ namespace AdminApp.LoginNewToken
             {
                 HttpResponseMessage res = await http.GetAsync("http://localhost:63058" + "/api/newadmin/" + this.Token);
                 response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            }
+            catch
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            label.Visible = false;
+            if (response.Status == "ERROR")
+            {
+                label.Visible = true;
+                label.Text = response.Error;
+            }
+
+            return response;
+        }
+
+        public async Task<Response> GetAdminType(Label label)
+        {
+            HttpClient http = new HttpClient();
+            Response response = new Response();
+
+            try
+            {
+                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/newadmin/type/" + this.Token);
+                response = (JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+
             }
             catch
             {

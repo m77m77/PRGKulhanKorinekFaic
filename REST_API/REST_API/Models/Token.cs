@@ -85,7 +85,7 @@ namespace REST_API.Models
                         MySqlCommand queryInsertIntoTokens = new MySqlCommand(sqlInsertIntoTokens, connection);
                         queryInsertIntoTokens.Parameters.AddWithValue("@token", newToken);
 
-
+                        
                         int id = Convert.ToInt32(queryInsertIntoTokens.ExecuteScalar());
 
                         string sqlInsertIntoTokensAdmins = "INSERT INTO tokensAdmins(idToken,idAdmin) VALUES(@idToken,@idAdmin);";
