@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="stylmenu.css" type="text/css" />
+    <script src="disabledelements.js"></script>
     <title>Menu</title>
 </head>
 
@@ -14,7 +15,7 @@
             <ul>
                 <li><a href="mailsettings.html">Email notification settings</a></li>
                 <li class="aktivni"><a href="daemonsettings.html">Daemon settings</a></li>
-             
+                <li><a href="register.html" class="rightalign">Register</a></li>
             </ul>
         </nav>
     </header>
@@ -26,7 +27,7 @@
                     <ul>
                             <li>
                             <div class="dropdown">
-                                        <a href="#">Default</a>
+                                        <a  class="kkt" href="#">Default</a>
                                         <div class="dropdown-content">
                                           <a href="#">Backup scheme</a>
                                           <a href="backupsettings.html">Backup settigs</a>
@@ -35,7 +36,7 @@
                                       
                             </li>
                                <li>  <div class="dropdown">
-                                    <a href="#">Main</a>
+                                    <a class="kkt" href="#">Main</a>
                                     <div class="dropdown-content">
                                       <a href="#">Backup scheme</a>
                                       <a href="backupsettings.html">Backup settigs</a>
@@ -54,15 +55,15 @@
                <table>
                 <tr>
                 <th> <label class="container">Local/network drives
-                  <input type="radio"  name="radio">
+                  <input type="radio"  id="radioLND" onclick="check()" name="radio">
                   <span class="checkmark"></span>
                 </label> </th>
                   <th><label class="container">FTP
-                    <input type="radio" checked="checked" name="radio">
+                    <input type="radio" id="radioFTP" onclick="check()" name="radio">
                     <span class="checkmark"></span>
                   </label></th>
                   <th><label class="container">SFTP
-                    <input type="radio" name="radio">
+                    <input type="radio" id="radioSFTP"  onclick="check()" name="radio">
                     <span class="checkmark"></span>
                   </label></th>
                 </tr>

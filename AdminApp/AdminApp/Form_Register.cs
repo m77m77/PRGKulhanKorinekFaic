@@ -14,9 +14,11 @@ namespace AdminApp
 {
     public partial class Form_Register : Form
     {
-        public Form_Register()
+        private ServerAccess sa;
+        public Form_Register(ServerAccess serverAccess)
         {
             InitializeComponent();
+            sa = serverAccess;
             label_registererror.Visible = false;
             textBox_password.PasswordChar = '•';
             textBox_confirmpassword.PasswordChar = '•';
@@ -54,16 +56,16 @@ namespace AdminApp
 
         private async void button_register_Click(object sender, EventArgs e)
         {
-            ServerAccess na = new ServerAccess();
-
             if (this.IsValid())
             {
+                try
+                {
                 AdminPost ap = new AdminPost();
                 ap.Name = textBox_username.Text;
                 ap.Password = textBox_password.Text;
 
                 Response r = new Response();
-                r = await na.GetAllAdmins(this.label_registererror);
+                r = await sa.GetAllAdmins(this.label_registererror);
 
                 ListAdminData l = new ListAdminData();
                 l = (ListAdminData)r.Data;
@@ -76,7 +78,7 @@ namespace AdminApp
                 }
                 if (valid == true)
                 {
-                    await na.PostNewAdmin(ap, this.label_registererror);
+                    await sa.PostNewAdmin(ap, this.label_registererror);
                     this.Close();
                 }
                 else
@@ -84,6 +86,12 @@ namespace AdminApp
                     this.label_registererror.Visible = true;
                     this.label_registererror.Text = "Choose a different name";
                 }
+                }
+                catch(Exception ex)
+                {
+
+                }
+                
                     
 
 

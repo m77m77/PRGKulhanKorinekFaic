@@ -26,7 +26,7 @@ namespace AdminApp
         private async void button_Login_Click(object sender, EventArgs e)
         {
             ServerAccess gt = new ServerAccess();
-            
+
             if (this.IsValid())
             {
                 bool res;

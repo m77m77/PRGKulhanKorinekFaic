@@ -36,13 +36,13 @@ namespace REST_API.Controllers
 
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            MySqlCommand Query = Connection.CreateCommand();
+            MySqlCommand QueryInsertAdmin = Connection.CreateCommand();
+            MySqlCommand QueryInsertEmail = Connection.CreateCommand();
+            MySqlCommand QuerySelectAdminId = Connection.CreateCommand();
 
-
-            Query.CommandText = "INSERT INTO admins (name,password) VALUES (@name,@password);";
-
-            Query.Parameters.AddWithValue("@name", value.Name);
-            Query.Parameters.AddWithValue("@password", HashUtility.HashPassword(value.Password));
+            QueryInsertAdmin.CommandText = "INSERT INTO admins (name,password) VALUES (@name,@password);" + " SELECT last_insert_id();";
+            QueryInsertAdmin.Parameters.AddWithValue("@name", value.Name);
+            QueryInsertAdmin.Parameters.AddWithValue("@password", HashUtility.HashPassword(value.Password));
 
 
             Response r = new Response();
@@ -50,7 +50,15 @@ namespace REST_API.Controllers
             try
             {
                 Connection.Open();
-                Query.ExecuteNonQuery();
+
+                int AdminId = Convert.ToInt32(QueryInsertAdmin.ExecuteScalar());
+
+                QueryInsertEmail.CommandText = "INSERT INTO emails (adminId,emailSettings) VALUES (@adminId,@emailSettings);";
+                QueryInsertEmail.Parameters.AddWithValue("@adminId", AdminId);
+                QueryInsertEmail.Parameters.AddWithValue("@emailSettings", @"{ ""AdminId"":" +AdminId +@",""EmailAddress"":"""",""FromDaemonsDaily"":[],""FromDaemonsWeekly"":[],""FromDaemonsMonthly"":[],""SendEmails"":false,""Template"":""""}");
+
+                
+                QueryInsertEmail.ExecuteNonQuery();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {

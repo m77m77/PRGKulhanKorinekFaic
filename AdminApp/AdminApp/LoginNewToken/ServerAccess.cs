@@ -15,7 +15,7 @@ namespace AdminApp.LoginNewToken
     public class ServerAccess
     {
         public string Server { get; private set; }
-        public string Token { get; private set; } = "hvebxgR9lvEug3Vm4lWodz8ApMQkISFw";
+        public string Token { get; private set; }// = "hvebxgR9lvEug3Vm4lWodz8ApMQkISFw";
 
         public async Task<bool> GetTokenMethod(AdminPost adminpost,Label label,TextBox textbox)
         {
