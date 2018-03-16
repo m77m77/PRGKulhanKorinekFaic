@@ -37,7 +37,7 @@ namespace AdminApp
                 //DEBUG
                 res = await gt.GetTokenMethod(ap,label_error,textBox_serverAdress);
                 //res = true;
-                
+
                 if(res == true)
                 {
                     
