@@ -6,6 +6,11 @@ body {
     
 }
 
+button{
+
+    width: 100px;
+    height: 100px;
+}
 h1 {
     font-family: "Segoe UI";
     font-size: 30px;
@@ -18,13 +23,14 @@ nav ul {
 
 nav ul li {
         float: left;
-        padding: 0px 25px;
+        padding: 0px 35px 0px 35px;
         margin: 0 5px;
         font-size: 22px;
-        height: 73px;
+        height: 60px;
         line-height: 3em;
         color: whitesmoke;
         text-decoration: none;
+       
 }
 .rightalign
 {
@@ -32,7 +38,7 @@ nav ul li {
         padding: 0px 25px;
         margin: 0 5px;
         font-size: 22px;
-        height: 73px;
+        height: 60px;
         line-height: 3em;
         color: whitesmoke;
         text-decoration: none;
@@ -59,12 +65,23 @@ nav ul li:hover, .aktivni {
 
 .textto {
     height: 27px;
-    width: 628px;
+    width: 600px;
+    font-size: 23px;
+    border: 0px;
+}
+.alignleftp
+{
+    padding: 10px;
+    margin: 10px;
+}
+
+.pname
+{
     font-size: 23px;
 }
 
 header {
-    height: 73px;
+    height: 60px;
     position: fixed;
     top: 0px;
     background-color: rgb(81, 168, 240);
@@ -73,7 +90,7 @@ header {
 
 article {
     background: whitesmoke;
-    padding: 30px 0px;
+    padding: 30px 0px 0px 10px;
 }
 
 
@@ -92,8 +109,8 @@ article section {
         background: whitesmoke;
         border: 2px solid #555;
         box-shadow: 2px 2px 7px #555;
-        padding: 20px;
-        font-size: 25px;
+        padding: 0px;
+        font-size: 23px;
     }
 
     article header ul {
@@ -103,11 +120,6 @@ article section {
         width: 250px;
         background-color: whitesmoke;
     }
-footer {
-    height: 40px;
-    color: whitesmoke;
-    margin: 20px 0 0 30px;
-}
 
 
 .clear {
@@ -146,13 +158,25 @@ nav a {
 }
 
 
+article section header ul
+{
+     
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 250px;
+        background-color: whitesmoke;
+    
+}
+
 
 .pathtext
 {
-    width: 170px;
+    width: 150px;
     height: 30px;
     font-size: 23px;
-    margin: 3px 3px 3px 3px ;
+    margin: 5px;
+    border: 0px;
 }
 .alignleft
 {
@@ -162,15 +186,22 @@ nav a {
 {
     float: right;
 }
-.aligncenter
+div .divsec
 {
-    float:center;
+    background-color: rgb(81, 168, 240);
+    height: 60px;
+    
+}
+
+div .buttonscope
+{
+    margin: 15px;
 }
 
 article section table th
 {
    text-align: left;
-   
+   padding: 2px 0px 0px 10px;
 }
 
 .mailclass
@@ -189,23 +220,29 @@ article section table th
 {
     font-size: 25px;
     font-weight: bold;
+     margin: 10px;
 }
 .selectafterbackup
 {
     font-size: 25px;
-    margin: 5px 5px 5px 0px ;
+    margin: 10px;
+    border: 0px;
 }
 .pathtextselect
 {
-    width: 674px;
+    width: 640px;
     height: 30px;
     font-size: 23px;
+    margin: 10px;
+    border: 0px;
 }
 .pathtextdestination
 {
-    width: 300px;
+    width: 280x;
     height: 30px;
     font-size: 23px;
+    margin: 10px;
+    border: 0px;
 }
 .containeremail {
     display: block;
@@ -304,9 +341,9 @@ article section table th
     font-weight: bold;
 }
 
-
-
-
+.maildiv{
+    margin: 10px;
+}
 .container {
     display: block;
     position: relative;
@@ -318,6 +355,7 @@ article section table th
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    margin: 10px
 }
 
 .container input {
@@ -359,6 +397,7 @@ article section table th
 }
 
 
+
 .container .checkmark:after {
  	top: 9px;
 	left: 9px;
@@ -367,3 +406,60 @@ article section table th
 	border-radius: 50%;
 	background: white;
 }
+
+.registermenu {
+    width: 200px;
+    background-color: whitesmoke;
+    margin: 320px 0px 0px 695px;
+    box-shadow: 2px 2px 6px 2px #1c2228;
+}
+
+article .registermenu header {
+    width: 20px;
+    float: left;
+    position: static;
+    background: none;
+    font-size: 20px;
+    color: #0a294b;
+}
+
+article .registermenu section {
+    width: 400px;
+    float: left;
+    background: whitesmoke;
+    border: 2px solid #555;
+    box-shadow: 2px 2px 7px #555;
+    padding: 20px;
+    font-size: 25px;
+}
+
+
+.textinputformat {
+    font-size: 25px;
+    height: 40px;
+    width: 300px;
+    margin: 10px 0px 10px 42px;
+}
+
+
+.loginlink {
+    margin: 10px 0px 10px 42px;
+    float: left;
+    padding: 2px 108px 18px 80px;
+    border: solid;
+    border-width: 0px;
+    font-size: 41px;
+    height: 40px;
+    width: 118px;
+    text-align: center;
+    background-color: gray;
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+    .loginlink:hover {
+        background: rgb(81, 168, 240);
+        box-shadow: 0px 0px 5px black;
+        border-color: rgb(81, 168, 240);
+    }
+
