@@ -18,7 +18,7 @@ namespace REST_API.Controllers
         [Route("api/backupstatus/email/{token}/{type}")]
         public Response GetEmail(string token, string type)
         {
-            Token t = Token.Exists(token);
+            Token t = Token.ExistsEmail(token);
             if (t == null)
             {
                 //token není v databázi  

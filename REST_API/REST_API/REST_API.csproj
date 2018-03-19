@@ -193,6 +193,7 @@
     <Compile Include="CommunicationClasses\AdminPost.cs" />
     <Compile Include="CommunicationClasses\IData.cs" />
     <Compile Include="CommunicationClasses\ListInicializationTokenData.cs" />
+    <Compile Include="Models\EmailSettings\EmailDaemonName.cs" />
     <Compile Include="Models\InicializationToken\InicializationToken.cs" />
     <Compile Include="CommunicationClasses\ListAdminData.cs" />
     <Compile Include="CommunicationClasses\ListDaemonBackupInfoData.cs" />

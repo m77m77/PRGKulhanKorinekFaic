@@ -21,7 +21,7 @@ namespace REST_API.Controllers
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            Token t = Token.Exists(token);
+            Token t = Token.ExistsEmail(token);
             if (t == null)
             {
                 //token není v databázi  
@@ -73,7 +73,7 @@ namespace REST_API.Controllers
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            Token t = Token.Exists(token);
+            Token t = Token.ExistsEmail(token);
             if (t == null)
             {
                 //token není v databázi  
@@ -121,13 +121,56 @@ namespace REST_API.Controllers
             return r;
         }
 
+        [Route("api/email/daemonname/{token}/{idDaemon}")]
+        public Response GetDaemonName(string token, int idDaemon)
+        {
+            Token t = Token.ExistsEmail(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+
+            Response response;
+            
+
+            using (MySqlConnection connection = WebApiConfig.Connection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    string sql = "SELECT settings FROM daemons WHERE id=@idDaemon";
+                    MySqlCommand query = new MySqlCommand(sql, connection);
+                    query.Parameters.AddWithValue("@idDaemon", idDaemon);
+
+                    MySqlDataReader reader = query.ExecuteReader();
+                    EmailDaemonName emailDaemonName = new EmailDaemonName();
+
+                    while (reader.Read())
+                    {
+                        Settings settings = JsonConvert.DeserializeObject<Settings>(reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        emailDaemonName.Name = settings.DaemonName;
+                    }
+
+                    response = new Response("OK", null, null, emailDaemonName);
+                }
+                catch (Exception)
+                {
+                    response = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+                }
+                
+            }
+
+            return response;
+        }
 
         [Route("api/email/OneAdmin/{token}")]
         public Response GetOneAdminEmailSetting(string token)
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            Token t = Token.Exists(token);
+            Token t = Token.ExistsEmail(token);
             if (t == null)
             {
                 //token není v databázi  
