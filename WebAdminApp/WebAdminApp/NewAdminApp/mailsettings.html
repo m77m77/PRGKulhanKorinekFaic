@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="cs-cz">
 
 <head>
@@ -12,9 +12,9 @@
    
         <nav>
             <ul>
-                <li class="aktivni"><a href="mailsettings.html">Email notification settings</a></li>
-                <li><a href="daemonsettings.html">Daemon settings</a></li>
-                <li><a href="register.html" class="rightalign">Register</a></li>
+                <a href="mailsettings.html"><li>Email notification settings</li></a>
+                <a href="daemonsettings.html"><li>Daemon settings</li></a>
+                <a href="register.html" class="rightalign"><li>Register</li></a>
              
             </ul>
         </nav>
@@ -27,43 +27,46 @@
             </header>
 
             <section>
-                <label class="containeremail" placeholder="example@xxx.com">Send emails
-                            <input type="checkbox">
-                            <span class="checkmarkemail"></span>
-                </label>
-                <p class="nadpis"> SMTP settings</p>
-                <p> To <input type="text" class="textto"/></p>
-            
-                <p>
-                    Template <select id="selecttemplate">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                <div class="maildiv">
+                    <label class="containeremail" placeholder="example@xxx.com">
+                        Send emails
+                        <input type="checkbox">
+                        <span class="checkmarkemail"></span>
+                    </label>
+                    <p class="nadpis"> SMTP settings</p>
+                    <p> To <input type="text" class="textto" /></p>
 
-                    </select>
-                </p> 
-                <table>
-                <tr>
-                    <th>Daily</th>
-                    <th></th>
-                <th>    </th>
-                </tr>
-                <tr>
-                    <th>Weekly</th>
-                    
-                   <th></th>
-                <th>
-                    
-                </th>
-                </tr>
-                <tr>
-                    <th>Monthly</th>
-                    <th></th>
-              <th></th>
-                </tr>
+                    <p>
+                        Template <select id="selecttemplate">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
 
-                </table>
+                        </select>
+                    </p>
+                    <table>
+                        <tr>
+                            <th>Daily</th>
+                            <th></th>
+                            <th>    </th>
+                        </tr>
+                        <tr>
+                            <th>Weekly</th>
+
+                            <th></th>
+                            <th>
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>Monthly</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+
+                    </table>
             </section>
             <div class="clear"></div>
+        </div>
         </div>
     </article>
 
