@@ -117,7 +117,7 @@ namespace REST_API.Models
                         MySqlCommand queryInsertIntoTokens = new MySqlCommand(sqlInsertIntoTokens, connection);
                         queryInsertIntoTokens.Parameters.AddWithValue("@token", newToken);
 
-
+                        
                         int id = Convert.ToInt32(queryInsertIntoTokens.ExecuteScalar());
 
                         string sqlInsertIntoTokensAdmins = "INSERT INTO tokensAdmins(idToken,idAdmin) VALUES(@idToken,@idAdmin);";
@@ -137,6 +137,49 @@ namespace REST_API.Models
                     {
                         result = Exists(newToken);
                     }
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            return result;
+        }
+
+        public static Token GenerateNewInicializationToken(int DaemonID)
+        {
+            Token result = null;
+            using (MySqlConnection connection = WebApiConfig.Connection())
+            {
+                try
+                {
+                    string newToken = Token.GenerateNewToken();
+                    connection.Open();
+
+                        string sqlInsertIntoTokens =
+                        "INSERT INTO tokens(token,status) VALUES(@token,'inicialize');" +
+                        "SELECT last_insert_id();";
+
+                        MySqlCommand queryInsertIntoTokens = new MySqlCommand(sqlInsertIntoTokens, connection);
+                        queryInsertIntoTokens.Parameters.AddWithValue("@token", newToken);
+
+
+                        int id = Convert.ToInt32(queryInsertIntoTokens.ExecuteScalar());
+
+                        string sqlInsertIntoTokensDaemons = "INSERT INTO tokensDaemons(idToken,idDaemon) VALUES(@idToken),@DaemonID);";
+
+                        MySqlCommand queryInsertIntoTokensAdmins = new MySqlCommand(sqlInsertIntoTokensDaemons, connection);
+                        queryInsertIntoTokensAdmins.Parameters.AddWithValue("@DaemonID", DaemonID);
+                        queryInsertIntoTokensAdmins.Parameters.AddWithValue("@idToken", id);
+                        queryInsertIntoTokensAdmins.ExecuteNonQuery();
+
+
+                        MySqlCommand queryGetAdminType = new MySqlCommand("SELECT type FROM daemons WHERE id = @DaemonID", connection);
+                        queryGetAdminType.Parameters.AddWithValue("@DaemonID", DaemonID);
+                        string type = queryGetAdminType.ExecuteScalar().ToString();
+
+                        result = new Token(newToken, id, DaemonID, 0, type);
                 }
                 catch (Exception)
                 {

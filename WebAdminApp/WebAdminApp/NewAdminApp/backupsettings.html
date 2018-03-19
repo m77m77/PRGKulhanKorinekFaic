@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="cs-cz">
 
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="stylmenu.css" type="text/css" />
+   
     <title>Menu</title>
 </head>
 
@@ -12,9 +13,9 @@
    
         <nav>
             <ul>
-                <li><a href="mailsettings.html">Email notification settings</a></li>
-                <li class="aktivni"><a href="daemonsettings.html">Daemon settings</a></li>
-                <li><a href="register.html" class="rightalign">Register</a></li>
+                <a href="mailsettings.html"><li>Email notification settings</li></a>
+                <a href="daemonsettings.html"><li>Daemon settings</li></a>
+                <a href="register.html" class="rightalign"><li>Register</li></a>
             </ul>
         </nav>
     </header>
@@ -22,100 +23,121 @@
     <article>
         <div id="middle">
             <header>
-               <menu class="menu">
+                <menu class="menu">
                     <ul>
-                            <li>
+                        <li>
                             <div class="dropdown">
-                                        <a href="#">Default</a>
-                                        <div class="dropdown-content">
-                                          <a href="#">Backup scheme</a>
-                                          <a href="backupsettings.html">Backup settigs</a>
-                                        </div>
+                                <a class="kkt" href="#">Default</a>
+                                <div class="dropdown-content">
+                                    <a href="#">Settings1</a>
+                                    <a href="backupsettings.html">Settings2</a>
+                                </div>
                             </div>
-                                      
-                            </li>
-                               <li>  <div class="dropdown">
-                                    <a href="#">Main</a>
-                                    <div class="dropdown-content">
-                                      <a href="#">Backup scheme</a>
-                                      <a href="backupsettings.html">Backup settigs</a>
-                                    </div>
-                        </div></li>
-        </ul>
-               </menu>
+
+                        </li>
+                        <li>
+                            <div class="dropdown">
+                                <a class="kkt" href="#">Main</a>
+                                <div class="dropdown-content">
+                                    <a href="#">Settings1</a>
+                                    <a href="backupsettings.html">Settings2</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </menu>
             </header>
-
+            <p class="pname"> Name <input type="text" onchange="displayData()" id="DaemonName" class="textto" /></p>
             <section>
-                
-               <p class="tucne"> Select what will you backup </p>
-               <input type="textarea" class="pathtextselect" placeholder="C:\DATA">
-               
-               <p class="tucne">Destination</p>
-               <table>
-                <tr>
-                <th> <label class="container">Local/network drives
-                  <input type="radio"  name="radio">
-                  <span class="checkmark"></span>
-                </label> </th>
-                  <th><label class="container">FTP
-                    <input type="radio" checked="checked" name="radio">
-                    <span class="checkmark"></span>
-                  </label></th>
-                  <th><label class="container">SFTP
-                    <input type="radio" name="radio">
-                    <span class="checkmark"></span>
-                  </label></th>
-                </tr>
-                <tr>
-                  <td><input type="textarea" class="pathtextdestination" placeholder="D:\Backup"></td>
-                  <td><input type="textarea" class="pathtext" placeholder="Server adress"></td>
-                  <td><input type="textarea" class="pathtext" placeholder="Server adress"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td><input type="textarea" class="pathtext" placeholder="Port"></td>
-                  <td><input type="textarea" class="pathtext" placeholder="Port"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td><input type="textarea" class="pathtext" placeholder="Username"></td>
-                  <td><input type="textarea" class="pathtext" placeholder="Username"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td><input type="Password" class="pathtext" placeholder="Password"></td>
-                  <td><input type="Password" class="pathtext" placeholder="Password"></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td><input type="textarea" class="pathtext" placeholder="Path"></td>
-                  <td><input type="textarea" class="pathtext" placeholder="Path"></td>
-                </tr>
-                
-              </table>
+                <div class="divsec">
+                    <nav>
+                        <ul class="sectionul">
+                            <li class="sectionulli"><a href="backupsettings.html">Backup settings</a></li>
+                            <li class="sectionulli"><a href="backupscheme.html">Backup scheme</a></li>
 
-              <table>
-                <tr>
-                <th> After backup </th>
-                <th> Format </th>
-                </tr>
-                <tr>
-                   <th> 
-                       <select class="selectafterbackup">
-                        <option value="Nothing">Nothing</option>
-                        <option value="Restart">Restart</option>
-                        <option value="Turnoff">Turn off</option>
-                        <option value="Sleepmode">Sleep mode</option>
-                    </select>
-                   </th>
-                   <th>
-                        <select class="selectafterbackup">
-                         <option value="Archivezip">Archive .zip</option>
-                        <option value="Withoutcomprimation">Without comprimation</option>
-                       </select>
-                   </th>
-                </tr>
-              </table>
+                        </ul>
+                    </nav>
+                </div>
+
+
+                <p class="tucne"> Select what will you backup </p>
+                <input type="textarea" class="pathtextselect" placeholder="C:\DATA">
+
+                <p class="tucne">Destination</p>
+                <table>
+                    <tr>
+                        <th>
+                            <label class="container">
+                                Local/network drives
+                                <input type="radio" id="radioLND" onclick="check()" name="radio">
+                                <span class="checkmark"></span>
+                            </label>
+                        </th>
+                        <th>
+                            <label class="container">
+                                FTP
+                                <input type="radio" id="radioFTP" onclick="check()" name="radio">
+                                <span class="checkmark"></span>
+                            </label>
+                        </th>
+                        <th>
+                            <label class="container">
+                                SFTP
+                                <input type="radio" id="radioSFTP" onclick="check()" name="radio">
+                                <span class="checkmark"></span>
+                            </label>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td><input type="textarea" class="pathtextdestination" placeholder="D:\Backup"></td>
+                        <td><input type="textarea" class="pathtext" placeholder="Server adress"></td>
+                        <td><input type="textarea" class="pathtext" placeholder="Server adress"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="textarea" class="pathtext" placeholder="Port"></td>
+                        <td><input type="textarea" class="pathtext" placeholder="Port"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="textarea" class="pathtext" placeholder="Username"></td>
+                        <td><input type="textarea" class="pathtext" placeholder="Username"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="Password" class="pathtext" placeholder="Password"></td>
+                        <td><input type="Password" class="pathtext" placeholder="Password"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="textarea" class="pathtext" placeholder="Path"></td>
+                        <td><input type="textarea" class="pathtext" placeholder="Path"></td>
+                    </tr>
+
+                </table>
+
+                <table>
+                    <tr>
+                        <th class="tablethalign"> After backup </th>
+                        <th class="tablethalign"> Format </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <select class="selectafterbackup">
+                                <option value="Nothing">Nothing</option>
+                                <option value="Restart">Restart</option>
+                                <option value="Turnoff">Turn off</option>
+                                <option value="Sleepmode">Sleep mode</option>
+                            </select>
+                        </th>
+                        <th>
+                            <select class="selectafterbackup">
+                                <option value="Archivezip">Archive .zip</option>
+                                <option value="Withoutcomprimation">Without comprimation</option>
+                            </select>
+                        </th>
+                    </tr>
+                </table>
             </section>
             <div class="clear"></div>
         </div>

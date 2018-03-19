@@ -36,13 +36,13 @@ namespace REST_API.Controllers
 
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            MySqlCommand Query = Connection.CreateCommand();
+            MySqlCommand QueryInsertAdmin = Connection.CreateCommand();
+            MySqlCommand QueryInsertEmail = Connection.CreateCommand();
+            MySqlCommand QuerySelectAdminId = Connection.CreateCommand();
 
-
-            Query.CommandText = "INSERT INTO admins (name,password) VALUES (@name,@password);";
-
-            Query.Parameters.AddWithValue("@name", value.Name);
-            Query.Parameters.AddWithValue("@password", HashUtility.HashPassword(value.Password));
+            QueryInsertAdmin.CommandText = "INSERT INTO admins (name,password) VALUES (@name,@password);" + " SELECT last_insert_id();";
+            QueryInsertAdmin.Parameters.AddWithValue("@name", value.Name);
+            QueryInsertAdmin.Parameters.AddWithValue("@password", HashUtility.HashPassword(value.Password));
 
 
             Response r = new Response();
@@ -50,7 +50,15 @@ namespace REST_API.Controllers
             try
             {
                 Connection.Open();
-                Query.ExecuteNonQuery();
+
+                int AdminId = Convert.ToInt32(QueryInsertAdmin.ExecuteScalar());
+
+                QueryInsertEmail.CommandText = "INSERT INTO emails (adminId,emailSettings) VALUES (@adminId,@emailSettings);";
+                QueryInsertEmail.Parameters.AddWithValue("@adminId", AdminId);
+                QueryInsertEmail.Parameters.AddWithValue("@emailSettings", @"{ ""AdminId"":" +AdminId +@",""EmailAddress"":"""",""FromDaemonsDaily"":[],""FromDaemonsWeekly"":[],""FromDaemonsMonthly"":[],""SendEmails"":false,""Template"":""""}");
+
+                
+                QueryInsertEmail.ExecuteNonQuery();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -113,6 +121,63 @@ namespace REST_API.Controllers
                 r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
             }
             Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
+
+        [Route("api/newadmin/type/{token}")]
+        public Response GetType(string token)
+        {
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
+            if (t.AdminType != "master")
+            {
+                return new Response("ERROR", "AdminIsNotMaster", null, null);
+            }
+
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            MySqlCommand Query = Connection.CreateCommand();
+
+            Query.CommandText = "SELECT type FROM admins where id=@AdminID";
+            Query.Parameters.AddWithValue("@AdminID", t.AdminID);
+
+            Response r = new Response();
+            AdminPost ap = new AdminPost();
+            //r.Data = ap;
+
+            try
+            {
+                Connection.Open();
+                MySqlDataReader Reader = Query.ExecuteReader();
+                
+                while (Reader.Read())
+                {
+                    ap.Name = "";
+                    ap.Password = "";
+                    ap.Type = Reader["type"].ToString();
+                }
+                Reader.Close();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            r.Data = ap;
 
             if (r.Status == null)
                 r.Status = "OK";
