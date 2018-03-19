@@ -21,7 +21,7 @@ namespace REST_API.Controllers
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            Token t = Token.Exists(token);
+            Token t = Token.ExistsEmail(token);
             if (t == null)
             {
                 //token není v databázi  
@@ -73,7 +73,7 @@ namespace REST_API.Controllers
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            Token t = Token.Exists(token);
+            Token t = Token.ExistsEmail(token);
             if (t == null)
             {
                 //token není v databázi  
@@ -127,7 +127,7 @@ namespace REST_API.Controllers
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            Token t = Token.Exists(token);
+            Token t = Token.ExistsEmail(token);
             if (t == null)
             {
                 //token není v databázi  

@@ -49,6 +49,38 @@ namespace REST_API.Models
             return result;
         }
 
+        public static Token ExistsEmail(string token)
+        {
+            Token result = null;
+
+            using (MySqlConnection connection = WebApiConfig.Connection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    string sql =
+                    "SELECT tokens.id " +
+                    "FROM tokens " +
+                    "WHERE token=@token AND status='email' LIMIT 1";
+
+                    MySqlCommand query = new MySqlCommand(sql, connection);
+                    query.Parameters.AddWithValue("@token", token);
+
+                    MySqlDataReader reader = query.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        result = new Token(token, Convert.ToInt32(reader["id"]), 0,0, null);
+                    }
+                }
+                catch (Exception)
+                {
+                }
+            }
+
+            return result;
+        }
+
 
         /// <summary>
         /// Generuje nový token pro admina. Vrací instanci třídy Token, nebo null při vyjímce.
