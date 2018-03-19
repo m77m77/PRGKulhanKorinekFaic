@@ -20,11 +20,10 @@ namespace EmailTest
 
         public string Server { get; private set; } = "http://localhost:63058";
 
-        public string Token { get; private set; } = "hvebxgR9lvEug3Vm4lWodz8ApMQkISFw";
+        public string Token { get; private set; } = "PiS-TGP018dizhga6Wkqy6PbtgrwtMi,";
 
         public async void SendingEmail()
         {
-            //SmtpMail oMail = new SmtpMail("TryIt");
             SmtpClient oSmtp = new SmtpClient();
 
             MailMessage message = new MailMessage();
@@ -38,10 +37,6 @@ namespace EmailTest
 
             Response daemonBackupInfoResponse = new Response();
             daemonBackupInfoResponse = await GetAllDaemonBackupInfo();
-            
-            //Console.WriteLine(emailaddress);
-
-            //SmtpServer oServer = new SmtpServer("");
             try
             {
             if(emailResponse.Status == "OK" && daemonResponse.Status == "OK" && daemonBackupInfoResponse.Status == "OK")
