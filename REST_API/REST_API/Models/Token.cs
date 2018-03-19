@@ -125,19 +125,6 @@ namespace REST_API.Models
                     string newToken = Token.GenerateNewToken();
                     connection.Open();
 
-                    string sqlUpdate =
-                    "UPDATE tokens INNER JOIN tokensDaemons ON tokens.id = tokensDaemons.idToken " +
-                    "SET tokens.token = @newToken " +
-                    "WHERE tokensDaemons.idDaemon = @DaemonID AND status='current'";
-
-                    MySqlCommand queryUpdate = new MySqlCommand(sqlUpdate, connection);
-                    queryUpdate.Parameters.AddWithValue("@newToken", newToken);
-                    queryUpdate.Parameters.AddWithValue("@DaemonID", DaemonID);
-
-                    int rows = queryUpdate.ExecuteNonQuery();
-
-                    if (rows <= 0)
-                    {
                         string sqlInsertIntoTokens =
                         "INSERT INTO tokens(token,status) VALUES(@token,'inicialize');" +
                         "SELECT last_insert_id();";
@@ -148,9 +135,9 @@ namespace REST_API.Models
 
                         int id = Convert.ToInt32(queryInsertIntoTokens.ExecuteScalar());
 
-                        string sqlInsertIntoTokensAdmins = "INSERT INTO tokensDaemons(idToken,idDaemon) VALUES(@idToken,@DaemonID);";
+                        string sqlInsertIntoTokensDaemons = "INSERT INTO tokensDaemons(idToken,idDaemon) VALUES(@idToken),@DaemonID);";
 
-                        MySqlCommand queryInsertIntoTokensAdmins = new MySqlCommand(sqlInsertIntoTokensAdmins, connection);
+                        MySqlCommand queryInsertIntoTokensAdmins = new MySqlCommand(sqlInsertIntoTokensDaemons, connection);
                         queryInsertIntoTokensAdmins.Parameters.AddWithValue("@DaemonID", DaemonID);
                         queryInsertIntoTokensAdmins.Parameters.AddWithValue("@idToken", id);
                         queryInsertIntoTokensAdmins.ExecuteNonQuery();
@@ -161,11 +148,6 @@ namespace REST_API.Models
                         string type = queryGetAdminType.ExecuteScalar().ToString();
 
                         result = new Token(newToken, id, DaemonID, 0, type);
-                    }
-                    else
-                    {
-                        result = Exists(newToken);
-                    }
                 }
                 catch (Exception)
                 {

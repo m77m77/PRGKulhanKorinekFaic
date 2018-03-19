@@ -35,15 +35,13 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT (t.token,ta.idToken) FROM tokens t inner join tokensAdmins ta on t.id=ta.idToken where type='inicialize'";
+            Query.CommandText = "SELECT token FROM tokens where status='inicialize'";
             //Query.Parameters.AddWithValue("@DaemonID", t.DaemonID);
 
             Response r = new Response();
-            ListInicializationTokenData list = new ListInicializationTokenData();
-
-            
-            
-
+            ListInicializationTokenData litd = new ListInicializationTokenData();
+            litd.ListInicializationToken = new List<InicializationToken>();
+            r.Data = litd;
 
             try
             {
@@ -52,8 +50,9 @@ namespace REST_API.Controllers
                 int i = 0;
                 while (Reader.Read())
                 {
-                    //it.DaemonID = t.DaemonID;
-                    //it.Token = Reader["token"].ToString();
+                    litd.ListInicializationToken.Add(new InicializationToken());
+                    litd.ListInicializationToken[i].DaemonID = t.DaemonID;
+                    litd.ListInicializationToken[i].Token = Reader["token"].ToString();
                     i++;
                 }
                 Reader.Close();

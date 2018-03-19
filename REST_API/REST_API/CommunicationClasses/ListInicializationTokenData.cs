@@ -7,6 +7,6 @@ namespace REST_API.CommunicationClasses
 {
     public class ListInicializationTokenData : IData
     {
-        List<InicializationToken> ListInicializationToken { get; set; }
+        public List<InicializationToken> ListInicializationToken { get; set; }
     }
 }
