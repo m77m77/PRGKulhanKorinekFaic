@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="stylmenu.css" type="text/css" />
+    <script src="disabledelements.js"></script>
     <title>Menu</title>
 </head>
 
@@ -28,20 +29,20 @@
 
             <section>
                 <div class="maildiv">
-                    <label class="containeremail" placeholder="example@xxx.com">
-                        Send emails
-                        <input type="checkbox">
+                    <label class="containeremail">
+                       <p class="tucne">Send emails</p> 
+                        <input onchange="enableMail()" type="checkbox" id="checkboxmail">
                         <span class="checkmarkemail"></span>
                     </label>
                     <p class="nadpis"> SMTP settings</p>
-                    <p> To <input type="text" class="textto" /></p>
+                    <p> To <input type="text" class="textto" id="idemailTo" disabled placeholder="example@xxx.com"/></p>
 
                     <p>
-                        Template <select id="selecttemplate">
+                        Template <select id="selecttemplate" id="idemailTemplate">
                             <option value="1">1</option>
                             <option value="2">2</option>
 
-                        </select>
+                           </select>
                     </p>
                     <table>
                         <tr>
