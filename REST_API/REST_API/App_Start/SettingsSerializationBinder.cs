@@ -50,6 +50,8 @@ namespace REST_API
                     return typeof(InicializationToken);
                 case "ListInicializationTokenData":
                     return typeof(ListInicializationTokenData);
+                case "Daemon":
+                    return typeof(Daemon);
             }
 
             return null;

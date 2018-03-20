@@ -35,7 +35,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT settings,id FROM daemons"; //WHERE @id = id";
+            Query.CommandText = "SELECT daemons.id AS DaemonID,daemonsSettings.id,daemonsSettings.settings,daemons.name FROM daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon ORDER BY daemons.id"; //WHERE @id = id";
 
 
             MySqlCommand defaultSettingsQuery = Connection.CreateCommand();
@@ -47,23 +47,42 @@ namespace REST_API.Controllers
             Response r = new Response();
 
             ListSettingsData data = new ListSettingsData();
-            data.ListSettings = new List<Settings>();
+            data.ListDaemons = new List<Daemon>();
             r.Data = data;
 
             try
             {
                 Connection.Open();
                 MySqlDataReader Reader = Query.ExecuteReader();
-                int i = 0;
+
+                Daemon daemon = new Daemon();
+                daemon.Settings = new List<Settings>();
                 while (Reader.Read())
                 {
-                    //data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString()));
-                    //JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString()).DaemonID = Convert.ToInt32(Reader["id"]);
+                    int dId = Convert.ToInt32(Reader["DaemonID"]);
+                    int sId = Convert.ToInt32(Reader["id"]);
+                    Settings settings = JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                    string name = Reader["name"].ToString();
 
-                    data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(),new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
-                    data.ListSettings[i].DaemonID = Convert.ToInt32(Reader["id"]);
-                    i++;
+                    if (daemon.DaemonID == 0)
+                    {
+                        daemon.DaemonID = dId;
+                        daemon.DaemonName = name;
+                    }
+                    
+                    if(daemon.DaemonID == dId)
+                    {
+                        settings.SettingsID = sId;
+                        daemon.Settings.Add(settings);
+                    }else
+                    {
+                        data.ListDaemons.Add(daemon);
+                        daemon = new Daemon();
+                        daemon.Settings = new List<Settings>();
+                    }
                 }
+
+                data.ListDaemons.Add(daemon);
                 Reader.Close();
 
                 string defaultSettingsJson = defaultSettingsQuery.ExecuteScalar().ToString();
@@ -84,7 +103,7 @@ namespace REST_API.Controllers
 
 
         [Route("api/admin/{token}")]
-        public Response Post(string token, [FromBody]Settings value)
+        public Response Post(string token, [FromBody]Daemon value)
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
@@ -99,30 +118,24 @@ namespace REST_API.Controllers
                 //token nepatří adminovi  
                 return new Response("ERROR", "TokenIsNotMatched", null, null);
             }
-
-            MySqlCommand Query = Connection.CreateCommand();
-
-            //Query.CommandText = "INSERT INTO `3b2_kulhanmatous_db2`.`daemons` (`settings`) VALUES (@value);";
-            Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`daemons` SET `settings` = @value WHERE `daemons`.`id` = @DaemonID;";
-
-            Query.Parameters.AddWithValue("@DaemonID", value.DaemonID);
-            value.DaemonID = t.DaemonID;
-            Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(value, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
-            
-            
             Response r = new Response();
-
-            //ListSettingsData data = new ListSettingsData();
-            //data.ListSettings = new List<Settings>();
-            //r.Data = data;
 
 
             try
             {
                 Connection.Open();
-                Query.ExecuteNonQuery();
-
-                //data.ListSettings.Add(JsonConvert.DeserializeObject<Settings>(value.ToString()));
+                
+                foreach (Settings item in value.Settings)
+                {
+                    MySqlCommand Query = Connection.CreateCommand();
+                    Query.CommandText = "UPDATE daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon SET daemonsSettings.settings = @value,daemons.name = @name WHERE daemonsSettings.id = @SettingsID AND daemonsSettings.idDaemon = @DaemonID ";
+                    item.SettingsID = 0;
+                    Query.Parameters.AddWithValue("@SettingsID", item.SettingsID);
+                    Query.Parameters.AddWithValue("@DaemonID", value.DaemonID);
+                    Query.Parameters.AddWithValue("@name", value.DaemonName);
+                    Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(item, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    Query.ExecuteNonQuery();
+                }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
