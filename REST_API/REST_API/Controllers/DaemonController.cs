@@ -34,24 +34,30 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT settings FROM daemons WHERE @id = id";
+            Query.CommandText = "SELECT daemonsSettings.id,daemonsSettings.settings,daemons.name FROM daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon WHERE daemons.id = @idDaemon";
 
-            Query.Parameters.AddWithValue("@id", t.DaemonID);
+            Query.Parameters.AddWithValue("@idDaemon", t.DaemonID);
 
             Response r = new Response();
+            Daemon daemon = new Daemon();
+            daemon.DaemonID = t.DaemonID;
+            daemon.Settings = new List<Settings>();
 
             try
             {
                 Connection.Open();
                 MySqlDataReader Reader = Query.ExecuteReader();
 
-                if (Reader.Read())
+                while (Reader.Read())
                 {
                     Settings s = JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-                    s.DaemonID = t.DaemonID;
-                    r.Data = s;
+                    s.SettingsID = Convert.ToInt32(Reader["id"].ToString());
+                    daemon.DaemonName = Reader["name"].ToString();
+                    daemon.Settings.Add(s);
                 }
                 Reader.Close();
+
+                r.Data = daemon;
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {

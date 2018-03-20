@@ -140,7 +140,7 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                    string sql = "SELECT settings FROM daemons WHERE id=@idDaemon";
+                    string sql = "SELECT name FROM daemons WHERE id=@idDaemon";
                     MySqlCommand query = new MySqlCommand(sql, connection);
                     query.Parameters.AddWithValue("@idDaemon", idDaemon);
 
@@ -149,8 +149,7 @@ namespace REST_API.Controllers
 
                     while (reader.Read())
                     {
-                        Settings settings = JsonConvert.DeserializeObject<Settings>(reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-                        emailDaemonName.Name = settings.DaemonName;
+                        emailDaemonName.Name = reader["name"].ToString();
                     }
 
                     response = new Response("OK", null, null, emailDaemonName);
