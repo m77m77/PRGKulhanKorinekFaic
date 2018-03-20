@@ -33,15 +33,15 @@ namespace AdminApp.Components
             control.SelectedIndexChanged += BackupCalendar_TabControl_SelectedIndexChanged;
         }
 
-        public void LoadSettings(Settings settings)
+        public void LoadSettings(Daemon daemon)
         {
-            foreach (BackupTime item in settings.BackupScheme.BackupTimes)
+            foreach (BackupTime item in daemon.Settings[0].BackupScheme.BackupTimes)
             {
                 this.days[item.DayNumber].LoadSettings(item);
             }
         }
 
-        public void SaveSettings(Settings settings)
+        public void SaveSettings(Daemon daemon)
         {
             List<BackupTime> bcTimes = new List<BackupTime>();
             for (int i = 0; i < this.days.Count; i++)
@@ -49,7 +49,7 @@ namespace AdminApp.Components
                 this.days[i].SaveSettings(bcTimes, i);
             }
 
-            settings.BackupScheme.BackupTimes = bcTimes;
+            daemon.Settings[0].BackupScheme.BackupTimes = bcTimes;
         }   
 
         private void BackupCalendar_TabControl_SelectedIndexChanged(object sender, EventArgs e)

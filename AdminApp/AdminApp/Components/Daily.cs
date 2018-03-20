@@ -58,7 +58,7 @@ namespace AdminApp.Components
             ValidateFirstDay();
         }
 
-        public void SaveSettings(Settings settings)
+        public void SaveSettings(Daemon daemon)
         {
             List<BackupTime> bcTimes = new List<BackupTime>();
             foreach (DailyOneTime item in this.times)
@@ -69,7 +69,7 @@ namespace AdminApp.Components
                 bcTimes.Add(bcTime);
             }
 
-            settings.BackupScheme.BackupTimes = bcTimes;
+            daemon.Settings[0].BackupScheme.BackupTimes = bcTimes;
         }
 
         public void AddTime(BackupTime bcTime = null)

@@ -6,6 +6,7 @@ using Newtonsoft.Json.Serialization;
 using AdminApp.Models.Settings;
 using AdminApp.CommunicationClasses;
 using AdminApp.Models.EmailSettings;
+using AdminApp.Models.InicializationToken;
 
 namespace AdminApp
 {
@@ -39,6 +40,10 @@ namespace AdminApp
                     return typeof(ListAdminData);
                 case "AdminPost":
                     return typeof(AdminPost);
+                case "InicializationToken":
+                    return typeof(InicializationToken);
+                case "ListInicializationTokenData":
+                    return typeof(ListInicializationTokenData);
 
             }
 

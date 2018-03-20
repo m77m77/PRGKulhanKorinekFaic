@@ -649,67 +649,67 @@ namespace AdminApp.Components
             this.textBox_Selectdestination.Enabled = false;
         }
 
-        public void LoadSettings(Settings settings)
+        public void LoadSettings(Daemon daemon)
         {
             //SOURCE PATH
-            this.textBox_Path.Text = settings.BackupSourcePath;
+            this.textBox_Path.Text = daemon.Settings[0].BackupSourcePath;
 
             //SAVE FORMAT
-            if (settings.SaveFormat == "PLAIN")
+            if (daemon.Settings[0].SaveFormat == "PLAIN")
             {
                 this.comboBox_Savingformat.SelectedIndex = 0;
-            }else if(settings.SaveFormat == "ZIP")
+            }else if(daemon.Settings[0].SaveFormat == "ZIP")
             {
                 this.comboBox_Savingformat.SelectedIndex = 1;
             }
 
             //ACTION AFTER BACKUP
-            if(settings.ActionAfterBackup == "NOTHING")
+            if(daemon.Settings[0].ActionAfterBackup == "NOTHING")
             {
                 this.comboBox_Afterbackup.SelectedIndex = 0;
             }
-            else if(settings.ActionAfterBackup == "RESTART")
+            else if(daemon.Settings[0].ActionAfterBackup == "RESTART")
             {
                 this.comboBox_Afterbackup.SelectedIndex = 1;
             }
-            else if (settings.ActionAfterBackup == "TURN OFF")
+            else if (daemon.Settings[0].ActionAfterBackup == "TURN OFF")
             {
                 this.comboBox_Afterbackup.SelectedIndex = 2;
             }
-            else if (settings.ActionAfterBackup == "SLEEP")
+            else if (daemon.Settings[0].ActionAfterBackup == "SLEEP")
             {
                 this.comboBox_Afterbackup.SelectedIndex = 3;
             }
 
             //DESTINATION
-            if(settings.Destination.Type == "LOCAL_NETWORK")
+            if(daemon.Settings[0].Destination.Type == "LOCAL_NETWORK")
             {
                 this.radioButton_Localnetwork.Checked = true;
                 this.radioButton_FTP.Checked = false;
                 this.radioButton_SFTP.Checked = false;
 
-                this.textBox_Selectdestination.Text = settings.Destination.Path;
+                this.textBox_Selectdestination.Text = daemon.Settings[0].Destination.Path;
             }
-            else if (settings.Destination.Type == "FTP")
+            else if (daemon.Settings[0].Destination.Type == "FTP")
             {
                 this.radioButton_Localnetwork.Checked = false;
                 this.radioButton_FTP.Checked = true;
                 this.radioButton_SFTP.Checked = false;
 
-                FTPDestination dest = (FTPDestination)settings.Destination;
+                FTPDestination dest = (FTPDestination)daemon.Settings[0].Destination;
                 this.textBox_FTPAdress.Text = dest.Adress;
                 this.textBox_FTPPort.Text = dest.Port;
                 this.textBox_FTPUsername.Text = dest.Username;
                 this.textBox_FTPPassword.Text = dest.Password;
                 this.textBox_FTPPath.Text = dest.Path;
             }
-            else if (settings.Destination.Type == "SFTP")
+            else if (daemon.Settings[0].Destination.Type == "SFTP")
             {
                 this.radioButton_Localnetwork.Checked = false;
                 this.radioButton_FTP.Checked = false;
                 this.radioButton_SFTP.Checked = true;
 
-                SFTPDestination dest = (SFTPDestination)settings.Destination;
+                SFTPDestination dest = (SFTPDestination)daemon.Settings[0].Destination;
                 this.textBox_SFTPAdress.Text = dest.Adress;
                 this.textBox_SFTPPort.Text = dest.Port;
                 this.textBox_SFTPUsername.Text = dest.Username;
@@ -719,45 +719,45 @@ namespace AdminApp.Components
 
         }
 
-        public void SaveSettings(Settings settings)
+        public void SaveSettings(Daemon daemon)
         {
             //SOURCE PATH
-            settings.BackupSourcePath = this.textBox_Path.Text;
+            daemon.Settings[0].BackupSourcePath = this.textBox_Path.Text;
 
             //SAVE FORMAT
             if (this.comboBox_Savingformat.SelectedIndex == 0)
             {
-                
-                settings.SaveFormat = "PLAIN";
+
+                daemon.Settings[0].SaveFormat = "PLAIN";
             }
             else if (this.comboBox_Savingformat.SelectedIndex == 1)
             {
-                settings.SaveFormat = "ZIP";
+                daemon.Settings[0].SaveFormat = "ZIP";
             }
 
             //ACTION AFTER BACKUP
             if (this.comboBox_Afterbackup.SelectedIndex == 0)
             {
-                settings.ActionAfterBackup = "NOTHING";
+                daemon.Settings[0].ActionAfterBackup = "NOTHING";
             }
             else if (this.comboBox_Afterbackup.SelectedIndex == 1)
             {
-                settings.ActionAfterBackup = "RESTART";
+                daemon.Settings[0].ActionAfterBackup = "RESTART";
             }
             else if (this.comboBox_Afterbackup.SelectedIndex == 2)
             {
-                settings.ActionAfterBackup = "TURN OFF";
+                daemon.Settings[0].ActionAfterBackup = "TURN OFF";
             }
             else if (this.comboBox_Afterbackup.SelectedIndex == 3)
             {
-                settings.ActionAfterBackup = "SLEEP";
+                daemon.Settings[0].ActionAfterBackup = "SLEEP";
             }
 
             //DESTINATION
             if (this.radioButton_Localnetwork.Checked)
             {
-                settings.Destination = new LocalNetworkDestination();
-                settings.Destination.Path = this.textBox_Selectdestination.Text;
+                daemon.Settings[0].Destination = new LocalNetworkDestination();
+                daemon.Settings[0].Destination.Path = this.textBox_Selectdestination.Text;
             }
             else if (this.radioButton_FTP.Checked)
             {
@@ -769,7 +769,7 @@ namespace AdminApp.Components
                 dest.Password = this.textBox_FTPPassword.Text;
                 dest.Path = this.textBox_FTPPath.Text;
 
-                settings.Destination = dest;
+                daemon.Settings[0].Destination = dest;
             }
             else if (this.radioButton_SFTP.Checked)
             {
@@ -780,7 +780,7 @@ namespace AdminApp.Components
                 dest.Password = this.textBox_SFTPPassword.Text;
                 dest.Path = this.textBox_SFTPPath.Text;
 
-                settings.Destination = dest;
+                daemon.Settings[0].Destination = dest;
             }
         }
     }

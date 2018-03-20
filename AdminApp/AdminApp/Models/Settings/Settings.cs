@@ -7,10 +7,9 @@ using System.Web;
 
 namespace AdminApp.Models.Settings
 {
-    public class Settings : IData
+    public class Settings
     {
-        public int DaemonID { get; set; }
-        public string DaemonName { get; set; }
+        public int SettingsID { get; set; }
         public string BackupSourcePath { get; set; }
         public string ActionAfterBackup { get; set; }
         public string SaveFormat { get; set; }

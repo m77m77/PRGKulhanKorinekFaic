@@ -26,17 +26,12 @@ namespace REST_API.Controllers
                 //token nepatří adminovi  
                 return new Response("ERROR", "TokenIsNotMatched", null, null);
             }
-            //if (t.AdminType != "master")
-            //{
-            //    return new Response("ERROR", "AdminIsNotMaster", null, null);
-            //}
 
             MySqlConnection Connection = WebApiConfig.Connection();
 
             MySqlCommand Query = Connection.CreateCommand();
 
             Query.CommandText = "SELECT token FROM tokens where status='inicialize'";
-            //Query.Parameters.AddWithValue("@DaemonID", t.DaemonID);
 
             Response r = new Response();
             ListInicializationTokenData litd = new ListInicializationTokenData();
@@ -51,7 +46,6 @@ namespace REST_API.Controllers
                 while (Reader.Read())
                 {
                     litd.ListInicializationToken.Add(new InicializationToken());
-                    litd.ListInicializationToken[i].DaemonID = t.DaemonID;
                     litd.ListInicializationToken[i].Token = Reader["token"].ToString();
                     i++;
                 }
@@ -83,10 +77,6 @@ namespace REST_API.Controllers
                 //token nepatří adminovi  
                 return new Response("ERROR", "TokenIsNotMatched", null, null);
             }
-            if (t.AdminType != "master")
-            {
-                return new Response("ERROR", "AdminIsNotMaster", null, null);
-            }
 
             MySqlConnection Connection = WebApiConfig.Connection();
 
@@ -94,7 +84,7 @@ namespace REST_API.Controllers
 
             try
             {
-                Token.GenerateNewInicializationToken(t.DaemonID);
+                Token.GenerateNewInicializationToken();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {

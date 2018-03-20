@@ -23,21 +23,21 @@ namespace AdminApp.Components
         public void CreateDaemons(ListSettingsData data,TabControl tabControl,Form_NewMenu form)
         {
             Settings defaultSettings = data.DefaultSettings;
-            this.daemonSettings.Add(new OneDaemonSettings(tabControl, form, true, defaultSettings));
+            this.daemonSettings.Add(new OneDaemonSettings(tabControl, form, true, defaultSettings,null));
 
 
-            foreach (Settings item in data.ListSettings)
+            foreach (Daemon item in data.ListDaemons)
             {
-                this.daemonSettings.Add(new OneDaemonSettings(tabControl, form, false, item));
+                this.daemonSettings.Add(new OneDaemonSettings(tabControl, form, false,null, item));
                 this.GetEmailFromDaemons(form.GetEmailDaemonsListBoxDaily(),form.GetEmailDaemonsListBoxWeekly(),form.GetEmailDaemonsListBoxMonthly(), item);
             }
         }
-        public void GetEmailFromDaemons(CheckedListBox checkedlistboxdaily,CheckedListBox checkedlistboxmonthly,CheckedListBox checkedlistboxweekly, Settings settings )
+        public void GetEmailFromDaemons(CheckedListBox checkedlistboxdaily,CheckedListBox checkedlistboxmonthly,CheckedListBox checkedlistboxweekly, Daemon daemon )
         {
-            this.NameToIdDaemons.Add(settings.DaemonName, settings.DaemonID);
-            checkedlistboxdaily.Items.Add(settings.DaemonName);
-            checkedlistboxweekly.Items.Add(settings.DaemonName);
-            checkedlistboxmonthly.Items.Add(settings.DaemonName);
+            this.NameToIdDaemons.Add(daemon.DaemonName, daemon.DaemonID);
+            checkedlistboxdaily.Items.Add(daemon.DaemonName);
+            checkedlistboxweekly.Items.Add(daemon.DaemonName);
+            checkedlistboxmonthly.Items.Add(daemon.DaemonName);
         }
 
         public async void SaveSettings(ServerAccess serverAccess,Label label,ErrorProvider provider)
@@ -58,7 +58,7 @@ namespace AdminApp.Components
                         }
                     }else
                     {
-                        Response res = await serverAccess.PostDefaultSettings(item.SaveSettings(), label);
+                        Response res = await serverAccess.PostDefaultSettings(item.SaveSettings().Settings[0], label);
                         if (res.Status == "OK")
                         {
                             item.Saved();

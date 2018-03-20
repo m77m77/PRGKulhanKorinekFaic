@@ -63,34 +63,34 @@ namespace AdminApp.Components
 
         }
 
-        public void LoadSettings(Settings settings)
+        public void LoadSettings(Daemon daemon)
         {
             //BACKUP SCHEME
             this.tabControl_Scheme.SelectedIndexChanged -= this.EventValChanged;
-            if(settings.BackupScheme.Type == "ONE_TIME")
+            if(daemon.Settings[0].BackupScheme.Type == "ONE_TIME")
             {
                 this.tabControl_Scheme.SelectedIndex = 0;
                 this.oneTimeWhen.ValueChanged -= this.EventValChanged;
-                this.oneTimeWhen.Value = settings.BackupScheme.OneTimeBackup.When;
+                this.oneTimeWhen.Value = daemon.Settings[0].BackupScheme.OneTimeBackup.When;
                 this.oneTimeWhen.ValueChanged += this.EventValChanged;
             }
-            else if (settings.BackupScheme.Type == "DAILY")
+            else if (daemon.Settings[0].BackupScheme.Type == "DAILY")
             {
                 this.tabControl_Scheme.SelectedIndex = 1;
-                this.daily.LoadSettings(settings);
-                this.SetMaxBackups(settings);
+                this.daily.LoadSettings(daemon.Settings[0]);
+                this.SetMaxBackups(daemon.Settings[0]);
             }
-            else if (settings.BackupScheme.Type == "WEEKLY")
+            else if (daemon.Settings[0].BackupScheme.Type == "WEEKLY")
             {
                 this.tabControl_Scheme.SelectedIndex = 2;
-                this.weekly.LoadSettings(settings);
-                this.SetMaxBackups(settings);
+                this.weekly.LoadSettings(daemon);
+                this.SetMaxBackups(daemon.Settings[0]);
             }
-            else if (settings.BackupScheme.Type == "MONTHLY")
+            else if (daemon.Settings[0].BackupScheme.Type == "MONTHLY")
             {
                 this.tabControl_Scheme.SelectedIndex = 3;
-                this.monthly.LoadSettings(settings);
-                this.SetMaxBackups(settings);
+                this.monthly.LoadSettings(daemon);
+                this.SetMaxBackups(daemon.Settings[0]);
             }
             this.tabControl_Scheme.SelectedIndexChanged += this.EventValChanged;
         }
@@ -110,35 +110,35 @@ namespace AdminApp.Components
             this.monthlyKeepBackups.ValueChanged += this.EventValChanged;
         }
 
-        public void SaveSettings(Settings settings)
+        public void SaveSettings(Daemon daemon)
         {
             if (this.tabControl_Scheme.SelectedIndex == 0)
             {
-                settings.BackupScheme = new BackupScheme();
-                settings.BackupScheme.Type = "ONE_TIME";
-                settings.BackupScheme.OneTimeBackup = new OneTimeBackup();
-                settings.BackupScheme.OneTimeBackup.When = this.oneTimeWhen.Value;
+                daemon.Settings[0].BackupScheme = new BackupScheme();
+                daemon.Settings[0].BackupScheme.Type = "ONE_TIME";
+                daemon.Settings[0].BackupScheme.OneTimeBackup = new OneTimeBackup();
+                daemon.Settings[0].BackupScheme.OneTimeBackup.When = this.oneTimeWhen.Value;
             }
             else if (this.tabControl_Scheme.SelectedIndex == 1)
             {
-                settings.BackupScheme = new BackupScheme();
-                settings.BackupScheme.Type = "DAILY";
-                this.daily.SaveSettings(settings);
-                settings.BackupScheme.MaxBackups = (int) this.dailyKeepBackups.Value;
+                daemon.Settings[0].BackupScheme = new BackupScheme();
+                daemon.Settings[0].BackupScheme.Type = "DAILY";
+                this.daily.SaveSettings(daemon);
+                daemon.Settings[0].BackupScheme.MaxBackups = (int) this.dailyKeepBackups.Value;
             }
             else if (this.tabControl_Scheme.SelectedIndex == 2)
             {
-                settings.BackupScheme = new BackupScheme();
-                settings.BackupScheme.Type = "WEEKLY";
-                this.weekly.SaveSettings(settings);
-                settings.BackupScheme.MaxBackups = (int) this.weeklyKeepBackups.Value;
+                daemon.Settings[0].BackupScheme = new BackupScheme();
+                daemon.Settings[0].BackupScheme.Type = "WEEKLY";
+                this.weekly.SaveSettings(daemon);
+                daemon.Settings[0].BackupScheme.MaxBackups = (int) this.weeklyKeepBackups.Value;
             }
             else if (this.tabControl_Scheme.SelectedIndex == 3)
             {
-                settings.BackupScheme = new BackupScheme();
-                settings.BackupScheme.Type = "MONTHLY";
-                this.monthly.SaveSettings(settings);
-                settings.BackupScheme.MaxBackups = (int) this.monthlyKeepBackups.Value;
+                daemon.Settings[0].BackupScheme = new BackupScheme();
+                daemon.Settings[0].BackupScheme.Type = "MONTHLY";
+                this.monthly.SaveSettings(daemon);
+                daemon.Settings[0].BackupScheme.MaxBackups = (int) this.monthlyKeepBackups.Value;
             }
         }
 
