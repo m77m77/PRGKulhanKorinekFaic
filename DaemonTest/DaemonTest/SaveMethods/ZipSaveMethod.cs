@@ -13,6 +13,12 @@ namespace DaemonTest.SaveMethods
     class ZipSaveMethod : ISaveMethod
     {
         private ZipArchive archive;
+        private SettingsManager SettingsManager;
+
+        public ZipSaveMethod(SettingsManager settingsManager)
+        {
+            this.SettingsManager = settingsManager;
+        }
 
         public void Start(IDestinationManager destinationManager, string backupType)
         {

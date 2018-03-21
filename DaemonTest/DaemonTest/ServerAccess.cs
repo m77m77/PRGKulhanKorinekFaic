@@ -1,6 +1,7 @@
 ﻿using DaemonTest.CommunicationClasses;
 using DaemonTest.Models;
 using DaemonTest.Utilities;
+using DaemonTest.Models.Settings;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -51,6 +52,24 @@ namespace DaemonTest
             ServerAccess.token = token;
 
             return true;
+        }
+
+        public async static Task<Response> GetNewSettings()
+        {
+            HttpClient client = new HttpClient();
+            Response response = new Response();
+            try
+            {
+                HttpResponseMessage httpResponse = await client.GetAsync("http://localhost:63058/api/daemon/rBBthQbuOrwM40e3-yvKLk5bspE7,N8Y");
+                response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
+            }
+            catch (Exception)
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            return response;
+
         }
 
         public async static Task<Response> GetBackupsInfos(string type)

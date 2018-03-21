@@ -10,9 +10,11 @@ namespace DaemonTest.DestinationManagers
     {
         private SFTPDestination destination;
         private string tempDir;
+        private SettingsManager SettingsManager;
 
-        public SFTPDestinationManager(SFTPDestination destination)
+        public SFTPDestinationManager(SFTPDestination destination, SettingsManager settingsManager)
         {
+            this.SettingsManager = settingsManager;
             this.destination = destination;
 
             this.tempDir = Path.Combine(Path.GetTempPath(), "PRGKulhanKorinekFaic", "SFTP");

@@ -32,7 +32,8 @@ namespace DaemonTest.Utilities
                     return typeof(BackupStatus);
                 case "ListDaemonBackupInfoData":
                     return typeof(ListDaemonBackupInfoData);
-
+                case "Daemon":
+                    return typeof(Daemon);
 
             }
 

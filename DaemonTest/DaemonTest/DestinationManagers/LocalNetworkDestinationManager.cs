@@ -10,9 +10,11 @@ namespace DaemonTest.DestinationManagers
     {
         private LocalNetworkDestination destination;
         private string dirName;
+        private SettingsManager SettingsManager;
 
-        public LocalNetworkDestinationManager(LocalNetworkDestination destination)
+        public LocalNetworkDestinationManager(LocalNetworkDestination destination, SettingsManager settingsManager)
         {
+            this.SettingsManager = settingsManager;
             this.destination = destination;
 
             this.dirName = SettingsManager.GetFolderNameBasedOnDate();

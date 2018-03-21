@@ -13,9 +13,12 @@ namespace DaemonTest.BackupMethods
         private ISaveMethod saveMethod;
         private IDestinationManager destinationManager;
         private DirectoryInfo sourceDir;
+        private SettingsManager SettingsManager;
 
-        public DifferentialBackupMethod()
+        public DifferentialBackupMethod(SettingsManager settingsManager)
         {
+            this.SettingsManager = settingsManager;
+
             this.saveMethod = SettingsManager.GetSaveMethod();
             this.destinationManager = SettingsManager.GetDestinationManager();
 

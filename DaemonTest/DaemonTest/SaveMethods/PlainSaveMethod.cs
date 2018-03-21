@@ -12,6 +12,12 @@ namespace DaemonTest.SaveMethods
     public class PlainSaveMethod : ISaveMethod
     {
         private DirectoryInfo dir;
+        private SettingsManager SettingsManager;
+
+        public PlainSaveMethod(SettingsManager settingsManager)
+        {
+            this.SettingsManager = settingsManager;
+        }
 
         public void Start(IDestinationManager destinationManager, string backupType)
         {

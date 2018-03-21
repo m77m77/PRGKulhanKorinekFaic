@@ -13,6 +13,7 @@ using DaemonTest.CommunicationClasses;
 using DaemonTest.BackupMethods;
 using DaemonTest.Models;
 using DaemonTest.Utilities;
+using DaemonTest.Models.Settings;
 
 namespace DaemonTest
 {
@@ -27,7 +28,11 @@ namespace DaemonTest
             sa.Wait();
             Console.WriteLine(sa.Result);
 
-            IBackupMethod bcMethod = new IncrementalBackupMethod();
+            Daemon daemon = (Daemon)res.Result.Data;
+
+            SettingsManager settingsManager = new SettingsManager(daemon.Settings[0]);
+
+            IBackupMethod bcMethod = new IncrementalBackupMethod(settingsManager);
             BackupStatus status = bcMethod.Backup();
             Task<Response> response = ServerAccess.SendBackupStatus(status);
             response.Wait();

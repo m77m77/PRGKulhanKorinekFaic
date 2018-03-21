@@ -12,46 +12,50 @@ using System.Threading.Tasks;
 
 namespace DaemonTest
 {
-    public static class SettingsManager
+    public class SettingsManager
     {
-        public static Settings CurrentSettings { get; private set; }
-        
+        public Settings CurrentSettings { get; private set; }
 
-        public static ISaveMethod GetSaveMethod()
+        public SettingsManager(Settings settings)
+        {
+            this.CurrentSettings = settings;
+        }
+
+        public ISaveMethod GetSaveMethod()
         {
             string saveFormat = CurrentSettings.SaveFormat;
             if (saveFormat == "ZIP")
             {
-                return new ZipSaveMethod();
+                return new ZipSaveMethod(this);
             }
             else if (saveFormat == "PLAIN")
             {
-                return new PlainSaveMethod();
+                return new PlainSaveMethod(this);
             }
 
             return null;
         }
 
-        public static IDestinationManager GetDestinationManager()
+        public IDestinationManager GetDestinationManager()
         {
             string destType = CurrentSettings.Destination.Type;
             if (destType == "LOCAL_NETWORK")
             {
-                return new LocalNetworkDestinationManager((LocalNetworkDestination)CurrentSettings.Destination);
+                return new LocalNetworkDestinationManager((LocalNetworkDestination)CurrentSettings.Destination, this);
             }
             else if(destType == "FTP")
             {
-                return new FTPDestinationManager((FTPDestination)CurrentSettings.Destination);
+                return new FTPDestinationManager((FTPDestination)CurrentSettings.Destination,this);
             }
             else if(destType == "SFTP")
             {
-                return new SFTPDestinationManager((SFTPDestination)CurrentSettings.Destination);
+                return new SFTPDestinationManager((SFTPDestination)CurrentSettings.Destination,this);
             }
 
             return null;
         }
 
-        public static string GetFolderNameBasedOnDate()
+        public string GetFolderNameBasedOnDate()
         {
             string type = CurrentSettings.BackupScheme.Type;
 
@@ -80,29 +84,6 @@ namespace DaemonTest
             }
 
             return "";
-        }
-
-        public async static Task<Response> GetNewSettings()
-        {
-            HttpClient client = new HttpClient();
-            Response response = new Response();
-            try
-            {
-                HttpResponseMessage httpResponse = await client.GetAsync("http://localhost:63058/api/daemon/rBBthQbuOrwM40e3-yvKLk5bspE7,N8Y");
-                response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
-            }
-            catch (Exception)
-            {
-                response = new Response("ERROR", "ConnectionError", null, null);
-            }
-
-            if (response.Status == "OK")
-            {
-                CurrentSettings = (Settings)response.Data;
-            }
-
-            return response;
-
         }
     }
 }

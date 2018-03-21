@@ -13,9 +13,11 @@ namespace DaemonTest.DestinationManagers
 
         private FTPDestination destination;
         private string tempDir;
+        private SettingsManager SettingsManager;
 
-        public FTPDestinationManager(FTPDestination destination)
+        public FTPDestinationManager(FTPDestination destination, SettingsManager settingsManager)
         {
+            this.SettingsManager = settingsManager;
             this.destination = destination;
 
             this.tempDir = Path.Combine(Path.GetTempPath(),"PRGKulhanKorinekFaic","FTP");
