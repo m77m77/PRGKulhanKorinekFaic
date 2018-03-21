@@ -169,17 +169,17 @@ namespace REST_API.Controllers
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            Token t = Token.ExistsEmail(token);
+            Token t = Token.Exists(token);
             if (t == null)
             {
                 //token není v databázi  
                 return new Response("ERROR", "TokenNotFound", null, null);
             }
-            //if (!t.IsAdmin)
-            //{
-            //    //token nepatří adminovi  
-            //    return new Response("ERROR", "TokenIsNotMatched", null, null);
-            //}
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
 
             MySqlCommand Query = Connection.CreateCommand();
 

@@ -43,7 +43,7 @@ namespace AdminApp
         {
             return this.checkedListBox_fromdaemonsmonthly;
         }
-        public async Task<bool> GetAllSettings(Label label)
+        public async Task<bool> GetAllSettings()
         {
             Response response = await this.serverAccess.GetAllSettings(label);
             

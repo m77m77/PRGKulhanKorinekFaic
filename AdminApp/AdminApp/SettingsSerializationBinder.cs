@@ -44,6 +44,8 @@ namespace AdminApp
                     return typeof(InicializationToken);
                 case "ListInicializationTokenData":
                     return typeof(ListInicializationTokenData);
+                case "Daemon":
+                    return typeof(Daemon);
 
             }
 
