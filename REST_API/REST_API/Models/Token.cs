@@ -147,7 +147,7 @@ namespace REST_API.Models
             return result;
         }
 
-        public static Token GenerateNewInicializationToken(int DaemonID)
+        public static Token GenerateNewInicializationToken()
         {
             Token result = null;
             using (MySqlConnection connection = WebApiConfig.Connection())
@@ -167,19 +167,7 @@ namespace REST_API.Models
 
                         int id = Convert.ToInt32(queryInsertIntoTokens.ExecuteScalar());
 
-                        string sqlInsertIntoTokensDaemons = "INSERT INTO tokensDaemons(idToken,idDaemon) VALUES(@idToken),@DaemonID);";
-
-                        MySqlCommand queryInsertIntoTokensAdmins = new MySqlCommand(sqlInsertIntoTokensDaemons, connection);
-                        queryInsertIntoTokensAdmins.Parameters.AddWithValue("@DaemonID", DaemonID);
-                        queryInsertIntoTokensAdmins.Parameters.AddWithValue("@idToken", id);
-                        queryInsertIntoTokensAdmins.ExecuteNonQuery();
-
-
-                        MySqlCommand queryGetAdminType = new MySqlCommand("SELECT type FROM daemons WHERE id = @DaemonID", connection);
-                        queryGetAdminType.Parameters.AddWithValue("@DaemonID", DaemonID);
-                        string type = queryGetAdminType.ExecuteScalar().ToString();
-
-                        result = new Token(newToken, id, DaemonID, 0, type);
+                        result = new Token(newToken, id, null, 0, null);
                 }
                 catch (Exception)
                 {

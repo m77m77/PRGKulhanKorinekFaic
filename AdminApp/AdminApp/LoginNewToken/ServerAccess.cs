@@ -15,7 +15,7 @@ namespace AdminApp.LoginNewToken
     public class ServerAccess
     {
         public string Server { get; private set; }
-        public string Token { get; private set; }// = "hvebxgR9lvEug3Vm4lWodz8ApMQkISFw";
+        public string Token { get; private set; }
 
         public async Task<bool> GetTokenMethod(AdminPost adminpost,Label label,TextBox textbox)
         {
@@ -111,11 +111,11 @@ namespace AdminApp.LoginNewToken
             return response;
         }
 
-        public async Task<Response> PostSettings(Settings settings,Label label)
+        public async Task<Response> PostSettings(Daemon daemon,Label label)
         {
             Response r = new Response();
 
-            string json = JsonConvert.SerializeObject(settings, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            string json = JsonConvert.SerializeObject(daemon, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
 
             HttpClient http = new HttpClient();
             StringContent sc = new StringContent(json, Encoding.UTF8, "application/json");

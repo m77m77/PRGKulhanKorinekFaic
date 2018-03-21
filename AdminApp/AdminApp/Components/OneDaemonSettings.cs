@@ -29,11 +29,11 @@ namespace AdminApp.Components
         public bool IsDefault { get; private set; }
         public int DaemonID { get; private set; }
 
-        public OneDaemonSettings(TabControl tabControl, Form_NewMenu form,bool isDefault,Settings settings)
+        public OneDaemonSettings(TabControl tabControl, Form_NewMenu form,bool isDefault,Settings settings,Daemon daemon)
         {
             this.IsDefault = isDefault;
-            this.DaemonID = settings.DaemonID;
-            string name = isDefault ? "Default" : (String.IsNullOrWhiteSpace(settings.DaemonName) ? "Daemon " + settings.DaemonID : settings.DaemonName);
+            this.DaemonID = daemon.DaemonID;
+            string name = isDefault ? "Default" : (String.IsNullOrWhiteSpace(daemon.DaemonName) ? "Daemon " + daemon.DaemonID : daemon.DaemonName);
             if (!IsDefault)
             {
                 this.textBox_daemonName = new TextBox();
@@ -117,11 +117,11 @@ namespace AdminApp.Components
 
             //TABS
             this.settingsTab = new BackupSettingsTab(this.tabPage_BackupSettings);
-            this.settingsTab.LoadSettings(settings);
+            this.settingsTab.LoadSettings(daemon);
             this.settingsTab.ValuesChanged += this.ValuesChanged;
 
             this.schemeTab = new BackupSchemeTab(this.tabPage_BackupScheme, form);
-            this.schemeTab.LoadSettings(settings);
+            this.schemeTab.LoadSettings(daemon);
             this.schemeTab.ValuesChanged += this.ValuesChanged;
 
 
@@ -150,15 +150,15 @@ namespace AdminApp.Components
             return result;
         }
 
-        public Settings SaveSettings()
+        public Daemon SaveSettings()
         {
-            Settings settings = new Settings();
-            settings.DaemonName = this.IsDefault? null : this.textBox_daemonName.Text;
-            settings.DaemonID = this.DaemonID;
-            this.settingsTab.SaveSettings(settings);
-            this.schemeTab.SaveSettings(settings);
+            Daemon daemon = new Daemon();
+            daemon.DaemonName = this.IsDefault? null : this.textBox_daemonName.Text;
+            daemon.DaemonID = this.DaemonID;
+            this.settingsTab.SaveSettings(daemon);
+            this.schemeTab.SaveSettings(daemon);
 
-            return settings;
+            return daemon;
         }
 
         private void TextBox_daemonName_TextChanged(object sender, EventArgs e)

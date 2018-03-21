@@ -8,7 +8,7 @@ namespace AdminApp.CommunicationClasses
 {
     public class ListSettingsData : IData
     {
-        public List<Settings> ListSettings {get;set;}
+        public List<Daemon> ListDaemons { get; set; }
         public Settings DefaultSettings { get; set; }
     }
 }
