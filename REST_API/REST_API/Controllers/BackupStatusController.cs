@@ -48,7 +48,7 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                    string sql = "SELECT idDaemon, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles FROM backupsInfo WHERE backupDate >= @date";
+                    string sql = "SELECT idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo WHERE backupDate >= @date";
 
                     MySqlCommand query = new MySqlCommand(sql, connection);
                     query.Parameters.AddWithValue("@date", date);
@@ -61,7 +61,7 @@ namespace REST_API.Controllers
                     while (reader.Read())
                     {
                         BackupStatus bs = new BackupStatus();
-                        bs.DaemonId = Convert.ToInt32(reader["idDaemon"]);
+                        bs.SettingsID = Convert.ToInt32(reader["idSettings"]);
                         bs.Status = reader["backupStatus"].ToString();
                         bs.TimeOfBackup = (DateTime)reader["backupDate"];
                         bs.BackupType = reader["backupType"].ToString();
@@ -69,6 +69,7 @@ namespace REST_API.Controllers
 
                         bs.Errors = JsonConvert.DeserializeObject<List<BackupError>>(reader["backupErrors"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
                         bs.Files = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        bs.RemovedFiles = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupRemovedFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
 
                         data.ListDaemonBackupInfo.Add(bs);
                     }
@@ -85,8 +86,8 @@ namespace REST_API.Controllers
         }
 
 
-        [Route("api/backupstatus/daemon/{token}/{type}")]
-        public Response GetDaemon(string token, string type)
+        [Route("api/backupstatus/daemon/{token}/{type}/{settingsID}")]
+        public Response GetDaemon(string token, string type, int settingsID)
         {
             Token t = Token.Exists(token);
             if (t == null)
@@ -123,10 +124,10 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                    string sql = "SELECT backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles FROM backupsInfo WHERE idDaemon = @idDaemon AND backupStatus = 'SUCCESS' AND backupDate >= @date";
+                    string sql = "SELECT backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo WHERE idSettings = @idSettings AND backupStatus = 'SUCCESS' AND backupDate >= @date";
 
                     MySqlCommand query = new MySqlCommand(sql, connection);
-                    query.Parameters.AddWithValue("@idDaemon", t.DaemonID);
+                    query.Parameters.AddWithValue("@idSettings", settingsID);
                     query.Parameters.AddWithValue("@date", date);
 
                     MySqlDataReader reader = query.ExecuteReader();
@@ -137,7 +138,7 @@ namespace REST_API.Controllers
                     while (reader.Read())
                     {
                         BackupStatus bs = new BackupStatus();
-                        bs.DaemonId = t.DaemonID;
+                        bs.SettingsID = settingsID;
                         bs.Status = reader["backupStatus"].ToString();
                         bs.TimeOfBackup = (DateTime)reader["backupDate"];
                         bs.BackupType = reader["backupType"].ToString();
@@ -145,7 +146,7 @@ namespace REST_API.Controllers
 
                         bs.Errors = JsonConvert.DeserializeObject<List<BackupError>>(reader["backupErrors"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
                         bs.Files = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-
+                        bs.RemovedFiles = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupRemovedFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
                         data.ListDaemonBackupInfo.Add(bs);
                     }
 
@@ -183,17 +184,17 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                string sql = "INSERT INTO backupsInfo(idDaemon, backupStatus, backupDate,backupType,backupFailMessage,backupErrors,backupFiles) VALUES (@idDaemon,@status,@date,@type,@failMessage,@errors,@files)";
+                string sql = "INSERT INTO backupsInfo(idSettings, backupStatus, backupDate,backupType,backupFailMessage,backupErrors,backupFiles,backupRemovedFiles) VALUES (@idSettings,@status,@date,@type,@failMessage,@errors,@files,@removedFiles)";
 
                 MySqlCommand query = new MySqlCommand(sql, connection);
-                query.Parameters.AddWithValue("@idDaemon", t.DaemonID);
+                query.Parameters.AddWithValue("@idSettings", status.SettingsID);
                 query.Parameters.AddWithValue("@status", status.Status);
                 query.Parameters.AddWithValue("@date", status.TimeOfBackup);
                 query.Parameters.AddWithValue("@type", status.BackupType);
                 query.Parameters.AddWithValue("@failMessage", status.FailMessage);
                 query.Parameters.AddWithValue("@errors", JsonConvert.SerializeObject(status.Errors, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
                 query.Parameters.AddWithValue("@files", JsonConvert.SerializeObject(status.Files, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
-
+                query.Parameters.AddWithValue("@removedFiles", JsonConvert.SerializeObject(status.RemovedFiles, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
 
                 query.ExecuteNonQuery();
 

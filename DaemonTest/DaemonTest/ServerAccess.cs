@@ -60,7 +60,7 @@ namespace DaemonTest
             Response response = new Response();
             try
             {
-                HttpResponseMessage httpResponse = await client.GetAsync("http://localhost:63058/api/daemon/rBBthQbuOrwM40e3-yvKLk5bspE7,N8Y");
+                HttpResponseMessage httpResponse = await client.GetAsync(ServerAccess.serverAddress + "/api/daemon/" + ServerAccess.token);
                 response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
             }
             catch (Exception)
@@ -72,13 +72,13 @@ namespace DaemonTest
 
         }
 
-        public async static Task<Response> GetBackupsInfos(string type)
+        public async static Task<Response> GetBackupsInfos(string type,int settingsID)
         {
             HttpClient client = new HttpClient();
             Response response = new Response();
             try
             {
-                HttpResponseMessage httpResponse = await client.GetAsync(serverAddress + "/api/backupstatus/daemon/" + token + "/" + type);
+                HttpResponseMessage httpResponse = await client.GetAsync(serverAddress + "/api/backupstatus/daemon/" + token + "/" + type + "/" + settingsID);
                 response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
             }
             catch (Exception)

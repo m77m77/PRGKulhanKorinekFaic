@@ -13,7 +13,6 @@ using DaemonTest.CommunicationClasses;
 using DaemonTest.BackupMethods;
 using DaemonTest.Models;
 using DaemonTest.Utilities;
-using DaemonTest.Models.Settings;
 
 namespace DaemonTest
 {
@@ -22,11 +21,13 @@ namespace DaemonTest
         static void Main(string[] args)
         {
 
-            Task<Response> res = SettingsManager.GetNewSettings();
-            res.Wait();
-            Task<bool> sa = ServerAccess.Connect("http://localhost:63058", "rBBthQbuOrwM40e3-yvKLk5bspE7,N8Y");
+            
+            Task<bool> sa = ServerAccess.Connect("http://localhost:63058", "zZn4L8,WKTb6iEPonSEa5vP3dEsHQZmk");
             sa.Wait();
             Console.WriteLine(sa.Result);
+
+            Task<Response> res = ServerAccess.GetNewSettings();
+            res.Wait();
 
             Daemon daemon = (Daemon)res.Result.Data;
 
