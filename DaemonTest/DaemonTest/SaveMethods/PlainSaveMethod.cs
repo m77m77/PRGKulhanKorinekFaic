@@ -44,7 +44,7 @@ namespace DaemonTest.SaveMethods
         {
             List<BackupDirectory> list = new List<BackupDirectory>();
 
-            Task<Response> response = ServerAccess.GetBackupsInfos(SettingsManager.CurrentSettings.BackupScheme.Type);
+            Task<Response> response = ServerAccess.GetBackupsInfos(SettingsManager.CurrentSettings.BackupScheme.Type, SettingsManager.CurrentSettings.SettingsID);
             response.Wait();
 
             if (response.Result.Status == "OK")

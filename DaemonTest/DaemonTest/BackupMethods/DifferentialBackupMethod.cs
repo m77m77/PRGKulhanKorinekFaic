@@ -28,18 +28,18 @@ namespace DaemonTest.BackupMethods
         public BackupStatus Backup()
         {
             if (!sourceDir.Exists)
-                return new BackupStatus() { Status = "FAIL", FailMessage = "Source path doesnt exist" };
+                return new BackupStatus() { Status = "FAIL", FailMessage = "Source path doesnt exist", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "DIFF" };
 
             List<BackupError> errors = new List<BackupError>();
             Dictionary<string, DateTime> files = new Dictionary<string, DateTime>();
-            BackupStatus status = new BackupStatus() { BackupType = "DIFF",TimeOfBackup = DateTime.Now };
+            BackupStatus status = new BackupStatus() { BackupType = "DIFF",TimeOfBackup = DateTime.Now, SettingsID = SettingsManager.CurrentSettings.SettingsID };
 
             try
             {
 
                 List<BackupDirectory> prevBackups = this.saveMethod.GetListOfPreviusBackups();
                 if(prevBackups.Count <= 0)
-                    return new BackupStatus() { Status = "FAIL", FailMessage = "There is no full backup" };
+                    return new BackupStatus() { Status = "FAIL", FailMessage = "There is no full backup", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "DIFF" };
 
                 BackupDirectory lastFullBackup = null;
 
@@ -59,7 +59,7 @@ namespace DaemonTest.BackupMethods
                 }
 
                 if(lastFullBackup == null)
-                    return new BackupStatus() { Status = "FAIL", FailMessage = "There is no full backup" };
+                    return new BackupStatus() { Status = "FAIL", FailMessage = "There is no full backup", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "DIFF" };
 
 
                 this.saveMethod.Start(this.destinationManager, "DIFF");
@@ -70,6 +70,7 @@ namespace DaemonTest.BackupMethods
                 this.destinationManager.Save();
 
                 status.Status = "SUCCESS";
+                status.RemovedFiles = lastFullBackup.Files;
             }
             catch (Exception ex)
             {
@@ -99,7 +100,7 @@ namespace DaemonTest.BackupMethods
                         {
                             this.saveMethod.AddFile(path, item,files);
                         }
-
+                        fullBackup.Remove(fullName);
                     }else
                     {
                         this.saveMethod.AddFile(path, item,files);

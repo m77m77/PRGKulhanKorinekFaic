@@ -34,7 +34,7 @@ namespace DaemonTest.DestinationManagers
             {
                 string fileUrl = url + item.Name;
                 DateTime lastWriteTime = item.LastWriteTime;
-                Console.WriteLine("U " + fileUrl);
+
                 client.UploadFile(item.FullName, fileUrl);
                 client.SetModifiedTime(fileUrl, lastWriteTime);
 

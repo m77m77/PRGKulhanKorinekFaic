@@ -27,18 +27,18 @@ namespace DaemonTest.BackupMethods
         public BackupStatus Backup()
         {
             if (!sourceDir.Exists)
-                return new BackupStatus() { Status = "FAIL", FailMessage = "Source path doesnt exist" };
+                return new BackupStatus() { Status = "FAIL", FailMessage = "Source path doesnt exist",SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now,BackupType = "INC" };
 
             List<BackupError> errors = new List<BackupError>();
             Dictionary<string, DateTime> files = new Dictionary<string, DateTime>();
-            BackupStatus status = new BackupStatus() { BackupType = "INC",TimeOfBackup = DateTime.Now };
+            BackupStatus status = new BackupStatus() { BackupType = "INC",TimeOfBackup = DateTime.Now, SettingsID = SettingsManager.CurrentSettings.SettingsID };
 
             try
             {
 
                 List<BackupDirectory> prevBackups = this.saveMethod.GetListOfPreviusBackups();
                 if (prevBackups.Count <= 0)
-                    return new BackupStatus() { Status = "FAIL", FailMessage = "There is no previous backup" };
+                    return new BackupStatus() { Status = "FAIL", FailMessage = "There is no previous backup", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "INC" };
 
                 BackupDirectory lastFullOrDiffBackup = null;
 
@@ -59,7 +59,38 @@ namespace DaemonTest.BackupMethods
                 }
 
                 if(lastFullOrDiffBackup == null)
-                    return new BackupStatus() { Status = "FAIL", FailMessage = "There is no previous full or diferential backup" };
+                    return new BackupStatus() { Status = "FAIL", FailMessage = "There is no previous full or diferential backup", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "INC" };
+
+                if(lastFullOrDiffBackup.Type == "DIFF")
+                {
+                    BackupDirectory lastFull = null;
+                    foreach (BackupDirectory item in prevBackups)
+                    {
+                        if (item.Type == "FULL")
+                        {
+                            if (lastFull != null)
+                            {
+                                if (lastFull.LastWrite < item.LastWrite && lastFull.LastWrite < lastFullOrDiffBackup.LastWrite)
+                                    lastFull = item;
+                            }
+                            else
+                            {
+                                lastFull = item;
+                            }
+                        }
+                    }
+
+                    if (lastFull == null)
+                        return new BackupStatus() { Status = "FAIL", FailMessage = "There is no previous full backup", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "INC" };
+
+                    foreach (KeyValuePair<string,DateTime> item in lastFull.Files)
+                    {
+                        if(!lastFullOrDiffBackup.Files.ContainsKey(item.Key))
+                        {
+                            lastFullOrDiffBackup.Files.Add(item.Key, item.Value);
+                        }
+                    }
+                }
 
                 List<BackupDirectory> prevIncBackups = new List<BackupDirectory>();
 
@@ -102,6 +133,7 @@ namespace DaemonTest.BackupMethods
                 this.destinationManager.Save();
 
                 status.Status = "SUCCESS";
+                status.RemovedFiles = prevBackedUpFiles;
             }
             catch (Exception ex)
             {
@@ -131,7 +163,7 @@ namespace DaemonTest.BackupMethods
                         {
                             this.saveMethod.AddFile(path, item,files);
                         }
-
+                        previousBackups.Remove(fullName);
                     }
                     else
                     {

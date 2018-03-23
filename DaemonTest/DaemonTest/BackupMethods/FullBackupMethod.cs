@@ -27,11 +27,11 @@ namespace DaemonTest.BackupMethods
         public BackupStatus Backup()
         {
             if (!sourceDir.Exists)
-                return new BackupStatus() { Status = "FAIL", FailMessage = "Source path doesnt exist" };
+                return new BackupStatus() { Status = "FAIL", FailMessage = "Source path doesnt exist", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "FULL" };
 
             List<BackupError> errors = new List<BackupError>();
             Dictionary<string, DateTime> files = new Dictionary<string, DateTime>();
-            BackupStatus status = new BackupStatus() { BackupType = "FULL",TimeOfBackup = DateTime.Now };
+            BackupStatus status = new BackupStatus() { BackupType = "FULL",TimeOfBackup = DateTime.Now,SettingsID = SettingsManager.CurrentSettings.SettingsID };
 
             try
             {
