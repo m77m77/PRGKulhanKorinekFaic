@@ -167,7 +167,7 @@ namespace REST_API.Controllers
                 {
                     ap.Name = "";
                     ap.Password = "";
-                    ap.Type = Reader["type"].ToString();
+                    //ap.Type = Reader["type"].ToString();
                 }
                 Reader.Close();
             }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using MySql.Data.MySqlClient;
 
 namespace REST_API
@@ -18,6 +19,11 @@ namespace REST_API
         public static void Register(HttpConfiguration config)
         {
             // Služby a konfigurace rozhraní Web API
+
+            EnableCorsAttribute cors = new EnableCorsAttribute("http://localhost:55715", "*", "GET, POST");
+            cors.SupportsCredentials = true;
+            config.EnableCors(cors);
+
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
             config.Formatters.JsonFormatter.SerializerSettings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.Auto;
             config.Formatters.JsonFormatter.SerializerSettings.SerializationBinder = new SettingsSerializationBinder();
