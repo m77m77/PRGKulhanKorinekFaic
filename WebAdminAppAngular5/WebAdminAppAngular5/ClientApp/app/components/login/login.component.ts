@@ -54,7 +54,7 @@ export class LoginComponent {
         var username = (<HTMLInputElement>document.getElementById('username')).value;
         var password = (<HTMLInputElement>document.getElementById('password')).value
 
-        if (username != "" && password != "") {
+        if (username !== "" && password !== "") {
             this.login();
         }
     }
