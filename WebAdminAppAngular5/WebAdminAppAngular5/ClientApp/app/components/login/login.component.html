@@ -1,25 +1,25 @@
 ﻿
 <article>
     <header><h1 class="h1r">Login</h1></header>
-    <section>
-        <table>
-            <tr></tr>
-            <tr><td><input id="server" type="text" class="textinputformat" placeholder="Server" /></td></tr>
-            <tr></tr>
-            <tr><td><input id="username" type="text" class="textinputformat" placeholder="Username" /></td></tr>
-            <tr></tr>
-            <tr><td><input id="password" type="password" class="textinputformat" placeholder="Password" /></td></tr>
-            <tr>
+        <section>
+            <table>
+                <tr></tr>
+                <tr><td><input id="server" name="server" type="text" class="textinputformat" placeholder="Server" /></td></tr>
+                <tr></tr>
+                <tr><td><input id="username" name="username" type="text" class="textinputformat" placeholder="Username" /></td></tr>
+                <tr></tr>
+                <tr><td><input id="password" name="password" type="password" class="textinputformat" placeholder="Password" /></td></tr>
+                <tr>
 
-            <tr>
-                <td>
+                <tr>
+                    <td>
 
-                    <button onclick="login()">Login</button>
+                        <button (click)="Validating()">Login</button>
 
-                <td><a [routerLink]="['/home']" class="loginlink">Login</a></td>
-            </tr>
+                    <td><a [routerLink]="['/home']" class="loginlink">Login</a></td>
+                </tr>
 
-        </table>
+            </table>
 
-    </section>
+        </section>
 </article>
