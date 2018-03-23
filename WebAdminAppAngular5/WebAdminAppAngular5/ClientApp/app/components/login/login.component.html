@@ -4,12 +4,17 @@
     <section>
         <table>
             <tr></tr>
-            <tr><td><input type="text" class="textinputformat" placeholder="Server" /></td></tr>
+            <tr><td><input id="server" type="text" class="textinputformat" placeholder="Server" /></td></tr>
             <tr></tr>
-            <tr><td><input type="text" class="textinputformat" placeholder="Username" /></td></tr>
+            <tr><td><input id="username" type="text" class="textinputformat" placeholder="Username" /></td></tr>
             <tr></tr>
-            <tr><td><input type="password" class="textinputformat" placeholder="Password" /></td></tr>
+            <tr><td><input id="password" type="password" class="textinputformat" placeholder="Password" /></td></tr>
             <tr>
+
+            <tr>
+                <td>
+
+                    <button onclick="login()">Login</button>
 
                 <td><a [routerLink]="['/home']" class="loginlink">Login</a></td>
             </tr>
