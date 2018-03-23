@@ -1,0 +1,50 @@
+﻿h1 {
+    color: whitesmoke;
+    background-color: whitesmoke;
+}
+
+.tdformat {
+    text-align: left;
+    color: #2a5069;
+    font-size: 40px;
+}
+
+article {
+    width: 400px;
+    background-color: whitesmoke;
+    margin: 320px 0px 0px 695px;
+    box-shadow: 2px 2px 6px 2px #1c2228;
+}
+
+
+
+
+.textinputformat {
+    font-size: 25px;
+    height: 40px;
+    width: 300px;
+    margin: 10px 0px 10px 42px;
+    border: 0px;
+}
+
+
+.loginlink {
+    margin: 10px 0px 10px 42px;
+    float: left;
+    padding: 2px 108px 18px 80px;
+    border: solid;
+    border-width: 0px;
+    font-size: 41px;
+    height: 40px;
+    width: 118px;
+    text-align: center;
+    background-color: gray;
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+    .loginlink:hover {
+        background: rgb(81, 168, 240);
+        box-shadow: 0px 0px 5px black;
+        border-color: rgb(81, 168, 240);
+    }

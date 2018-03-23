@@ -1,59 +1,60 @@
-li .glyphicon {
-    margin-right: 10px;
+
+
+nav ul {
+    margin: 0px;
+    list-style-type: none;
+    text-decoration: none;
 }
 
-/* Highlighting rules for nav menu items */
-li.link-active a,
-li.link-active a:hover,
-li.link-active a:focus {
-    background-color: #4189C7;
-    color: white;
+    nav ul li {
+        float: left;
+        padding: 0px 35px 0px 35px;
+        margin: 0 5px;
+        font-size: 22px;
+        height: 60px;
+        line-height: 3em;
+        color: whitesmoke;
+        text-decoration: none;
+    }
+
+.rightalign {
+    float: right;
+    padding: 0px 25px;
+    margin: 0 5px;
+    font-size: 22px;
+    height: 60px;
+    line-height: 3em;
+    color: whitesmoke;
+    text-decoration: none;
 }
 
-/* Keep the nav menu independent of scrolling and on top of other items */
-.main-nav {
+    .rightalign:hover {
+        background: #555;
+        font-size: 22px;
+        color: whitesmoke;
+    }
+
+nav ul li:hover, .aktivni {
+    background: #555;
+    box-shadow: 10px #555;
+    font-size: 22px;
+    color: whitesmoke;
+}
+
+
+
+header {
+    height: 60px;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
+    top: 0px;
+    background-color: rgb(81, 168, 240);
+    width: 100%;
 }
 
-@media (min-width: 768px) {
-    /* On small screens, convert the nav menu to a vertical sidebar */
-    .main-nav {
-        height: 100%;
-        width: calc(25% - 20px);
-    }
-    .navbar {
-        border-radius: 0px;
-        border-width: 0px;
-        height: 100%;
-    }
-    .navbar-header {
-        float: none;
-    }
-    .navbar-collapse {
-        border-top: 1px solid #444;
-        padding: 0px;
-    }
-    .navbar ul {
-        float: none;
-    }
-    .navbar li {
-        float: none;
-        font-size: 15px;
-        margin: 6px;
-    }
-    .navbar li a {
-        padding: 10px 16px;
-        border-radius: 4px;
-    }
-    .navbar a {
-        /* If a menu item's text is too long, truncate it */
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+
+nav a {
+    color: whitesmoke;
+    text-decoration: none;
 }
+
+
