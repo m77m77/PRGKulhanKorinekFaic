@@ -15,6 +15,6 @@ namespace REST_API.Models.EmailSettings
         public List<int> FromDaemonsMonthly { get; set; }
         public bool SendEmails { get; set; }
         //public string HowOften { get; set; }
-        public string Template { get; set; }
+        public int Template { get; set; }
     }
 }
