@@ -7,7 +7,7 @@
 
 })
 
-export class WeeklybackupScheme {
+export class WeeklybackupschemeComponent {
     constructor(private position: InsertPosition, private elementRef: ElementRef) { }
     
     public OpenPanel(button: string) {
@@ -19,13 +19,6 @@ export class WeeklybackupScheme {
                                            + '<button id="idbtnminus" (click)="btnSubstract()">-</button>< /div>'
                                            + '< /div>')
 
-
-        
-        //document.activeElement.insertAdjacentHTML(this.position, '<div class="panel panel-default" >'
-        //                                                       + '<div class="panel-body" ><button id="idbtnplus" (click)="btnAdd()">+</button>'
-        //                                                       + '<button id="idbtnminus" (click)="btnSubstract()">-</button>< /div>'
-        //                                                       + '< /div>')
-
     }
 
     public btnAdd() {
@@ -33,12 +26,12 @@ export class WeeklybackupScheme {
     var btnplus = document.getElementById("idbtnplus")
 
     var d1 = this.elementRef.nativeElement.querySelector('.two');
-    d1.insertAdjacentHTML(this.position, '<input type="text" name="scheme" list="exampleList">'
-                                        +'< datalist id= "exampleList" >'
-                                        +'<option value="FULL" >'
-                                        +'<option value="INCREMENTAL" >'
-                                        +'<option value="DIFFERENCIAL" >'
-                                        +'</datalist>')
+    d1.insertAdjacentHTML(this.position, '<select name="example" >'
+                                        +'<option value="A" > A < /option>'
+                                        +'< option value= "B" > A < /option>'
+                                        +'< option value= "-" > Other < /option>'
+                                        +'< /select>'
+                                        +'< input type= "text" name= "other" >')
     
 }
 

@@ -15,7 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { DaemonsettingsComponent } from './components/daemonsettings/daemonsettings.component';
 import { BackupschemeComponent } from './components/backupscheme/backupscheme.component';
 import { DailybackupschemeComponent } from './components/dailybackupscheme/dailybackupscheme.component';
-import { WeeklybackupschemeComponent } from './components/weeklybackupscheme/weeklybackupscheme.component';
+import { WeeklybackupschemeComponent } from './components/weeklybackupscheme/weeklybackupscheme.component'
 
 
 
@@ -53,7 +53,8 @@ import { WeeklybackupschemeComponent } from './components/weeklybackupscheme/wee
                         component: DaemonsettingsComponent,
                         children: [
                             { path: 'scheme', component: BackupschemeComponent },
-                            { path: 'dailybackupscheme', component: DailybackupschemeComponent }
+                            { path: 'dailybackupscheme', component: DailybackupschemeComponent },
+                            { path: 'weeklybackupscheme', component: WeeklybackupschemeComponent }
                         ]
                     },
                     { path: 'register', component: RegisterComponent}
