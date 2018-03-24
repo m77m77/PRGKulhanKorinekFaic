@@ -43,27 +43,19 @@ import { DailybackupschemeComponent } from './components/dailybackupscheme/daily
                 path: 'home',
                 component: HomeComponent,
                 children: [
-                    { path: 'fetch', component: FetchDataComponent }
-                 
+                    { path: 'fetch', component: FetchDataComponent },
+                    { path: 'mail', component: MailsettingsComponent },
+                    {
+                        path: 'daemon',
+                        component: DaemonsettingsComponent,
+                        children: [
+                            { path: 'scheme', component: BackupschemeComponent },
+                            { path: 'dailybackupscheme', component: DailybackupschemeComponent }
+                        ]
+                    },
+                    { path: 'register', component: RegisterComponent}
                 ]
-            },
-            {
-                path: 'mailsettings',
-                component: MailsettingsComponent
-            },
-            {
-                path: 'register',
-                component: RegisterComponent
-            },
-             {
-                 path: 'daemonsettings',
-                 component: DaemonsettingsComponent
-            },
-             { path: 'backupscheme', component: BackupschemeComponent },
-             { path: 'dailybackupscheme', component: DailybackupschemeComponent }
-
-            
-
+            }
         ])
     ]
 })
