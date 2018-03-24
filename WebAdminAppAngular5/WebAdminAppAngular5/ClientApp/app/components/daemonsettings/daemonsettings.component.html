@@ -1,10 +1,4 @@
-﻿<div class='container-fluid'>
-    <div class='row'>
-        <div>
-            <nav-menu></nav-menu>
-        </div>
-
-
+﻿
         <div class="arc">
             <div class="dname">
                 <p class="pname">Name <input type="text" class="textto"></p>
@@ -45,9 +39,9 @@
                         </ul>
                     </nav>
                 </div>
-
+                <router-outlet></router-outlet>
                 <p class="tucne"> Select what will you backup </p>
-                <input type="textarea" class="pathtextselect" placeholder="C:\DATA">
+                <input type="text" class="pathtextselect" placeholder="C:\DATA">
 
                 <p class="tucne">Destination</p>
                 <table>
@@ -78,18 +72,18 @@
 
                     <tr>
                         <td><input type="text" id="LNDpath" class="pathtextdestination" placeholder="D:\Backup"></td>
-                        <td><input type="textarea" id="FTPserver" class="pathtext" placeholder="Server adress"></td>
-                        <td><input type="textarea" id="SFTPserver" class="pathtext" placeholder="Server adress"></td>
+                        <td><input type="text" id="FTPserver" class="pathtext" placeholder="Server adress"></td>
+                        <td><input type="text" id="SFTPserver" class="pathtext" placeholder="Server adress"></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="textarea" id="FTPport" class="pathtext" placeholder="Port"></td>
-                        <td><input type="textarea" id="SFTPport" class="pathtext" placeholder="Port"></td>
+                        <td><input type="text" id="FTPport" class="pathtext" placeholder="Port"></td>
+                        <td><input type="text" id="SFTPport" class="pathtext" placeholder="Port"></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="textarea" id="FTPusername" class="pathtext" placeholder="Username"></td>
-                        <td><input type="textarea" id="SFTPusername" class="pathtext" placeholder="Username"></td>
+                        <td><input type="text" id="FTPusername" class="pathtext" placeholder="Username"></td>
+                        <td><input type="text" id="SFTPusername" class="pathtext" placeholder="Username"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -98,8 +92,8 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><input type="textarea" id="FTPpath" class="pathtext" placeholder="Path"></td>
-                        <td><input type="textarea" id="SFTPpath" class="pathtext" placeholder="Path"></td>
+                        <td><input type="text" id="FTPpath" class="pathtext" placeholder="Path"></td>
+                        <td><input type="text" id="SFTPpath" class="pathtext" placeholder="Path"></td>
                     </tr>
 
                 </table>
@@ -129,8 +123,3 @@
             </div>
 
         </div>
-
-
-    </div>
-
-</div>
