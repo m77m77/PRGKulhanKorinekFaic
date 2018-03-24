@@ -57,4 +57,15 @@ nav a {
     text-decoration: none;
 }
 
+.textto {
+    height: 27px;
+    width: 600px;
+    font-size: 23px;
+    border: 0px;
+}
+
+.pname {
+    font-size: 23px;
+}
+
 

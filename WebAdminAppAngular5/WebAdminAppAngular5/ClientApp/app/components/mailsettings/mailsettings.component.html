@@ -1,11 +1,12 @@
-﻿<article>
-    <div id="middle">
-        <header class="headermail">
-            <h1>Settings</h1>
-        </header>
+﻿<div class='container-fluid'>
+    <div class='row'>
+        <div>
+            <nav-menu></nav-menu>
+        </div>
+        <div>
+            <router-outlet></router-outlet>
 
-        <section>
-            <div class="maildiv">
+            <div class="sectionclass">
                 <label class="containeremail">
                     <p class="tucne">Send emails</p>
                     <input onchange="enableMail()" type="checkbox" id="checkboxmail">
@@ -15,7 +16,7 @@
                 <p> To <input type="text" class="textto" id="idemailTo" disabled placeholder="example@xxx.com" /></p>
 
                 <p>
-                    Template <select id="selecttemplate" id="idemailTemplate">
+                    Template <select id="selecttemplate">
                         <option value="1">1</option>
                         <option value="2">2</option>
 
@@ -24,26 +25,46 @@
                 <table>
                     <tr>
                         <th>Daily</th>
-                        <th></th>
+                        <th>
+                            <select id="selecttemplate">
+                                <option value=""> </option>
+                                <option value=""> </option>
+                            </select>
+
+                        </th>
                         <th>    </th>
                     </tr>
                     <tr>
                         <th>Weekly</th>
 
-                        <th></th>
+                        <th>
+                            <select id="selecttemplate">
+                                <option value=""> </option>
+                                <option value=""> </option>
+                            </select>
+                        </th>
                         <th>
 
                         </th>
                     </tr>
                     <tr>
                         <th>Monthly</th>
-                        <th></th>
+                        <th>
+                            <select id="selecttemplate">
+                                <option value=""> </option>
+                                <option value=""> </option>
+                            </select>
+                        </th>
                         <th></th>
                     </tr>
 
                 </table>
-        </section>
-        <div class="clear"></div>
+            </div>
+
+
+
+
+        </div>
+
     </div>
-    </div>
-</article>
+</div>

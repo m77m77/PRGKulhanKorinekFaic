@@ -11,6 +11,8 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { LoginComponent } from './components/login/login.component';
 import { MailsettingsComponent } from './components/mailsettings/mailsettings.component';
+import { RegisterComponent } from './components/register/register.component';
+import { DaemonsettingsComponent } from './components/daemonsettings/daemonsettings.component';
 
 @NgModule({
     declarations: [
@@ -19,10 +21,11 @@ import { MailsettingsComponent } from './components/mailsettings/mailsettings.co
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        LoginComponent
+        LoginComponent,
+        MailsettingsComponent,
+        RegisterComponent,
+        DaemonsettingsComponent
    
-      
-        
     ],
     imports: [
         CommonModule,
@@ -36,9 +39,23 @@ import { MailsettingsComponent } from './components/mailsettings/mailsettings.co
                 component: HomeComponent,
                 children: [
                     { path: 'fetch', component: FetchDataComponent }
-            
+                   
                 ]
+            },
+            {
+                path: 'mailsettings',
+                component: MailsettingsComponent
+            },
+            {
+                path: 'register',
+                component: RegisterComponent
+            },
+             {
+                 path: 'daemonsettings',
+                 component: DaemonsettingsComponent
             }
+            
+        
 
         ])
     ]

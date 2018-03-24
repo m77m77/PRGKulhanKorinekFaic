@@ -80,13 +80,7 @@ nav ul li:hover, .aktivni {
     font-size: 23px;
 }
 
-header {
-    height: 60px;
-    position: fixed;
-    top: 0px;
-    background-color: rgb(81, 168, 240);
-    width: 100%;
-}
+
 
 article {
     background: whitesmoke;
@@ -94,14 +88,7 @@ article {
 }
 
 
-article header {
-        width: 250px;
-        float: left;
-        position: static;
-        background: none;
-        font-size: 20px;
-        color: #0a294b;
-    }
+
 
 article section {
         width: 666px;
@@ -113,35 +100,11 @@ article section {
         font-size: 23px;
     }
 
-    article header ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        width: 250px;
-        background-color: whitesmoke;
-    }
-
 
 .clear {
     clear: both;
 }
 
-article header li a {
-    display: block;
-    color: #555;
-    padding: 13px 16px;
-    text-decoration: none;
-}
-
-
-article header li a:hover {
-    background-color: #555;
-    color: whitesmoke;
-}
-nav a {
-    color: whitesmoke;
-    text-decoration: none;
-}
 
 #middle {
     margin: 0px auto;

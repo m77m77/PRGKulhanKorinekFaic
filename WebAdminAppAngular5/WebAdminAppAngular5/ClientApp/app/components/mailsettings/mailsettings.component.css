@@ -1,1 +1,92 @@
-﻿
+﻿@media (max-width: 960px) {
+    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
+    .body-content {
+        padding-top: 50px;
+    }
+
+    
+}
+
+.sectionclass{
+    width: 675px;
+    float: left;
+    background: whitesmoke;
+    border: 2px solid #555;
+    box-shadow: 2px 2px 7px #555;
+    padding: 14px;
+    font-size: 23px;
+    font-family: 'Segoe UI';
+    margin: 7% 15% 10% 30%;
+   
+}
+
+.containeremail {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+    .containeremail input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+
+.checkmarkemail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+
+.containeremail:hover input ~ .checkmarkemail {
+    background-color: #ccc;
+}
+
+
+.containeremail input:checked ~ .checkmarkemail {
+    background-color: rgb(115, 201, 230);
+}
+
+
+.checkmarkemail:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+.containeremail input:checked ~ .checkmarkemail:after {
+    display: block;
+}
+
+
+.containeremail .checkmarkemail:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#selecttemplate {
+    font-size: 25px;
+    padding: 0px 100px 0px 0px;
+    margin: 5px;
+}
