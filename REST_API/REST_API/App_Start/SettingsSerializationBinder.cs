@@ -52,6 +52,8 @@ namespace REST_API
                     return typeof(ListInicializationTokenData);
                 case "Daemon":
                     return typeof(Daemon);
+                case "EmailAdminData":
+                    return typeof(EmailAdminData);
             }
 
             return null;
