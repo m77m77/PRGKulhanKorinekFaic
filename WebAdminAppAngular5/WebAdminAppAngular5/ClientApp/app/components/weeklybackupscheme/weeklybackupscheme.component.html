@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="cs-cz">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="stylmenu.css" type="text/css" />
+    <script src="weeklybackup.js"></script>
+    <title>Menu</title>
+</head>
+
+<body>
+    <header>
+
+        <nav>
+            <ul>
+                <!--<a href="mailsettings.html"><li>Email notification settings</li></a>
+                <a href="daemonsettings.html"><li>Daemon settings</li></a>
+                <a href="register.html" class="rightalign"><li>Register</li></a>-->
+            </ul>
+        </nav>
+    </header>
+
+    <article>
+
+        <button (click)="OpenPanel('Mon')">Mon</button>
+        <button (click)="OpenPanel('Tue')">Tue</button>
+        <button (click)="OpenPanel('Wed')">Wed</button>
+        <button (click)="OpenPanel('Thu')">Thu</button>
+        <button (click)="OpenPanel('Fri')">Fri</button>
+        <button (click)="OpenPanel('Sat')">Sat</button>
+        <button (click)="OpenPanel('Sun')">Sun</button>
+
+        <div class="one" [innerHtml]="htmlToAdd"></div>
+
+    </article>
+
+
+    <footer></footer>
+</body>
+</html>
