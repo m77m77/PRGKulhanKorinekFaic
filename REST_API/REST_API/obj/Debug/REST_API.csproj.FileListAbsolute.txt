@@ -770,3 +770,6 @@ X:\PRG_KulhanKorinekFaic_projekt\REST_API\REST_API\obj\Debug\REST_API.csprojReso
 X:\PRG_KulhanKorinekFaic_projekt\REST_API\REST_API\obj\Debug\REST_API.csproj.CoreCompileInputs.cache
 X:\PRG_KulhanKorinekFaic_projekt\REST_API\REST_API\obj\Debug\REST_API.dll
 X:\PRG_KulhanKorinekFaic_projekt\REST_API\REST_API\obj\Debug\REST_API.pdb
+D:\Projekty\PRG_KulhanKořínkFaic_6\PRGKulhanKorinekFaic\REST_API\REST_API\bin\System.Web.Cors.dll
+D:\Projekty\PRG_KulhanKořínkFaic_6\PRGKulhanKorinekFaic\REST_API\REST_API\bin\System.Web.Http.Cors.dll
+D:\Projekty\PRG_KulhanKořínkFaic_6\PRGKulhanKorinekFaic\REST_API\REST_API\bin\System.Web.Http.Cors.xml

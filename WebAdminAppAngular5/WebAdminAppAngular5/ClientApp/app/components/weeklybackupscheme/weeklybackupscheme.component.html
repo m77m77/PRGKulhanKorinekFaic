@@ -22,13 +22,13 @@
 
     <article>
 
-        <button (click)="OpenPanel('Mon')">Mon</button>
-        <button (click)="OpenPanel('Tue')">Tue</button>
-        <button (click)="OpenPanel('Wed')">Wed</button>
-        <button (click)="OpenPanel('Thu')">Thu</button>
-        <button (click)="OpenPanel('Fri')">Fri</button>
-        <button (click)="OpenPanel('Sat')">Sat</button>
-        <button (click)="OpenPanel('Sun')">Sun</button>
+        <button id="Mon" (click)="OpenPanel('Mon')">Mon</button>
+        <button id="Tue" (click)="OpenPanel('Tue')">Tue</button>
+        <button id="Wed" (click)="OpenPanel('Wed')">Wed</button>
+        <button id="Thu" (click)="OpenPanel('Thu')">Thu</button>
+        <button id="Fri" (click)="OpenPanel('Fri')">Fri</button>
+        <button id="Sat" (click)="OpenPanel('Sat')">Sat</button>
+        <button id="Sun" (click)="OpenPanel('Sun')">Sun</button>
 
         <div class="one" [innerHtml]="htmlToAdd"></div>
 

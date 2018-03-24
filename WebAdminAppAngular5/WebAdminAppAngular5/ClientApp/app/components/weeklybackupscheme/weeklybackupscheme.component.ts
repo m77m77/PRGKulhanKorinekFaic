@@ -13,8 +13,8 @@ export class WeeklybackupScheme {
     public OpenPanel(button: string) {
         this.position = "afterbegin";
         document.activeElement.insertAdjacentHTML(this.position, '<div class="panel panel-default" >'
-                                                               + '<div class="panel-body" ><button (click)="btnAdd()">+</button>'
-                                                               + '<button (click)="btnSubstract()">-</button>< /div>'
+                                                               + '<div class="panel-body" ><button id="idbtnplus" (click)="btnAdd()">+</button>'
+                                                               + '<button id="idbtnminus" (click)="btnSubstract()">-</button>< /div>'
                                                                + '< /div>')
 
     }
@@ -31,4 +31,3 @@ export class WeeklybackupScheme {
 
 }
 }
-    

@@ -42,7 +42,7 @@ namespace AdminApp
                 {
                     
                     Form_NewMenu frm = new Form_NewMenu(gt);
-                    bool dRes = await frm.GetAllSettings(this.label_error);
+                    bool dRes = await frm.GetAllSettings(label_error);
 
                     if (dRes)
                     {
