@@ -13,6 +13,9 @@ import { LoginComponent } from './components/login/login.component';
 import { MailsettingsComponent } from './components/mailsettings/mailsettings.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DaemonsettingsComponent } from './components/daemonsettings/daemonsettings.component';
+import { BackupschemeComponent } from './components/backupscheme/backupscheme.component';
+import { DailybackupschemeComponent } from './components/dailybackupscheme/dailybackupscheme.component';
+
 
 @NgModule({
     declarations: [
@@ -24,7 +27,9 @@ import { DaemonsettingsComponent } from './components/daemonsettings/daemonsetti
         LoginComponent,
         MailsettingsComponent,
         RegisterComponent,
-        DaemonsettingsComponent
+        DaemonsettingsComponent,
+        BackupschemeComponent,
+        DailybackupschemeComponent
    
     ],
     imports: [
@@ -39,7 +44,7 @@ import { DaemonsettingsComponent } from './components/daemonsettings/daemonsetti
                 component: HomeComponent,
                 children: [
                     { path: 'fetch', component: FetchDataComponent }
-                   
+                 
                 ]
             },
             {
@@ -53,9 +58,11 @@ import { DaemonsettingsComponent } from './components/daemonsettings/daemonsetti
              {
                  path: 'daemonsettings',
                  component: DaemonsettingsComponent
-            }
+            },
+             { path: 'backupscheme', component: BackupschemeComponent },
+             { path: 'dailybackupscheme', component: DailybackupschemeComponent }
+
             
-        
 
         ])
     ]
