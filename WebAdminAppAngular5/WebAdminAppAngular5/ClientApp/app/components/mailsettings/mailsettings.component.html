@@ -1,70 +1,56 @@
-﻿<div class='container-fluid'>
-    <div class='row'>
-        <div>
-            <nav-menu></nav-menu>
-        </div>
-        <div>
-            <router-outlet></router-outlet>
-
-            <div class="sectionclass">
-                <label class="containeremail">
-                    <p class="tucne">Send emails</p>
-                    <input onchange="enableMail()" type="checkbox" id="checkboxmail">
+﻿<div class="sectionclass">
+    <label class="containeremail">
+        <p class="tucne">Send emails</p>
+        <input onchange="enableMail()" type="checkbox" id="checkboxmail" checked="{{sendMail}}">
+        <span class="checkmarkemail"></span>
+    </label>
+    <p class="nadpis"> SMTP settings</p>
+    <p> To <input type="text" class="textto" id="idemailTo" placeholder="example@example.com" value="{{mailAddress}}" /></p>
+    <p>
+        Template
+        <select id="selecttemplate">
+            <option *ngFor="let template of templates" value="{{template.Id}}" selected="{{template.Selected}}">{{template.Name}}</option>
+        </select>
+    </p>
+    <table>
+        <tr>
+            <th>Daily</th>
+            <th id="mailDaemonsDaily">
+                <label class="containeremail" *ngFor="let dd of daily">
+                    <p class="tucne">{{dd.Name}}</p>
+                    <input type="checkbox" checked="{{dd.Selected}}" value="{{dd.Id}}" />
                     <span class="checkmarkemail"></span>
                 </label>
-                <p class="nadpis"> SMTP settings</p>
-                <p> To <input type="text" class="textto" id="idemailTo" disabled placeholder="example@xxx.com" /></p>
+            </th>
+            <th>    </th>
+        </tr>
+        <tr>
+            <th>Weekly</th>
 
-                <p>
-                    Template <select id="selecttemplate">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+            <th id="mailDaemonsWeekly">
+                <label class="containeremail" *ngFor="let ww of weekly">
+                    <p class="tucne">{{ww.Name}}</p>
+                    <input type="checkbox" checked="{{ww.Selected}}" value="{{ww.Id}}" />
+                    <span class="checkmarkemail"></span>
+                </label>
+            </th>
+            <th>
 
-                    </select>
-                </p>
-                <table>
-                    <tr>
-                        <th>Daily</th>
-                        <th>
-                            <select id="selecttemplate">
-                                <option value=""> </option>
-                                <option value=""> </option>
-                            </select>
+            </th>
+        </tr>
+        <tr>
+            <th>Monthly</th>
+            <th id="mailDaemonsMonthly">
+                <label class="containeremail" *ngFor="let mm of monthly">
+                    <p class="tucne">{{mm.Name}}</p>
+                    <input type="checkbox" checked="{{mm.Selected}}" value="{{mm.Id}}" />
+                    <span class="checkmarkemail"></span>
+                </label>
+            </th>
+            <th></th>
+        </tr>
 
-                        </th>
-                        <th>    </th>
-                    </tr>
-                    <tr>
-                        <th>Weekly</th>
-
-                        <th>
-                            <select id="selecttemplate">
-                                <option value=""> </option>
-                                <option value=""> </option>
-                            </select>
-                        </th>
-                        <th>
-
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>Monthly</th>
-                        <th>
-                            <select id="selecttemplate">
-                                <option value=""> </option>
-                                <option value=""> </option>
-                            </select>
-                        </th>
-                        <th></th>
-                    </tr>
-
-                </table>
-            </div>
-
-
-
-
-        </div>
-
-    </div>
+    </table>
+     <button (click)="saveMailData(); sendMailData();">SAVE</button>
 </div>
+            

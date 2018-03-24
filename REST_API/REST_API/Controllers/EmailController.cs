@@ -35,7 +35,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT emailSettings FROM emails"; // WHERE @id = id";
+            Query.CommandText = "SELECT adminId,emailSettings FROM emails"; // WHERE @id = id";
 
             //Query.Parameters.AddWithValue("@id", t.AdminID);
 
@@ -52,7 +52,9 @@ namespace REST_API.Controllers
 
                 while (Reader.Read())
                 {
-                    data.ListEmailSettings.Add(JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    EmailSettings es = JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                    es.AdminId = Convert.ToInt32(Reader["adminId"].ToString());
+                    data.ListEmailSettings.Add(es);
                 }
                 Reader.Close();
             }
@@ -73,25 +75,25 @@ namespace REST_API.Controllers
         {
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            Token t = Token.ExistsEmail(token);
+            Token t = Token.Exists(token);
             if (t == null)
             {
                 //token není v databázi  
                 return new Response("ERROR", "TokenNotFound", null, null);
             }
-            //if (!t.IsAdmin)
-            //{
-            //    //token nepatří adminovi  
-            //    return new Response("ERROR", "TokenIsNotMatched", null, null);
-            //}
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
 
             MySqlCommand Query = Connection.CreateCommand();
 
             //Query.CommandText = "INSERT INTO `3b2_kulhanmatous_db2`.`daemons` (`settings`) VALUES (@value);";
-            Query.CommandText = "UPDATE `3b2_kulhanmatous_db2`.`emails` SET `emailSettings` = @value WHERE `emails`.`adminId` = @AdminId;";
-            value.AdminId = t.AdminID;
+            Query.CommandText = "UPDATE emails SET emailSettings = @value WHERE adminId = @AdminId;";
+            value.AdminId = 0;
 
-            Query.Parameters.AddWithValue("@AdminId", value.AdminId);
+            Query.Parameters.AddWithValue("@AdminId", t.AdminID);
 
             Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(value, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
 
@@ -187,8 +189,11 @@ namespace REST_API.Controllers
 
             Query.Parameters.AddWithValue("@adminId", t.AdminID);
 
+            MySqlCommand getTemplatesQuery = new MySqlCommand("SELECT id, name FROM emailTemplates", Connection);
+            MySqlCommand getDaemonsQuery = new MySqlCommand("SELECT id, name FROM daemons", Connection);
+
             Response r = new Response();
-            EmailSettings es = new EmailSettings();
+            EmailAdminData emailAdminData = new EmailAdminData();
             //ListEmailSettingsData data = new ListEmailSettingsData();
             //data.ListEmailSettings = new List<EmailSettings>();
             //r.Data = data;
@@ -198,13 +203,39 @@ namespace REST_API.Controllers
                 Connection.Open();
                 MySqlDataReader Reader = Query.ExecuteReader();
 
-                while (Reader.Read())
+                if (Reader.Read())
                 {
-                    es = JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-                    r.Data = es;
-                    //data.ListEmailSettings.Add(JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    EmailSettings es = JsonConvert.DeserializeObject<EmailSettings>(Reader["emailSettings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                    emailAdminData.Settings = es;
                 }
                 Reader.Close();
+
+                EmailInfo emailInfo = new EmailInfo();
+                emailInfo.Templates = new Dictionary<int, string>();
+                emailInfo.Daemons = new Dictionary<int, string>();
+
+                
+                using (MySqlDataReader readerTemplates = getTemplatesQuery.ExecuteReader())
+                {
+                    while (readerTemplates.Read())
+                    {
+                        emailInfo.Templates.Add(Convert.ToInt32(readerTemplates["id"].ToString()), readerTemplates["name"].ToString());
+                    }
+                }
+
+
+                using (MySqlDataReader readerDaemons = getDaemonsQuery.ExecuteReader())
+                {
+                    while (readerDaemons.Read())
+                    {
+                        emailInfo.Daemons.Add(Convert.ToInt32(readerDaemons["id"].ToString()), readerDaemons["name"].ToString());
+                    }
+                }
+
+                emailAdminData.Info = emailInfo;
+
+                r.Data = emailAdminData;
+                
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
