@@ -5,9 +5,8 @@ using System.Web;
 
 namespace REST_API.CommunicationClasses
 {
-    public class AdminPost : IData
+    public class AdminInfo : IData
     {
-        public string Name { get; set; }
-        public string Password { get; set; }
+        public string Type { get; set; }
     }
 }
