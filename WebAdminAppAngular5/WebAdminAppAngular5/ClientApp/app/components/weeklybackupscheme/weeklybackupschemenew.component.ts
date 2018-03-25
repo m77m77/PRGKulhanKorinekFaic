@@ -27,7 +27,7 @@ export class WeeklybackupschemenewComponent{
         //    + '< /div>')
 
         (<HTMLInputElement>document.getElementById(button)).innerHTML = '<div class="panel panel-default" >'
-                                                                      + '<div class="panel-body" ><button id="idbtnplus" (click)="btnAdd()">+</button>'
+                                                                      + '<div class="panel-body" id="panel" ><button id="idbtnplus" (click)="btnAdd()">+</button>'
                                                                     + '<button id="idbtnminus" (click)="btnSubstract()">-</button></div>'
                                                                     +'<div id="content"></div>'
                                                                     + '</div>';
@@ -51,6 +51,19 @@ export class WeeklybackupschemenewComponent{
             + '</select>';
 
         (<HTMLInputElement>document.getElementById('content')).appendChild(div);
+
+
+        var p = (<HTMLInputElement>document.getElementById('panel'));
+        var newElement = document.createElement('test');
+        newElement.setAttribute('id', 'testid');
+        newElement.innerHTML = '<select>'
+            + '<option value="FULL" > FULL </option>'
+            + '<option value= "INCREMENTA" > INCREMENTAL </option>'
+            + '<option value= "DIFFERENTIAL" > DIFFERENTIAL </option>'
+            + '</select>';
+
+        p.appendChild(newElement);
+        
 }
 
     public btnSubstract() {
