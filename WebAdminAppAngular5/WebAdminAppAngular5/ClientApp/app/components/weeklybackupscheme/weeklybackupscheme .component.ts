@@ -6,7 +6,6 @@
     styleUrls: ['./weeklybackupscheme.component.css']
 
 })
-
 export class WeeklybackupschemeComponent {
     constructor(private position: InsertPosition, private elementRef: ElementRef) { }
     

@@ -27,6 +27,7 @@
     <None Remove="ClientApp\app\components\mailsettings\mailsettings.component.ts" />
     <None Remove="ClientApp\app\components\register\register.component.ts" />
     <None Remove="ClientApp\app\components\weeklybackupscheme\weeklybackupscheme.component.ts" />
+    <None Remove="ClientApp\app\components\weeklybackupscheme\weeklybackupscheme2.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +36,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\mailsettings\mailsettings.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\register\register.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\weeklybackupscheme\weeklybackupscheme2.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

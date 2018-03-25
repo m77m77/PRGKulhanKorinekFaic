@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component} from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
@@ -14,7 +14,7 @@ import 'rxjs/add/operator/toPromise';
 
 export class LoginComponent {
 
-    public constructor(private http: Http, private router: Router, private route: ActivatedRoute ) { 
+    public constructor(private http: Http, private router: Router, private route: ActivatedRoute) { 
         if (typeof window !== 'undefined') {
             if (sessionStorage.getItem('token') != null)
                 this.router.navigate(['../home'], { relativeTo: this.route })
