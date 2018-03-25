@@ -1,12 +1,12 @@
 ﻿<div class="divsec">
                     <nav>
                         <ul class="sectionul">
-                            <li class="sectionulli"><a href="backupsettings.html">One-time</a></li>
-                            <li class="sectionulli"><a href="backupscheme.html">Daily</a></li>
-                            <li class="sectionulli"><a href="backupscheme.html">Weekly</a></li>
+                            <a [routerLink]="['/home/daemon/default/default/scheme']"><li [routerLinkActive]="['link-active']">One-time</li></a>
+                            <a [routerLink]="['/home/daemon/default/default/scheme/daily']"><li [routerLinkActive]="['link-active']">Daily</li></a>
+                            <a [routerLink]="['/home/daemon/default/default/scheme/weeklybackupschemenew']"><li [routerLinkActive]="['link-active']">Weekly</li></a>
                             <li class="sectionulli"><a href="backupscheme.html">Monthly</a></li>
 
                         </ul>
                     </nav>
-                </div>
-                <p class="alignleftp">Execute backup at <input type="datetime-local"></p>
+ </div>
+<p class="alignleftp">Execute backup at <input type="datetime-local"></p>

@@ -18,7 +18,7 @@ import { DailybackupschemeComponent } from './components/dailybackupscheme/daily
 import { WeeklybackupschemenewComponent} from './components/weeklybackupscheme/weeklybackupschemenew.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { BackupSettingsComponent } from './components/backupsettings/backupsettings.component';
-
+import { OnetimebackupschemeComponent } from './components/onetimebackupscheme/onetimebackupscheme.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +35,8 @@ import { BackupSettingsComponent } from './components/backupsettings/backupsetti
         DailybackupschemeComponent,
         WeeklybackupschemenewComponent,
         SettingsComponent,
-        BackupSettingsComponent
+        BackupSettingsComponent,
+        OnetimebackupschemeComponent
    
     ],
     imports: [
@@ -65,7 +66,8 @@ import { BackupSettingsComponent } from './components/backupsettings/backupsetti
                                         component: BackupschemeComponent,
                                         children: [
                                             { path: 'daily', component: DailybackupschemeComponent },
-                                            { path: 'weekly', component: WeeklybackupschemenewComponent }
+                                            { path: 'weekly', component: WeeklybackupschemenewComponent },
+                                            { path: 'onetimebackupscheme', component: OnetimebackupschemeComponent }
                                         ]
                                     },
                                     { path: 'settings', component: BackupSettingsComponent },
