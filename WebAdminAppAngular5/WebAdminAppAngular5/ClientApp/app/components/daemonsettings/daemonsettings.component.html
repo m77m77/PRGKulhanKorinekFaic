@@ -1,126 +1,29 @@
 ﻿
-        <div class="arc">
-            <div class="dname">
-                <p class="pname">Name <input type="text" class="textto"></p>
-            </div>
-            <div class="archeader">
+<div class="arc">
+    <div class="dname">
+        <p class="pname">Name <input type="text" class="textto"></p>
+    </div>
+    <div class="archeader">
 
-                <ul class="archeaderul">
-                    <li class="archeaderulli">
-                        <div class="dropdown">
-                            <a class="kkt" href="#" id="firstdaemon">Default</a>
-                            <div class="dropdown-content">
-                                <a href="#">Settings1</a>
-                                <a href="#">Settings2</a>
-                            </div>
-                        </div>
-
-                    </li>
-                    <li class="archeaderulli">
-                        <div class="dropdown">
-                            <a class="kkt" href="#">Main</a>
-                            <div class="dropdown-content">
-                                <a href="#">Settings1</a>
-                                <a href="#">Settings2</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-
-            </div>
-            <div class="sc">
-
-                <div class="divsec">
-                    <nav>
-                        <ul class="sectionul">
-                            <li class="sectionulli" [routerLinkActive]="['link-active']"><a [routerLink]="['/deamonsettings']">Backup settings</a></li>
-                            <li class="sectionulli" [routerLinkActive]="['link-active']"><a [routerLink]="['/backupscheme']">Backup scheme</a></li>
-                            <a [routerLink]="['/home/daemon/weeklybackupscheme']"><li [routerLinkActive]="['link-active']">Weekly</li></a>
-
-                        </ul>
-                    </nav>
+        <ul class="archeaderul">
+            <li class="archeaderulli">
+                <div class="dropdown">
+                    <a class="kkt" id="firstdaemon" [routerLink]="['/home/daemon/default/default']" [routerLinkActive]="['link-active']">Default</a>
                 </div>
-                <router-outlet></router-outlet>
-                <p class="tucne"> Select what will you backup </p>
-                <input type="text" class="pathtextselect" placeholder="C:\DATA">
 
-                <p class="tucne">Destination</p>
-                <table>
-                    <tr>
-                        <th>
-                            <label class="container">
-                                Local/network drives
-                                <input type="radio" id="radioLND" name="radio" onclick="enableLND()">
-                                <span class="checkmark"></span>
-                            </label>
-                        </th>
-                        <th>
-                            <label class="container">
-                                FTP
-                                <input type="radio" id="radioFTP" onclick="enableFTP()" name="radio">
-                                <span class="checkmark"></span>
-                            </label>
-                        </th>
-                        <th>
-                            <label class="container">
-                                SFTP
-                                <input type="radio" id="radioSFTP" onclick="enableSFTP()" name="radio">
-                                <span class="checkmark"></span>
-                            </label>
-                        </th>
+            </li>
+            <li class="archeaderulli">
+                <div class="dropdown">
+                    <a class="kkt" [routerLink]="['/home/daemon/0']" [routerLinkActive]="['link-active']">Main</a>
+                    <div class="dropdown-content">
+                        <a [routerLink]="['/home/daemon/0/0']" [routerLinkActive]="['link-active']">Settings1</a>
+                        <a [routerLink]="['/home/daemon/0/1']" [routerLinkActive]="['link-active']">Settings2</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
 
-                    </tr>
+    </div>
 
-                    <tr>
-                        <td><input type="text" id="LNDpath" class="pathtextdestination" placeholder="D:\Backup"></td>
-                        <td><input type="text" id="FTPserver" class="pathtext" placeholder="Server adress"></td>
-                        <td><input type="text" id="SFTPserver" class="pathtext" placeholder="Server adress"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="text" id="FTPport" class="pathtext" placeholder="Port"></td>
-                        <td><input type="text" id="SFTPport" class="pathtext" placeholder="Port"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="text" id="FTPusername" class="pathtext" placeholder="Username"></td>
-                        <td><input type="text" id="SFTPusername" class="pathtext" placeholder="Username"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="Password" id="FTPpassword" class="pathtext" placeholder="Password"></td>
-                        <td><input type="Password" id="SFTPpassword" class="pathtext" placeholder="Password"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="text" id="FTPpath" class="pathtext" placeholder="Path"></td>
-                        <td><input type="text" id="SFTPpath" class="pathtext" placeholder="Path"></td>
-                    </tr>
-
-                </table>
-
-                <table>
-                    <tr>
-                        <th class="tablethalign"> After backup </th>
-                        <th class="tablethalign"> Format </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <select class="selectafterbackup">
-                                <option value="Nothing">Nothing</option>
-                                <option value="Restart">Restart</option>
-                                <option value="Turnoff">Turn off</option>
-                                <option value="Sleepmode">Sleep mode</option>
-                            </select>
-                        </th>
-                        <th>
-                            <select class="selectafterbackup">
-                                <option value="Archivezip">Archive .zip</option>
-                                <option value="Withoutcomprimation">Without comprimation</option>
-                            </select>
-                        </th>
-                    </tr>
-                </table>
-            </div>
-
-        </div>
+    <router-outlet></router-outlet>
+</div>

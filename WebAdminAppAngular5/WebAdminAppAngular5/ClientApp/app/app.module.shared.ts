@@ -15,8 +15,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { DaemonsettingsComponent } from './components/daemonsettings/daemonsettings.component';
 import { BackupschemeComponent } from './components/backupscheme/backupscheme.component';
 import { DailybackupschemeComponent } from './components/dailybackupscheme/dailybackupscheme.component';
-import {WeeklybackupschemenewComponent} from './components/weeklybackupscheme/weeklybackupschemenew.component';
-
+import { WeeklybackupschemenewComponent} from './components/weeklybackupscheme/weeklybackupschemenew.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { BackupSettingsComponent } from './components/backupsettings/backupsettings.component';
 
 
 @NgModule({
@@ -32,7 +33,9 @@ import {WeeklybackupschemenewComponent} from './components/weeklybackupscheme/we
         DaemonsettingsComponent,
         BackupschemeComponent,
         DailybackupschemeComponent,
-        WeeklybackupschemenewComponent
+        WeeklybackupschemenewComponent,
+        SettingsComponent,
+        BackupSettingsComponent
    
     ],
     imports: [
@@ -48,13 +51,29 @@ import {WeeklybackupschemenewComponent} from './components/weeklybackupscheme/we
                 children: [
                     { path: 'fetch', component: FetchDataComponent },
                     { path: 'mail', component: MailsettingsComponent },
+                    { path: 'daemon', redirectTo: 'daemon/default/default', pathMatch: 'full' },
                     {
-                        path: 'daemon',
+                        path: 'daemon/:id',
                         component: DaemonsettingsComponent,
                         children: [
-                            { path: 'scheme', component: BackupschemeComponent },
-                            { path: 'dailybackupscheme', component: DailybackupschemeComponent },
-                            { path: 'weeklybackupscheme', component: WeeklybackupschemenewComponent }
+                            {
+                                path: ':settingsID',
+                                component: SettingsComponent,
+                                children: [
+                                    {
+                                        path: 'scheme',
+                                        component: BackupschemeComponent,
+                                        children: [
+                                            { path: 'daily', component: DailybackupschemeComponent },
+                                            { path: 'weekly', component: WeeklybackupschemenewComponent }
+                                        ]
+                                    },
+                                    { path: 'settings', component: BackupSettingsComponent },
+                                    { path: '**', redirectTo: 'settings', pathMatch: 'full' },
+                                ]
+                            },
+                            
+                            
                         ]
                     },
                     { path: 'register', component: RegisterComponent}

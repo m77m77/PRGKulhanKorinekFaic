@@ -1,11 +1,4 @@
-﻿.arc {
-    margin: 7% 15% 10% 30%;
-    border: none;
-    background-color: white;
-    width: 930px;
-}
-
-.tucne {
+﻿.tucne {
     font-size: 25px;
     font-weight: bold;
     margin: 10px;
@@ -24,8 +17,6 @@ nav ul {
 
 
     nav ul li {
-      
-        
         float: left;
         padding: 0px 35px 0px 35px;
         margin: 0 5px;
@@ -48,7 +39,6 @@ div .dropdown > a {
     color: #555;
     padding: 13px 16px;
     text-decoration: none;
-    
     list-style-type: none;
 }
 
@@ -57,22 +47,20 @@ nav a {
     text-decoration: none;
 }
 
-.dname
-{
+.dname {
     margin: 0% 0% 0% 27%;
 }
+
 .textto {
     height: 27px;
     width: 600px;
     font-size: 23px;
     border: 0px;
     background-color: whitesmoke;
- 
 }
 
 .pname {
     font-size: 23px;
-  
 }
 
 .kkt {
@@ -109,10 +97,10 @@ div .archeader li a {
 }
 
 
-div .archeader li a:hover {
-    background-color: #555;
-    color: whitesmoke;
-}
+    div .archeader li a:hover {
+        background-color: #555;
+        color: whitesmoke;
+    }
 
 .dropdown {
     position: relative;
@@ -134,4 +122,111 @@ div .archeader li a:hover {
     background-color: whitesmoke;
 }
 
+.sc {
+    width: 675px;
+    float: left;
+    background: whitesmoke;
+    border: 2px solid #555;
+    box-shadow: 2px 2px 7px #555;
+    padding: 0px;
+    font-size: 23px;
+    font-family: 'Segoe UI';
+}
+
+
+
+.pathtext {
+    width: 150px;
+    height: 30px;
+    font-size: 23px;
+    margin: 5px;
+    border: 0px;
+}
+
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 10px
+}
+
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+
+.container input:checked ~ .checkmark {
+    background-color: rgb(81, 168, 240);
+}
+
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+
+
+.container .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+
+.selectafterbackup {
+    font-size: 25px;
+    margin: 10px;
+    border: 0px;
+}
+
+.pathtextselect {
+    width: 640px;
+    height: 30px;
+    font-size: 23px;
+    margin: 10px;
+    border: 0px;
+}
+
+.pathtextdestination {
+    width: 280px;
+    height: 30px;
+    font-size: 23px;
+    margin: 10px;
+    border: 0px;
+}
 

@@ -5,17 +5,16 @@ import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-    selector: 'daemonsettings',
-    templateUrl: './daemonsettings.component.html',
-    styleUrls: ['./daemonsettings.component.css']
+    selector: 'settings',
+    templateUrl: './settings.component.html',
+    styleUrls: ['./settings.component.css']
 
 
 })
-export class DaemonsettingsComponent {
+export class SettingsComponent {
     id: string;
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
-        this.route.params.subscribe(params => this.id = params.id);
+        this.route.params.subscribe(params => this.id = params.settingsID);
     }
-
 }
