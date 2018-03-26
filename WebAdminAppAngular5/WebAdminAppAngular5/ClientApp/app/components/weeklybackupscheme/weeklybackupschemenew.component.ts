@@ -1,4 +1,4 @@
-﻿import { Component, ElementRef } from '@angular/core';
+﻿import { Component, ElementRef,Renderer2 } from '@angular/core';
 
 @Component({
     selector: 'weeklybackupschemenew',
@@ -9,6 +9,7 @@
 export class WeeklybackupschemenewComponent{
     private position: InsertPosition;
     private elementRef: ElementRef;
+    private renderer: Renderer2
 
     constructor() {
         this.position = 'afterbegin';
@@ -27,11 +28,12 @@ export class WeeklybackupschemenewComponent{
         //    + '< /div>')
 
         (<HTMLInputElement>document.getElementById(button)).innerHTML = '<div class="panel panel-default" >'
-                                                                      + '<div class="panel-body" ><button id="idbtnplus" (click)="btnAdd()">+</button>'
+                                                                      + '<div class="panel-body" id="panel" ><button id="idbtnplus" (click)="btnAdd()">+</button>'
                                                                     + '<button id="idbtnminus" (click)="btnSubstract()">-</button></div>'
                                                                     +'<div id="content"></div>'
                                                                     + '</div>';
 
+        
     }
 
     public btnAdd() {
@@ -50,7 +52,20 @@ export class WeeklybackupschemenewComponent{
             + '<option value= "DIFFERENTIAL" > DIFFERENTIAL </option>'
             + '</select>';
 
-        (<HTMLInputElement>document.getElementById('content')).appendChild(div);
+        (<HTMLInputElement>document.getElementById('panel')).appendChild(div);
+
+
+        var p = (<HTMLInputElement>document.getElementById('content'));
+        var newElement = document.createElement('test');
+        newElement.setAttribute('id', 'testid');
+        newElement.innerHTML = '<select>'
+            + '<option value="FULL" > FULL </option>'
+            + '<option value= "INCREMENTA" > INCREMENTAL </option>'
+            + '<option value= "DIFFERENTIAL" > DIFFERENTIAL </option>'
+            + '</select>';
+
+        p.appendChild(newElement);
+        
 }
 
     public btnSubstract() {
