@@ -62,19 +62,19 @@
         <th class="tablethalign"> Format </th>
     </tr>
     <tr>
-        <th>
+        <td>
             <select class="selectafterbackup" id="afterBackup" (change)="saveSettings()">
                 <option value="NOTHING" selected="{{nothingSelected}}">Nothing</option>
                 <option value="RESTART" selected="{{restartSelected}}">Restart</option>
                 <option value="TURN OFF" selected="{{turnoffSelected}}">Turn off</option>
                 <option value="SLEEP" selected="{{sleepSelected}}">Sleep mode</option>
             </select>
-        </th>
-        <th>
+        </td>
+        <td>
             <select class="selectafterbackup" id="saveFormat" (change)="saveSettings()">
                 <option value="ZIP" selected="{{zipSelected}}">Archive .zip</option>
                 <option value="PLAIN" selected="{{plainSelected}}">Without comprimation</option>
             </select>
-        </th>
+        </td>
     </tr>
 </table>

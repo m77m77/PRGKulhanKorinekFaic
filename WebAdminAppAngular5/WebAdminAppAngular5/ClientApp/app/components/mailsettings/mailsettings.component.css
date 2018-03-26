@@ -10,6 +10,7 @@
     border: none;
     background-color: white;
     width: 930px;
+    font-family: 'Segoe UI';
 }
 
 .sectionclass {
@@ -25,6 +26,11 @@
     padding: 15px;
 }
 
+h1
+{ 
+    font-family: 'Segoe UI';
+
+}
 .containeremail {
     display: block;
     position: relative;

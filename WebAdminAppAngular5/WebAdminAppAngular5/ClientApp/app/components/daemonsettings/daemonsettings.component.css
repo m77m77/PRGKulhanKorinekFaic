@@ -134,4 +134,19 @@ div .archeader li a:hover {
     background-color: whitesmoke;
 }
 
+#btnSave {
+    width: 100px;
+    height: 60px;
+    margin: 30px;
+    font-size: 20px;
+    color: whitesmoke;
+    background-color: rgb(81, 168, 240);
+    font-weight: bold;
+    border: none;
+}
+
+#btnSave:hover {
+    background: #555;
+}
+
 
