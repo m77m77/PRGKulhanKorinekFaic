@@ -35,10 +35,19 @@ export class MailsettingsComponent {
                             //this.router.navigate(['../home'], { relativeTo: this.route })
                         } else {
                             sessionStorage.removeItem('token');
-                            this.router.navigate(['/login'], { })
+                            sessionStorage.removeItem('daemonsData');
+                            sessionStorage.removeItem('daemonsUnsave');
+                            sessionStorage.removeItem('mailData');
+                            this.router.navigate(['/login'], {});
                         }
                     })
-                    .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}); })
+                    .catch((msg: any) => {
+                        sessionStorage.removeItem('token');
+                        sessionStorage.removeItem('daemonsData');
+                        sessionStorage.removeItem('daemonsUnsave');
+                        sessionStorage.removeItem('mailData');
+                        this.router.navigate(['/login'], {});
+                    })
             }
 
             this.loadMailData();
@@ -140,10 +149,19 @@ export class MailsettingsComponent {
                         //this.router.navigate(['../home'], { relativeTo: this.route })
                     } else {
                         sessionStorage.removeItem('token');
-                        this.router.navigate(['/login'], { })
+                        sessionStorage.removeItem('daemonsData');
+                        sessionStorage.removeItem('daemonsUnsave');
+                        sessionStorage.removeItem('mailData');
+                        this.router.navigate(['/login'], {});
                     }
                 })
-                .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}) })
+                .catch((msg: any) => {
+                    sessionStorage.removeItem('token');
+                    sessionStorage.removeItem('daemonsData');
+                    sessionStorage.removeItem('daemonsUnsave');
+                    sessionStorage.removeItem('mailData');
+                    this.router.navigate(['/login'], {});
+                })
         }
     }
 }
