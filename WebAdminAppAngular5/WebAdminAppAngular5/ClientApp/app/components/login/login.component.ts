@@ -17,7 +17,7 @@ export class LoginComponent {
     public constructor(private http: Http, private router: Router, private route: ActivatedRoute) { 
         if (typeof window !== 'undefined') {
             if (sessionStorage.getItem('token') != null)
-                this.router.navigate(['../home'], { relativeTo: this.route })
+                this.router.navigate(['../home/mail'], { relativeTo: this.route })
         }
     }
 
@@ -37,7 +37,7 @@ export class LoginComponent {
                         sessionStorage.setItem('token', user.NewToken); // sessionStorage > localStorage => nemusíme dělat expiraci ručně
                     }
 
-                    this.router.navigate(['../home'], { relativeTo: this.route })
+                    this.router.navigate(['../home/mail'], { relativeTo: this.route })
                 } else {
                     console.log('Error: ' + user.Error)
                 }

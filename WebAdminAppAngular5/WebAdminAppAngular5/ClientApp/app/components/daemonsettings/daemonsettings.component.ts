@@ -147,10 +147,19 @@ export class DaemonsettingsComponent {
 
                             } else {
                                 sessionStorage.removeItem('token');
-                                this.router.navigate(['/login'], {})
+                                sessionStorage.removeItem('daemonsData');
+                                sessionStorage.removeItem('daemonsUnsave');
+                                sessionStorage.removeItem('mailData');
+                                this.router.navigate(['/login'], {});
                             }
                         })
-                        .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}); })
+                        .catch((msg: any) => {
+                            sessionStorage.removeItem('token');
+                            sessionStorage.removeItem('daemonsData');
+                            sessionStorage.removeItem('daemonsUnsave');
+                            sessionStorage.removeItem('mailData');
+                            this.router.navigate(['/login'], {});
+                        })
                 } else {
                     var daemon = listDaemons[daemonID];
 

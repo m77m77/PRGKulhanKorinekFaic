@@ -163,13 +163,6 @@ export class DailybackupschemeComponent {
 
         var newBackup = this.renderer.createElement('div');
         newBackup.className = 'dailyOneBackup';
-        //newBackup.innerHTML =
-        //    '<input type="time" class="time" value="00:00" required> <br />' +
-        //    '<select class="backupType">' +
-        //    '<option value="FULL" > Full </option>' +
-        //    '<option value= "DIFF"> Differential </option>' +
-        //    '<option value= "INC"> Incremental </option>' +
-        //    '</select> <br / >';
 
         var br1 = this.renderer.createElement('br');
         var br2 = this.renderer.createElement('br');
@@ -206,6 +199,7 @@ export class DailybackupschemeComponent {
         this.renderer.appendChild(backups, newBackup);
 
         this.validate();
+        this.saveDaily();
     }
 
     deleteBackup(event : any) {
@@ -216,5 +210,6 @@ export class DailybackupschemeComponent {
         this.renderer.removeChild(backups, target.parentNode);
 
         this.validate();
+        this.saveDaily();
     }
 }

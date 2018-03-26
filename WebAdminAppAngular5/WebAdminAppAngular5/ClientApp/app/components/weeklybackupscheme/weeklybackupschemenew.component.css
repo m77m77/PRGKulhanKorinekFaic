@@ -1,4 +1,32 @@
-﻿body{
+﻿.weeklyOneDayPanel {
+    position:absolute;
 }
-
-
+.weeklyOneBackup input{
+    width: 100px;
+    margin: 0;
+}
+.weeklyOneBackup select {
+    width: 150px;
+    margin: 0;
+}
+.weeklyOneBackup button {
+    width: 40px;
+    margin: 0;
+}
+.weeklyOneDayButton {
+    width:80px;
+    height:80px;
+}
+.weeklyOneDayPanel {
+    background-color:white;
+}
+.weeklyOneDay {
+    float:left;
+    margin: 5px;
+}
+.weeklyOneDayButton.active {
+    background-color: dodgerblue;
+}
+.weeklyAddButton {
+    width: 290px;
+}
