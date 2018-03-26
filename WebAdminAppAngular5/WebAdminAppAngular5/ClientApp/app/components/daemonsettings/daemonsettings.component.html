@@ -1,29 +1,30 @@
 ﻿
 <div class="arc">
     <div class="dname">
-        <p class="pname">Name <input type="text" class="textto"></p>
+        <p class="pname" id="dName">Name <input type="text" class="textto" id="daemonName" value="{{name}}" (input)="saveDaemon()"></p>
     </div>
     <div class="archeader">
 
         <ul class="archeaderul">
             <li class="archeaderulli">
                 <div class="dropdown">
-                    <a class="kkt" id="firstdaemon" [routerLink]="['/home/daemon/default/default']" [routerLinkActive]="['link-active']">Default</a>
+                    <a class="kkt" id="firstdaemon" [routerLink]="['../default/default']" [routerLinkActive]="['link-active']">Default</a>
                 </div>
 
             </li>
-            <li class="archeaderulli">
+            <li class="archeaderulli" *ngFor="let dd of daemons">
                 <div class="dropdown">
-                    <a class="kkt" [routerLink]="['/home/daemon/0']" [routerLinkActive]="['link-active']">Main</a>
+                    <a class="kkt" [routerLink]="dd.Route" [routerLinkActive]="['link-active']">{{dd.Name}}</a>
                     <div class="dropdown-content">
-                        <a [routerLink]="['/home/daemon/0/0']" [routerLinkActive]="['link-active']">Settings1</a>
-                        <a [routerLink]="['/home/daemon/0/1']" [routerLinkActive]="['link-active']">Settings2</a>
+                        <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of dd.Settings">Settings {{s.I}}</a>
                     </div>
                 </div>
             </li>
         </ul>
 
     </div>
-
     <router-outlet></router-outlet>
+    <div class="dname">
+        <button (click)="sendDaemon()">Save</button>
+    </div>
 </div>
