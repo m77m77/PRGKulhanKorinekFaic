@@ -1,10 +1,19 @@
 ﻿
 <div class="buttonscope">
     <div id="dailyScheme">
+        <div class="dailyOneBackup" *ngFor="let b of backups">
+            <input type="time" class="time" (change)="validate(); saveDaily();" value="{{b.Time}}" required> <br />
+            <select class="backupType" (change)="validate(); saveDaily();">
+                <option value="FULL" selected="{{b.FullSelected}}"> Full </option>
+                <option value="DIFF" selected="{{b.DiffSelected}}"> Differential </option>
+                <option value="INC" selected="{{b.IncSelected}}"> Incremental </option>
+            </select> <br />
+            <button class="btnRemove" (click)="deleteBackup($event)">-</button>
+        </div>
     </div>
     <div class="dailyOneBackup">
         <button class="btnAdd" (click)="addBackup()">+</button>
     </div>
-    <p id="keepingbackups"> Keep <input id="idnumberbackups" type="number" min="0"> backups</p>
+    <p id="keepingbackups"> Keep <input id="idnumberbackups" (change)="saveDaily()" type="number" min="0" value="{{keepBackups}}"> backups</p>
 </div>
 

@@ -13,6 +13,6 @@ import 'rxjs/add/operator/toPromise';
 })
 export class SettingsComponent {
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
-        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { sessionStorage.setItem('settingsID', params.settingsID); console.log("DAEMONID: " + sessionStorage.getItem('daemonID') + " SETTINGSID:" + sessionStorage.getItem('settingsID')) }});
+        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { sessionStorage.setItem('settingsID', params.settingsID); }});
     }
 }

@@ -28,7 +28,6 @@ export class DaemonsettingsComponent {
                 this.http.get('http://localhost:63058/api/admin/' + sessionStorage.getItem('token'), { headers: headers }).toPromise()
                     .then((response: Response) => {
                         let mailSettings = response.json();
-                        console.log(mailSettings.Data);
                         if (mailSettings && "OK" == mailSettings.Status) {
                             sessionStorage.setItem('daemonsData', JSON.stringify(mailSettings.Data));
                             sessionStorage.setItem('daemonsUnsave', JSON.stringify([]));
@@ -36,10 +35,19 @@ export class DaemonsettingsComponent {
                             //this.router.navigate(['../home'], { relativeTo: this.route })
                         } else {
                             sessionStorage.removeItem('token');
-                            this.router.navigate(['/login'], {})
+                            sessionStorage.removeItem('daemonsData');
+                            sessionStorage.removeItem('daemonsUnsave');
+                            sessionStorage.removeItem('mailData');
+                            this.router.navigate(['/login'], {});
                         }
                     })
-                    .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}); })
+                    .catch((msg: any) => {
+                        sessionStorage.removeItem('token');
+                        sessionStorage.removeItem('daemonsData');
+                        sessionStorage.removeItem('daemonsUnsave');
+                        sessionStorage.removeItem('mailData');
+                        this.router.navigate(['/login'], {});
+                    })
             }
 
             //this.loadMailData();
@@ -135,7 +143,6 @@ export class DaemonsettingsComponent {
                     this.http.post('http://localhost:63058/api/admin/system/' + sessionStorage.getItem('token'), { Name: 'defaultDaemonSettings', Value: JSON.stringify(data.DefaultSettings) }, { headers: headers }).toPromise()
                         .then((response: Response) => {
                             let mailSettings = response.json();
-                            console.log(mailSettings.Data);
                             if (mailSettings && "OK" == mailSettings.Status) {
 
                             } else {
@@ -150,15 +157,23 @@ export class DaemonsettingsComponent {
                     this.http.post('http://localhost:63058/api/admin/' + sessionStorage.getItem('token'),JSON.stringify(daemon), { headers: headers }).toPromise()
                         .then((response: Response) => {
                             let mailSettings = response.json();
-                            console.log(mailSettings.Data);
                             if (mailSettings && "OK" == mailSettings.Status) {
 
                             } else {
                                 sessionStorage.removeItem('token');
-                                this.router.navigate(['/login'], {})
+                                sessionStorage.removeItem('daemonsData');
+                                sessionStorage.removeItem('daemonsUnsave');
+                                sessionStorage.removeItem('mailData');
+                                this.router.navigate(['/login'], {});
                             }
                         })
-                        .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}); })
+                        .catch((msg: any) => {
+                            sessionStorage.removeItem('token');
+                            sessionStorage.removeItem('daemonsData');
+                            sessionStorage.removeItem('daemonsUnsave');
+                            sessionStorage.removeItem('mailData');
+                            this.router.navigate(['/login'], {});
+                        })
                 }
             } catch (e) {
 
