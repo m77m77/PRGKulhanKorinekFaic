@@ -8,13 +8,13 @@
         <ul class="archeaderul">
             <li class="archeaderulli">
                 <div class="dropdown">
-                    <a class="kkt" id="firstdaemon" [routerLink]="['../default/default']" [routerLinkActive]="['link-active']">Default</a>
+                    <a class="kkt" id="firstdaemon" [routerLink]="['../default/default']" [routerLinkActive]="['link-active']">Default {{defaultChanged}}</a>
                 </div>
 
             </li>
             <li class="archeaderulli" *ngFor="let dd of daemons">
                 <div class="dropdown">
-                    <a class="kkt" [routerLink]="dd.Route" [routerLinkActive]="['link-active']">{{dd.Name}}</a>
+                    <a class="kkt" [routerLink]="dd.Route" [routerLinkActive]="['link-active']">{{dd.Name}} {{dd.Changed}}</a>
                     <div class="dropdown-content">
                         <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of dd.Settings">Settings {{s.I}}</a>
                     </div>

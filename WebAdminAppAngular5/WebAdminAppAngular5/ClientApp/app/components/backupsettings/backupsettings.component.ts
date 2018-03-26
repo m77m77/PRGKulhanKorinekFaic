@@ -152,10 +152,12 @@ export class BackupSettingsComponent {
 
     saveSettings() {
         var daemonsData = sessionStorage.getItem('daemonsData');
+        var unsaved = sessionStorage.getItem('daemonsUnsave');
         var daemonID = sessionStorage.getItem('daemonID');
-        var settingsID = sessionStorage.getItem('settingsID')
-        if (daemonsData != null && daemonID != null && settingsID != null) {
+        var settingsID = sessionStorage.getItem('settingsID');
+        if (daemonsData != null && daemonID != null && settingsID != null && unsaved != null) {
             var data = JSON.parse(daemonsData);
+            var unSavedData = JSON.parse(unsaved);
             var listDaemons = data.ListDaemons;
 
             try {
@@ -164,6 +166,10 @@ export class BackupSettingsComponent {
                     settings = data.DefaultSettings;
                 } else {
                     settings = listDaemons[daemonID].Settings[settingsID];
+                }
+
+                if (unSavedData.indexOf(daemonID) <= -1) {
+                    unSavedData.push(daemonID);
                 }
 
                 settings.BackupSourcePath = (<HTMLInputElement>document.getElementById('sourcePath')).value;
@@ -205,10 +211,7 @@ export class BackupSettingsComponent {
             }
 
             sessionStorage.setItem('daemonsData', JSON.stringify(data));
+            sessionStorage.setItem('daemonsUnsave', JSON.stringify(unSavedData));
         }
-
-        var se = sessionStorage.getItem('daemonsData');
-        if(se != null)
-            console.log(JSON.parse(se));
     }
 }

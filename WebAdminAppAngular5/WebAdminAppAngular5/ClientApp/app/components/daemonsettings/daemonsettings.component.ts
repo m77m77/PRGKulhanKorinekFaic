@@ -14,6 +14,7 @@ import 'rxjs/add/operator/toPromise';
 export class DaemonsettingsComponent {
     name: string;
     daemons: any;
+    defaultChanged: string;
 
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
@@ -30,6 +31,7 @@ export class DaemonsettingsComponent {
                         console.log(mailSettings.Data);
                         if (mailSettings && "OK" == mailSettings.Status) {
                             sessionStorage.setItem('daemonsData', JSON.stringify(mailSettings.Data));
+                            sessionStorage.setItem('daemonsUnsave', JSON.stringify([]));
                             this.loadDaemon();
                             //this.router.navigate(['../home'], { relativeTo: this.route })
                         } else {
@@ -47,9 +49,11 @@ export class DaemonsettingsComponent {
 
     loadDaemon() {
         var daemonsData = sessionStorage.getItem('daemonsData');
-        var daemonID = sessionStorage.getItem('daemonID')
-        if (daemonsData != null && daemonID != null) {
+        var unsaved = sessionStorage.getItem('daemonsUnsave');
+        var daemonID = sessionStorage.getItem('daemonID');
+        if (daemonsData != null && daemonID != null &&unsaved != null) {
             var data = JSON.parse(daemonsData);
+            var unSavedData = JSON.parse(unsaved);
             var listDaemons = data.ListDaemons;
 
             try {
@@ -62,6 +66,13 @@ export class DaemonsettingsComponent {
             } catch (e) {
 
             }
+
+            if (unSavedData.indexOf('default') > -1) {
+                this.defaultChanged = '*';
+            } else {
+                this.defaultChanged = '';
+            }
+
             this.daemons = [];
             for (var i = 0; i < listDaemons.length; i++) {
                 var daemon = listDaemons[i];
@@ -71,7 +82,7 @@ export class DaemonsettingsComponent {
                     settings.push({I: k, Route: '../' + i + '/' + k});
                 }
 
-                this.daemons.push({ Route: '../' + i, Name: daemon.DaemonName,Settings: settings});
+                this.daemons.push({ Route: '../' + i, Name: daemon.DaemonName, Settings: settings, Changed: unSavedData.indexOf(''+i) > -1 ? '*' : ''});
             }
 
         }
@@ -79,13 +90,16 @@ export class DaemonsettingsComponent {
 
     saveDaemon() {
         var daemonsData = sessionStorage.getItem('daemonsData');
-        var daemonID = sessionStorage.getItem('daemonID')
-        if (daemonsData != null && daemonID != null) {
+        var unsaved = sessionStorage.getItem('daemonsUnsave');
+        var daemonID = sessionStorage.getItem('daemonID');
+        if (daemonsData != null && daemonID != null && unsaved != null) {
             var data = JSON.parse(daemonsData);
+            var unSavedData = JSON.parse(unsaved);
             var listDaemons = data.ListDaemons;
 
             try {
                 if (daemonID == "default") {
+                    
                 } else {
                     listDaemons[daemonID].DaemonName = (<HTMLInputElement>document.getElementById("daemonName")).value;
                 }
@@ -93,7 +107,12 @@ export class DaemonsettingsComponent {
 
             }
 
+            if (unSavedData.indexOf(daemonID) <= -1) {
+                unSavedData.push(daemonID);
+            }
+
             sessionStorage.setItem('daemonsData', JSON.stringify(data));
+            sessionStorage.setItem('daemonsUnsave', JSON.stringify(unSavedData));
 
             this.loadDaemon();
         }
@@ -101,9 +120,11 @@ export class DaemonsettingsComponent {
 
     sendDaemon() {
         var daemonsData = sessionStorage.getItem('daemonsData');
-        var daemonID = sessionStorage.getItem('daemonID')
-        if (daemonsData != null && daemonID != null) {
+        var unsaved = sessionStorage.getItem('daemonsUnsave');
+        var daemonID = sessionStorage.getItem('daemonID');
+        if (daemonsData != null && daemonID != null && unsaved != null) {
             var data = JSON.parse(daemonsData);
+            var unSavedData = JSON.parse(unsaved);
             var listDaemons = data.ListDaemons;
 
             try {
@@ -142,6 +163,14 @@ export class DaemonsettingsComponent {
             } catch (e) {
 
             }
+
+            if (unSavedData.indexOf(daemonID) > -1) {
+                unSavedData.splice(unSavedData.indexOf(daemonID),1);
+            }
+
+            sessionStorage.setItem('daemonsUnsave', JSON.stringify(unSavedData));
+
+            this.loadDaemon();
         }
     }
 
