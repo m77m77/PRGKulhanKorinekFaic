@@ -65,7 +65,7 @@ import { OnetimebackupschemeComponent } from './components/onetimebackupscheme/o
                                         children: [
                                             { path: 'daily', component: DailybackupschemeComponent },
                                             { path: 'weekly', component: WeeklybackupschemenewComponent },
-                                            { path: 'onetimebackupscheme', component: OnetimebackupschemeComponent }
+                                            { path: 'onetime', component: OnetimebackupschemeComponent }
                                         ]
                                     },
                                     { path: 'settings', component: BackupSettingsComponent },
