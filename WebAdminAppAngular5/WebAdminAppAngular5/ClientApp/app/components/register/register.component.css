@@ -10,7 +10,7 @@
 }
 
 article {
-    width: 400px;
+    width: 29%;
     background-color: whitesmoke;
     margin: 320px 0px 0px 695px;
     box-shadow: 2px 2px 6px 2px #1c2228;
@@ -22,7 +22,7 @@ article {
 .textinputformat {
     font-size: 25px;
     height: 40px;
-    width: 300px;
+    width: 100%;
     margin: 10px 0px 10px 42px;
     border: 0px;
 }
@@ -36,7 +36,7 @@ article {
     border-width: 0px;
     font-size: 41px;
     height: 55px;
-    width: 300px;
+    width: 100%;
     text-align: center;
     background-color: gray;
     text-decoration: none;

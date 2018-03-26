@@ -79,6 +79,11 @@ namespace REST_API.Controllers
                         data.ListDaemons.Add(daemon);
                         daemon = new Daemon();
                         daemon.Settings = new List<Settings>();
+                        daemon.DaemonID = dId;
+                        daemon.DaemonName = name;
+
+                        settings.SettingsID = sId;
+                        daemon.Settings.Add(settings);
                     }
                 }
 
@@ -129,10 +134,11 @@ namespace REST_API.Controllers
                 {
                     MySqlCommand Query = Connection.CreateCommand();
                     Query.CommandText = "UPDATE daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon SET daemonsSettings.settings = @value,daemons.name = @name WHERE daemonsSettings.id = @SettingsID AND daemonsSettings.idDaemon = @DaemonID ";
-                    item.SettingsID = 0;
                     Query.Parameters.AddWithValue("@SettingsID", item.SettingsID);
                     Query.Parameters.AddWithValue("@DaemonID", value.DaemonID);
                     Query.Parameters.AddWithValue("@name", value.DaemonName);
+
+                    item.SettingsID = 0;
                     Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(item, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
                     Query.ExecuteNonQuery();
                 }

@@ -17,15 +17,19 @@
 
   <ItemGroup>
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Compile Remove="ClientApp\app\components\dailybackuscheme\**" />
     <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\dailybackuscheme\**" />
+    <None Remove="ClientApp\app\components\dailybackuscheme\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\backupsettings\backupsettings.component.ts" />
     <None Remove="ClientApp\app\components\daemonsettings\daemonsettings.component.ts" />
-    <None Remove="ClientApp\app\components\dailybackuscheme\dailybackupscheme.component.ts" />
     <None Remove="ClientApp\app\components\login\login.component.ts" />
     <None Remove="ClientApp\app\components\mailsettings\mailsettings.component.ts" />
+    <None Remove="ClientApp\app\components\monthlybackupscheme\monthlybackupscheme.component.ts" />
+    <None Remove="ClientApp\app\components\onetimebackupscheme\onetimebackupscheme.component.ts" />
     <None Remove="ClientApp\app\components\register\register.component.ts" />
     <None Remove="ClientApp\app\components\settings\settings.component.ts" />
     <None Remove="ClientApp\app\components\weeklybackupscheme\weeklybackupscheme.component.ts" />
@@ -34,9 +38,10 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\backupsettings\backupsettings.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\daemonsettings\daemonsettings.component.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\dailybackuscheme\dailybackupscheme.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\mailsettings\mailsettings.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\monthlybackupscheme\monthlybackupscheme.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\onetimebackupscheme\onetimebackupscheme.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\register\register.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\settings\settings.component.ts" />
   </ItemGroup>

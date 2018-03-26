@@ -1,25 +1,36 @@
 ﻿@media (max-width: 960px) {
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
-    .body-content {
-        padding-top: 50px;
-    }
 
-    
+
+
 }
 
-.sectionclass{
+.arc {
+    margin: 7% 15% 10% 30%;
+    border: none;
+    background-color: white;
+    width: 930px;
+    font-family: 'Segoe UI';
+}
+
+.sectionclass {
+    margin: 0px 0px 0px 250px;
     width: 675px;
     float: left;
     background: whitesmoke;
     border: 2px solid #555;
     box-shadow: 2px 2px 7px #555;
-    padding: 14px;
+    padding: 0px;
     font-size: 23px;
     font-family: 'Segoe UI';
-    margin: 7% 15% 10% 30%;
-   
+    padding: 15px;
 }
 
+h1
+{ 
+    font-family: 'Segoe UI';
+
+}
 .containeremail {
     display: block;
     position: relative;

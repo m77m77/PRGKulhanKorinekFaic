@@ -8,7 +8,6 @@ import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
-import { CounterComponent } from './components/counter/counter.component';
 import { LoginComponent } from './components/login/login.component';
 import { MailsettingsComponent } from './components/mailsettings/mailsettings.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -18,13 +17,12 @@ import { DailybackupschemeComponent } from './components/dailybackupscheme/daily
 import { WeeklybackupschemenewComponent} from './components/weeklybackupscheme/weeklybackupschemenew.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { BackupSettingsComponent } from './components/backupsettings/backupsettings.component';
-
+import { OnetimebackupschemeComponent } from './components/onetimebackupscheme/onetimebackupscheme.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
-        CounterComponent,
         FetchDataComponent,
         HomeComponent,
         LoginComponent,
@@ -35,7 +33,8 @@ import { BackupSettingsComponent } from './components/backupsettings/backupsetti
         DailybackupschemeComponent,
         WeeklybackupschemenewComponent,
         SettingsComponent,
-        BackupSettingsComponent
+        BackupSettingsComponent,
+        OnetimebackupschemeComponent
    
     ],
     imports: [
@@ -65,7 +64,8 @@ import { BackupSettingsComponent } from './components/backupsettings/backupsetti
                                         component: BackupschemeComponent,
                                         children: [
                                             { path: 'daily', component: DailybackupschemeComponent },
-                                            { path: 'weekly', component: WeeklybackupschemenewComponent }
+                                            { path: 'weekly', component: WeeklybackupschemenewComponent },
+                                            { path: 'onetime', component: OnetimebackupschemeComponent }
                                         ]
                                     },
                                     { path: 'settings', component: BackupSettingsComponent },

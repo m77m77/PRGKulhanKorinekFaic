@@ -34,11 +34,11 @@ export class MailsettingsComponent {
                             this.loadMailData();
                             //this.router.navigate(['../home'], { relativeTo: this.route })
                         } else {
-
-                            this.router.navigate(['../login'], { relativeTo: this.route })
+                            sessionStorage.removeItem('token');
+                            this.router.navigate(['/login'], { })
                         }
                     })
-                    .catch((msg: any) => this.router.navigate(['../login'], { relativeTo: this.route }))
+                    .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}); })
             }
 
             this.loadMailData();
@@ -139,11 +139,11 @@ export class MailsettingsComponent {
 
                         //this.router.navigate(['../home'], { relativeTo: this.route })
                     } else {
-
-                        this.router.navigate(['../login'], { relativeTo: this.route })
+                        sessionStorage.removeItem('token');
+                        this.router.navigate(['/login'], { })
                     }
                 })
-                .catch((msg: any) => this.router.navigate(['../login'], { relativeTo: this.route }))
+                .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}) })
         }
     }
 }

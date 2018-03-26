@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component,Input } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
@@ -12,9 +12,7 @@ import 'rxjs/add/operator/toPromise';
 
 })
 export class SettingsComponent {
-    id: string;
-
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
-        this.route.params.subscribe(params => this.id = params.settingsID);
+        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { sessionStorage.setItem('settingsID', params.settingsID); console.log("DAEMONID: " + sessionStorage.getItem('daemonID') + " SETTINGSID:" + sessionStorage.getItem('settingsID')) }});
     }
 }

@@ -1,14 +1,14 @@
 ﻿.arc {
     margin: 7% 15% 10% 30%;
     border: none;
-    background-color: white;
+    background-color: rgb(81, 168, 240);
     width: 930px;
 }
 
 .sc {
     width: 675px;
     float: left;
-    background: whitesmoke;
+    background-color: rgb(81, 168, 240);
     border: 2px solid #555;
     box-shadow: 2px 2px 7px #555;
     padding: 0px;

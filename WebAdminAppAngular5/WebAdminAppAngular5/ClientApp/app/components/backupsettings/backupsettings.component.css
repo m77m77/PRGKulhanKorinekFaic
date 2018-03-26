@@ -210,8 +210,15 @@ div .archeader li a {
 
 .selectafterbackup {
     font-size: 25px;
-    margin: 10px;
+    margin: 15px;
     border: 0px;
+}
+
+.tablethalign 
+{
+    font-family: 'Segoe UI';
+    margin: 10px;
+    font-weight: bold;
 }
 
 .pathtextselect {

@@ -1,5 +1,5 @@
 ﻿<p class="tucne"> Select what will you backup </p>
-<input type="text" class="pathtextselect" placeholder="C:\DATA">
+<input type="text" id="sourcePath" (input)="saveSettings()" class="pathtextselect" placeholder="C:\DATA" value="{{source}}">
 
 <p class="tucne">Destination</p>
 <table>
@@ -7,21 +7,21 @@
         <th>
             <label class="container">
                 Local/network drives
-                <input type="radio" id="radioLND" name="radio" onclick="enableLND()">
+                <input type="radio" id="radioLND" name="radio" (change)="saveSettings()" (click)="enableLocal()" checked="{{localChecked}}">
                 <span class="checkmark"></span>
             </label>
         </th>
         <th>
             <label class="container">
                 FTP
-                <input type="radio" id="radioFTP" onclick="enableFTP()" name="radio">
+                <input type="radio" id="radioFTP" (change)="saveSettings()" (click)="enableFtp()" name="radio" checked="{{ftpChecked}}">
                 <span class="checkmark"></span>
             </label>
         </th>
         <th>
             <label class="container">
                 SFTP
-                <input type="radio" id="radioSFTP" onclick="enableSFTP()" name="radio">
+                <input type="radio" id="radioSFTP" (change)="saveSettings()" (click)="enableSftp()" name="radio" checked="{{sftpChecked}}">
                 <span class="checkmark"></span>
             </label>
         </th>
@@ -29,29 +29,29 @@
     </tr>
 
     <tr>
-        <td><input type="text" id="LNDpath" class="pathtextdestination" placeholder="D:\Backup"></td>
-        <td><input type="text" id="FTPserver" class="pathtext" placeholder="Server adress"></td>
-        <td><input type="text" id="SFTPserver" class="pathtext" placeholder="Server adress"></td>
+        <td><input type="text" id="LNDpath" (input)="saveSettings()" class="pathtextdestination" placeholder="D:\Backup" disabled="{{localDisabled}}" value="{{localPath}}"></td>
+        <td><input type="text" id="FTPserver" (input)="saveSettings()" class="pathtext" placeholder="Server address" disabled="{{ftpDisabled}}" value="{{ftpAddress}}"></td>
+        <td><input type="text" id="SFTPserver" (input)="saveSettings()" class="pathtext" placeholder="Server address" disabled="{{sftpDisabled}}" value="{{sftpAddress}}"></td>
     </tr>
     <tr>
         <td></td>
-        <td><input type="text" id="FTPport" class="pathtext" placeholder="Port"></td>
-        <td><input type="text" id="SFTPport" class="pathtext" placeholder="Port"></td>
+        <td><input type="text" id="FTPport" (input)="saveSettings()" class="pathtext" placeholder="Port" disabled="{{ftpDisabled}}" value="{{ftpPort}}"></td>
+        <td><input type="text" id="SFTPport" (input)="saveSettings()" class="pathtext" placeholder="Port" disabled="{{sftpDisabled}}" value="{{sftpPort}}"></td>
     </tr>
     <tr>
         <td></td>
-        <td><input type="text" id="FTPusername" class="pathtext" placeholder="Username"></td>
-        <td><input type="text" id="SFTPusername" class="pathtext" placeholder="Username"></td>
+        <td><input type="text" id="FTPusername" (input)="saveSettings()" class="pathtext" placeholder="Username" disabled="{{ftpDisabled}}" value="{{ftpUsername}}"></td>
+        <td><input type="text" id="SFTPusername" (input)="saveSettings()" class="pathtext" placeholder="Username" disabled="{{sftpDisabled}}" value="{{sftpUsername}}"></td>
     </tr>
     <tr>
         <td></td>
-        <td><input type="Password" id="FTPpassword" class="pathtext" placeholder="Password"></td>
-        <td><input type="Password" id="SFTPpassword" class="pathtext" placeholder="Password"></td>
+        <td><input type="Password" id="FTPpassword" (input)="saveSettings()" class="pathtext" placeholder="Password" disabled="{{ftpDisabled}}" value="{{ftpPassword}}"></td>
+        <td><input type="Password" id="SFTPpassword" (input)="saveSettings()" class="pathtext" placeholder="Password" disabled="{{sftpDisabled}}" value="{{sftpPassword}}"></td>
     </tr>
     <tr>
         <td></td>
-        <td><input type="text" id="FTPpath" class="pathtext" placeholder="Path"></td>
-        <td><input type="text" id="SFTPpath" class="pathtext" placeholder="Path"></td>
+        <td><input type="text" id="FTPpath" (input)="saveSettings()" class="pathtext" placeholder="Path" disabled="{{ftpDisabled}}" value="{{ftpPath}}"></td>
+        <td><input type="text" id="SFTPpath" (input)="saveSettings()" class="pathtext" placeholder="Path" disabled="{{sftpDisabled}}" value="{{sftpPath}}"></td>
     </tr>
 
 </table>
@@ -62,19 +62,19 @@
         <th class="tablethalign"> Format </th>
     </tr>
     <tr>
-        <th>
-            <select class="selectafterbackup">
-                <option value="Nothing">Nothing</option>
-                <option value="Restart">Restart</option>
-                <option value="Turnoff">Turn off</option>
-                <option value="Sleepmode">Sleep mode</option>
+        <td>
+            <select class="selectafterbackup" id="afterBackup" (change)="saveSettings()">
+                <option value="NOTHING" selected="{{nothingSelected}}">Nothing</option>
+                <option value="RESTART" selected="{{restartSelected}}">Restart</option>
+                <option value="TURN OFF" selected="{{turnoffSelected}}">Turn off</option>
+                <option value="SLEEP" selected="{{sleepSelected}}">Sleep mode</option>
             </select>
-        </th>
-        <th>
-            <select class="selectafterbackup">
-                <option value="Archivezip">Archive .zip</option>
-                <option value="Withoutcomprimation">Without comprimation</option>
+        </td>
+        <td>
+            <select class="selectafterbackup" id="saveFormat" (change)="saveSettings()">
+                <option value="ZIP" selected="{{zipSelected}}">Archive .zip</option>
+                <option value="PLAIN" selected="{{plainSelected}}">Without comprimation</option>
             </select>
-        </th>
+        </td>
     </tr>
 </table>

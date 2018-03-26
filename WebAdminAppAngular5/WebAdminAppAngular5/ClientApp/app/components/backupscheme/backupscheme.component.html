@@ -1,12 +1,12 @@
 ﻿<div class="divsec">
-                    <nav>
-                        <ul class="sectionul">
-                            <li class="sectionulli"><a href="backupsettings.html">One-time</a></li>
-                            <li class="sectionulli"><a href="backupscheme.html">Daily</a></li>
-                            <li class="sectionulli"><a href="backupscheme.html">Weekly</a></li>
-                            <li class="sectionulli"><a href="backupscheme.html">Monthly</a></li>
+    <nav>
+        <ul class="sectionul">
+            <a [routerLink]="['onetime']"><li [routerLinkActive]="['link-active']">One-time</li></a>
+            <a [routerLink]="['daily']"><li [routerLinkActive]="['link-active']">Daily</li></a>
+            <a [routerLink]="['weekly']"><li [routerLinkActive]="['link-active']">Weekly</li></a>
+            <a [routerLink]="['monthly']"><li [routerLinkActive]="['link-active']">Monthly</li></a>
 
-                        </ul>
-                    </nav>
-                </div>
-                <p class="alignleftp">Execute backup at <input type="datetime-local"></p>
+        </ul>
+    </nav>
+</div>
+<router-outlet></router-outlet>
