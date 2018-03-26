@@ -277,11 +277,15 @@ div .buttonscope {
     width: 110px;
     height: 35px;
     border: none;
+    font-family: 'Segoe UI';
+    font-size: 21px;
 }
 .backupType {
     width: 110px;
     height: 35px;
     border: none;
+    font-family: 'Segoe UI';
+    font-size: 21px;
 }
 
 #idnumberbackups {
@@ -290,6 +294,8 @@ div .buttonscope {
     float: right;
     margin: 0px 0px 0px 10px;
     border: none;
+    font-family: 'Segoe UI';
+    font-size: 21px;
 }
 
 #keepingbackups {
@@ -302,3 +308,5 @@ div .buttonscope {
 .dailyOneBackup {
     float: left;
 }
+
+

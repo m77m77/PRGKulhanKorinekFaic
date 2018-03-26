@@ -16,6 +16,13 @@
     font-family: 'Segoe UI';
 }
 
+.whitediv 
+{
+background-color: whitesmoke;
+margin: 0px;
+padding: 0px;
+
+}
 
 .pathtext {
     width: 150px;
@@ -118,7 +125,7 @@
     margin: 10px;
 }
 
-div .divsec {
+.paneldiv{
     background-color: rgb(81, 168, 240);
     height: 60px;
 }
