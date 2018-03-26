@@ -1,4 +1,5 @@
-﻿h1 {
+﻿
+h1 {
     color: whitesmoke;
     background-color: whitesmoke;
 }
@@ -35,12 +36,13 @@ article {
     border: solid;
     border-width: 0px;
     font-size: 41px;
-    height: 55px;
-    width: 300px;
+    height: 40px;
+    width: 33%;
     text-align: center;
     background-color: gray;
     text-decoration: none;
     color: whitesmoke;
+    font-family: 'Segoe UI';
 }
 
     .loginlink:hover {

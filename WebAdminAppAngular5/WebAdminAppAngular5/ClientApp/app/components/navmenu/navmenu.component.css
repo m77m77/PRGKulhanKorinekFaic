@@ -47,8 +47,10 @@ header {
     height: 60px;
     position: fixed;
     top: 0px;
+    left: 0px;
     background-color: rgb(81, 168, 240);
     width: 100%;
+    font-family: 'Segoe UI';
 }
 
 
