@@ -1,4 +1,4 @@
-﻿import { Component, ElementRef } from '@angular/core';
+﻿import { Component, ElementRef,Renderer2 } from '@angular/core';
 
 @Component({
     selector: 'weeklybackupschemenew',
@@ -9,6 +9,7 @@
 export class WeeklybackupschemenewComponent{
     private position: InsertPosition;
     private elementRef: ElementRef;
+    private renderer: Renderer2
 
     constructor() {
         this.position = 'afterbegin';
@@ -32,6 +33,7 @@ export class WeeklybackupschemenewComponent{
                                                                     +'<div id="content"></div>'
                                                                     + '</div>';
 
+        
     }
 
     public btnAdd() {
@@ -50,10 +52,10 @@ export class WeeklybackupschemenewComponent{
             + '<option value= "DIFFERENTIAL" > DIFFERENTIAL </option>'
             + '</select>';
 
-        (<HTMLInputElement>document.getElementById('content')).appendChild(div);
+        (<HTMLInputElement>document.getElementById('panel')).appendChild(div);
 
 
-        var p = (<HTMLInputElement>document.getElementById('panel'));
+        var p = (<HTMLInputElement>document.getElementById('content'));
         var newElement = document.createElement('test');
         newElement.setAttribute('id', 'testid');
         newElement.innerHTML = '<select>'

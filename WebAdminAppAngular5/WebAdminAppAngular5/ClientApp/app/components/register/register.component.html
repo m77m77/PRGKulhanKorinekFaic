@@ -9,14 +9,15 @@
             <section>
                 <table>
                     <tr></tr>
-                    <tr><td><input type="text" class="textinputformat" placeholder="Username" /></td></tr>
+                    <tr><td><input type="text" id="username" class="textinputformat" placeholder="Username" /></td></tr>
                     <tr></tr>
-                    <tr><td><input type="password" class="textinputformat" placeholder="Password" /></td></tr>
+                    <tr><td><input type="password" id="password" class="textinputformat" placeholder="Password" /></td></tr>
                     <tr></tr>
-                    <tr><td><input type="password" class="textinputformat" placeholder="Confirm password" /></td></tr>
+                    <tr><td><input type="password" id="cpassword" class="textinputformat" placeholder="Confirm password" /></td></tr>
                     <tr>
 
-                        <td><a [routerLink]="['/home']" class="loginlink">Create admin</a></td>
+                        <td><a (click)="Validation()" class="loginlink">Create</a></td>
+                        <!--<td><a [routerLink]="['/home']" class="loginlink">Create admin</a></td>-->
                     </tr>
 
                 </table>
