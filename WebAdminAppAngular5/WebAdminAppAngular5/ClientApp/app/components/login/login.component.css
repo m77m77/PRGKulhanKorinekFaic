@@ -1,4 +1,10 @@
-﻿
+﻿#divhtml {
+    background: rgb(81, 168, 240);
+    width: 100vw;
+    height: 100vh;
+    border:0;
+}
+
 h1 {
     color: whitesmoke;
     background-color: whitesmoke;
@@ -12,8 +18,14 @@ h1 {
 
 article {
     width: 400px;
+    height:290px;
     background-color: whitesmoke;
-    margin: 320px 0px 0px 695px;
+    position:absolute;
+    top:0;
+    bottom: 0;
+    left:0;
+    right:0;
+    margin: auto;
     box-shadow: 2px 2px 6px 2px #1c2228;
 }
 
@@ -30,6 +42,7 @@ article {
 
 
 .loginlink {
+    cursor: pointer;
     margin: 10px 0px 10px 42px;
     float: left;
     padding: 2px 108px 18px 80px;

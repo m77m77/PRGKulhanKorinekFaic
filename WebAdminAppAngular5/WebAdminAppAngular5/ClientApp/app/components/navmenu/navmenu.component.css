@@ -16,12 +16,11 @@ nav ul {
         text-decoration: none;
     }
 
-        nav ul a.link-active li {
-            background: #555;
-            box-shadow: 10px #555;
-            font-size: 22px;
-            color: whitesmoke;
-        }
+    nav ul a.link-active li {
+        font-size: 23px;
+        font-weight: bold;
+        color: whitesmoke;
+    }
 
 .rightalign {
     float: right;

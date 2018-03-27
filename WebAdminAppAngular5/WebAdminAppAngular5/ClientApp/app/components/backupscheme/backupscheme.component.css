@@ -154,14 +154,19 @@ nav ul {
             font-size: 22px;
             color: whitesmoke;
         }
-
-div .dropdown > a {
-    display: block;
-    color: #555;
-    padding: 13px 16px;
-    text-decoration: none;
-    list-style-type: none;
-}
+    nav ul a.link-active li {
+        font-size: 23px;
+        
+        font-weight: bold;
+        color: whitesmoke;
+    }
+        div .dropdown > a {
+            display: block;
+            color: #555;
+            padding: 13px 16px;
+            text-decoration: none;
+            list-style-type: none;
+        }
 
 nav a {
     color: whitesmoke;
