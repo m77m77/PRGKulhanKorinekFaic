@@ -142,10 +142,6 @@ namespace REST_API.Controllers
                 //token nepatří adminovi  
                 return new Response("ERROR", "TokenIsNotMatched", null, null);
             }
-            if (t.AdminType != "master")
-            {
-                return new Response("ERROR", "AdminIsNotMaster", null, null);
-            }
 
             MySqlConnection Connection = WebApiConfig.Connection();
 
@@ -155,7 +151,7 @@ namespace REST_API.Controllers
             Query.Parameters.AddWithValue("@AdminID", t.AdminID);
 
             Response r = new Response();
-            AdminPost ap = new AdminPost();
+            AdminInfo ai = new AdminInfo();
             //r.Data = ap;
 
             try
@@ -165,9 +161,7 @@ namespace REST_API.Controllers
                 
                 while (Reader.Read())
                 {
-                    ap.Name = "";
-                    ap.Password = "";
-                    //ap.Type = Reader["type"].ToString();
+                    ai.Type = Reader["Type"].ToString();
                 }
                 Reader.Close();
             }
@@ -177,7 +171,7 @@ namespace REST_API.Controllers
             }
             Connection.Close();
 
-            r.Data = ap;
+            r.Data = ai;
 
             if (r.Status == null)
                 r.Status = "OK";

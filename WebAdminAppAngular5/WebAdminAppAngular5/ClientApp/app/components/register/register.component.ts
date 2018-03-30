@@ -41,17 +41,17 @@ export class RegisterComponent {
             var info = data.Info;
 
         }
+        
         var ok = true;
+        var count = data.ListAdmin.length;
 
-        //var count = 0;
-        //for (var Name in data) {
-        //    if (data[count] == username) {
-        //        ok = false;
-        //    }
-        //    count++;
-        //}
+        for (var n = 0; n < count; n++) {
+            if (username == data.ListAdmin[n].Name) {
+                ok = false;
+            }
+        }
 
-        if (ok = true) {
+        if (ok == true) {
             this.PostNewAdmin();
         }
 
@@ -88,6 +88,8 @@ export class RegisterComponent {
         var username = (<HTMLInputElement>document.getElementById('username')).value;
         var password = (<HTMLInputElement>document.getElementById('password')).value;
         var cpassword = (<HTMLInputElement>document.getElementById('cpassword')).value;
+
+        //var type = sessionStorage.getItem('AdminInfo')
 
         if (username !== "" && password !== "" && password == cpassword) {
             this.CheckAdmins();
