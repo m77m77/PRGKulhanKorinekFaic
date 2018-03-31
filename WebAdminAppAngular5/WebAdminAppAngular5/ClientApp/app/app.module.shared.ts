@@ -19,6 +19,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { BackupSettingsComponent } from './components/backupsettings/backupsettings.component';
 import { OnetimebackupschemeComponent } from './components/onetimebackupscheme/onetimebackupscheme.component';
 import { MonthlybackupschemeComponent } from './components/monthlybackupscheme/monthlybackupscheme.component';
+import { AdminMenuComponent } from './components/adminmenu/adminmenu.component'
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { MonthlybackupschemeComponent } from './components/monthlybackupscheme/m
         SettingsComponent,
         BackupSettingsComponent,
         OnetimebackupschemeComponent,
-        MonthlybackupschemeComponent
+        MonthlybackupschemeComponent,
+        AdminMenuComponent
    
     ],
     imports: [
@@ -79,7 +81,8 @@ import { MonthlybackupschemeComponent } from './components/monthlybackupscheme/m
                             
                         ]
                     },
-                    { path: 'register', component: RegisterComponent}
+                    { path: 'register', component: RegisterComponent },
+                    { path: 'adminmenu', component: AdminMenuComponent }
                 ]
             }
         ])
