@@ -50,15 +50,17 @@ export class AdminMenuComponent {
 
         for (var n = 0; n < count; n++) {
             btnName = data.ListAdmin[n].Name
-            htmlCode = htmlCode + '<p><button id="' + btnName + '" (click)="OpenAdminInfo()">' + btnName + '<class="adminmenu" /button></p>';
+            htmlCode = htmlCode + '<p><button id="' + btnName + '" (click)="OpenAdminInfo("' + btnName + '")">' + btnName + '</button></p>';
         }
 
         var div = document.createElement("div");
+        var d1 = (<HTMLInputElement>document.getElementById('code'))
         div.className = "adminmenu";
         div.innerHTML = htmlCode;
-        document.body.appendChild(div);
-        }
-    public OpenAdminInfo() {
+        this.renderer.appendChild(d1,div);
+    }
+    public OpenAdminInfo(adminName: string) {
+        sessionStorage.setItem('adminInfoName', adminName);
         this.router.navigate(['/home/adminmenu/admininfo'], {})
     }
 }

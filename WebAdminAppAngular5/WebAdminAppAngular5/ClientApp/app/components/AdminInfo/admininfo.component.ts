@@ -12,5 +12,13 @@ import 'rxjs/add/operator/toPromise';
 
 })
 export class AdminInfoComponent {
-    
+    private Write() {
+
+        var name = sessionStorage.getItem('adminInfoName');
+        if (name !== null) {
+            (<HTMLInputElement>document.getElementById('name')).value = name;
+            (<HTMLInputElement>document.getElementById('password')).value = "";
+            (<HTMLInputElement>document.getElementById('type')).value = "";
+        }
+    }
 }
