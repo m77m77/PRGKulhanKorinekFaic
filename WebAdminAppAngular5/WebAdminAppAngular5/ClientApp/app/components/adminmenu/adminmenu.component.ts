@@ -16,7 +16,6 @@ export class AdminMenuComponent {
     private position: InsertPosition
 
     constructor(private renderer: Renderer2, private http: Http, private router: Router, private route: ActivatedRoute) {
-        var parent = this.route.parent;
         if (typeof window !== 'undefined') {
 
             this.http.get('http://localhost:63058/api/newadmin/' + sessionStorage.getItem('token')).toPromise()
@@ -26,6 +25,7 @@ export class AdminMenuComponent {
                     if (AdminPost && "OK" == AdminPost.Status) {
                         sessionStorage.setItem('AdminPost', JSON.stringify(AdminPost.Data));
                         this.WriteAdmins();
+
                         //this.router.navigate(['../home'], { relativeTo: this.route })
                     } else {
                         sessionStorage.removeItem('token');
@@ -50,13 +50,15 @@ export class AdminMenuComponent {
 
         for (var n = 0; n < count; n++) {
             btnName = data.ListAdmin[n].Name
-            htmlCode = htmlCode + '<p><button id="' + btnName + '" (click)="">' + btnName + '<class="adminmenu" /button></p>';
+            htmlCode = htmlCode + '<p><button id="' + btnName + '" (click)="OpenAdminInfo()">' + btnName + '<class="adminmenu" /button></p>';
         }
 
         var div = document.createElement("div");
         div.className = "adminmenu";
         div.innerHTML = htmlCode;
         document.body.appendChild(div);
-
+        }
+    public OpenAdminInfo() {
+        this.router.navigate(['/home/adminmenu/admininfo'], {})
     }
 }
