@@ -128,6 +128,7 @@ export class WeeklybackupschemenewComponent{
     }
 
     showHide(event: any) {
+
         var target = event.target || event.srcElement || event.currentTarget;
 
         if ((<HTMLButtonElement>target).parentElement == null)

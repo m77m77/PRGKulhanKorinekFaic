@@ -27,6 +27,11 @@ nav ul {
         text-decoration: none;
     }
 
+    nav ul a.link-active li {
+        font-size: 23px;
+        font-weight: bold;
+        color: whitesmoke;
+    }
         nav ul li:hover {
             background: #555;
             box-shadow: 10px #555;

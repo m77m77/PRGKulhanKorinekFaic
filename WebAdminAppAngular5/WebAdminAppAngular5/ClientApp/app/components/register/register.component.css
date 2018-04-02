@@ -10,9 +10,9 @@
 }
 
 article {
-    width: 29%;
+    width: 34%;
     background-color: whitesmoke;
-    margin: 320px 0px 0px 695px;
+    margin: 320px 0px 0px 35%;
     box-shadow: 2px 2px 6px 2px #1c2228;
 }
 
@@ -42,6 +42,7 @@ article {
     text-decoration: none;
     color: whitesmoke;
     font-family: 'Segoe UI';
+    cursor: pointer;
 }
 
     .loginlink:hover {

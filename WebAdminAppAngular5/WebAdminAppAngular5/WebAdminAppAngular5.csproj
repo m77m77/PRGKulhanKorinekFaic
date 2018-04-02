@@ -24,6 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\admininfo\admininfo.component.ts" />
+    <None Remove="ClientApp\app\components\adminmenu\adminmenu.component.ts" />
     <None Remove="ClientApp\app\components\backupsettings\backupsettings.component.ts" />
     <None Remove="ClientApp\app\components\daemonsettings\daemonsettings.component.ts" />
     <None Remove="ClientApp\app\components\login\login.component.ts" />
@@ -36,6 +38,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\admininfo\admininfo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\adminmenu\adminmenu.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\backupsettings\backupsettings.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\daemonsettings\daemonsettings.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\login\login.component.ts" />
