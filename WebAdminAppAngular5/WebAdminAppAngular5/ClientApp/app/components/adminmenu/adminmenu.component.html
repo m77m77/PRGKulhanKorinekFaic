@@ -6,11 +6,13 @@
             </div>
             <div class="arc">
                 <h1>Admins</h1>
-                <div class="sectionclass">
-                    <article>
-                        <!--<header><h1 class="h1r">AdminMenu</h1></header>-->
-                        <div id="code" [innerHtml]="htmlToAdd"></div>
-                    </article>
+                <div class="sectionclass" *ngFor="let b of admins">
+                    <input type="text" class="sectionclass" (change)="" value="{{b.btnName}}" required> <br />
+                    <p><button id="{{b.Name}}"(click)='OpenAdminInfo("{{b.Name}}")'>"{{b.Name}}"</button></p>
+                    <!--<article>
+        <header><h1 class="h1r">AdminMenu</h1></header>
+        <div id="code" [innerHtml]="htmlToAdd"></div>
+    </article>-->
                 </div>
 
             </div>
