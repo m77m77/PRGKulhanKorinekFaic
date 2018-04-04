@@ -71,7 +71,61 @@ namespace REST_API.Controllers
 
             return r;
         }
+        [Route("api/newadmin/delete/{token}")]
+        public Response Delete(string token,string AdminName)
+        {
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
+            if (t.AdminType != "master")
+            {
+                return new Response("ERROR", "AdminIsNotMaster", null, null);
+            }
 
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            MySqlCommand QueryDeleteAdmin = Connection.CreateCommand();
+            MySqlCommand QueryDeleteEmail = Connection.CreateCommand();
+            MySqlCommand QuerySelectAdminId = Connection.CreateCommand();
+
+            QueryDeleteAdmin.CommandText = "DELETE FROM admins where name==@name;" + " SELECT last_insert_id();";
+            QueryDeleteAdmin.Parameters.AddWithValue("@name", AdminName);
+
+
+            Response r = new Response();
+
+            try
+            {
+                Connection.Open();
+
+                int AdminId = Convert.ToInt32(QueryDeleteAdmin.ExecuteScalar());
+
+                QueryDeleteEmail.CommandText = "INSERT INTO emails (adminId,emailSettings) VALUES (@adminId,@emailSettings);";
+                QueryDeleteEmail.Parameters.AddWithValue("@adminId", AdminId);
+                QueryDeleteEmail.Parameters.AddWithValue("@emailSettings", @"{ ""AdminId"":" + AdminId + @",""EmailAddress"":"""",""FromDaemonsDaily"":[],""FromDaemonsWeekly"":[],""FromDaemonsMonthly"":[],""SendEmails"":false,""Template"":""""}");
+
+
+                QueryDeleteEmail.ExecuteNonQuery();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
         [Route("api/newadmin/{token}")]
         public Response Get(string token)
         {
