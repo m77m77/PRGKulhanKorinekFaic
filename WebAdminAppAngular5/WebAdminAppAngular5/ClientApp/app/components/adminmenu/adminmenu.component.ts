@@ -57,18 +57,23 @@ export class AdminMenuComponent {
             btnName = data.ListAdmin[n].Name
             //htmlCode = htmlCode + '<p><button id="' + btnName + '" (click)="OpenAdminInfo("' + btnName + '")">' + btnName + '</button></p>';
             this.admins.push({
-                Name: btnName == btnName
+                Name: btnName
             });
+
         }
 
+        
         //var div = document.createElement("div");
         //var d1 = (<HTMLInputElement>document.getElementById('code'))
         //div.className = "adminmenu";
         //div.innerHTML = htmlCode;
         //this.renderer.appendChild(d1,div);
     }
-    public OpenAdminInfo(adminName: string) {
+    public OpenAdminInfo(adminName: any) {
         sessionStorage.setItem('adminInfoName', adminName);
         this.router.navigate(['/home/adminmenu/admininfo'], {})
+    }
+    public Delete(adminName: any) {
+        console.log(adminName + 'deleted')
     }
 }

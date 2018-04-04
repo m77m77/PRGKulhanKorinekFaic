@@ -71,7 +71,7 @@ namespace REST_API.Controllers
 
             return r;
         }
-        [Route("api/newadmin/delete/{token}")]
+        [Route("api/newadmin/delete/{token}/{AdminName}")]
         public Response Delete(string token,string AdminName)
         {
             Token t = Token.Exists(token);
@@ -96,9 +96,11 @@ namespace REST_API.Controllers
             MySqlCommand QueryDeleteEmail = Connection.CreateCommand();
             MySqlCommand QuerySelectAdminId = Connection.CreateCommand();
 
-            QueryDeleteAdmin.CommandText = "DELETE FROM admins where name==@name;" + " SELECT last_insert_id();";
+            QueryDeleteAdmin.CommandText = "DELETE FROM admins where name=@name;";
             QueryDeleteAdmin.Parameters.AddWithValue("@name", AdminName);
 
+            QuerySelectAdminId.CommandText = "SELECT id from admins where name=@name";
+            QuerySelectAdminId.Parameters.AddWithValue("@name", AdminName);
 
             Response r = new Response();
 
@@ -106,13 +108,12 @@ namespace REST_API.Controllers
             {
                 Connection.Open();
 
-                int AdminId = Convert.ToInt32(QueryDeleteAdmin.ExecuteScalar());
+                int AdminId = Convert.ToInt32(QuerySelectAdminId.ExecuteScalar());
 
-                QueryDeleteEmail.CommandText = "INSERT INTO emails (adminId,emailSettings) VALUES (@adminId,@emailSettings);";
+                QueryDeleteEmail.CommandText = "DELETE FROM emails WHERE adminId=@adminId";
                 QueryDeleteEmail.Parameters.AddWithValue("@adminId", AdminId);
-                QueryDeleteEmail.Parameters.AddWithValue("@emailSettings", @"{ ""AdminId"":" + AdminId + @",""EmailAddress"":"""",""FromDaemonsDaily"":[],""FromDaemonsWeekly"":[],""FromDaemonsMonthly"":[],""SendEmails"":false,""Template"":""""}");
 
-
+                QueryDeleteAdmin.ExecuteNonQuery();
                 QueryDeleteEmail.ExecuteNonQuery();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

@@ -20,7 +20,7 @@ import { BackupSettingsComponent } from './components/backupsettings/backupsetti
 import { OnetimebackupschemeComponent } from './components/onetimebackupscheme/onetimebackupscheme.component';
 import { MonthlybackupschemeComponent } from './components/monthlybackupscheme/monthlybackupscheme.component';
 import { AdminMenuComponent } from './components/adminmenu/adminmenu.component';
-import { AdminInfoComponent } from './components/admininfo/admininfo.component'
+
 
 @NgModule({
     declarations: [
@@ -40,7 +40,7 @@ import { AdminInfoComponent } from './components/admininfo/admininfo.component'
         OnetimebackupschemeComponent,
         MonthlybackupschemeComponent,
         AdminMenuComponent,
-        AdminInfoComponent
+
    
     ],
     imports: [
@@ -84,7 +84,6 @@ import { AdminInfoComponent } from './components/admininfo/admininfo.component'
                         ]
                     },
                     { path: 'register', component: RegisterComponent },
-                    { path: 'adminmenu', component: AdminMenuComponent, children:[{path: 'admininfo', component: AdminInfoComponent }] }
                 ]
             }
         ])
