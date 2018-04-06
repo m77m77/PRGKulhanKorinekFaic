@@ -836,7 +836,6 @@ D:\Projekty\PRG_KulhanKořínekFaic_8\REST_API\REST_API\bin\cs\System.Web.Razor.
 D:\Projekty\PRG_KulhanKořínekFaic_8\REST_API\REST_API\bin\cs\System.Web.WebPages.resources.dll
 D:\Projekty\PRG_KulhanKořínekFaic_8\REST_API\REST_API\bin\cs\System.Web.WebPages.Deployment.resources.dll
 D:\Projekty\PRG_KulhanKořínekFaic_8\REST_API\REST_API\bin\cs\System.Web.WebPages.Razor.resources.dll
-D:\Projekty\PRG_KulhanKořínekFaic_8\REST_API\REST_API\obj\Debug\REST_API.csprojResolveAssemblyReference.cache
 D:\Projekty\PRG_KulhanKořínekFaic_8\REST_API\REST_API\obj\Debug\REST_API.csproj.CoreCompileInputs.cache
 D:\Projekty\PRG_KulhanKořínekFaic_8\REST_API\REST_API\obj\Debug\REST_API.dll
 D:\Projekty\PRG_KulhanKořínekFaic_8\REST_API\REST_API\obj\Debug\REST_API.pdb

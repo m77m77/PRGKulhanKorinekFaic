@@ -72,7 +72,7 @@ namespace REST_API.Controllers
             return r;
         }
         [Route("api/newadmin/delete/{token}/{AdminName}")]
-        public Response Delete(string token,string AdminName)
+        public Response Delete(string token, string AdminName)
         {
             Token t = Token.Exists(token);
             if (t == null)
@@ -150,7 +150,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT name FROM admins";
+            Query.CommandText = "SELECT name,type FROM admins";
 
             Response r = new Response();
 
@@ -167,6 +167,7 @@ namespace REST_API.Controllers
                 {
                     data.ListAdmin.Add(new AdminPost());
                     data.ListAdmin[i].Name = Reader["name"].ToString();
+                    data.ListAdmin[i].Type = Reader["type"].ToString();
                     i++;
                 }
                 Reader.Close();

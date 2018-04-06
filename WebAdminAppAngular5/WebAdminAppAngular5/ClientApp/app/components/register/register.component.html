@@ -44,14 +44,14 @@
             </tr>
             <tr *ngFor="let b of admins">
                 <td>{{b.Name}}</td>
-                <td>xxx</td>
-                <td><button class="btn btn-primary" (click)="Delete('adminname')">Delete</button></td>
+                <td>{{b.Type}}</td>
+                <td><button class="btn btn-primary" (click)="Delete(b.Name)">Delete</button></td>
                 <!--<td>
-                    <form name="f2" action="Save();">
-                        <input id="delete" onclick="Save()" type="submit" name="delete" value="Delete" />
-                    </form>
-                </td>-->
-        </table>
+        <form name="f2" action="Save();">
+            <input id="delete" onclick="Save()" type="submit" name="delete" value="Delete" />
+        </form>
+    </td>-->
+</table>
         <!--</div>-->
     </div>
 </div>
