@@ -20,24 +20,28 @@ namespace DaemonTest
     {
         static void Main(string[] args)
         {
+            BackupTimer backupTimer = new BackupTimer();
+            backupTimer.Start();
 
-            
-            Task<bool> sa = ServerAccess.Connect("http://localhost:63058", "zZn4L8,WKTb6iEPonSEa5vP3dEsHQZmk");
-            sa.Wait();
-            Console.WriteLine(sa.Result);
+            Timer timer = new Timer(backupTimer.Tick, null, new TimeSpan(0, 0, 0), new TimeSpan(0, 1, 0));
 
-            Task<Response> res = ServerAccess.GetNewSettings();
-            res.Wait();
+            //Task<bool> sa = ServerAccess.Connect("http://localhost:63058", "zZn4L8,WKTb6iEPonSEa5vP3dEsHQZmk");
+            //sa.Wait();
+            //Console.WriteLine(sa.Result);
 
-            Daemon daemon = (Daemon)res.Result.Data;
+            //Task<Response> res = ServerAccess.GetNewSettings();
+            //res.Wait();
 
-            SettingsManager settingsManager = new SettingsManager(daemon.Settings[0]);
+            //Daemon daemon = (Daemon)res.Result.Data;
 
-            IBackupMethod bcMethod = new IncrementalBackupMethod(settingsManager);
-            BackupStatus status = bcMethod.Backup();
-            Task<Response> response = ServerAccess.SendBackupStatus(status);
-            response.Wait();
-            Console.WriteLine(JsonSerializationUtility.Serialize(response.Result));
+            //SettingsManager settingsManager = new SettingsManager(daemon.Settings[0]);
+
+            //IBackupMethod bcMethod = new IncrementalBackupMethod(settingsManager);
+            //BackupStatus status = bcMethod.Backup();
+            //Task<Response> response = ServerAccess.SendBackupStatus(status);
+            //response.Wait();
+            //Console.WriteLine(JsonSerializationUtility.Serialize(response.Result));
+
             Console.ReadLine();
         }
     }

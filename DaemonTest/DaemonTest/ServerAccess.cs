@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using DaemonTest.Config;
 
 namespace DaemonTest
 {
@@ -15,9 +16,11 @@ namespace DaemonTest
         private static string serverAddress;
         private static string token;
 
+        public static IConfig Config { get; private set; }
+
         static ServerAccess()
         {
-
+            ServerAccess.Config = new FileConfig();
         }
 
         private static void CheckNewToken(Response response)
@@ -60,13 +63,15 @@ namespace DaemonTest
             Response response = new Response();
             try
             {
-                HttpResponseMessage httpResponse = await client.GetAsync(ServerAccess.serverAddress + "/api/daemon/" + ServerAccess.token);
+                HttpResponseMessage httpResponse = await client.GetAsync(ServerAccess.Config.Server + "/api/daemon/" + ServerAccess.Config.Token);
                 response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
             }
             catch (Exception)
             {
                 response = new Response("ERROR", "ConnectionError", null, null);
             }
+
+            ServerAccess.CheckNewToken(response);
 
             return response;
 
@@ -78,7 +83,7 @@ namespace DaemonTest
             Response response = new Response();
             try
             {
-                HttpResponseMessage httpResponse = await client.GetAsync(serverAddress + "/api/backupstatus/daemon/" + token + "/" + type + "/" + settingsID);
+                HttpResponseMessage httpResponse = await client.GetAsync(ServerAccess.Config.Server + "/api/backupstatus/daemon/" + ServerAccess.Config.Token + "/" + type + "/" + settingsID);
                 response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
             }
             catch (Exception)
@@ -99,7 +104,7 @@ namespace DaemonTest
             
             try
             {
-                HttpResponseMessage httpResponse = await client.PostAsync(serverAddress + "/api/backupstatus/daemon/" + token,sc);
+                HttpResponseMessage httpResponse = await client.PostAsync(ServerAccess.Config.Server + "/api/backupstatus/daemon/" + ServerAccess.Config.Token, sc);
                 response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
             }
             catch (Exception)

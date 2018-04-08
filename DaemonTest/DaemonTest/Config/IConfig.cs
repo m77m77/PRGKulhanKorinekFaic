@@ -6,10 +6,10 @@ namespace DaemonTest.Config
 {
     public interface IConfig
     {
-        string Server { get; }
-        string Token { get; }
+        string Server { get; set; }
+        string Token { get; set; }
 
         void Save();
-        void Load();
+        bool Load();
     }
 }
