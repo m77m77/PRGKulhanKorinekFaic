@@ -236,3 +236,31 @@ div .archeader li a {
     margin: 10px;
     border: 0px;
 }
+
+.btnAddBackupSetting {
+    width: 95%;
+    height: 45px;
+    margin: 5px 15px 5px 10px;
+    border: none;
+    font-size: 35px;
+    color: white;
+    background-color: rgb(81, 168, 240);
+    font-weight: bold;
+}
+.btnAddBackupSetting:hover {
+    background-color: rgb(38, 82, 130);
+}
+.btnRemove {
+    width: 95%;
+    height: 45px;
+    margin: 5px 15px 5px 10px;
+    font-size: 35px;
+    color: white;
+    background-color: rgb(81, 168, 240);
+    font-weight: bold;
+    border: none;
+}
+
+.btnRemove:hover {
+    background-color: rgb(38, 82, 130);
+}

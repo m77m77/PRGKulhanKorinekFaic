@@ -1,4 +1,4 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, Renderer2 } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
@@ -44,7 +44,7 @@ export class BackupSettingsComponent {
     sftpPassword: string;
     sftpPath: string;
 
-    constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
+    constructor(private http: Http, private renderer: Renderer2, private router: Router, private route: ActivatedRoute) {
         var parent = this.route.parent;
         if(parent != null)
         parent.params.subscribe(params => { if (typeof (window) !== 'undefined') { this.loadSettings(); } });
@@ -214,4 +214,37 @@ export class BackupSettingsComponent {
             sessionStorage.setItem('daemonsUnsave', JSON.stringify(unSavedData));
         }
     }
+
+     addBackupSource() {
+
+        var backups = <HTMLDivElement>document.getElementById("backupSetting");
+
+        var newBackupSetting = this.renderer.createElement('div');
+        newBackupSetting.className = 'OnebackupSetting';
+         
+
+        var input = this.renderer.createElement('input');
+        input.type = 'text';
+        input.className = 'pathtextselect';
+
+        var button = this.renderer.createElement('button');
+        button.className = 'btnRemove';
+        button.innerHTML = '-';
+       
+        this.renderer.listen(button, 'click', (evn) => this.deleteBackupSource(evn));
+        this.renderer.appendChild(newBackupSetting, input);
+       
+        this.renderer.appendChild(backups, newBackupSetting);
+        this.renderer.appendChild(newBackupSetting, button);
+    }
+
+     deleteBackupSource(event: any) {
+
+         var target = event.target || event.srcElement || event.currentTarget;
+
+         var backups = <HTMLDivElement>document.getElementById("backupSetting");
+
+         this.renderer.removeChild(backups, target.parentNode);
+         
+     }
 }
