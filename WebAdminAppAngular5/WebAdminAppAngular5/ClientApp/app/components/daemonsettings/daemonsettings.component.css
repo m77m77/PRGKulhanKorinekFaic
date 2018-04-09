@@ -108,8 +108,13 @@ div .archeader li a {
     padding: 13px 16px;
     text-decoration: none;
     width: 220px;
+    cursor: pointer;
+
 }
 
+div .archeader li a.add {
+    text-align: center;
+}
 
 div .archeader li a:hover {
     background-color: #555;

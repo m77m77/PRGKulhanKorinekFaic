@@ -17,7 +17,7 @@
                     <a class="kkt" [routerLink]="dd.Route" [routerLinkActive]="['link-active']">{{dd.Name}} {{dd.Changed}}</a>
                     <div class="dropdown-content">
                         <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of dd.Settings">Settings {{s.I}}</a>
-                        <button id="btnPostNewSettings" (click)="PostNewSettings(dd.Id)">+</button>
+                        <a class="add" (click)="PostNewSettings(dd.Id)">+</a>
                     </div>
                 </div>
             </li>
