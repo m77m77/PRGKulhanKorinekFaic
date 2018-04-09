@@ -197,5 +197,9 @@ export class DaemonsettingsComponent {
             this.loadDaemon();
         }
     }
+    public PostNewSettings() {
+
+    }
+
 
 }
