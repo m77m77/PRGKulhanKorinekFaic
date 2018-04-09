@@ -10,9 +10,9 @@
 }
 
 article {
-    width: 34%;
+    width: 30%;
     background-color: whitesmoke;
-    margin: 320px 0px 0px 35%;
+    margin: 200px 0px 0px 35%;
     box-shadow: 2px 2px 6px 2px #1c2228;
 }
 
@@ -78,18 +78,40 @@ h1 {
     font-family: 'Segoe UI';
 }
 
-.adminmenu {
-    margin: 10px 0px 10px 42px;
-    float: left;
-    padding: 2px 108px 18px 80px;
-    border: solid;
-    border-width: 0px;
-    font-size: 41px;
-    height: 40px;
-    width: 60%;
-    text-align: center;
-    background-color: blue;
-    text-decoration: none;
-    color: whitesmoke;
+
+#tablediv {
+    font-size: 23px;
     font-family: 'Segoe UI';
+    margin: 50px 0px 0px 35%;
+    float: left;
+    background-color: whitesmoke;
 }
+.admintable tr td 
+{
+    width: 187px;
+    height: 50px;
+
+}
+.firstrow {
+    background-color: rgb(81, 168, 240);
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+   
+}
+#btndelete {
+    width: 187px;
+    height: 50px;
+    border: none;
+    background-color: gray;
+    color: white;
+    font-size: 23px;
+    font-family: 'Segoe UI';
+    cursor: pointer;
+}
+
+    #btndelete:hover {
+        background-color: rgb(81, 168, 240);
+    }
+
+

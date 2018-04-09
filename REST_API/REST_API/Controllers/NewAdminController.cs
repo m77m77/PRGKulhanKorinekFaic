@@ -10,6 +10,7 @@ using MySql.Data.MySqlClient;
 using REST_API.Models.BackupInfo;
 using Newtonsoft.Json;
 using REST_API.Utilities;
+using REST_API.Models.EmailSettings;
 
 namespace REST_API.Controllers
 {
@@ -55,7 +56,7 @@ namespace REST_API.Controllers
 
                 QueryInsertEmail.CommandText = "INSERT INTO emails (adminId,emailSettings) VALUES (@adminId,@emailSettings);";
                 QueryInsertEmail.Parameters.AddWithValue("@adminId", AdminId);
-                QueryInsertEmail.Parameters.AddWithValue("@emailSettings", @"{ ""AdminId"":" +AdminId +@",""EmailAddress"":"""",""FromDaemonsDaily"":[],""FromDaemonsWeekly"":[],""FromDaemonsMonthly"":[],""SendEmails"":false,""Template"":""""}");
+                QueryInsertEmail.Parameters.AddWithValue("@emailSettings", JsonConvert.SerializeObject(new EmailSettings() {Template = 1 }, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
 
                 
                 QueryInsertEmail.ExecuteNonQuery();
@@ -92,29 +93,22 @@ namespace REST_API.Controllers
 
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            MySqlCommand QueryDeleteAdmin = Connection.CreateCommand();
-            MySqlCommand QueryDeleteEmail = Connection.CreateCommand();
-            MySqlCommand QuerySelectAdminId = Connection.CreateCommand();
-
-            QueryDeleteAdmin.CommandText = "DELETE FROM admins where name=@name;";
-            QueryDeleteAdmin.Parameters.AddWithValue("@name", AdminName);
-
-            QuerySelectAdminId.CommandText = "SELECT id from admins where name=@name";
-            QuerySelectAdminId.Parameters.AddWithValue("@name", AdminName);
-
             Response r = new Response();
 
             try
             {
                 Connection.Open();
 
-                int AdminId = Convert.ToInt32(QuerySelectAdminId.ExecuteScalar());
+                MySqlCommand query = Connection.CreateCommand();
+                query.CommandText = "DELETE admins.*,emails.*,tokensAdmins.*,tokens.* FROM admins " +
+                                    "LEFT JOIN emails ON admins.id = emails.adminId " +
+                                    "LEFT JOIN tokensAdmins ON admins.id = tokensAdmins.idAdmin " +
+                                    "LEFT JOIN tokens ON tokens.id = tokensAdmins.idToken " +
+                                    "WHERE admins.name = @adminName";
 
-                QueryDeleteEmail.CommandText = "DELETE FROM emails WHERE adminId=@adminId";
-                QueryDeleteEmail.Parameters.AddWithValue("@adminId", AdminId);
+                query.Parameters.AddWithValue("@adminName", AdminName);
 
-                QueryDeleteAdmin.ExecuteNonQuery();
-                QueryDeleteEmail.ExecuteNonQuery();
+                query.ExecuteNonQuery();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {

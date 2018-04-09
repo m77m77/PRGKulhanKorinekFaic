@@ -1,4 +1,5 @@
-﻿using DaemonTest.CommunicationClasses;
+﻿using DaemonTest.BackupMethods;
+using DaemonTest.CommunicationClasses;
 using DaemonTest.DestinationManagers;
 using DaemonTest.Models.Settings;
 using DaemonTest.SaveMethods;
@@ -19,6 +20,24 @@ namespace DaemonTest
         public SettingsManager(Settings settings)
         {
             this.CurrentSettings = settings;
+        }
+
+        public IBackupMethod GetBackupMethod(string type)
+        {
+            if(type == "FULL")
+            {
+                return new FullBackupMethod(this);
+            }
+            else if (type == "DIFF")
+            {
+                return new DifferentialBackupMethod(this);
+            }
+            else if(type == "INC")
+            {
+                return new IncrementalBackupMethod(this);
+            }
+
+            return null;
         }
 
         public ISaveMethod GetSaveMethod()
@@ -61,11 +80,11 @@ namespace DaemonTest
 
             if (type == "ONE_TIME")
             {
-                return type;
+                return type + " SETTINGS" + CurrentSettings.SettingsID;
             }
             else if (type == "DAILY")
             {
-                return type + " " + DateTime.Now.ToString("dd.MM.yyyy");
+                return type + " SETTINGS" + CurrentSettings.SettingsID + " " + DateTime.Now.ToString("dd.MM.yyyy");
             }
             else if (type == "WEEKLY")
             {
@@ -73,14 +92,14 @@ namespace DaemonTest
                 DateTime monday = DateTime.Now.AddDays(-1 * diff).Date;
                 DateTime sunday = monday.AddDays(6);
 
-                return type + " " + monday.ToString("dd.MM.yyyy") + " - " + sunday.ToString("dd.MM.yyyy");
+                return type + " SETTINGS" + CurrentSettings.SettingsID + " " + monday.ToString("dd.MM.yyyy") + " - " + sunday.ToString("dd.MM.yyyy");
             }
             else if (type == "MONTHLY")
             {
                 DateTime first = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 DateTime last = first.AddMonths(1).AddDays(-1);
 
-                return type + " " + first.ToString("dd.MM.yyyy") + " - " + last.ToString("dd.MM.yyyy");
+                return type + " SETTINGS" + CurrentSettings.SettingsID + " " + first.ToString("dd.MM.yyyy") + " - " + last.ToString("dd.MM.yyyy");
             }
 
             return "";

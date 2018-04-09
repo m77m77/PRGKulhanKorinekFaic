@@ -201,6 +201,7 @@
     <Compile Include="CommunicationClasses\EmailAdminData.cs" />
     <Compile Include="CommunicationClasses\IData.cs" />
     <Compile Include="CommunicationClasses\ListInicializationTokenData.cs" />
+    <Compile Include="Controllers\NewSettingsController.cs" />
     <Compile Include="Models\EmailSettings\EmailDaemonName.cs" />
     <Compile Include="Models\EmailSettings\EmailInfo.cs" />
     <Compile Include="Models\InicializationToken\InicializationToken.cs" />
