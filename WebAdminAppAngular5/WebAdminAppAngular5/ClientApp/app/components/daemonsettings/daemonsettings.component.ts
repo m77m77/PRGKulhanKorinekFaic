@@ -90,7 +90,7 @@ export class DaemonsettingsComponent {
                     settings.push({I: k, Route: '../' + i + '/' + k});
                 }
 
-                this.daemons.push({ Route: '../' + i, Name: daemon.DaemonName, Settings: settings, Changed: unSavedData.indexOf(''+i) > -1 ? '*' : ''});
+                this.daemons.push({ Route: '../' + i, Name: daemon.DaemonName, Id: daemon.DaemonID, Settings: settings, Changed: unSavedData.indexOf(''+i) > -1 ? '*' : ''});
             }
 
         }
@@ -197,9 +197,28 @@ export class DaemonsettingsComponent {
             this.loadDaemon();
         }
     }
-    public PostNewSettings() {
+    public PostNewSettings(DaemonID:string) {
 
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        this.http.post('http://localhost:63058/api/newsettings/' + sessionStorage.getItem('token'), { "DaemonID": DaemonID, "DaemonName": null, "Settings": null }, { headers: headers }).toPromise()
+            .then((response: Response) => {
+                let NewSettings = response.json();
+                if (NewSettings && "OK" == NewSettings.Status) {
+                    sessionStorage.removeItem('daemonsData');
+                    sessionStorage.removeItem('daemonsUnsave');
+                    this.loadDaemon();
+                    window.location.reload();
+                    //this.router.navigate(['../home'], { relativeTo: this.route })
+                } else {
+                    sessionStorage.removeItem('token');
+                    this.router.navigate(['/login'], {})
+                }
+            })
+            .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}) })
+        
     }
+    
 
 
 }

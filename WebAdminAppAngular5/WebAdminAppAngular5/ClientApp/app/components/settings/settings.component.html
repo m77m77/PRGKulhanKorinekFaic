@@ -5,8 +5,10 @@
         <ul class="sectionul">
             <a [routerLink]="['settings']" [routerLinkActive]="['link-active']"><li class="sectionulli">Backup settings</li></a>
             <a [routerLink]="['scheme']" [routerLinkActive]="['link-active']"><li class="sectionulli">Backup scheme</li></a>
+            
         </ul>
     </nav>
 </div>
 <router-outlet></router-outlet>
 </div>
+<button id="btnDeleteSettings" (click)="DeleteSettings()">Delete settings</button>

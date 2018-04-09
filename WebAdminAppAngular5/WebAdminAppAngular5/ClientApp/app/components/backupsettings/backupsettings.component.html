@@ -1,5 +1,13 @@
-﻿<p class="tucne"> Select what will you backup </p>
-<input type="text" id="sourcePath" (input)="saveSettings()" class="pathtextselect" placeholder="C:\DATA" value="{{source}}">
+﻿
+        <p class="tucne"> Select what will you backup </p>
+        <div id="backupSetting">
+            <div class="OnebackupSetting">
+                <input type="text" id="sourcePath" (input)="saveSettings()" class="pathtextselect" placeholder="C:\DATA" value="{{source}}">
+       
+            </div>
+
+        </div>
+<button class="btnAddBackupSetting" (click)="addBackupSource()">+</button>
 
 <p class="tucne">Destination</p>
 <table>

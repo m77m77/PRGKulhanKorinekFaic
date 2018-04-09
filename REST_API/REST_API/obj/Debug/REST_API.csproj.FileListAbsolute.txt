@@ -1041,3 +1041,4 @@ C:\Users\david\Desktop\GITBACKUP\REST_API\REST_API\obj\Debug\REST_API.csprojReso
 C:\Users\david\Desktop\GITBACKUP\REST_API\REST_API\obj\Debug\REST_API.csproj.CoreCompileInputs.cache
 C:\Users\david\Desktop\GITBACKUP\REST_API\REST_API\obj\Debug\REST_API.dll
 C:\Users\david\Desktop\GITBACKUP\REST_API\REST_API\obj\Debug\REST_API.pdb
+D:\Projekty\PRG_KulhanKořínekFaic_8\REST_API\REST_API\obj\Debug\REST_API.csprojResolveAssemblyReference.cache
