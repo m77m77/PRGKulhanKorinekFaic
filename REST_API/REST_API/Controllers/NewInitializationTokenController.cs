@@ -10,9 +10,9 @@ using System.Web.Http;
 
 namespace REST_API.Controllers
 {
-    public class NewInicializationTokenController : ApiController
+    public class NewInitializationTokenController : ApiController
     {
-        [Route("api/token/inicialization/{token}")]
+        [Route("api/newinitializationtoken/{token}")]
         public Response Get(string token)
         {
             Token t = Token.Exists(token);
@@ -31,7 +31,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT token FROM tokens where status='inicialize'";
+            Query.CommandText = "SELECT token FROM tokens where status='initialize'";
 
             Response r = new Response();
             ListInicializationTokenData litd = new ListInicializationTokenData();
@@ -63,7 +63,7 @@ namespace REST_API.Controllers
             return r;
         }
 
-        [Route("api/token/inicialization/{token}")]
+        [Route("api/newinitializationtoken/{token}")]
         public Response Post(string token)
         {
             Token t = Token.Exists(token);

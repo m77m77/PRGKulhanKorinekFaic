@@ -8,6 +8,7 @@ namespace DaemonTest.Config
     {
         string Server { get; set; }
         string Token { get; set; }
+        string InitializationToken { get; set; }
 
         void Save();
         bool Load();

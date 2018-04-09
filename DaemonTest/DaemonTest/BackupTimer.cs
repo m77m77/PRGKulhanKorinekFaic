@@ -14,8 +14,11 @@ namespace DaemonTest
         private int checkSettings = 60;
         private int checkSettingsRemaining = 0;
 
+        private List<BackupStatus> unsendStatuses;
+
         public void Start()
         {
+            this.unsendStatuses = new List<BackupStatus>();
             ServerAccess.Config.Load();
         }
 
@@ -41,6 +44,25 @@ namespace DaemonTest
 
             if(this.currentDaemon != null)
             {
+                if(this.unsendStatuses.Count > 0)
+                {
+                    List<BackupStatus> sentSuccesfully = new List<BackupStatus>();
+                    foreach (BackupStatus item in this.unsendStatuses)
+                    {
+                        Response response = await ServerAccess.SendBackupStatus(item);
+
+                        if(response.Status == "OK")
+                        {
+                            sentSuccesfully.Add(item);
+                        }
+                    }
+
+                    foreach (BackupStatus item in sentSuccesfully)
+                    {
+                        this.unsendStatuses.Remove(item);
+                    }
+                }
+
                 foreach (Settings item in this.currentDaemon.Settings)
                 {
                     string type = this.CheckIfSettingsShouldRun(item);
@@ -52,7 +74,12 @@ namespace DaemonTest
                         BackupStatus status = backupMethod.Backup();
 
                         Response response = await ServerAccess.SendBackupStatus(status);
+                        
 
+                        if(response.Status != "OK")
+                        {
+                            this.unsendStatuses.Add(status);
+                        }
                     }
                 }
             }
