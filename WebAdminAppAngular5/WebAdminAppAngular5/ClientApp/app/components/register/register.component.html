@@ -23,7 +23,27 @@
                 </table>
 
             </section>
+
         </article>
     </div>
-
+    <div id="tablediv">
+    <table id="table1" class="admintable">
+        <tr class="firstrow">
+            <td>Username</td>
+            <td>Type</td>
+            <td>Delete</td>
+        </tr>
+        <tr *ngFor="let b of admins">
+            <td>{{b.Name}}</td>
+            <td>{{b.Type}}</td>
+            <td><button class="btn btn-primary" (click)="Delete(b.Name)" id="btndelete">Delete</button></td>
+            <!--<td>
+                <form name="f2" action="Save();">
+                    <input id="delete" onclick="Save()" type="submit" name="delete" value="Delete" />
+                </form>
+            </td>-->
+            </tr>
+    </table>
 </div>
+</div>
+

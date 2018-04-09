@@ -20,7 +20,7 @@ namespace REST_API
         {
             // Služby a konfigurace rozhraní Web API
 
-            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "GET, POST");
+            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "GET, POST, DELETE");
             cors.SupportsCredentials = true;
             config.EnableCors(cors);
 

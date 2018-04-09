@@ -10,6 +10,7 @@ using MySql.Data.MySqlClient;
 using REST_API.Models.BackupInfo;
 using Newtonsoft.Json;
 using REST_API.Utilities;
+using REST_API.Models.EmailSettings;
 
 namespace REST_API.Controllers
 {
@@ -55,7 +56,7 @@ namespace REST_API.Controllers
 
                 QueryInsertEmail.CommandText = "INSERT INTO emails (adminId,emailSettings) VALUES (@adminId,@emailSettings);";
                 QueryInsertEmail.Parameters.AddWithValue("@adminId", AdminId);
-                QueryInsertEmail.Parameters.AddWithValue("@emailSettings", @"{ ""AdminId"":" +AdminId +@",""EmailAddress"":"""",""FromDaemonsDaily"":[],""FromDaemonsWeekly"":[],""FromDaemonsMonthly"":[],""SendEmails"":false,""Template"":""""}");
+                QueryInsertEmail.Parameters.AddWithValue("@emailSettings", JsonConvert.SerializeObject(new EmailSettings() {Template = 1 }, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
 
                 
                 QueryInsertEmail.ExecuteNonQuery();
@@ -71,8 +72,8 @@ namespace REST_API.Controllers
 
             return r;
         }
-        [Route("api/newadmin/delete/{token}")]
-        public Response Delete(string token,string AdminName)
+        [Route("api/newadmin/delete/{token}/{AdminName}")]
+        public Response Delete(string token, string AdminName)
         {
             Token t = Token.Exists(token);
             if (t == null)
@@ -92,28 +93,22 @@ namespace REST_API.Controllers
 
             MySqlConnection Connection = WebApiConfig.Connection();
 
-            MySqlCommand QueryDeleteAdmin = Connection.CreateCommand();
-            MySqlCommand QueryDeleteEmail = Connection.CreateCommand();
-            MySqlCommand QuerySelectAdminId = Connection.CreateCommand();
-
-            QueryDeleteAdmin.CommandText = "DELETE FROM admins where name==@name;" + " SELECT last_insert_id();";
-            QueryDeleteAdmin.Parameters.AddWithValue("@name", AdminName);
-
-
             Response r = new Response();
 
             try
             {
                 Connection.Open();
 
-                int AdminId = Convert.ToInt32(QueryDeleteAdmin.ExecuteScalar());
+                MySqlCommand query = Connection.CreateCommand();
+                query.CommandText = "DELETE admins.*,emails.*,tokensAdmins.*,tokens.* FROM admins " +
+                                    "LEFT JOIN emails ON admins.id = emails.adminId " +
+                                    "LEFT JOIN tokensAdmins ON admins.id = tokensAdmins.idAdmin " +
+                                    "LEFT JOIN tokens ON tokens.id = tokensAdmins.idToken " +
+                                    "WHERE admins.name = @adminName";
 
-                QueryDeleteEmail.CommandText = "INSERT INTO emails (adminId,emailSettings) VALUES (@adminId,@emailSettings);";
-                QueryDeleteEmail.Parameters.AddWithValue("@adminId", AdminId);
-                QueryDeleteEmail.Parameters.AddWithValue("@emailSettings", @"{ ""AdminId"":" + AdminId + @",""EmailAddress"":"""",""FromDaemonsDaily"":[],""FromDaemonsWeekly"":[],""FromDaemonsMonthly"":[],""SendEmails"":false,""Template"":""""}");
+                query.Parameters.AddWithValue("@adminName", AdminName);
 
-
-                QueryDeleteEmail.ExecuteNonQuery();
+                query.ExecuteNonQuery();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -149,7 +144,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT name FROM admins";
+            Query.CommandText = "SELECT name,type FROM admins";
 
             Response r = new Response();
 
@@ -166,6 +161,7 @@ namespace REST_API.Controllers
                 {
                     data.ListAdmin.Add(new AdminPost());
                     data.ListAdmin[i].Name = Reader["name"].ToString();
+                    data.ListAdmin[i].Type = Reader["type"].ToString();
                     i++;
                 }
                 Reader.Close();

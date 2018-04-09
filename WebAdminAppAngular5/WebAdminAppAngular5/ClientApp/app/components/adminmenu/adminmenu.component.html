@@ -6,16 +6,23 @@
             </div>
             <div class="arc">
                 <h1>Admins</h1>
-                <div class="sectionclass" *ngFor="let b of admins">
-                    <input type="text" class="sectionclass" (change)="" value="{{b.btnName}}" required> <br />
-                    <p><button id="{{b.Name}}"(click)='OpenAdminInfo("{{b.Name}}")'>"{{b.Name}}"</button></p>
-                    <!--<article>
-        <header><h1 class="h1r">AdminMenu</h1></header>
-        <div id="code" [innerHtml]="htmlToAdd"></div>
-    </article>-->
-
-
-                </div>
-
+                <!--<div class="sectionclass" *ngFor="let b of admins">-->
+                <table id="table1" border="1">
+                    <tr>
+                        <th>Username</th>
+                        <th>Type</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr *ngFor="let b of admins">
+                        <td>{{b.Name}}</td>
+                        <td>xxx</td>
+                        <td><button class="btn btn-primary" (click)="Delete('adminname')">Delete</button></td>
+                        <!--<td>
+        <form name="f2" action="Save();">
+            <input id="delete" onclick="Save()" type="submit" name="delete" value="Delete" />
+        </form>
+    </td>-->
+</table>
+                <!--</div>-->
             </div>
     </div>
