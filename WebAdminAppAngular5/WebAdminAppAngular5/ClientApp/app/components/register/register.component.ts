@@ -3,6 +3,7 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { NgModule, ElementRef } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
+import { useAnimation } from '@angular/core/src/animation/dsl';
 
 @Component({
     selector: 'register',
@@ -22,23 +23,33 @@ export class RegisterComponent {
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
         if (typeof window !== 'undefined') {
-            this.http.get('http://localhost:63058/api/newadmin/' + sessionStorage.getItem('token')).toPromise()
-                .then((response: Response) => {
-                    let AdminPost = response.json();
-                    console.log(AdminPost.Data);
-                    if (AdminPost && "OK" == AdminPost.Status) {
-                        sessionStorage.setItem('AdminPost', JSON.stringify(AdminPost.Data));
-                        this.WriteAdmins();
 
-                        //this.router.navigate(['../home'], { relativeTo: this.route })
-                    } else {
-                        sessionStorage.removeItem('token');
-                        this.router.navigate(['/login'], {})
-                    }
-                })
-                .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}); })
+            if (sessionStorage.getItem('AdminPost') != null) {
+                this.getAdmins();
+            }
+            this.WriteAdmins();
         }
     }
+
+    getAdmins() {
+        this.http.get('http://localhost:63058/api/newadmin/' + sessionStorage.getItem('token')).toPromise()
+            .then((response: Response) => {
+                let AdminPost = response.json();
+                console.log(AdminPost.Data);
+                if (AdminPost && "OK" == AdminPost.Status) {
+                    sessionStorage.setItem('AdminPost', JSON.stringify(AdminPost.Data));
+
+                    this.WriteAdmins();
+
+                    //this.router.navigate(['../home'], { relativeTo: this.route })
+                } else {
+                    sessionStorage.clear();
+                    this.router.navigate(['/login'], {})
+                }
+            })
+            .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}); });
+    }
+
     private CheckAdmins() {
         var AdminPost = sessionStorage.getItem('AdminPost');
         var username = (<HTMLInputElement>document.getElementById('username')).value;
@@ -79,27 +90,31 @@ export class RegisterComponent {
                     let AdminPost = response.json();
                     console.log(AdminPost);
                     if (AdminPost && "OK" == AdminPost.Status) {
-                        window.location.reload();
+                        this.getAdmins();
                         //this.router.navigate(['../home'], { relativeTo: this.route })
                     } else {
-                        sessionStorage.removeItem('token');
+                        sessionStorage.clear();
                         this.router.navigate(['/login'], {})
                     }
                 })
-                .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}) })
+                .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
         }
 
     }
     public Validation() {
-        var username = (<HTMLInputElement>document.getElementById('username')).value;
-        var password = (<HTMLInputElement>document.getElementById('password')).value;
-        var cpassword = (<HTMLInputElement>document.getElementById('cpassword')).value;
+        var username = (<HTMLInputElement>document.getElementById('username'));
+        var password = (<HTMLInputElement>document.getElementById('password'));
+        var cpassword = (<HTMLInputElement>document.getElementById('cpassword'));
 
         //var type = sessionStorage.getItem('AdminInfo')
 
-        if (username !== "" && password !== "" && password == cpassword) {
+        if (username.value !== "" && password.value !== "" && password.value == cpassword.value) {
             this.CheckAdmins();
         }
+
+        username.value = "";
+        password.value = "";
+        cpassword.value = "";
     }
 
 
@@ -132,9 +147,16 @@ export class RegisterComponent {
     }
     public Delete(adminName: any) {
         this.http.delete('http://localhost:63058/api/newadmin/delete/' + sessionStorage.getItem('token') + '/' + adminName).toPromise()
-            .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}) })
-        window.location.reload();
-        
+            .then((response: Response) => {
+                let DelResponse = response.json();
+                if (DelResponse && "OK" == DelResponse.Status) {
+                    this.getAdmins();
+                } else {
+                    sessionStorage.clear();
+                    this.router.navigate(['/login'], {})
+                }
+            })
+            .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
     }
 
     }

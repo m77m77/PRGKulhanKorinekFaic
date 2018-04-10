@@ -22,37 +22,33 @@ export class DaemonsettingsComponent {
 
         if (typeof window !== 'undefined') {
             if (sessionStorage.getItem('daemonsData') == null) {
-                var headers = new Headers();
-                headers.append('Content-Type', 'application/json');
-
-                this.http.get('http://localhost:63058/api/admin/' + sessionStorage.getItem('token'), { headers: headers }).toPromise()
-                    .then((response: Response) => {
-                        let mailSettings = response.json();
-                        if (mailSettings && "OK" == mailSettings.Status) {
-                            sessionStorage.setItem('daemonsData', JSON.stringify(mailSettings.Data));
-                            sessionStorage.setItem('daemonsUnsave', JSON.stringify([]));
-                            this.loadDaemon();
-                            //this.router.navigate(['../home'], { relativeTo: this.route })
-                        } else {
-                            sessionStorage.removeItem('token');
-                            sessionStorage.removeItem('daemonsData');
-                            sessionStorage.removeItem('daemonsUnsave');
-                            sessionStorage.removeItem('mailData');
-                            this.router.navigate(['/login'], {});
-                        }
-                    })
-                    .catch((msg: any) => {
-                        sessionStorage.removeItem('token');
-                        sessionStorage.removeItem('daemonsData');
-                        sessionStorage.removeItem('daemonsUnsave');
-                        sessionStorage.removeItem('mailData');
-                        this.router.navigate(['/login'], {});
-                    })
+                this.getDaemons();
             }
-
-            //this.loadMailData();
         }
 
+    }
+
+    getDaemons() {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        this.http.get('http://localhost:63058/api/admin/' + sessionStorage.getItem('token'), { headers: headers }).toPromise()
+            .then((response: Response) => {
+                let mailSettings = response.json();
+                if (mailSettings && "OK" == mailSettings.Status) {
+                    sessionStorage.setItem('daemonsData', JSON.stringify(mailSettings.Data));
+                    sessionStorage.setItem('daemonsUnsave', JSON.stringify([]));
+                    this.loadDaemon();
+                    //this.router.navigate(['../home'], { relativeTo: this.route })
+                } else {
+                    sessionStorage.clear();
+                    this.router.navigate(['/login'], {});
+                }
+            })
+            .catch((msg: any) => {
+                sessionStorage.clear();
+                this.router.navigate(['/login'], {});
+            })
     }
 
     loadDaemon() {
@@ -146,18 +142,12 @@ export class DaemonsettingsComponent {
                             if (mailSettings && "OK" == mailSettings.Status) {
 
                             } else {
-                                sessionStorage.removeItem('token');
-                                sessionStorage.removeItem('daemonsData');
-                                sessionStorage.removeItem('daemonsUnsave');
-                                sessionStorage.removeItem('mailData');
+                                sessionStorage.clear();
                                 this.router.navigate(['/login'], {});
                             }
                         })
                         .catch((msg: any) => {
-                            sessionStorage.removeItem('token');
-                            sessionStorage.removeItem('daemonsData');
-                            sessionStorage.removeItem('daemonsUnsave');
-                            sessionStorage.removeItem('mailData');
+                            sessionStorage.clear();
                             this.router.navigate(['/login'], {});
                         })
                 } else {
@@ -169,18 +159,12 @@ export class DaemonsettingsComponent {
                             if (mailSettings && "OK" == mailSettings.Status) {
 
                             } else {
-                                sessionStorage.removeItem('token');
-                                sessionStorage.removeItem('daemonsData');
-                                sessionStorage.removeItem('daemonsUnsave');
-                                sessionStorage.removeItem('mailData');
+                                sessionStorage.clear();
                                 this.router.navigate(['/login'], {});
                             }
                         })
                         .catch((msg: any) => {
-                            sessionStorage.removeItem('token');
-                            sessionStorage.removeItem('daemonsData');
-                            sessionStorage.removeItem('daemonsUnsave');
-                            sessionStorage.removeItem('mailData');
+                            sessionStorage.clear();
                             this.router.navigate(['/login'], {});
                         })
                 }
@@ -205,17 +189,13 @@ export class DaemonsettingsComponent {
             .then((response: Response) => {
                 let NewSettings = response.json();
                 if (NewSettings && "OK" == NewSettings.Status) {
-                    sessionStorage.removeItem('daemonsData');
-                    sessionStorage.removeItem('daemonsUnsave');
-                    this.loadDaemon();
-                    window.location.reload();
-                    //this.router.navigate(['../home'], { relativeTo: this.route })
+                    this.getDaemons();
                 } else {
-                    sessionStorage.removeItem('token');
+                    sessionStorage.clear();
                     this.router.navigate(['/login'], {})
                 }
             })
-            .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}) })
+            .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
         
     }
     
