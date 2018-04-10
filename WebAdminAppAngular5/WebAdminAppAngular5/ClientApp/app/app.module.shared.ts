@@ -19,7 +19,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { BackupSettingsComponent } from './components/backupsettings/backupsettings.component';
 import { OnetimebackupschemeComponent } from './components/onetimebackupscheme/onetimebackupscheme.component';
 import { MonthlybackupschemeComponent } from './components/monthlybackupscheme/monthlybackupscheme.component';
-import { AdminMenuComponent } from './components/adminmenu/adminmenu.component';
+import { ITokenComponent } from './components/itoken/itoken.component';
 
 
 @NgModule({
@@ -39,7 +39,7 @@ import { AdminMenuComponent } from './components/adminmenu/adminmenu.component';
         BackupSettingsComponent,
         OnetimebackupschemeComponent,
         MonthlybackupschemeComponent,
-        AdminMenuComponent,
+        ITokenComponent,
 
    
     ],
@@ -84,6 +84,7 @@ import { AdminMenuComponent } from './components/adminmenu/adminmenu.component';
                         ]
                     },
                     { path: 'register', component: RegisterComponent },
+                    { path: 'itoken', component: ITokenComponent },
                 ]
             }
         ])
