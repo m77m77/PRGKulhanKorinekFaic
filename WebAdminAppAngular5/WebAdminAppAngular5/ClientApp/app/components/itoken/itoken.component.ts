@@ -61,11 +61,12 @@ export class ITokenComponent {
                 if (InitializationTokens && "OK" == InitializationTokens.Status) {
                     this.LoadITokens();
                     this.WriteITokens();
+                    window.prompt('New initialization token', InitializationTokens.NewToken )
                 } else {
                     sessionStorage.clear();
                     this.router.navigate(['/login'], {})
                 }
             })
-            .catch((msg: any) => { sessionStorage.removeItem('token'); this.router.navigate(['/login'], {}) })
+            .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
     }
 }

@@ -81,10 +81,13 @@ namespace REST_API.Controllers
             MySqlConnection Connection = WebApiConfig.Connection();
 
             Response r = new Response();
-
             try
             {
-                Token.GenerateNewInicializationToken();
+                Token tok = Token.GenerateNewInicializationToken();
+                if(tok != null)
+                    r.NewToken = tok.Value;
+                else
+                    r = new Response("ERROR", "TokenGenerationFailed", null, null);
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
