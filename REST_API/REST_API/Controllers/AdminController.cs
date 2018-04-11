@@ -25,7 +25,7 @@ namespace REST_API.Controllers
             if (t == null)
             {
                 //token není v databázi  
-                return new Response("ERROR","TokenNotFound",null,null);
+                return new Response("ERROR", "TokenNotFound", null, null);
             }
             if (!t.IsAdmin)
             {
@@ -35,7 +35,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT daemons.id AS DaemonID,daemonsSettings.id,daemonsSettings.settings,daemons.name FROM daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon ORDER BY daemons.id"; //WHERE @id = id";
+            Query.CommandText = "SELECT daemons.id AS DaemonID,daemonsSettings.id,daemonsSettings.settings,daemons.name FROM daemonsSettings RIGHT JOIN daemons ON daemons.id = daemonsSettings.idDaemon ORDER BY daemons.id"; //WHERE @id = id";
 
 
             MySqlCommand defaultSettingsQuery = Connection.CreateCommand();
@@ -60,8 +60,16 @@ namespace REST_API.Controllers
                 while (Reader.Read())
                 {
                     int dId = Convert.ToInt32(Reader["DaemonID"]);
-                    int sId = Convert.ToInt32(Reader["id"]);
-                    Settings settings = JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                    int sId = 0;
+                    object sSettings = Reader["settings"];
+
+                    Settings settings = null;
+
+                    if (sSettings != DBNull.Value)
+                    {
+                        sId = Convert.ToInt32(Reader["id"]);
+                        settings = JsonConvert.DeserializeObject<Settings>(sSettings.ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                    }
                     string name = Reader["name"].ToString();
 
                     if (daemon.DaemonID == 0)
@@ -69,12 +77,16 @@ namespace REST_API.Controllers
                         daemon.DaemonID = dId;
                         daemon.DaemonName = name;
                     }
-                    
-                    if(daemon.DaemonID == dId)
+
+                    if (daemon.DaemonID == dId)
                     {
-                        settings.SettingsID = sId;
-                        daemon.Settings.Add(settings);
-                    }else
+                        if (settings != null)
+                        {
+                            settings.SettingsID = sId;
+                            daemon.Settings.Add(settings);
+                        }
+                    }
+                    else
                     {
                         data.ListDaemons.Add(daemon);
                         daemon = new Daemon();
@@ -82,8 +94,11 @@ namespace REST_API.Controllers
                         daemon.DaemonID = dId;
                         daemon.DaemonName = name;
 
-                        settings.SettingsID = sId;
-                        daemon.Settings.Add(settings);
+                        if (settings != null)
+                        {
+                            settings.SettingsID = sId;
+                            daemon.Settings.Add(settings);
+                        }
                     }
                 }
 
