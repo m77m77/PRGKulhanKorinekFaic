@@ -5,10 +5,11 @@ using System.Linq;
 using System.Web;
 using REST_API;
 using System.Security.Cryptography;
+using REST_API.CommunicationClasses;
 
 namespace REST_API.Models
 {
-    public class Token
+    public class Token : IData
     {
         /// <summary>
         /// Zkontroluje databázi zda obsahuje token a vrátí instanci třídy Token pro další použití, nebo null pokud v databázi token není.
