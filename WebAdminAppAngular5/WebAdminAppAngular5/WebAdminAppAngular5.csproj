@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\app\components\admininfo\admininfo.component.ts" />
     <None Remove="ClientApp\app\components\backupsettings\backupsettings.component.ts" />
     <None Remove="ClientApp\app\components\daemonsettings\daemonsettings.component.ts" />
     <None Remove="ClientApp\app\components\itoken\itoken.component.ts" />
@@ -33,12 +32,13 @@
     <None Remove="ClientApp\app\components\monthlybackupscheme\monthlybackupscheme.component.ts" />
     <None Remove="ClientApp\app\components\onetimebackupscheme\onetimebackupscheme.component.ts" />
     <None Remove="ClientApp\app\components\register\register.component.ts" />
+    <None Remove="ClientApp\app\components\report\report.component.ts" />
     <None Remove="ClientApp\app\components\settings\settings.component.ts" />
     <None Remove="ClientApp\app\components\weeklybackupscheme\weeklybackupscheme.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\app\components\admininfo\admininfo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\report\report.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\itoken\itoken.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\backupsettings\backupsettings.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\daemonsettings\daemonsettings.component.ts" />

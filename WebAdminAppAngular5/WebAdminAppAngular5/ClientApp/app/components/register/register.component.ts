@@ -24,10 +24,10 @@ export class RegisterComponent {
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
         if (typeof window !== 'undefined') {
 
-            if (sessionStorage.getItem('AdminPost') != null) {
+            //if (sessionStorage.getItem('AdminPost') != null) {
                 this.getAdmins();
-            }
-            this.WriteAdmins();
+            //}
+            //this.WriteAdmins();
         }
     }
 
@@ -35,11 +35,11 @@ export class RegisterComponent {
         this.http.get('http://localhost:63058/api/newadmin/' + sessionStorage.getItem('token')).toPromise()
             .then((response: Response) => {
                 let AdminPost = response.json();
-                console.log(AdminPost.Data);
                 if (AdminPost && "OK" == AdminPost.Status) {
                     sessionStorage.setItem('AdminPost', JSON.stringify(AdminPost.Data));
 
                     this.WriteAdmins();
+                    //this.WriteAdmins();
 
                     //this.router.navigate(['../home'], { relativeTo: this.route })
                 } else {
@@ -51,6 +51,7 @@ export class RegisterComponent {
     }
 
     private CheckAdmins() {
+        this.getAdmins();
         var AdminPost = sessionStorage.getItem('AdminPost');
         var username = (<HTMLInputElement>document.getElementById('username')).value;
         if (AdminPost != null) {
@@ -102,6 +103,7 @@ export class RegisterComponent {
 
     }
     public Validation() {
+        this.getAdmins();
         var username = (<HTMLInputElement>document.getElementById('username'));
         var password = (<HTMLInputElement>document.getElementById('password'));
         var cpassword = (<HTMLInputElement>document.getElementById('cpassword'));
@@ -120,11 +122,11 @@ export class RegisterComponent {
 
 
     private WriteAdmins() {
+        this.getAdmins();
         this.position = "afterbegin";
         var htmlCode = '';
         var btnName = '';
         var btnType = '';
-
 
 
         var AdminPost = sessionStorage.getItem('AdminPost');

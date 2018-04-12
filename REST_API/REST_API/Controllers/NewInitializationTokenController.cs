@@ -83,8 +83,9 @@ namespace REST_API.Controllers
             Response r = new Response();
             try
             {
+
                 Token tok = Token.GenerateNewInicializationToken();
-                if(tok != null)
+                if (tok != null)
                     r.NewToken = tok.Value;
                 else
                     r = new Response("ERROR", "TokenGenerationFailed", null, null);

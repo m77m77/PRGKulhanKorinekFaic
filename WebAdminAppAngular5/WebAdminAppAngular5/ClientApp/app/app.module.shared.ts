@@ -20,6 +20,7 @@ import { BackupSettingsComponent } from './components/backupsettings/backupsetti
 import { OnetimebackupschemeComponent } from './components/onetimebackupscheme/onetimebackupscheme.component';
 import { MonthlybackupschemeComponent } from './components/monthlybackupscheme/monthlybackupscheme.component';
 import { ITokenComponent } from './components/itoken/itoken.component';
+import { ReportComponent } from './components/report/report.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { ITokenComponent } from './components/itoken/itoken.component';
         OnetimebackupschemeComponent,
         MonthlybackupschemeComponent,
         ITokenComponent,
+        ReportComponent,
 
    
     ],
@@ -85,6 +87,7 @@ import { ITokenComponent } from './components/itoken/itoken.component';
                     },
                     { path: 'register', component: RegisterComponent },
                     { path: 'itoken', component: ITokenComponent },
+                    { path: 'report', component: ReportComponent },
                 ]
             }
         ])

@@ -9,7 +9,7 @@ using REST_API.CommunicationClasses;
 
 namespace REST_API.Models
 {
-    public class Token : IData
+    public class Token
     {
         /// <summary>
         /// Zkontroluje databázi zda obsahuje token a vrátí instanci třídy Token pro další použití, nebo null pokud v databázi token není.
@@ -206,7 +206,7 @@ namespace REST_API.Models
 
         public static Token GenerateNewInicializationToken()
         {
-            Token result = null;
+            Token result = new Token(null, 0, 0, 0, 0);
             using (MySqlConnection connection = WebApiConfig.Connection())
             {
                 try
@@ -224,7 +224,7 @@ namespace REST_API.Models
 
                         int id = Convert.ToInt32(queryInsertIntoTokens.ExecuteScalar());
 
-                        result = new Token(newToken, id, null, 0, null);
+                        result = new Token(newToken, id, 0, 0, 0);
                 }
                 catch (Exception)
                 {
