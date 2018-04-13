@@ -208,5 +208,80 @@ namespace REST_API.Controllers
 
             return result;
         }
+
+
+        [Route("api/backupstatus/daemon/{token}/{type}")]
+        public Response GetAllDaemons(string token, string type)
+        {
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
+
+            Response result;
+            DateTime date = DateTime.Now;
+
+            if (type == "DAILY")
+            {
+                date = DateTime.Today;
+            }
+            else if (type == "WEEKLY")
+            {
+                int diff = (7 + (DateTime.Now.DayOfWeek - DayOfWeek.Monday)) % 7;
+                date = DateTime.Now.AddDays(-1 * diff).Date;
+            }
+            else if (type == "MONTHLY")
+            {
+                date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            }
+
+            using (MySqlConnection connection = WebApiConfig.Connection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    string sql = "SELECT idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo WHERE backupDate >= @date";
+
+                    MySqlCommand query = new MySqlCommand(sql, connection);
+                    query.Parameters.AddWithValue("@date", date);
+
+                    MySqlDataReader reader = query.ExecuteReader();
+
+                    ListDaemonBackupInfoData data = new ListDaemonBackupInfoData();
+                    data.ListDaemonBackupInfo = new List<BackupStatus>();
+
+                    while (reader.Read())
+                    {
+                        BackupStatus bs = new BackupStatus();
+                        bs.SettingsID = Convert.ToInt32(reader["idSettings"]);
+                        bs.Status = reader["backupStatus"].ToString();
+                        bs.TimeOfBackup = (DateTime)reader["backupDate"];
+                        bs.BackupType = reader["backupType"].ToString();
+                        bs.FailMessage = reader["backupFailMessage"].ToString();
+
+                        bs.Errors = JsonConvert.DeserializeObject<List<BackupError>>(reader["backupErrors"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        bs.Files = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        bs.RemovedFiles = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupRemovedFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        data.ListDaemonBackupInfo.Add(bs);
+                    }
+
+                    result = new Response("OK","","", data);
+                }
+                catch (Exception)
+                {
+                    result = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+                }
+            }
+
+            return result;
+        }
     }
 }
