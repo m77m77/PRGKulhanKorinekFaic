@@ -20,8 +20,8 @@ export class ReportComponent {
         }
     }
 
-    getReportsMonthly() {
-        this.http.get('http://localhost:63058/api/backupstatus/daemon/' + sessionStorage.getItem('token') + '/MONTHLY').toPromise()
+    async getReportsMonthly() {
+        await this.http.get('http://localhost:63058/api/backupstatus/daemon/' + sessionStorage.getItem('token') + '/MONTHLY').toPromise()
             .then((response: Response) => {
                 let Reports = response.json();
                 if (Reports && "OK" == Reports.Status) {
@@ -34,8 +34,8 @@ export class ReportComponent {
             .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}); });
     
     }
-    getReportsWeekly() {
-        this.http.get('http://localhost:63058/api/backupstatus/daemon/' + sessionStorage.getItem('token') + '/WEEKLY').toPromise()
+    async getReportsWeekly() {
+        await this.http.get('http://localhost:63058/api/backupstatus/daemon/' + sessionStorage.getItem('token') + '/WEEKLY').toPromise()
             .then((response: Response) => {
                 let Reports = response.json();
                 if (Reports && "OK" == Reports.Status) {
@@ -48,8 +48,8 @@ export class ReportComponent {
             })
             .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}); });
     }
-    getReportsDaily() {
-        this.http.get('http://localhost:63058/api/backupstatus/daemon/' + sessionStorage.getItem('token') + '/DAILY').toPromise()
+    async getReportsDaily() {
+        await this.http.get('http://localhost:63058/api/backupstatus/daemon/' + sessionStorage.getItem('token') + '/DAILY').toPromise()
             .then((response: Response) => {
                 let Reports = response.json();
                 if (Reports && "OK" == Reports.Status) {
@@ -62,13 +62,13 @@ export class ReportComponent {
             })
             .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}); });
     }
-    public WriteReports(type: string) {
+    public async WriteReports(type: string) {
         if (type === 'MONTHLY')
-            this.getReportsMonthly();
+            await this.getReportsMonthly();
         else if (type === 'WEEKLY')
-            this.getReportsWeekly();
+            await this.getReportsWeekly();
         else if (type === 'DAILY')
-            this.getReportsDaily();
+            await this.getReportsDaily();
 
         var Reports = sessionStorage.getItem('Reports');
         if (Reports != null) {
@@ -80,22 +80,19 @@ export class ReportComponent {
         var Date = '';
         var Type = '';
         var Message = '';
-        var Files = '';
 
         var count = data.ListDaemonBackupInfo.length;
         this.reports = [];
         for (var n = 0; n < count; n++) {
-            Status = data.ListDaemonBackupInfo[n].backupStatus
-            Date = data.ListDaemonBackupInfo[n].backupDate
-            Type = data.ListDaemonBackupInfo[n].backupType
+            Status = data.ListDaemonBackupInfo[n].Status
+            Date = data.ListDaemonBackupInfo[n].TimeOfBackup
+            Type = data.ListDaemonBackupInfo[n].BackupType
             Message = data.ListDaemonBackupInfo[n].backupStatus
-            Files = data.ListDaemonBackupInfo[n].backupFiles
             this.reports.push({
                 Status: Status,
                 Date: Date,
                 Type: Type,
                 Message: Message,
-                Files: Files
             });
         }
     }

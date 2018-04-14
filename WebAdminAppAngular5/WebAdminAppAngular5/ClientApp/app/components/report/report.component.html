@@ -1,21 +1,22 @@
-﻿<button class="btn btn-primary" (click)="WriteReports('MONTHLY')" id="btnmonthly">Month</button>
-<button class="btn btn-primary" (click)="WriteReports('WEEKLY')" id="btnweekly">Week</button>
-<button class="btn btn-primary" (click)="WriteReports('DAILY')" id="btndaily">Day</button>
-<div id="tablediv">
-    <table id="table1" class="report">
+﻿
+<div id="tabledivReports">
+    <table id="tableReports" class="report">
         <tr class="firstrow">
             <td>Status</td>
             <td>Date</td>
             <td>Type</td>
             <td>Message</td>
-            <td>Files</td>
         </tr>
         <tr *ngFor="let b of reports">
             <td>{{b.Status}}</td>
             <td>{{b.Date}}</td>
             <td>{{b.Type}}</td>
             <td>{{b.Message}}</td>
-            <td>{{b.Files}}</td>
         </tr>
     </table>
+</div>
+<div>
+    <button class="btn btn-primary" (click)="WriteReports('MONTHLY')" id="btnmonthly">Month</button>
+    <button class="btn btn-primary" (click)="WriteReports('WEEKLY')" id="btnweekly">Week</button>
+    <button class="btn btn-primary" (click)="WriteReports('DAILY')" id="btndaily">Day</button>
 </div>

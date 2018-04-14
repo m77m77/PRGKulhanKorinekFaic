@@ -12,6 +12,7 @@ import 'rxjs/add/operator/toPromise';
 
 })
 export class DaemonsettingsComponent {
+
     name: string;
     daemons: any;
     defaultChanged: string;
