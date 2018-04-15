@@ -21,6 +21,7 @@ import { OnetimebackupschemeComponent } from './components/onetimebackupscheme/o
 import { MonthlybackupschemeComponent } from './components/monthlybackupscheme/monthlybackupscheme.component';
 import { ITokenComponent } from './components/itoken/itoken.component';
 import { ReportComponent } from './components/report/report.component';
+import { DefaultSettingsComponent } from './components/defaultsettings/defaultsettings.component';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { ReportComponent } from './components/report/report.component';
         MonthlybackupschemeComponent,
         ITokenComponent,
         ReportComponent,
-
+        DefaultSettingsComponent,
    
     ],
     imports: [
@@ -65,6 +66,32 @@ import { ReportComponent } from './components/report/report.component';
                         children: [
                             {
                                 path: ':settingsID',
+                                component: SettingsComponent,
+                                children: [
+                                    {
+                                        path: 'scheme',
+                                        component: BackupschemeComponent,
+                                        children: [
+                                            { path: 'daily', component: DailybackupschemeComponent },
+                                            { path: 'weekly', component: WeeklybackupschemenewComponent },
+                                            { path: 'onetime', component: OnetimebackupschemeComponent },
+                                            { path: 'monthly', component: MonthlybackupschemeComponent }
+                                        ]
+                                    },
+                                    { path: 'settings', component: BackupSettingsComponent },
+                                    { path: '**', redirectTo: 'settings', pathMatch: 'full' },
+                                ]
+                            },
+
+
+                        ]
+                    },
+                    {
+                        path: 'default',
+                        component: DefaultSettingsComponent,
+                        children: [
+                            {
+                                path: 'default',
                                 component: SettingsComponent,
                                 children: [
                                     {

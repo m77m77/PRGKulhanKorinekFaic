@@ -134,6 +134,14 @@ export class WeeklybackupschemenewComponent{
         if ((<HTMLButtonElement>target).parentElement == null)
             return;
 
+        var panels = (<HTMLDivElement>document.getElementById('weeklyScheme')).querySelectorAll('.weeklyOneDay .weeklyOneDayPanel');
+
+        for (var i = 0; i < panels.length; i++) {
+            var clPanel = <HTMLDivElement>panels[i];
+
+            clPanel.style.display = 'none';
+        }
+
         var panel = <HTMLDivElement>(<HTMLButtonElement>target.parentElement).querySelector('div.weeklyOneDayPanel');
 
         if (panel.style.display == 'none') {
