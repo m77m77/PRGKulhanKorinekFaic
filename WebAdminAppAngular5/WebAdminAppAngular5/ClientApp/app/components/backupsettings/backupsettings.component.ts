@@ -13,6 +13,7 @@ import 'rxjs/add/operator/toPromise';
 })
 export class BackupSettingsComponent {
     source: string;
+    sources: any;
 
     nothingSelected: string;
     restartSelected: string;
@@ -66,7 +67,7 @@ export class BackupSettingsComponent {
                     settings = listDaemons[daemonID].Settings[settingsID];
                 }
 
-                this.source = settings.BackupSourcePath;
+                this.sources = settings.BackupSources;
                 var action = settings.ActionAfterBackup;
 
                 this.nothingSelected = action == 'NOTHING' ? 'selected' : '';
@@ -179,11 +180,8 @@ export class BackupSettingsComponent {
                 for (var i = 0; i < sources.length; i++) {
                     var source = sources[i];
                     var val = (<HTMLInputElement>source.querySelector('.pathtextselect')).value;
-                    console.log(val);
                     settings.BackupSources.push(val);
                 }
-
-                settings.BackupSourcePath = (<HTMLInputElement>document.getElementById('sourcePath')).value;
                 var saveFormat = (<HTMLSelectElement>document.getElementById('saveFormat'));
                 var afterBackup = (<HTMLSelectElement>document.getElementById('afterBackup'));
                 settings.SaveFormat = saveFormat.options[saveFormat.selectedIndex].value;
@@ -236,7 +234,7 @@ export class BackupSettingsComponent {
 
         var input = this.renderer.createElement('input');
         input.type = 'text';
-        input.placeholder = 'C:\DATA';
+        input.placeholder = 'C:\\DATA';
         input.className = 'pathtextselect';
 
         var button = this.renderer.createElement('button');
@@ -249,6 +247,8 @@ export class BackupSettingsComponent {
        
         this.renderer.appendChild(backups, newBackupSetting);
         this.renderer.appendChild(newBackupSetting, button);
+
+        this.saveSettings();
     }
 
      deleteBackupSource(event: any) {
@@ -258,6 +258,7 @@ export class BackupSettingsComponent {
          var backups = <HTMLDivElement>document.getElementById("backupSetting");
 
          this.renderer.removeChild(backups, target.parentNode);
-         
+
+         this.saveSettings();
      }
 }

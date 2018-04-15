@@ -26,6 +26,7 @@
   <ItemGroup>
     <None Remove="ClientApp\app\components\backupsettings\backupsettings.component.ts" />
     <None Remove="ClientApp\app\components\daemonsettings\daemonsettings.component.ts" />
+    <None Remove="ClientApp\app\components\defaultsettings\defaultsettings.component.ts" />
     <None Remove="ClientApp\app\components\itoken\itoken.component.ts" />
     <None Remove="ClientApp\app\components\login\login.component.ts" />
     <None Remove="ClientApp\app\components\mailsettings\mailsettings.component.ts" />
@@ -38,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\defaultsettings\defaultsettings.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\report\report.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\itoken\itoken.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\backupsettings\backupsettings.component.ts" />

@@ -35,8 +35,15 @@ export class OnetimebackupschemeComponent {
                     settings = listDaemons[daemonID].Settings[settingsID];
                 }
 
+
+
                 if (settings.BackupScheme.Type != 'ONE_TIME') {
-                    settings.BackupScheme = { Type: 'ONE_TIME', MaxBackups: 0, OneTimeBackup: { When: '0001-01-01T00:00' }, BackupTimes: [] }
+                    var currDate = new Date();
+                    var mon = (currDate.getMonth() >= 10 ? currDate.getMonth() : '0' + currDate.getMonth()); 
+                    var day = (currDate.getDate() >= 10 ? currDate.getDate() : '0' + currDate.getDate());
+                    var hour = (currDate.getHours() >= 10 ? currDate.getHours() : '0' + currDate.getHours()); 
+                    var min = (currDate.getMinutes() >= 10 ? currDate.getMinutes() : '0' + currDate.getMinutes());
+                    settings.BackupScheme = { Type: 'ONE_TIME', MaxBackups: 0, OneTimeBackup: { When: currDate.getFullYear() + '-' + mon + '-' + day + 'T' + hour + ':' + min }, BackupTimes: [] }
 
                     if (unSavedData.indexOf(daemonID) <= -1) {
                         unSavedData.push(daemonID);
@@ -47,7 +54,6 @@ export class OnetimebackupschemeComponent {
                 }
 
                 this.when = settings.BackupScheme.OneTimeBackup.When.split('.')[0];
-                
             } catch (e) {
 
             }
