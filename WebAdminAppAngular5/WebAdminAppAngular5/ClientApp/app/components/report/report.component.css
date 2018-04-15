@@ -16,16 +16,16 @@ article {
     box-shadow: 2px 2px 6px 2px #1c2228;
 }
 
-#tablediv {
+#tablereportdiv {
     font-size: 23px;
     font-family: 'Segoe UI';
-    margin: 100px 0px 0px 35%;
+    margin: 200px 0px 0px 25%;
     float: left;
     background-color: whitesmoke;
 }
 
 .report tr td {
-    width: 150px;
+    width: 250px;
     height: 25px;
 }
 
@@ -123,3 +123,49 @@ h1 {
     #btndelete:hover {
         background-color: rgb(81, 168, 240);
     }
+
+#btnmonthly {
+    width: 335px;
+    height: 50px;
+    border: none;
+    background-color: gray;
+    color: white;
+    font-size: 23px;
+    font-family: 'Segoe UI';
+    cursor: pointer;
+    margin: 3px 0px 0px 0px;
+}
+    #btnmonthly:hover {
+        background-color: rgb(81, 168, 240);
+    }
+
+#btnweekly {
+    width: 335px;
+    height: 50px;
+    border: none;
+    background-color: gray;
+    color: white;
+    font-size: 23px;
+    font-family: 'Segoe UI';
+    cursor: pointer;
+    margin: 3px 0px 0px 0px;
+}
+
+    #btnweekly:hover {
+        background-color: rgb(81, 168, 240);
+    }
+#btndaily {
+    width: 335px;
+    height: 50px;
+    border: none;
+    background-color: gray;
+    color: white;
+    font-size: 23px;
+    font-family: 'Segoe UI';
+    cursor: pointer;
+    margin: 3px 0px 0px 0px;
+}
+
+#btndaily:hover {
+        background-color: rgb(81, 168, 240);
+}
