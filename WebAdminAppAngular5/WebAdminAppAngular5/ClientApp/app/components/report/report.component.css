@@ -16,8 +16,18 @@ article {
     box-shadow: 2px 2px 6px 2px #1c2228;
 }
 
+#tablediv {
+    font-size: 23px;
+    font-family: 'Segoe UI';
+    margin: 100px 0px 0px 35%;
+    float: left;
+    background-color: whitesmoke;
+}
 
-
+.report tr td {
+    width: 150px;
+    height: 25px;
+}
 
 .textinputformat {
     font-size: 25px;

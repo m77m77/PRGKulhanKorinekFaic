@@ -222,7 +222,7 @@ div .archeader li a {
 }
 
 .pathtextselect {
-    width: 640px;
+    width: 590px;
     height: 30px;
     font-size: 23px;
     margin: 10px;
@@ -238,7 +238,7 @@ div .archeader li a {
 }
 
 .btnAddBackupSetting {
-    width: 95%;
+    width: 96%;
     height: 45px;
     margin: 5px 15px 5px 10px;
     border: none;
@@ -251,14 +251,15 @@ div .archeader li a {
     background-color: rgb(38, 82, 130);
 }
 .btnRemove {
-    width: 95%;
-    height: 45px;
-    margin: 5px 15px 5px 10px;
+    width: 40px;
+    height: 35px;
+    margin: 8px 15px 5px 5px;
     font-size: 35px;
     color: white;
     background-color: rgb(81, 168, 240);
     font-weight: bold;
     border: none;
+    float: right;
 }
 
 .btnRemove:hover {

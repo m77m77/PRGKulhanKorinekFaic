@@ -3,14 +3,17 @@
                 <nav-menu></nav-menu>
             </div>
             <div class="arc">
+
                 <h1>Initialization tokens</h1>
-                <table id="table1" border="1">
-                    <tr>
-                        <th>Token</th>
-                    </tr>
-                    <tr *ngFor="let b of itokens">
-                        <td>{{b.Token}}</td>
-                </table>
-                <button class="btn btn-primary" (click)="AddNewIToken()" id="btnadditoken">New Initialization Token</button>
+                <div class="sectionclass">
+                    <table id="table1" class="tableTokens">
+                        <tr>
+                            <th>Token</th>
+                        </tr>
+                        <tr *ngFor="let b of itokens">
+                            <td>{{b.Token}}</td>
+                    </table>
+                    <button class="btn btn-primary" (click)="AddNewIToken()" id="btnadditoken">New Initialization Token</button>
+                </div>
             </div>
     </div>
