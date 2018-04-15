@@ -56,7 +56,7 @@ namespace REST_API.Controllers
 
                 QueryInsertEmail.CommandText = "INSERT INTO emails (adminId,emailSettings) VALUES (@adminId,@emailSettings);";
                 QueryInsertEmail.Parameters.AddWithValue("@adminId", AdminId);
-                QueryInsertEmail.Parameters.AddWithValue("@emailSettings", JsonConvert.SerializeObject(new EmailSettings() {Template = 1 }, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                QueryInsertEmail.Parameters.AddWithValue("@emailSettings", JsonConvert.SerializeObject(new EmailSettings() {EmailAddress = "",Template = 1, FromDaemonsDaily = new List<int>(), FromDaemonsMonthly = new List<int>(), FromDaemonsWeekly = new List<int>() }, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
 
                 
                 QueryInsertEmail.ExecuteNonQuery();

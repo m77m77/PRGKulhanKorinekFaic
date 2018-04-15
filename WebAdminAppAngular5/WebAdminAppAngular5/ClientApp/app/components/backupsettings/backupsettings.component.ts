@@ -151,6 +151,7 @@ export class BackupSettingsComponent {
     }
 
     saveSettings() {
+        console.log('SAVE');
         var daemonsData = sessionStorage.getItem('daemonsData');
         var unsaved = sessionStorage.getItem('daemonsUnsave');
         var daemonID = sessionStorage.getItem('daemonID');
@@ -170,6 +171,16 @@ export class BackupSettingsComponent {
 
                 if (unSavedData.indexOf(daemonID) <= -1) {
                     unSavedData.push(daemonID);
+                }
+
+                var sources = (<HTMLDivElement>document.getElementById("backupSetting")).querySelectorAll('.OnebackupSetting');
+                settings.BackupSources = [];
+
+                for (var i = 0; i < sources.length; i++) {
+                    var source = sources[i];
+                    var val = (<HTMLInputElement>source.querySelector('.pathtextselect')).value;
+                    console.log(val);
+                    settings.BackupSources.push(val);
                 }
 
                 settings.BackupSourcePath = (<HTMLInputElement>document.getElementById('sourcePath')).value;
@@ -225,6 +236,7 @@ export class BackupSettingsComponent {
 
         var input = this.renderer.createElement('input');
         input.type = 'text';
+        input.placeholder = 'C:\DATA';
         input.className = 'pathtextselect';
 
         var button = this.renderer.createElement('button');
@@ -232,6 +244,7 @@ export class BackupSettingsComponent {
         button.innerHTML = '-';
        
         this.renderer.listen(button, 'click', (evn) => this.deleteBackupSource(evn));
+        this.renderer.listen(input, 'input', (evn) => this.saveSettings());
         this.renderer.appendChild(newBackupSetting, input);
        
         this.renderer.appendChild(backups, newBackupSetting);
