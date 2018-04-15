@@ -131,6 +131,8 @@ export class MonthlybackupschemeComponent {
 
         if ((<HTMLButtonElement>target).parentElement == null)
             return;
+        var panel = <HTMLDivElement>(<HTMLButtonElement>target.parentElement).querySelector('div.weeklyOneDayPanel');
+        var display = panel.style.display;
 
         var panels = (<HTMLDivElement>document.getElementById('weeklyScheme')).querySelectorAll('.weeklyOneDay .weeklyOneDayPanel');
 
@@ -140,9 +142,9 @@ export class MonthlybackupschemeComponent {
             clPanel.style.display = 'none';
         }
 
-        var panel = <HTMLDivElement>(<HTMLButtonElement>target.parentElement).querySelector('div.weeklyOneDayPanel');
+        
 
-        if (panel.style.display == 'none') {
+        if (display == 'none') {
             panel.style.display = 'block';
         } else {
             panel.style.display = 'none';
