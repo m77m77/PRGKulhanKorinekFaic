@@ -10,5 +10,6 @@ namespace REST_API.Models.Settings
     {
         string Path { get; set; }
         string Type { get; set; }
+        string SaveFormat { get; set; }
     }
 }

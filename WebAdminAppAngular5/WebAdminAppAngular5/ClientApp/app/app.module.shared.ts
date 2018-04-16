@@ -59,7 +59,7 @@ import { DefaultSettingsComponent } from './components/defaultsettings/defaultse
                 children: [
                     { path: 'fetch', component: FetchDataComponent },
                     { path: 'mail', component: MailsettingsComponent },
-                    { path: 'daemon', redirectTo: 'daemon/default/default', pathMatch: 'full' },
+                    { path: 'daemon', redirectTo: 'daemon/0/0', pathMatch: 'full' },
                     {
                         path: 'daemon/:id',
                         component: DaemonsettingsComponent,
