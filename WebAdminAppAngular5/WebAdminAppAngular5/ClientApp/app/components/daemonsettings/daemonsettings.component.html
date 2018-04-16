@@ -9,10 +9,6 @@
             <li class="archeaderulli" *ngFor="let dd of daemons">
                 <div class="dropdown">
                     <a class="kkt" [routerLink]="dd.Route" [routerLinkActive]="['link-active']">{{dd.Name}} {{dd.Changed}}</a>
-                    <div class="dropdown-content">
-                        <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of dd.Settings">Settings {{s.I}}</a>
-                        <a class="add" (click)="PostNewSettings(dd.Id)">+</a>
-                    </div>
                 </div>
             </li>
         </ul>
@@ -20,8 +16,8 @@
     </div>
   
     <ul class="settinglist">
-        <a href="#" [routerLinkActive]="['link-active']"><li>Settings 1</li></a>
-        <a href="#" [routerLinkActive]="['link-active']"><li>Settings 2</li></a>
+        <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of settings"><li>Settings {{s.I}}</li></a>
+        <a class="add" (click)="PostNewSettings(daemonID)"><li>+</li></a>
     </ul>
     <router-outlet></router-outlet>
     <div class="dname">

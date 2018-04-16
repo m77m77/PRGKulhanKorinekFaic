@@ -22,9 +22,6 @@ export class BackupSettingsComponent {
     turnoffSelected: string;
     sleepSelected: string;
 
-    zipSelected: string;
-    plainSelected: string;
-
     constructor(private http: Http, private renderer: Renderer2, private router: Router, private route: ActivatedRoute) {
         var parent = this.route.parent;
         this.destCount = 0;
@@ -180,12 +177,6 @@ export class BackupSettingsComponent {
                 this.sleepSelected = action == 'SLEEP' ? 'selected' : '';
 
 
-                var saveFormat = settings.SaveFormat;
-
-                this.zipSelected = saveFormat == 'ZIP' ? 'selected' : '';
-                this.plainSelected = saveFormat == 'PLAIN' ? 'selected' : '';
-
-
                 this.destinations = [];
 
                 for (var i = 0; i < settings.Destinations.length; i++) {
@@ -272,9 +263,7 @@ export class BackupSettingsComponent {
                     var val = (<HTMLInputElement>source.querySelector('.pathtextselect')).value;
                     settings.BackupSources.push(val);
                 }
-                var saveFormat = (<HTMLSelectElement>document.getElementById('saveFormat'));
                 var afterBackup = (<HTMLSelectElement>document.getElementById('afterBackup'));
-                settings.SaveFormat = saveFormat.options[saveFormat.selectedIndex].value;
                 settings.ActionAfterBackup = afterBackup.options[afterBackup.selectedIndex].value;
 
                 settings.Destinations = [];

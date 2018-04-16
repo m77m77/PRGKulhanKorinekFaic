@@ -15,11 +15,13 @@ export class DaemonsettingsComponent {
 
     name: string;
     daemons: any;
+    settings: any;
+    daemonID: string;
     defaultChanged: string;
 
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
-        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { sessionStorage.setItem('daemonID', params.id); this.loadDaemon(); this.loadDaemon(); } });
+        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { sessionStorage.setItem('daemonID', params.id); this.loadDaemon(); } });
 
         if (typeof window !== 'undefined') {
             if (sessionStorage.getItem('daemonsData') == null) {
@@ -81,13 +83,17 @@ export class DaemonsettingsComponent {
             this.daemons = [];
             for (var i = 0; i < listDaemons.length; i++) {
                 var daemon = listDaemons[i];
-                var settingsCount = daemon.Settings.length;
-                var settings = [];
-                for (var k = 0; k < settingsCount; k++) {
-                    settings.push({I: k, Route: '../' + i + '/' + k});
-                }
 
-                this.daemons.push({ Route: '../' + i, Name: daemon.DaemonName, Id: daemon.DaemonID, Settings: settings, Changed: unSavedData.indexOf(''+i) > -1 ? '*' : ''});
+                if (i+'' == daemonID) {
+                    this.daemonID = daemon.DaemonID;
+                    this.settings = []
+                    for (var k = 0; k < daemon.Settings.length; k++) {
+                        this.settings.push({ I: k, Route: '../' + i + '/' + k });
+                    }
+                }
+                
+
+                this.daemons.push({ Route: '../' + i, Name: daemon.DaemonName, Id: daemon.DaemonID, Changed: unSavedData.indexOf(''+i) > -1 ? '*' : ''});
             }
 
         }
