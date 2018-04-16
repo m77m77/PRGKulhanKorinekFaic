@@ -6,16 +6,21 @@
 
                 <h1>Initialization tokens</h1>
                 <div class="sectionclass">
-                    <table id="table1" class="tableTokens">
-                        <tr>
-                            <th>Token</th>
-                        </tr>
-                        <tr *ngFor="let b of itokens">
-                            <td>{{b.Token}}</td>
-                            <td><button class="btn btn-primary" (click)="copyTextToClipboard(b.Token)" id="btncopyitoken">Copy</button></td>
-                            <td><button class="btn btn-primary" (click)="DeleteToken(b.Id)" id="btndeleteitoken">Delete Token</button></td>
-                    </table>
-                    <button class="btn btn-primary" (click)="AddNewIToken()" id="btnadditoken">New Initialization Token</button>
+                    <div id="tablediv">
+                        <table id="table1" class="tableTokens">
+                            <tr class="firstrowtok">
+                                <th>Token</th>
+                                <th>Copy</th>
+                                <th>Delete</th>
+                            </tr>
+
+                            <tr *ngFor="let b of itokens">
+                                <td class="tok">{{b.Token}}</td>
+                                <td><button class="btn btn-primary" (click)="copyTextToClipboard(b.Token)" id="btncopyitoken">Copy</button></td>
+                                <td><button class="btn btn-primary" (click)="DeleteToken(b.Id)" id="btndeleteitoken">Delete</button></td>
+                        </table>
+                        <button class="btn btn-primary" (click)="AddNewIToken()" id="btnadditoken">New Initialization Token</button>
+                    </div>
                 </div>
             </div>
     </div>
