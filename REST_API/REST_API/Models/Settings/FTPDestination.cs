@@ -14,5 +14,6 @@ namespace REST_API.Models.Settings
 
         public string Path { get; set; }
         public string Type { get => "FTP"; set { } }
+        public string SaveFormat { get; set; }
     }
 }

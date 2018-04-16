@@ -19,7 +19,7 @@ export class DaemonsettingsComponent {
 
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
-        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { sessionStorage.setItem('daemonID', params.id); this.loadDaemon(); } });
+        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { sessionStorage.setItem('daemonID', params.id); this.loadDaemon(); this.loadDaemon(); } });
 
         if (typeof window !== 'undefined') {
             if (sessionStorage.getItem('daemonsData') == null) {
@@ -60,12 +60,12 @@ export class DaemonsettingsComponent {
             var data = JSON.parse(daemonsData);
             var unSavedData = JSON.parse(unsaved);
             var listDaemons = data.ListDaemons;
-
             try {
                 if (daemonID == "default") {
                     (<HTMLElement>document.getElementById("dName")).style.display = 'none';
                 } else {
-                    (<HTMLElement>document.getElementById("dName")).style.display = 'block';
+                    if (document.getElementById('dName') != null)
+                        (<HTMLElement>document.getElementById("dName")).style.display = 'block';
                     this.name = listDaemons[daemonID].DaemonName;
                 }  
             } catch (e) {

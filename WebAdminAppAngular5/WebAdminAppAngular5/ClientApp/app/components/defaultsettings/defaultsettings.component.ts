@@ -39,6 +39,9 @@ export class DefaultSettingsComponent {
                 if (mailSettings && "OK" == mailSettings.Status) {
                     sessionStorage.setItem('daemonsData', JSON.stringify(mailSettings.Data));
                     sessionStorage.setItem('daemonsUnsave', JSON.stringify([]));
+
+                    
+
                     //this.router.navigate(['../home'], { relativeTo: this.route })
                 } else {
                     sessionStorage.clear();
