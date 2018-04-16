@@ -99,12 +99,13 @@ nav a {
     padding: 0;
     width: 250px;
     background-color: whitesmoke;
+    color: whitesmoke;
 }
 
 
 div .archeader li a {
     display: block;
-    color: #555;
+    color: darkgrey;
     padding: 13px 16px;
     text-decoration: none;
     width: 220px;
@@ -121,6 +122,11 @@ div .archeader li a:hover {
     color: whitesmoke;
 }
 
+.dropdown a.link-active {
+    background-color: #555;
+    color: blue;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -132,7 +138,7 @@ div .archeader li a:hover {
     background-color: whitesmoke;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     width: 250px;
-    z-index: 1;
+    z-index: 1000;
 }
 
 .dropdown:hover .dropdown-content {
@@ -151,10 +157,47 @@ div .archeader li a:hover {
     font-weight: bold;
     border: none;
     float: right;
+    display: inline;
+    cursor: pointer;
 }
 
 #btnSave:hover {
     background: #555;
+}
+
+.settinglist {
+    width: 250px;
+    float: right;
+    position: static;
+    background: none;
+    font-size: 20px;
+    color: #0a294b;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+
+ul a li {
+    font-family: "Segoe UI";
+    text-decoration: none;
+    list-style-type: none;
+    background-color: whitesmoke;
+   
+    height: 50px;
+}
+
+    ul a li.link-active {
+        background: #555;
+    }
+
+    ul a li:hover {
+        background: #555;
+        color: whitesmoke;
+    }
+a {
+    color: darkgrey;
+    text-decoration: none;
+    list-style-type: none;
 }
 
 

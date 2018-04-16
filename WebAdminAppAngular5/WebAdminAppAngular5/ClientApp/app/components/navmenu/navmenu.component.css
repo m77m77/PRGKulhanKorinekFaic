@@ -16,7 +16,7 @@ nav ul {
         text-decoration: none;
     }
 
-    nav ul a.link-active li {
+nav ul a.link-active li {
         font-size: 23px;
         font-weight: bold;
         color: whitesmoke;

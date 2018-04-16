@@ -18,6 +18,11 @@
         </ul>
 
     </div>
+  
+    <ul class="settinglist">
+        <a href="#" [routerLinkActive]="['link-active']"><li>Settings 1</li></a>
+        <a href="#" [routerLinkActive]="['link-active']"><li>Settings 2</li></a>
+    </ul>
     <router-outlet></router-outlet>
     <div class="dname">
         <button id="btnSave" (click)="sendDaemon()">SAVE</button>

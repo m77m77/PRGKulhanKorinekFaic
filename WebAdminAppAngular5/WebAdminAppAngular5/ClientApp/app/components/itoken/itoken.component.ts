@@ -4,7 +4,7 @@ import { NgModule, ElementRef, Renderer2 } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 import { NgForOf } from '@angular/common';
-import { ClipboardModule } from 'ngx-clipboard';
+//import { ClipboardModule } from 'ngx-clipboard';
 
 
 

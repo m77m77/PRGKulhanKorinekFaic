@@ -235,3 +235,13 @@ div .archeader li a {
     border: 0px;
 }
 
+#btnDeleteSettings
+{
+    cursor: pointer;
+    width: 250px;
+    height: 50px;
+    border: none;
+    
+
+}
+
