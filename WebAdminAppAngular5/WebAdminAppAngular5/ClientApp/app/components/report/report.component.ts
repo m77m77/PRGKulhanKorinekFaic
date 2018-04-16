@@ -87,7 +87,7 @@ export class ReportComponent {
             Status = data.ListDaemonBackupInfo[n].Status
             Date = data.ListDaemonBackupInfo[n].TimeOfBackup
             Type = data.ListDaemonBackupInfo[n].BackupType
-            Message = data.ListDaemonBackupInfo[n].backupStatus
+            Message = data.ListDaemonBackupInfo[n].FailMessage
             this.reports.push({
                 Status: Status,
                 Date: Date,

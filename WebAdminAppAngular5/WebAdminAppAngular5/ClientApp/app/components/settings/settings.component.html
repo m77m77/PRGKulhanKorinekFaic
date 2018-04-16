@@ -11,4 +11,4 @@
 </div>
 <router-outlet></router-outlet>
 </div>
-<button style="{{display}}" id="btnDeleteSettings" (click)="DeleteSettings()">Delete settings</button>
+<button *ngIf="this.router.url !== '/home/default/default/settings'" id="btnDeleteSettings" (click)="DeleteSettings()">Delete settings</button>

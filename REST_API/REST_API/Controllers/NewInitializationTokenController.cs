@@ -31,7 +31,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT token FROM tokens where status='initialize'";
+            Query.CommandText = "SELECT id, token FROM tokens where status='initialize'";
 
             Response r = new Response();
             ListInicializationTokenData litd = new ListInicializationTokenData();
@@ -47,6 +47,7 @@ namespace REST_API.Controllers
                 {
                     litd.ListInicializationToken.Add(new InicializationToken());
                     litd.ListInicializationToken[i].Token = Reader["token"].ToString();
+                    litd.ListInicializationToken[i].Id = Convert.ToInt32(Reader["id"]);
                     i++;
                 }
                 Reader.Close();
@@ -101,5 +102,47 @@ namespace REST_API.Controllers
 
             return r;
         }
+        [Route("api/newinitializationtoken/{token}/{id}")]
+        public Response Delete(string token, int id)
+        {
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
+
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            Response r = new Response();
+
+            try
+            {
+                Connection.Open();
+
+                MySqlCommand query = Connection.CreateCommand();
+                query.CommandText = "DELETE FROM tokens WHERE @id = id";
+
+                query.Parameters.AddWithValue("@id", id);
+
+                query.ExecuteNonQuery();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
     }
+
 }
