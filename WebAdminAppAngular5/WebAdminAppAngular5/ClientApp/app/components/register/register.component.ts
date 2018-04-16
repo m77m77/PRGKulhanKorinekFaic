@@ -148,6 +148,7 @@ export class RegisterComponent {
         }
     }
     public Delete(adminName: any) {
+        if (window.confirm('Are you sure you want to delete this admin') == true) {
         this.http.delete('http://localhost:63058/api/newadmin/delete/' + sessionStorage.getItem('token') + '/' + adminName).toPromise()
             .then((response: Response) => {
                 let DelResponse = response.json();
@@ -158,7 +159,8 @@ export class RegisterComponent {
                     this.router.navigate(['/login'], {})
                 }
             })
-            .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
+                .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
+        }
     }
 
     }
