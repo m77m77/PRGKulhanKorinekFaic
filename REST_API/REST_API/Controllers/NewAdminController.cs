@@ -72,8 +72,8 @@ namespace REST_API.Controllers
 
             return r;
         }
-        [Route("api/newadmin/delete/{token}/{AdminName}")]
-        public Response Delete(string token, string AdminName)
+        [Route("api/newadmin/delete/{token}/{AdminId}")]
+        public Response Delete(string token, int AdminId)
         {
             Token t = Token.Exists(token);
             if (t == null)
@@ -104,9 +104,9 @@ namespace REST_API.Controllers
                                     "LEFT JOIN emails ON admins.id = emails.adminId " +
                                     "LEFT JOIN tokensAdmins ON admins.id = tokensAdmins.idAdmin " +
                                     "LEFT JOIN tokens ON tokens.id = tokensAdmins.idToken " +
-                                    "WHERE admins.name = @adminName";
+                                    "WHERE admins.id = @adminId";
 
-                query.Parameters.AddWithValue("@adminName", AdminName);
+                query.Parameters.AddWithValue("@adminId", AdminId);
 
                 query.ExecuteNonQuery();
             }
@@ -144,7 +144,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT name,type FROM admins";
+            Query.CommandText = "SELECT id,name,type FROM admins";
 
             Response r = new Response();
 
@@ -162,6 +162,7 @@ namespace REST_API.Controllers
                     data.ListAdmin.Add(new AdminPost());
                     data.ListAdmin[i].Name = Reader["name"].ToString();
                     data.ListAdmin[i].Type = Reader["type"].ToString();
+                    data.ListAdmin[i].Id = Convert.ToInt32(Reader["id"]);
                     i++;
                 }
                 Reader.Close();

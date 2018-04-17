@@ -80,19 +80,23 @@ export class ReportComponent {
         var Date = '';
         var Type = '';
         var Message = '';
+        var Name = '';
 
-        var count = data.ListDaemonBackupInfo.length;
+
+        var count = data.ListBackupStatusNameData.ListDaemonBackupInfo.length;
         this.reports = [];
         for (var n = 0; n < count; n++) {
-            Status = data.ListDaemonBackupInfo[n].Status
-            Date = data.ListDaemonBackupInfo[n].TimeOfBackup
-            Type = data.ListDaemonBackupInfo[n].BackupType
-            Message = data.ListDaemonBackupInfo[n].FailMessage
+            Status = data.ListBackupStatusNameData.ListDaemonBackupInfo[n].Status
+            Date = data.ListBackupStatusNameData.ListDaemonBackupInfo[n].TimeOfBackup
+            Type = data.ListBackupStatusNameData.ListDaemonBackupInfo[n].BackupType
+            Message = data.ListBackupStatusNameData.ListDaemonBackupInfo[n].FailMessage
+            Name = data.ListBackupStatusNameData[n].Name
             this.reports.push({
                 Status: Status,
                 Date: Date,
                 Type: Type,
                 Message: Message,
+                Name:Name
             });
         }
     }

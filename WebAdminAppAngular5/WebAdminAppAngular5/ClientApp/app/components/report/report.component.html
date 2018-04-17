@@ -2,12 +2,14 @@
     <div id="tabledivReports">
         <table id="tableReports" class="report">
             <tr class="firstrow">
+                <td>Daemon</td>
                 <td>Status</td>
                 <td>Date</td>
                 <td>Type</td>
                 <td>FailMessage</td>
             </tr>
             <tr *ngFor="let b of reports">
+                <td>{{b.Name}}</td>
                 <td>{{b.Status}}</td>
                 <td>{{b.Date}}</td>
                 <td>{{b.Type}}</td>

@@ -127,6 +127,7 @@ export class RegisterComponent {
         var htmlCode = '';
         var btnName = '';
         var btnType = '';
+        var btnId = '';
 
 
         var AdminPost = sessionStorage.getItem('AdminPost');
@@ -140,16 +141,18 @@ export class RegisterComponent {
         for (var n = 0; n < count; n++) {
             btnName = data.ListAdmin[n].Name
             btnType = data.ListAdmin[n].Type
+            btnId = data.ListAdmin[n].Id
             this.admins.push({
                 Name: btnName,
-                Type: btnType
+                Type: btnType,
+                Id: btnId
             });
 
         }
     }
-    public Delete(adminName: any) {
+    public Delete(adminId: any) {
         if (window.confirm('Are you sure you want to delete this admin') == true) {
-        this.http.delete('http://localhost:63058/api/newadmin/delete/' + sessionStorage.getItem('token') + '/' + adminName).toPromise()
+        this.http.delete('http://localhost:63058/api/newadmin/delete/' + sessionStorage.getItem('token') + '/' + adminId).toPromise()
             .then((response: Response) => {
                 let DelResponse = response.json();
                 if (DelResponse && "OK" == DelResponse.Status) {

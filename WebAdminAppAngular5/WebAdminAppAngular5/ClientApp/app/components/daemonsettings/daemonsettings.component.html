@@ -15,8 +15,10 @@
 
     </div>
     <div class="settinglist">
-    <ul class="settinglist">
-        <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of settings"><li>Set {{s.I}}</li></a>
+
+
+        <ul class="settinglist">
+        <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of settings"><li>{{s.I}}</li></a>
         <a class="add" (click)="PostNewSettings(daemonID)"><li>+</li></a>
     </ul>
     </div>

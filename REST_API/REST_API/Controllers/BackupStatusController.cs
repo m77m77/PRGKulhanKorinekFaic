@@ -248,29 +248,31 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                    string sql = "SELECT idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo WHERE backupDate >= @date";
+                    string sql = "SELECT d.name,idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo  bi inner join daemonSettings ds on bi.idSettings = ds.id inner join daemons d on ds.idDaemon = daemons.id WHERE backupDate >= @date";
 
                     MySqlCommand query = new MySqlCommand(sql, connection);
                     query.Parameters.AddWithValue("@date", date);
 
                     MySqlDataReader reader = query.ExecuteReader();
 
-                    ListDaemonBackupInfoData data = new ListDaemonBackupInfoData();
-                    data.ListDaemonBackupInfo = new List<BackupStatus>();
+                    ListBackupStatusName data = new ListBackupStatusName();
+                    data.ListBackupStatusNameData = new List<BackupStatusName>();
 
                     while (reader.Read())
                     {
-                        BackupStatus bs = new BackupStatus();
-                        bs.SettingsID = Convert.ToInt32(reader["idSettings"]);
-                        bs.Status = reader["backupStatus"].ToString();
-                        bs.TimeOfBackup = (DateTime)reader["backupDate"];
-                        bs.BackupType = reader["backupType"].ToString();
-                        bs.FailMessage = reader["backupFailMessage"].ToString();
+                        BackupStatusName bs = new BackupStatusName();
+                        bs.backupStatus = new BackupStatus();
+                        bs.Name = reader["name"].ToString();
+                        bs.backupStatus.SettingsID = Convert.ToInt32(reader["idSettings"]);
+                        bs.backupStatus.Status = reader["backupStatus"].ToString();
+                        bs.backupStatus.TimeOfBackup = (DateTime)reader["backupDate"];
+                        bs.backupStatus.BackupType = reader["backupType"].ToString();
+                        bs.backupStatus.FailMessage = reader["backupFailMessage"].ToString();
 
-                        bs.Errors = JsonConvert.DeserializeObject<List<BackupError>>(reader["backupErrors"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-                        bs.Files = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-                        bs.RemovedFiles = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupRemovedFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-                        data.ListDaemonBackupInfo.Add(bs);
+                        bs.backupStatus.Errors = JsonConvert.DeserializeObject<List<BackupError>>(reader["backupErrors"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        bs.backupStatus.Files = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        bs.backupStatus.RemovedFiles = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupRemovedFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        data.ListBackupStatusNameData.Add(bs);
                     }
 
                     result = new Response("OK","","", data);

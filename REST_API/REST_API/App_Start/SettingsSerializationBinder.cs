@@ -54,6 +54,8 @@ namespace REST_API
                     return typeof(Daemon);
                 case "EmailAdminData":
                     return typeof(EmailAdminData);
+                case "ListBackupStatusName":
+                    return typeof(ListBackupStatusName);
             }
 
             return null;

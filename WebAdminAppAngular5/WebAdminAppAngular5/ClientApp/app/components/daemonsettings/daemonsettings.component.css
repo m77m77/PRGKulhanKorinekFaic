@@ -166,7 +166,7 @@ div .archeader li a:hover {
 }
 
 .settinglist {
-    width: 250px;
+    /*width: 250px;*/
     float: left;
     position: static;
     background: none;
