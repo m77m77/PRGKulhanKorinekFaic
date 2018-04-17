@@ -14,11 +14,12 @@
         </ul>
 
     </div>
-  
+    <div class="settinglist">
     <ul class="settinglist">
-        <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of settings"><li>Settings {{s.I}}</li></a>
+        <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of settings"><li>Set {{s.I}}</li></a>
         <a class="add" (click)="PostNewSettings(daemonID)"><li>+</li></a>
     </ul>
+    </div>
     <router-outlet></router-outlet>
     <div class="dname">
         <button id="btnSave" (click)="sendDaemon()">SAVE</button>

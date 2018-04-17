@@ -57,6 +57,7 @@ header {
     background-color: rgb(81, 168, 240);
     width: 100%;
     font-family: 'Segoe UI';
+    z-index: 1001;
 }
 
 
