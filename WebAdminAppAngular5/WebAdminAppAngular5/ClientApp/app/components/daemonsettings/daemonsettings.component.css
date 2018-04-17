@@ -147,7 +147,7 @@ div .archeader li a:hover {
     background-color: whitesmoke;
 }
 
-#btnSave {
+.btnSaveDel {
     width: 150px;
     height: 60px;
     margin: 25px 30px 30px 10px;
@@ -161,7 +161,7 @@ div .archeader li a:hover {
     cursor: pointer;
 }
 
-#btnSave:hover {
+.btnSaveDel:hover {
     background: #555;
 }
 

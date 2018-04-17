@@ -206,6 +206,31 @@ export class DaemonsettingsComponent {
         
     }
     
+    public DeleteSettings() {
+        var daemonsData = sessionStorage.getItem('daemonsData');
+        var daemonID = sessionStorage.getItem('daemonID');
+        var settingsrow = sessionStorage.getItem('settingsID');
+        var SettingsID;
 
+        if (daemonsData != null && daemonID != null && settingsrow != null) {
+            var data = JSON.parse(daemonsData);
+            var listDaemons = data.ListDaemons;
+            SettingsID = listDaemons[daemonID].Settings[settingsrow].SettingsID;
+        }
+
+        if (SettingsID != 'default') {
+            this.http.delete('http://localhost:63058/api/newsettings/delete/' + sessionStorage.getItem('token') + '/' + SettingsID).toPromise()
+                .then((response: Response) => {
+                    let res = response.json();
+                    if (res && "OK" == res.Status) {
+                        this.getDaemons();
+                    } else {
+                        sessionStorage.clear();
+                        this.router.navigate(['/login'], {})
+                    }
+                })
+                .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
+        }
+    }
 
 }
