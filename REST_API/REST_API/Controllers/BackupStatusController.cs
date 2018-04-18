@@ -248,7 +248,7 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                    string sql = "SELECT d.name,idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo  bi inner join daemonSettings ds on bi.idSettings = ds.id inner join daemons d on ds.idDaemon = daemons.id WHERE backupDate >= @date";
+                    string sql = "SELECT d.name,idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo  bi inner join daemonsSettings ds on bi.idSettings = ds.id inner join daemons d on ds.idDaemon = d.id WHERE backupDate >= @date";
 
                     MySqlCommand query = new MySqlCommand(sql, connection);
                     query.Parameters.AddWithValue("@date", date);
@@ -277,7 +277,7 @@ namespace REST_API.Controllers
 
                     result = new Response("OK","","", data);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     result = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
                 }

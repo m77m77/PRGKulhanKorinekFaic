@@ -83,13 +83,13 @@ export class ReportComponent {
         var Name = '';
 
 
-        var count = data.ListBackupStatusNameData.ListDaemonBackupInfo.length;
+        var count = data.ListBackupStatusNameData.length;
         this.reports = [];
         for (var n = 0; n < count; n++) {
-            Status = data.ListBackupStatusNameData.ListDaemonBackupInfo[n].Status
-            Date = data.ListBackupStatusNameData.ListDaemonBackupInfo[n].TimeOfBackup
-            Type = data.ListBackupStatusNameData.ListDaemonBackupInfo[n].BackupType
-            Message = data.ListBackupStatusNameData.ListDaemonBackupInfo[n].FailMessage
+            Status = data.ListBackupStatusNameData[n].backupStatus.Status
+            Date = data.ListBackupStatusNameData[n].backupStatus.TimeOfBackup
+            Type = data.ListBackupStatusNameData[n].backupStatus.BackupType
+            Message = data.ListBackupStatusNameData[n].backupStatus.FailMessage
             Name = data.ListBackupStatusNameData[n].Name
             this.reports.push({
                 Status: Status,
