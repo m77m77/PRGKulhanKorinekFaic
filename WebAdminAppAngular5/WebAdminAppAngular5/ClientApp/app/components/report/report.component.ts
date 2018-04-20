@@ -82,10 +82,33 @@ export class ReportComponent {
         var Message = '';
         var Name = '';
 
+        var Filtr = '';
+        Filtr = (<HTMLInputElement>document.getElementById('filtrtext')).value;
+        //var today = this.date;
+        //var dd = today.getDate();
+        //var mm = today.getMonth() + 1; //January is 0!
+        //var yyyy = today.getFullYear();
+
 
         var count = data.ListBackupStatusNameData.length;
         this.reports = [];
         for (var n = 0; n < count; n++) {
+            if (Filtr == '') {
+                Status = data.ListBackupStatusNameData[n].backupStatus.Status
+                Date = data.ListBackupStatusNameData[n].backupStatus.TimeOfBackup
+                Type = data.ListBackupStatusNameData[n].backupStatus.BackupType
+                Message = data.ListBackupStatusNameData[n].backupStatus.FailMessage
+                Name = data.ListBackupStatusNameData[n].Name
+                this.reports.push({
+                    Status: Status,
+                    Date: Date,
+                    Type: Type,
+                    Message: Message,
+                    Name: Name
+                });
+                continue;
+            }
+            if (Filtr != '' && data.ListBackupStatusNameData[n].Name == Filtr) {
             Status = data.ListBackupStatusNameData[n].backupStatus.Status
             Date = data.ListBackupStatusNameData[n].backupStatus.TimeOfBackup
             Type = data.ListBackupStatusNameData[n].backupStatus.BackupType
@@ -98,6 +121,8 @@ export class ReportComponent {
                 Message: Message,
                 Name:Name
             });
+            }
+            
         }
     }
 }
