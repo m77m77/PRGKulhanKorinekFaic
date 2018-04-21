@@ -78,6 +78,8 @@ export class RegisterComponent {
         var username = (<HTMLInputElement>document.getElementById('username')).value;
         var password = (<HTMLInputElement>document.getElementById('password')).value;
 
+        var type = (<HTMLInputElement>document.getElementById('type')).value;
+
         var AdminPost = sessionStorage.getItem('AdminPost');
 
         if (AdminPost != null) {
@@ -86,7 +88,7 @@ export class RegisterComponent {
 
             var headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            this.http.post('http://localhost:63058/api/newadmin/' + sessionStorage.getItem('token'), {"Name": username, "Password": password}, { headers: headers }).toPromise()
+            this.http.post('http://localhost:63058/api/newadmin/' + sessionStorage.getItem('token'), { "Name": username, "Password": password, "Type": type}, { headers: headers }).toPromise()
                 .then((response: Response) => {
                     let AdminPost = response.json();
                     console.log(AdminPost);

@@ -14,6 +14,13 @@ import 'rxjs/add/operator/toPromise';
 export class MailsettingsComponent {
     sendMail: string;
     mailAddress: string;
+
+    OwnSmtp: string;
+    SmtpPort: string;
+    HostName: string;
+    Username: string;
+    Password: string;
+
     templates: any;
     daily: any;
     weekly: any;
@@ -65,6 +72,13 @@ export class MailsettingsComponent {
             this.sendMail = settings.SendEmails ? "checked" : "";
             this.mailAddress = settings.EmailAddress;
 
+            this.OwnSmtp = settings.OwnSmtp ? "checked" : "";
+            this.HostName = settings.HostName;
+            this.SmtpPort = settings.SmtpPort;
+            this.Username = settings.Username;
+            this.Password = settings.Password;
+
+
             this.templates = [];
             for (var templateID in info.Templates) {
                 var template = info.Templates[templateID];
@@ -99,7 +113,15 @@ export class MailsettingsComponent {
             var settings = data.Settings;
 
             settings.SendEmails = (<HTMLInputElement>document.getElementById('checkboxmail')).checked;
+
+            settings.OwnSmtp = (<HTMLInputElement>document.getElementById('OwnSMTP')).checked;
+
             settings.EmailAddress = (<HTMLInputElement>document.getElementById('idemailTo')).value;
+
+            settings.SmtpPort = (<HTMLInputElement>document.getElementById('smtpPort')).value;
+            settings.HostName = (<HTMLInputElement>document.getElementById('HostName')).value;
+            settings.Username = (<HTMLInputElement>document.getElementById('username')).value;
+            settings.Password = (<HTMLInputElement>document.getElementById('password')).value;
 
             var templateSelect = (<HTMLSelectElement>document.getElementById('selecttemplate'));
             settings.Template = templateSelect.options[templateSelect.selectedIndex].value;

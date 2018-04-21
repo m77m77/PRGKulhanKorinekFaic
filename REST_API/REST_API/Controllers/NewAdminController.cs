@@ -41,9 +41,10 @@ namespace REST_API.Controllers
             MySqlCommand QueryInsertEmail = Connection.CreateCommand();
             MySqlCommand QuerySelectAdminId = Connection.CreateCommand();
 
-            QueryInsertAdmin.CommandText = "INSERT INTO admins (name,password) VALUES (@name,@password);" + " SELECT last_insert_id();";
+            QueryInsertAdmin.CommandText = "INSERT INTO admins (name,password,type) VALUES (@name,@password,@type);" + " SELECT last_insert_id();";
             QueryInsertAdmin.Parameters.AddWithValue("@name", value.Name);
             QueryInsertAdmin.Parameters.AddWithValue("@password", HashUtility.HashPassword(value.Password));
+            QueryInsertAdmin.Parameters.AddWithValue("@type", value.Type);
 
 
             Response r = new Response();
