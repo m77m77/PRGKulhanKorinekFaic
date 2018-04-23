@@ -7,12 +7,16 @@
             <span class="checkmarkemail"></span>
         </label>
         <p class="nadpis"> SMTP settings</p>
-        <p> Own SMTP server <input type="checkbox" id="OwnSMTP" checked="{{OwnSmtp}}" /> </p>
+        <label class="containeremail">
+            <p class="tucne">Own SMTP server</p>
+            <input type="checkbox" id="OwnSMTP" checked="{{OwnSmtp}}">
+            <span class="checkmarkemail"></span>
+        </label>
 
-        <p> Port <input type="text" class="textto" id="smtpPort" placeholder="port" value="{{SmtpPort}}" /></p>
-        <p> Host name <input type="text" class="textto" id="HostName" placeholder="name" value="{{HostName}}" /></p>
-        <p> Username <input type="text" class="textinputformat" id="username" placeholder="username" value="{{Username}}" /></p>
-        <p> Password <input type="password" class="textinputformat" id="password" placeholder="password" value="{{Password}}" /></p>
+        <p> Host name <input type="text" class="textto" id="HostName" placeholder="smtp.example.com" value="{{HostName}}" /></p>
+        <p> Port <input type="text" class="textto" id="smtpPort" placeholder="000" value="{{SmtpPort}}" /></p>
+        <p> Username <input type="text" class="textto" id="username" placeholder="example" value="{{Username}}" /></p>
+        <p> Password <input type="password" class="textto" id="password" placeholder="******" value="{{Password}}" /></p>
 
 
         <p> To <input type="text" class="textto" id="idemailTo" placeholder="example@example.com" value="{{mailAddress}}" /></p>

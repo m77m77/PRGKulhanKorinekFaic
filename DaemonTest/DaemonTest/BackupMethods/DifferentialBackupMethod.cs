@@ -10,25 +10,31 @@ namespace DaemonTest.BackupMethods
 {
     public class DifferentialBackupMethod : IBackupMethod
     {
-        private ISaveMethod saveMethod;
-        private IDestinationManager destinationManager;
-        private DirectoryInfo sourceDir;
+        private List<DirectoryInfo> sourcesDirs;
+        private List<IDestinationManager> destinationManagers;
         private SettingsManager SettingsManager;
 
         public DifferentialBackupMethod(SettingsManager settingsManager)
         {
             this.SettingsManager = settingsManager;
 
-            this.saveMethod = SettingsManager.GetSaveMethod();
-            this.destinationManager = SettingsManager.GetDestinationManager();
+            this.destinationManagers = SettingsManager.GetDestinationManagers();
 
-            this.sourceDir = new DirectoryInfo(SettingsManager.CurrentSettings.BackupSourcePath);
+            this.sourcesDirs = new List<DirectoryInfo>();
+
+            foreach (string item in SettingsManager.CurrentSettings.BackupSources)
+            {
+                this.sourcesDirs.Add(new DirectoryInfo(item));
+            }
         }
 
         public BackupStatus Backup()
         {
-            if (!sourceDir.Exists)
-                return new BackupStatus() { Status = "FAIL", FailMessage = "Source path doesnt exist", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "DIFF" };
+            foreach (DirectoryInfo item in this.sourcesDirs)
+            {
+                if (!item.Exists)
+                    return new BackupStatus() { Status = "FAIL", FailMessage = "Source path " + item.FullName + " doesnt exist", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "FULL" };
+            }
 
             List<BackupError> errors = new List<BackupError>();
             Dictionary<string, DateTime> files = new Dictionary<string, DateTime>();
@@ -37,7 +43,7 @@ namespace DaemonTest.BackupMethods
             try
             {
 
-                List<BackupDirectory> prevBackups = this.saveMethod.GetListOfPreviusBackups();
+                List<BackupDirectory> prevBackups = ServerAccess.GetListOfPreviusBackups(this.SettingsManager);
                 if(prevBackups.Count <= 0)
                     return new BackupStatus() { Status = "FAIL", FailMessage = "There is no full backup", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "DIFF" };
 
@@ -62,15 +68,27 @@ namespace DaemonTest.BackupMethods
                     return new BackupStatus() { Status = "FAIL", FailMessage = "There is no full backup", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "DIFF" };
 
 
-                this.saveMethod.Start(this.destinationManager, "DIFF");
+                Dictionary<string, DateTime> removedFiles = new Dictionary<string, DateTime>(lastFullBackup.Files);
 
-                this.BackupRecursively(this.sourceDir, "", errors,lastFullBackup.Files,files);
+                foreach (IDestinationManager item in this.destinationManagers)
+                {
+                    item.SaveMethod.Start(item, "DIFF");
 
-                this.saveMethod.End();
-                this.destinationManager.Save();
+                    foreach (DirectoryInfo source in this.sourcesDirs)
+                    {
+                        this.BackupRecursively(item.SaveMethod, source, source.Name, errors,lastFullBackup.Files,removedFiles, files);
+                    }
+
+                    item.SaveMethod.End();
+                }
+
+                foreach (IDestinationManager item in this.destinationManagers)
+                {
+                    item.Save();
+                }
 
                 status.Status = "SUCCESS";
-                status.RemovedFiles = lastFullBackup.Files;
+                status.RemovedFiles = removedFiles;
             }
             catch (Exception ex)
             {
@@ -84,7 +102,7 @@ namespace DaemonTest.BackupMethods
             return status;
         }
 
-        private void BackupRecursively(DirectoryInfo dir, string path, List<BackupError> errors,Dictionary<string,DateTime> fullBackup, Dictionary<string, DateTime> files)
+        private void BackupRecursively(ISaveMethod saveMethod,DirectoryInfo dir, string path, List<BackupError> errors,Dictionary<string,DateTime> fullBackup,Dictionary<string,DateTime> removedFiles, Dictionary<string, DateTime> files)
         {
             foreach (FileInfo item in dir.GetFiles())
             {
@@ -98,12 +116,14 @@ namespace DaemonTest.BackupMethods
                         DateTime lastWrite = fullBackup[fullName];
                         if (lastWrite.AddSeconds(5) < item.LastWriteTime)
                         {
-                            this.saveMethod.AddFile(path, item,files);
+                            saveMethod.AddFile(path, item,files);
                         }
-                        fullBackup.Remove(fullName);
+
+                        if(removedFiles.ContainsKey(fullName))
+                            removedFiles.Remove(fullName);
                     }else
                     {
-                        this.saveMethod.AddFile(path, item,files);
+                        saveMethod.AddFile(path, item,files);
                     }
                 }
                 catch (Exception ex)
@@ -116,7 +136,7 @@ namespace DaemonTest.BackupMethods
             {
                 try
                 {
-                    this.BackupRecursively(item, Path.Combine(path, item.Name), errors,fullBackup,files);
+                    this.BackupRecursively(saveMethod,item, Path.Combine(path, item.Name), errors,fullBackup,removedFiles,files);
                 }
                 catch (Exception ex)
                 {

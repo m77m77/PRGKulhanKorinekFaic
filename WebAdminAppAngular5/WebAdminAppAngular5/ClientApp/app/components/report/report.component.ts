@@ -77,7 +77,7 @@ export class ReportComponent {
         }
 
         var Status = '';
-        var Date = '';
+        var Datef = '';
         var Type = '';
         var Message = '';
         var Name = '';
@@ -95,14 +95,14 @@ export class ReportComponent {
         for (var n = 0; n < count; n++) {
             if (Filtr == '') {
                 Status = data.ListBackupStatusNameData[n].backupStatus.Status
-                Date = data.ListBackupStatusNameData[n].backupStatus.TimeOfBackup
+                Datef = data.ListBackupStatusNameData[n].backupStatus.TimeOfBackup
                 Type = data.ListBackupStatusNameData[n].backupStatus.BackupType
                 Message = data.ListBackupStatusNameData[n].backupStatus.FailMessage
                 Name = data.ListBackupStatusNameData[n].Name
                 this.reports.push({
-                    Status: Status,
-                    Date: Date,
-                    Type: Type,
+                    Status: Status == "SUCCESS" ? require("./success.png") : require("./error.png"),
+                    Date: new Date(Datef).toLocaleString(),
+                    Type: Type == "FULL" ? "Full": Type == "DIFF" ? "Differential" : "Incremental",
                     Message: Message,
                     Name: Name
                 });
@@ -110,14 +110,14 @@ export class ReportComponent {
             }
             if (Filtr != '' && data.ListBackupStatusNameData[n].Name == Filtr) {
             Status = data.ListBackupStatusNameData[n].backupStatus.Status
-            Date = data.ListBackupStatusNameData[n].backupStatus.TimeOfBackup
+            Datef = data.ListBackupStatusNameData[n].backupStatus.TimeOfBackup
             Type = data.ListBackupStatusNameData[n].backupStatus.BackupType
             Message = data.ListBackupStatusNameData[n].backupStatus.FailMessage
             Name = data.ListBackupStatusNameData[n].Name
             this.reports.push({
-                Status: Status,
-                Date: Date,
-                Type: Type,
+                Status: Status == "SUCCESS" ? require("./success.png") : require("./error.png"),
+                Date: new Date(Datef).toLocaleString(),
+                Type: Type == "FULL" ? "Full" : Type == "DIFF" ? "Differential" : "Incremental",
                 Message: Message,
                 Name:Name
             });

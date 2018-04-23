@@ -10,24 +10,31 @@ namespace DaemonTest.BackupMethods
 {
     public class FullBackupMethod : IBackupMethod
     {
-        private ISaveMethod saveMethod;
-        private IDestinationManager destinationManager;
-        private DirectoryInfo sourceDir;
+        private List<DirectoryInfo> sourcesDirs;
+        private List<IDestinationManager> destinationManagers;
         private SettingsManager SettingsManager;
 
         public FullBackupMethod(SettingsManager settingsManager)
         {
             this.SettingsManager = settingsManager;
-            this.saveMethod = SettingsManager.GetSaveMethod();
-            this.destinationManager = SettingsManager.GetDestinationManager();
 
-            this.sourceDir = new DirectoryInfo(SettingsManager.CurrentSettings.BackupSourcePath);
+            this.destinationManagers = SettingsManager.GetDestinationManagers();
+
+            this.sourcesDirs = new List<DirectoryInfo>();
+
+            foreach (string item in SettingsManager.CurrentSettings.BackupSources)
+            {
+                this.sourcesDirs.Add(new DirectoryInfo(item));
+            }
         }
 
         public BackupStatus Backup()
         {
-            if (!sourceDir.Exists)
-                return new BackupStatus() { Status = "FAIL", FailMessage = "Source path doesnt exist", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "FULL" };
+            foreach (DirectoryInfo item in this.sourcesDirs)
+            {
+                if(!item.Exists)
+                    return new BackupStatus() { Status = "FAIL", FailMessage = "Source path "+ item.FullName+" doesnt exist", SettingsID = SettingsManager.CurrentSettings.SettingsID, TimeOfBackup = DateTime.Now, BackupType = "FULL" };
+            }
 
             List<BackupError> errors = new List<BackupError>();
             Dictionary<string, DateTime> files = new Dictionary<string, DateTime>();
@@ -35,12 +42,22 @@ namespace DaemonTest.BackupMethods
 
             try
             {
-                this.saveMethod.Start(this.destinationManager, "FULL");
+                foreach (IDestinationManager item in this.destinationManagers)
+                {
+                    item.SaveMethod.Start(item, "FULL");
 
-                this.BackupRecursively(this.sourceDir, "", errors,files);
+                    foreach (DirectoryInfo source in this.sourcesDirs)
+                    {
+                        this.BackupRecursively(item.SaveMethod, source, source.Name, errors, files);
+                    }
 
-                this.saveMethod.End();
-                this.destinationManager.Save();
+                    item.SaveMethod.End();
+                }
+
+                foreach (IDestinationManager item in this.destinationManagers)
+                {
+                    item.Save();
+                }
 
                 status.Status = "SUCCESS";
             }
@@ -56,13 +73,13 @@ namespace DaemonTest.BackupMethods
             return status;
         }
 
-        private void BackupRecursively(DirectoryInfo dir,string path,List<BackupError> errors,Dictionary<string,DateTime> files)
+        private void BackupRecursively(ISaveMethod saveMethod,DirectoryInfo dir,string path,List<BackupError> errors,Dictionary<string,DateTime> files)
         {
             foreach (FileInfo item in dir.GetFiles())
             {
                 try
                 {
-                    this.saveMethod.AddFile(path, item,files);
+                    saveMethod.AddFile(path, item,files);
                 }
                 catch (Exception ex)
                 {
@@ -74,7 +91,7 @@ namespace DaemonTest.BackupMethods
             {
                 try
                 {
-                    this.BackupRecursively(item,Path.Combine(path,item.Name),errors,files);       
+                    this.BackupRecursively(saveMethod,item,Path.Combine(path,item.Name),errors,files);       
                 }
                 catch (Exception ex)
                 {

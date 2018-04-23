@@ -2,15 +2,15 @@
     <div id="tabledivReports">
         <table id="tableReports" class="report">
             <tr class="firstrow">
-                <td>Daemon</td>
                 <td>Status</td>
+                <td>Daemon</td>
                 <td>Date</td>
                 <td>Type</td>
                 <td>FailMessage</td>
             </tr>
             <tr *ngFor="let b of reports">
+                <td><img [src]=b.Status width="50" height="50" /></td>
                 <td>{{b.Name}}</td>
-                <td>{{b.Status}}</td>
                 <td>{{b.Date}}</td>
                 <td>{{b.Type}}</td>
                 <td>{{b.Message}}</td>
@@ -22,7 +22,6 @@
         <button class="btn btn-primary" (click)="WriteReports('WEEKLY')" id="btnweekly">Week</button>
         <button class="btn btn-primary" (click)="WriteReports('DAILY')" id="btndaily">Day</button>
 
-        
         <div><button class="btn btn-primary" (click)="WriteReports('MONTHLY')" id="btnfiltr">Filter</button></div>
         <input placeholder="Daemon name" id="filtrtext" type="text" />
     </div>

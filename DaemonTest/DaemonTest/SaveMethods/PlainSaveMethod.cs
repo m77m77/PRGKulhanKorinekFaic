@@ -14,6 +14,8 @@ namespace DaemonTest.SaveMethods
         private DirectoryInfo dir;
         private SettingsManager SettingsManager;
 
+        private bool alreadyExists;
+
         public PlainSaveMethod(SettingsManager settingsManager)
         {
             this.SettingsManager = settingsManager;
@@ -23,13 +25,21 @@ namespace DaemonTest.SaveMethods
         {
             string dirName = backupType + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm");
             dir = new DirectoryInfo(Path.Combine(destinationManager.GetPath(),dirName));
-            dir.Create();
+            this.alreadyExists = dir.Exists;
+
+            if(!this.alreadyExists)
+                dir.Create();
         }
 
         public void AddFile(string dirPath, FileInfo file, Dictionary<string, DateTime> files)
         {
+            if (this.alreadyExists)
+                return;
+
             string fileName = Path.Combine(dirPath, file.Name);
-            files.Add(fileName, file.LastWriteTime);
+
+            if (!files.ContainsKey(fileName))
+                files.Add(fileName, file.LastWriteTime);
 
             Directory.CreateDirectory(Path.Combine(dir.FullName,dirPath));
             file.CopyTo(Path.Combine(dir.FullName, fileName));
@@ -38,34 +48,6 @@ namespace DaemonTest.SaveMethods
         public void End()
         {
             
-        }
-
-        public List<BackupDirectory> GetListOfPreviusBackups()
-        {
-            List<BackupDirectory> list = new List<BackupDirectory>();
-
-            Task<Response> response = ServerAccess.GetBackupsInfos(SettingsManager.CurrentSettings.BackupScheme.Type, SettingsManager.CurrentSettings.SettingsID);
-            response.Wait();
-
-            if (response.Result.Status == "OK")
-            {
-                ListDaemonBackupInfoData infos = (ListDaemonBackupInfoData)response.Result.Data;
-
-                foreach (BackupStatus item in infos.ListDaemonBackupInfo)
-                {
-                    if (item.Status != "SUCCESS")
-                        continue;
-
-                    BackupDirectory bd = new BackupDirectory();
-                    bd.Files = item.Files;
-                    bd.Type = item.BackupType;
-                    bd.LastWrite = item.TimeOfBackup;
-
-                    list.Add(bd);
-                }
-            }
-
-            return list;
         }
     }
 }

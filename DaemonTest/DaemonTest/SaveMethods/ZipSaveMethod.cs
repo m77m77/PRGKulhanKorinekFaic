@@ -15,6 +15,8 @@ namespace DaemonTest.SaveMethods
         private ZipArchive archive;
         private SettingsManager SettingsManager;
 
+        private bool alreadyExists;
+
         public ZipSaveMethod(SettingsManager settingsManager)
         {
             this.SettingsManager = settingsManager;
@@ -23,48 +25,34 @@ namespace DaemonTest.SaveMethods
         public void Start(IDestinationManager destinationManager, string backupType)
         {
             string fileName = backupType + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm") + ".zip";
-            archive = ZipFile.Open(Path.Combine(destinationManager.GetPath(),fileName), ZipArchiveMode.Create);
+
+            string fullName = Path.Combine(destinationManager.GetPath(), fileName);
+
+            this.alreadyExists = File.Exists(fullName);
+
+            if(!this.alreadyExists)
+                this.archive = ZipFile.Open(fullName, ZipArchiveMode.Create);
         }
 
         public void AddFile(string dirPath, FileInfo file,Dictionary<string,DateTime> files)
         {
+            if (this.alreadyExists)
+                return;
+
             string fileName = Path.Combine(dirPath, file.Name);
-            files.Add(fileName, file.LastWriteTime);
+
+            if(!files.ContainsKey(fileName))
+                files.Add(fileName, file.LastWriteTime);
 
             archive.CreateEntryFromFile(file.FullName, fileName,CompressionLevel.Optimal);
         }
 
         public void End()
         {
+            if (this.alreadyExists)
+                return;
+
             archive.Dispose();
-        }
-
-        public List<BackupDirectory> GetListOfPreviusBackups()
-        {
-            List<BackupDirectory> list = new List<BackupDirectory>();
-
-            Task<Response> response = ServerAccess.GetBackupsInfos(SettingsManager.CurrentSettings.BackupScheme.Type,SettingsManager.CurrentSettings.SettingsID);
-            response.Wait();
-
-            if(response.Result.Status == "OK")
-            {
-                ListDaemonBackupInfoData infos = (ListDaemonBackupInfoData) response.Result.Data;
-
-                foreach (BackupStatus item in infos.ListDaemonBackupInfo)
-                {
-                    if (item.Status != "SUCCESS")
-                        continue;
-
-                    BackupDirectory bd = new BackupDirectory();
-                    bd.Files = item.Files;
-                    bd.Type = item.BackupType;
-                    bd.LastWrite = item.TimeOfBackup;
-
-                    list.Add(bd);
-                }
-            }
-
-            return list;
         }
 
         

@@ -96,6 +96,34 @@ namespace DaemonTest
             return response;
         }
 
+        public static List<BackupDirectory> GetListOfPreviusBackups(SettingsManager SettingsManager)
+        {
+            List<BackupDirectory> list = new List<BackupDirectory>();
+
+            Task<Response> response = ServerAccess.GetBackupsInfos(SettingsManager.CurrentSettings.BackupScheme.Type, SettingsManager.CurrentSettings.SettingsID);
+            response.Wait();
+
+            if (response.Result.Status == "OK")
+            {
+                ListDaemonBackupInfoData infos = (ListDaemonBackupInfoData)response.Result.Data;
+
+                foreach (BackupStatus item in infos.ListDaemonBackupInfo)
+                {
+                    if (item.Status != "SUCCESS")
+                        continue;
+
+                    BackupDirectory bd = new BackupDirectory();
+                    bd.Files = item.Files;
+                    bd.Type = item.BackupType;
+                    bd.LastWrite = item.TimeOfBackup;
+
+                    list.Add(bd);
+                }
+            }
+
+            return list;
+        }
+
         public async static Task<Response> SendBackupStatus(BackupStatus status)
         {
             HttpClient client = new HttpClient();

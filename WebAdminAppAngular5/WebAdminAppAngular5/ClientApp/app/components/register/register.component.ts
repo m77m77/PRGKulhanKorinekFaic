@@ -77,8 +77,8 @@ export class RegisterComponent {
     private PostNewAdmin() {
         var username = (<HTMLInputElement>document.getElementById('username')).value;
         var password = (<HTMLInputElement>document.getElementById('password')).value;
-
-        var type = (<HTMLInputElement>document.getElementById('type')).value;
+        var typeSelect = (<HTMLSelectElement>document.getElementById('type'));
+        var type = typeSelect.options[typeSelect.selectedIndex].value;
 
         var AdminPost = sessionStorage.getItem('AdminPost');
 

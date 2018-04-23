@@ -1,10 +1,14 @@
-﻿using DaemonTest.Models.Settings;
+﻿using DaemonTest.CommunicationClasses;
+using DaemonTest.Models;
+using DaemonTest.Models.Settings;
+using DaemonTest.SaveMethods;
 using FluentFTP;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DaemonTest.DestinationManagers
 {
@@ -15,15 +19,27 @@ namespace DaemonTest.DestinationManagers
         private string tempDir;
         private SettingsManager SettingsManager;
 
+        public ISaveMethod SaveMethod { get; private set; }
+
         public FTPDestinationManager(FTPDestination destination, SettingsManager settingsManager)
         {
             this.SettingsManager = settingsManager;
             this.destination = destination;
 
-            this.tempDir = Path.Combine(Path.GetTempPath(),"PRGKulhanKorinekFaic","FTP");
+            this.tempDir = Path.Combine(Path.GetTempPath(), "PRGKulhanKorinekFaic", "FTP");
 
-            if (Directory.Exists(this.tempDir))
-                Directory.Delete(this.tempDir, true);
+            string saveFormatSettings = this.destination.SaveFormat;
+            if (saveFormatSettings == "ZIP")
+            {
+                this.SaveMethod = new ZipSaveMethod(this.SettingsManager);
+            }
+            else if (saveFormatSettings == "PLAIN")
+            {
+                this.SaveMethod = new PlainSaveMethod(this.SettingsManager);
+            }
+
+            //if (Directory.Exists(this.tempDir))
+            //    Directory.Delete(this.tempDir, true);
             Directory.CreateDirectory(this.tempDir);
         }
 
@@ -60,9 +76,8 @@ namespace DaemonTest.DestinationManagers
                 this.UploadDirectory(this.destination.Path + "/" + SettingsManager.GetFolderNameBasedOnDate() + "/", new DirectoryInfo(this.tempDir),client);
             }
 
-            
-            Directory.Delete(this.tempDir, true);
+            if(Directory.Exists(this.tempDir))
+                Directory.Delete(this.tempDir, true);
         }
-
     }
 }

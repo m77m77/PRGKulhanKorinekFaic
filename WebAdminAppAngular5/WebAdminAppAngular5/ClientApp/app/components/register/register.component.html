@@ -16,7 +16,12 @@
                     <tr><td><input type="password" id="cpassword" class="textinputformat" placeholder="Confirm password" /></td></tr>
                     <tr>
                     <tr></tr>
-                    <tr><td><input type="text" id="type" class="textinputformat" placeholder="Type" /></td></tr>
+                    <tr><td>
+                        <select id="type" class="textinputformat">
+                            <option value="notmaster">Normal</option>
+                            <option value="master">Master</option>
+                        </select>
+                        </td></tr>
                     <tr>
 
                         <td><a (click)="Validation()" class="loginlink">Create admin</a></td>

@@ -74,6 +74,31 @@ namespace DaemonTest
             return null;
         }
 
+        public List<IDestinationManager> GetDestinationManagers()
+        {
+            List<IDestinationManager> result = new List<IDestinationManager>();
+
+            foreach (IDestination item in this.CurrentSettings.Destinations)
+            {
+                string destType = item.Type;
+
+                if (destType == "LOCAL_NETWORK")
+                {
+                    result.Add(new LocalNetworkDestinationManager((LocalNetworkDestination)item, this));
+                }
+                else if (destType == "FTP")
+                {
+                    result.Add(new FTPDestinationManager((FTPDestination)item, this));
+                }
+                else if (destType == "SFTP")
+                {
+                    result.Add(new SFTPDestinationManager((SFTPDestination)item, this));
+                }
+            }
+
+            return result;
+        }
+
         public string GetFolderNameBasedOnDate()
         {
             string type = CurrentSettings.BackupScheme.Type;

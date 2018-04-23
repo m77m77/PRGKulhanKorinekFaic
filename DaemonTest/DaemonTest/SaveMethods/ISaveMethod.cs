@@ -13,6 +13,8 @@ namespace DaemonTest.SaveMethods
         void AddFile(string dirPath, FileInfo file, Dictionary<string, DateTime> files);
         void End();
 
-        List<BackupDirectory> GetListOfPreviusBackups();
+
+
+        
     }
 }
