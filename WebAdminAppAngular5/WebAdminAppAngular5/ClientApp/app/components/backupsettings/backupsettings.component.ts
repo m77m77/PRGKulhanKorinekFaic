@@ -216,10 +216,10 @@ export class BackupSettingsComponent {
         var arrow = <HTMLTableHeaderCellElement>table.querySelector('.showHideArrow');
         if (tbody.style.display != 'none' && hide) {
             tbody.style.display = 'none';
-            arrow.innerHTML = '\\/';
+            arrow.innerHTML = '▼';
         } else {
             tbody.style.display = 'table-row-group';
-            arrow.innerHTML = '/\\';
+            arrow.innerHTML = '▲';
         }
     }
 
