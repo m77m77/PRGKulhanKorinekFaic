@@ -9,16 +9,40 @@
         <p class="nadpis"> SMTP settings</p>
         <label class="containeremail">
             <p class="tucne">Own SMTP server</p>
-            <input type="checkbox" id="OwnSMTP" checked="{{OwnSmtp}}">
+            <input onchange="enableMail()" type="checkbox" id="OwnSMTP" checked="{{OwnSmtp}}">
             <span class="checkmarkemail"></span>
         </label>
-
-        <p> Host name <input type="text" class="textto" id="HostName" placeholder="smtp.example.com" value="{{HostName}}" /></p>
-        <p> Port <input type="text" class="textto" id="smtpPort" placeholder="000" value="{{SmtpPort}}" /></p>
-        <p> Username <input type="text" class="textto" id="username" placeholder="example" value="{{Username}}" /></p>
-        <p> Password <input type="password" class="textto" id="password" placeholder="******" value="{{Password}}" /></p>
-
-
+        <table id="table1" class="tableTokens">
+        <tr>
+            <td>
+                <p class="smtplabels">Port</p>
+            </td>
+            <td>
+                <input type="text" class="SMTPtext" id="smtpPort" placeholder="port" value="{{SmtpPort}}" />
+            </td>
+            <td>
+                <p class="smtplabels">Host name</p>
+            </td>
+            <td>
+                <input type="text" class="SMTPtext" id="HostName" placeholder="name" value="{{HostName}}" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p class="smtplabels">Username</p>
+            </td>
+            <td>
+                <input type="text" class="SMTPtext" id="username" placeholder="username" value="{{Username}}" />
+            </td>
+            <td>
+                <p class="smtplabels">Password</p>
+            </td>
+            <td>
+                <input type="password" class="SMTPtext" id="password" placeholder="password" value="{{Password}}" />
+            </td>
+        </tr>
+      
+        </table>
         <p> To <input type="text" class="textto" id="idemailTo" placeholder="example@example.com" value="{{mailAddress}}" /></p>
         <p>
             Template
@@ -27,6 +51,7 @@
             </select>
         </p>
         <table>
+            <caption>Daemons</caption>
             <tr>
                 <th>Daily</th>
                 <th id="mailDaemonsDaily">

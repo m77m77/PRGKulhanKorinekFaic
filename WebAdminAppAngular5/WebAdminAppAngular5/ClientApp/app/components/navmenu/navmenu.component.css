@@ -38,6 +38,7 @@ nav ul a.link-active li {
         background: #555;
         font-size: 22px;
         color: whitesmoke;
+        height: 75px;
     }
 
 nav ul li:hover, .aktivni {
@@ -45,12 +46,13 @@ nav ul li:hover, .aktivni {
     box-shadow: 10px #555;
     font-size: 22px;
     color: whitesmoke;
+    height: 75px;
 }
 
 
 
 header {
-    height: 60px;
+    height: 75px;
     position: fixed;
     top: 0px;
     left: 0px;

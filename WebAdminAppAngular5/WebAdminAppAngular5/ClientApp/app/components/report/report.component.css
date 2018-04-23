@@ -125,8 +125,8 @@ h1 {
     }
 
 #btnmonthly {
-    width: 335px;
-    height: 50px;
+    width: 419px;
+    height: 70px;
     border: none;
     background-color: gray;
     color: white;
@@ -140,8 +140,8 @@ h1 {
     }
 
 #btnweekly {
-    width: 335px;
-    height: 50px;
+    width: 419px;
+    height: 70px;
     border: none;
     background-color: gray;
     color: white;
@@ -155,8 +155,8 @@ h1 {
         background-color: rgb(81, 168, 240);
     }
 #btndaily {
-    width: 335px;
-    height: 50px;
+    width: 419px;
+    height: 70px;
     border: none;
     background-color: gray;
     color: white;
@@ -169,3 +169,28 @@ h1 {
 #btndaily:hover {
         background-color: rgb(81, 168, 240);
 }
+
+#btnfiltr {
+    width: 627px;
+    height: 50px;
+    border: none;
+    background-color: gray;
+    color: white;
+    font-size: 23px;
+    font-family: 'Segoe UI';
+    cursor: pointer;
+    margin: 3px;
+}
+    #btnfiltr:hover {
+        background-color: rgb(81, 168, 240);
+    }
+
+#filtrtext {
+    width: 627px;
+    height: 50px;
+    border: none;
+    font-size: 23px;
+    font-family: 'Segoe UI';
+
+}
+

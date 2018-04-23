@@ -5,6 +5,8 @@
 
 }
 
+
+
 .arc {
     margin: 7% 15% 10% 30%;
     border: none;
@@ -18,8 +20,7 @@
     width: 675px;
     float: left;
     background: whitesmoke;
-    border: 2px solid #555;
-    box-shadow: 2px 2px 7px #555;
+    border: none;
     padding: 0px;
     font-size: 23px;
     font-family: 'Segoe UI';
@@ -97,16 +98,18 @@ h1
 }
 
 #selecttemplate {
-    font-size: 25px;
+    height: 40px;
+    font-size: 30px;
     padding: 0px 100px 0px 0px;
     margin: 2px;
     border: none;
 }
 
 .textto {
-    height: 27px;
+    height: 40px;
+    font-size: 30px;
     width: 630px;
-    font-size: 23px;
+ 
     border: 0px;
     border: none;
 }
@@ -130,4 +133,22 @@ h1
     }
 .dname {
     margin: 0% 0% 0% 27%;
+}
+
+.SMTPtext {
+    border: none;
+    height: 35px;
+    font-size: 30px;
+    width: 220px;
+    
+
+}
+
+.nadpis
+{
+    font-weight: bold;
+}
+.smtplabels
+{
+    font-size: 23px;
 }
