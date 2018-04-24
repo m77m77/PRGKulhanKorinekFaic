@@ -34,7 +34,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT daemonsSettings.id,daemonsSettings.settings,daemons.name FROM daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon WHERE daemons.id = @idDaemon";
+            Query.CommandText = "SELECT daemonsSettings.id,daemonsSettings.settings,daemons.name,daemons.updateTime FROM daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon WHERE daemons.id = @idDaemon";
 
             Query.Parameters.AddWithValue("@idDaemon", t.DaemonID);
 
@@ -53,6 +53,7 @@ namespace REST_API.Controllers
                     Settings s = JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
                     s.SettingsID = Convert.ToInt32(Reader["id"].ToString());
                     daemon.DaemonName = Reader["name"].ToString();
+                    daemon.UpdateTime = Convert.ToInt32(Reader["updateTime"].ToString());
                     daemon.Settings.Add(s);
                 }
                 Reader.Close();

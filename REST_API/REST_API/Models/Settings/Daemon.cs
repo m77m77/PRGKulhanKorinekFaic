@@ -10,6 +10,7 @@ namespace REST_API.Models.Settings
     {
         public int DaemonID { get; set; }
         public string DaemonName { get; set; }
+        public int UpdateTime { get; set; }
         public List<Settings> Settings { get; set; }
     }
 }

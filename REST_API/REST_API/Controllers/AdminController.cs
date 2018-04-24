@@ -35,7 +35,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT daemons.id AS DaemonID,daemonsSettings.id,daemonsSettings.settings,daemons.name FROM daemonsSettings RIGHT JOIN daemons ON daemons.id = daemonsSettings.idDaemon ORDER BY daemons.id"; //WHERE @id = id";
+            Query.CommandText = "SELECT daemons.id AS DaemonID,daemonsSettings.id,daemonsSettings.settings,daemons.name,daemons.updateTime FROM daemonsSettings RIGHT JOIN daemons ON daemons.id = daemonsSettings.idDaemon ORDER BY daemons.id"; //WHERE @id = id";
 
 
             MySqlCommand defaultSettingsQuery = Connection.CreateCommand();
@@ -71,11 +71,13 @@ namespace REST_API.Controllers
                         settings = JsonConvert.DeserializeObject<Settings>(sSettings.ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
                     }
                     string name = Reader["name"].ToString();
+                    int updateTime = Convert.ToInt32(Reader["updateTime"].ToString());
 
                     if (daemon.DaemonID == 0)
                     {
                         daemon.DaemonID = dId;
                         daemon.DaemonName = name;
+                        daemon.UpdateTime = updateTime;
                     }
 
                     if (daemon.DaemonID == dId)
@@ -93,6 +95,7 @@ namespace REST_API.Controllers
                         daemon.Settings = new List<Settings>();
                         daemon.DaemonID = dId;
                         daemon.DaemonName = name;
+                        daemon.UpdateTime = updateTime;
 
                         if (settings != null)
                         {
@@ -148,10 +151,12 @@ namespace REST_API.Controllers
                 foreach (Settings item in value.Settings)
                 {
                     MySqlCommand Query = Connection.CreateCommand();
-                    Query.CommandText = "UPDATE daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon SET daemonsSettings.settings = @value,daemons.name = @name WHERE daemonsSettings.id = @SettingsID AND daemonsSettings.idDaemon = @DaemonID ";
+                    Query.CommandText = "UPDATE daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon SET daemonsSettings.settings = @value,daemons.name = @name,daemons.updateTime = @time WHERE daemonsSettings.id = @SettingsID AND daemonsSettings.idDaemon = @DaemonID ";
                     Query.Parameters.AddWithValue("@SettingsID", item.SettingsID);
                     Query.Parameters.AddWithValue("@DaemonID", value.DaemonID);
                     Query.Parameters.AddWithValue("@name", value.DaemonName);
+                    Query.Parameters.AddWithValue("@time", value.UpdateTime);
+
 
                     item.SettingsID = 0;
                     Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(item, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
