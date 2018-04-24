@@ -43,6 +43,54 @@ namespace REST_API.Controllers
 
                     query.ExecuteNonQuery();
 
+                    /***************/
+                    string sqlDatabase = "INSERT INTO daemonsSettingsDatabase(idDaemon,settings) SELECT value FROM systemSettings WHERE name='defaultDaemonSettingsDatabase'";
+                    MySqlCommand queryDatabase = new MySqlCommand(sqlDatabase, connection);
+                    queryDatabase.Parameters.AddWithValue("@idDaemon", daemon.DaemonID);
+
+                    queryDatabase.ExecuteNonQuery();
+
+                    response = new Response("OK", null, null, null);
+                }
+                catch (Exception)
+                {
+                    response = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+                }
+
+            }
+
+            return response;
+        }
+        [Route("api/newsettingsdatabase/{token}")]
+        public Response PostDatabase(string token, [FromBody] Daemon daemon)
+        {
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
+
+            Response response;
+
+
+            using (MySqlConnection connection = WebApiConfig.Connection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    string sqlDatabase = "INSERT INTO daemonsSettingsDatabase(idDaemon,settings) SELECT value FROM systemSettings WHERE name='defaultDaemonSettingsDatabase'";
+                    MySqlCommand queryDatabase = new MySqlCommand(sqlDatabase, connection);
+                    queryDatabase.Parameters.AddWithValue("@idDaemon", daemon.DaemonID);
+
+                    queryDatabase.ExecuteNonQuery();
+
                     response = new Response("OK", null, null, null);
                 }
                 catch (Exception)

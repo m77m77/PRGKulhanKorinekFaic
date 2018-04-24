@@ -151,11 +151,13 @@ namespace REST_API.Controllers
                 foreach (Settings item in value.Settings)
                 {
                     MySqlCommand Query = Connection.CreateCommand();
-                    Query.CommandText = "UPDATE daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon SET daemonsSettings.settings = @value,daemons.name = @name,daemons.updateTime = @time WHERE daemonsSettings.id = @SettingsID AND daemonsSettings.idDaemon = @DaemonID ";
+                    Query.CommandText = "UPDATE daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon inner join daemonsSettingsDatabase dsd on daemons.id = dsd.idDaemon SET daemonsSettings.settings = @value,daemons.name = @name,daemons.updateTime = @time, dsd.settings = @DatabaseSettings WHERE daemonsSettings.id = @SettingsID AND daemonsSettings.idDaemon = @DaemonID ";
                     Query.Parameters.AddWithValue("@SettingsID", item.SettingsID);
                     Query.Parameters.AddWithValue("@DaemonID", value.DaemonID);
                     Query.Parameters.AddWithValue("@name", value.DaemonName);
                     Query.Parameters.AddWithValue("@time", value.UpdateTime);
+
+                    Query.Parameters.AddWithValue("@DatabaseSettings", value.DatabaseSettings);
 
 
                     item.SettingsID = 0;

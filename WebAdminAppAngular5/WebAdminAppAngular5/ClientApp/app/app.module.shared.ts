@@ -22,6 +22,7 @@ import { MonthlybackupschemeComponent } from './components/monthlybackupscheme/m
 import { ITokenComponent } from './components/itoken/itoken.component';
 import { ReportComponent } from './components/report/report.component';
 import { DefaultSettingsComponent } from './components/defaultsettings/defaultsettings.component';
+import { DaemonsettingsdatabaseComponent } from './components/daemonsettingsdatabase/daemonsettingsdatabase.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { DefaultSettingsComponent } from './components/defaultsettings/defaultse
         ITokenComponent,
         ReportComponent,
         DefaultSettingsComponent,
+        DaemonsettingsdatabaseComponent,
    
     ],
     imports: [
@@ -82,8 +84,6 @@ import { DefaultSettingsComponent } from './components/defaultsettings/defaultse
                                     { path: '**', redirectTo: 'settings', pathMatch: 'full' },
                                 ]
                             },
-
-
                         ]
                     },
                     {
