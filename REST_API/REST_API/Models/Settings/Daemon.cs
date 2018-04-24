@@ -11,5 +11,6 @@ namespace REST_API.Models.Settings
         public int DaemonID { get; set; }
         public string DaemonName { get; set; }
         public List<Settings> Settings { get; set; }
+        public List<DatabaseSettings> DatabaseSettings { get; set; }
     }
 }
