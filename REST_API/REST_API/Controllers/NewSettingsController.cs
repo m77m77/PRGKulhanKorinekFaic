@@ -43,13 +43,6 @@ namespace REST_API.Controllers
 
                     query.ExecuteNonQuery();
 
-                    /***************/
-                    string sqlDatabase = "INSERT INTO daemonsSettingsDatabase(idDaemon,settings) SELECT value FROM systemSettings WHERE name='defaultDaemonSettingsDatabase'";
-                    MySqlCommand queryDatabase = new MySqlCommand(sqlDatabase, connection);
-                    queryDatabase.Parameters.AddWithValue("@idDaemon", daemon.DaemonID);
-
-                    queryDatabase.ExecuteNonQuery();
-
                     response = new Response("OK", null, null, null);
                 }
                 catch (Exception)

@@ -88,12 +88,13 @@ export class DaemonsettingsComponent {
                     this.daemonID = daemon.DaemonID;
                     this.settings = []
                     for (var k = 0; k < daemon.Settings.length; k++) {
-                        this.settings.push({ I: k, Route: '../' + i + '/' + k });
+                        this.settings.push({ I: k, Route: '../' + i + '/file/' + k });
                     }
                 }
                 
 
-                this.daemons.push({ Route: '../' + i, Name: daemon.DaemonName, Id: daemon.DaemonID, Changed: unSavedData.indexOf(''+i) > -1 ? '*' : ''});
+                this.daemons.push({
+                    Route: '../' + i, Name: daemon.DaemonName, Id: daemon.DaemonID, Changed: unSavedData.indexOf(''+i) > -1 ? ' * ' : ''});
             }
 
         }

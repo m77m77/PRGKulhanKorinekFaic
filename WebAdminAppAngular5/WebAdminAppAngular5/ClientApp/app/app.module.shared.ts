@@ -22,7 +22,7 @@ import { MonthlybackupschemeComponent } from './components/monthlybackupscheme/m
 import { ITokenComponent } from './components/itoken/itoken.component';
 import { ReportComponent } from './components/report/report.component';
 import { DefaultSettingsComponent } from './components/defaultsettings/defaultsettings.component';
-import { DaemonsettingsdatabaseComponent } from './components/daemonsettingsdatabase/daemonsettingsdatabase.component';
+import { SettingsDatabaseComponent } from './components/settingsdatabase/settingsdatabase.component';
 
 
 @NgModule({
@@ -45,7 +45,7 @@ import { DaemonsettingsdatabaseComponent } from './components/daemonsettingsdata
         ITokenComponent,
         ReportComponent,
         DefaultSettingsComponent,
-        DaemonsettingsdatabaseComponent,
+        SettingsDatabaseComponent,
    
     ],
     imports: [
@@ -61,14 +61,32 @@ import { DaemonsettingsdatabaseComponent } from './components/daemonsettingsdata
                 children: [
                     { path: 'fetch', component: FetchDataComponent },
                     { path: 'mail', component: MailsettingsComponent },
-                    { path: 'daemon', redirectTo: 'daemon/0/0', pathMatch: 'full' },
+                    { path: 'daemon', redirectTo: 'daemon/0/file/0', pathMatch: 'full' },
                     {
                         path: 'daemon/:id',
                         component: DaemonsettingsComponent,
                         children: [
                             {
-                                path: ':settingsID',
+                                path: 'file/:settingsID',
                                 component: SettingsComponent,
+                                children: [
+                                    {
+                                        path: 'scheme',
+                                        component: BackupschemeComponent,
+                                        children: [
+                                            { path: 'daily', component: DailybackupschemeComponent },
+                                            { path: 'weekly', component: WeeklybackupschemenewComponent },
+                                            { path: 'onetime', component: OnetimebackupschemeComponent },
+                                            { path: 'monthly', component: MonthlybackupschemeComponent }
+                                        ]
+                                    },
+                                    { path: 'settings', component: BackupSettingsComponent },
+                                    { path: '**', redirectTo: 'settings', pathMatch: 'full' },
+                                ]
+                            },
+                            {
+                                path: 'database/:settingsID',
+                                component: SettingsDatabaseComponent,
                                 children: [
                                     {
                                         path: 'scheme',
