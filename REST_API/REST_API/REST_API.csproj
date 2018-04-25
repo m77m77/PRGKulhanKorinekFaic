@@ -224,7 +224,7 @@
     <Compile Include="Models\Settings\BackupScheme.cs" />
     <Compile Include="Models\Settings\BackupTime.cs" />
     <Compile Include="Models\Settings\Daemon.cs" />
-    <Compile Include="Models\Settings\DatabaseSettings.cs" />
+    <Compile Include="Models\Settings\SettingsDatabase.cs" />
     <Compile Include="Models\Settings\FTPDestination.cs" />
     <Compile Include="Models\Settings\IDestination.cs" />
     <Compile Include="Models\Settings\LocalNetworkDestination.cs" />

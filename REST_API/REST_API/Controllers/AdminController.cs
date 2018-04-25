@@ -50,6 +50,7 @@ namespace REST_API.Controllers
             data.ListDaemons = new List<Daemon>();
             r.Data = data;
 
+
             try
             {
                 Connection.Open();
@@ -109,6 +110,115 @@ namespace REST_API.Controllers
                 Reader.Close();
 
                 string defaultSettingsJson = defaultSettingsQuery.ExecuteScalar().ToString();
+                data.DefaultSettingsDatabase = JsonConvert.DeserializeObject<SettingsDatabase>(defaultSettingsJson, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+
+            }
+            catch (Exception ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
+        /*******/
+        [Route("api/admin/database/{token}")]
+        public Response GetDatabase(string token)
+        {
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
+
+            MySqlCommand Query = Connection.CreateCommand();
+
+            Query.CommandText = "SELECT daemons.id AS DaemonID,daemonsSettingsDatabase.id,daemonsSettingsDatabase.settings,daemons.name,daemons.updateTime FROM daemonsSettingsDatabase RIGHT JOIN daemons ON daemons.id = daemonsSettingsDatabase.idDaemon ORDER BY daemons.id"; //WHERE @id = id";
+
+
+            MySqlCommand defaultSettingsQuery = Connection.CreateCommand();
+
+            defaultSettingsQuery.CommandText = "SELECT value FROM systemSettings WHERE name='defaultDaemonSettingsDatabase'";
+
+            //Query.Parameters.AddWithValue("@id", id);
+
+            Response r = new Response();
+
+            ListSettingsData data = new ListSettingsData();
+            data.ListDaemons = new List<Daemon>();
+            r.Data = data;
+
+
+            try
+            {
+                Connection.Open();
+                MySqlDataReader Reader = Query.ExecuteReader();
+
+                Daemon daemon = new Daemon();
+                daemon.SettingsDatabase = new List<SettingsDatabase>();
+                while (Reader.Read())
+                {
+                    int dId = Convert.ToInt32(Reader["DaemonID"]);
+                    int sId = 0;
+                    object sSettings = Reader["settings"];
+
+                    SettingsDatabase settingsdatabase = null;
+
+                    if (sSettings != DBNull.Value)
+                    {
+                        sId = Convert.ToInt32(Reader["id"]);
+                        settingsdatabase = JsonConvert.DeserializeObject<SettingsDatabase>(sSettings.ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                    }
+                    string name = Reader["name"].ToString();
+                    int updateTime = Convert.ToInt32(Reader["updateTime"].ToString());
+
+                    if (daemon.DaemonID == 0)
+                    {
+                        daemon.DaemonID = dId;
+                        daemon.DaemonName = name;
+                        daemon.UpdateTime = updateTime;
+                    }
+
+                    if (daemon.DaemonID == dId)
+                    {
+                        if (settingsdatabase != null)
+                        {
+                            settingsdatabase.SettingsID = sId;
+                            daemon.SettingsDatabase.Add(settingsdatabase);
+                        }
+                    }
+                    else
+                    {
+                        data.ListDaemons.Add(daemon);
+                        daemon = new Daemon();
+                        daemon.SettingsDatabase = new List<SettingsDatabase>();
+                        daemon.DaemonID = dId;
+                        daemon.DaemonName = name;
+                        daemon.UpdateTime = updateTime;
+
+                        if (settingsdatabase != null)
+                        {
+                            settingsdatabase.SettingsID = sId;
+                            daemon.SettingsDatabase.Add(settingsdatabase);
+                        }
+                    }
+                }
+
+                data.ListDaemons.Add(daemon);
+                Reader.Close();
+                
+                string defaultSettingsJson = defaultSettingsQuery.ExecuteScalar().ToString();
                 data.DefaultSettings = JsonConvert.DeserializeObject<Settings>(defaultSettingsJson, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
 
             }
@@ -123,7 +233,7 @@ namespace REST_API.Controllers
 
             return r;
         }
-
+        /*******/
 
         [Route("api/admin/{token}")]
         public Response Post(string token, [FromBody]Daemon value)
@@ -157,7 +267,7 @@ namespace REST_API.Controllers
                     Query.Parameters.AddWithValue("@name", value.DaemonName);
                     Query.Parameters.AddWithValue("@time", value.UpdateTime);
 
-                    Query.Parameters.AddWithValue("@DatabaseSettings", value.DatabaseSettings);
+                    Query.Parameters.AddWithValue("@DatabaseSettings", value.SettingsDatabase);
 
 
                     item.SettingsID = 0;

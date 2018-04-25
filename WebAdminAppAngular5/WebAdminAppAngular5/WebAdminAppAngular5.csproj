@@ -24,13 +24,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\backupsettingsdatabase\backupsettingsdatabase.component.ts" />
     <None Remove="ClientApp\app\components\backupsettings\backupsettings.component.ts" />
     <None Remove="ClientApp\app\components\daemonsettings\daemonsettings.component.ts" />
+    <None Remove="ClientApp\app\components\defaultsettingsdatabase\defaultsettingsdatabase.component.ts" />
     <None Remove="ClientApp\app\components\defaultsettings\defaultsettings.component.ts" />
     <None Remove="ClientApp\app\components\itoken\itoken.component.ts" />
     <None Remove="ClientApp\app\components\login\login.component.ts" />
     <None Remove="ClientApp\app\components\mailsettings\mailsettings.component.ts" />
+    <None Remove="ClientApp\app\components\monthlybackupschemedatabase\monthlybackupschemedatabase.component.ts" />
     <None Remove="ClientApp\app\components\monthlybackupscheme\monthlybackupscheme.component.ts" />
+    <None Remove="ClientApp\app\components\onetimebackupschemedatabase\onetimebackupschemedatabase.component.ts" />
     <None Remove="ClientApp\app\components\onetimebackupscheme\onetimebackupscheme.component.ts" />
     <None Remove="ClientApp\app\components\register\register.component.ts" />
     <None Remove="ClientApp\app\components\report\report.component.ts" />
@@ -40,7 +44,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\backupsettingsdatabase\backupsettingsdatabase.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\defaultsettingsdatabase\defaultsettingsdatabase.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\defaultsettings\defaultsettings.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\monthlybackupschemedatabase\monthlybackupschemedatabase.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\onetimebackupschemedatabase\onetimebackupschemedatabase.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\report\report.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\itoken\itoken.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\backupsettings\backupsettings.component.ts" />

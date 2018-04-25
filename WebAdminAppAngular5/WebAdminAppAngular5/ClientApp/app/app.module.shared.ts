@@ -22,7 +22,16 @@ import { MonthlybackupschemeComponent } from './components/monthlybackupscheme/m
 import { ITokenComponent } from './components/itoken/itoken.component';
 import { ReportComponent } from './components/report/report.component';
 import { DefaultSettingsComponent } from './components/defaultsettings/defaultsettings.component';
+
 import { SettingsDatabaseComponent } from './components/settingsdatabase/settingsdatabase.component';
+import { BackupSettingsDatabaseComponent } from './components/backupsettingsdatabase/backupsettingsdatabase.component';
+import { BackupschemeDatabaseComponent } from './components/backupschemedatabase/backupschemedatabase.component';
+import { DailybackupschemeDatabaseComponent } from './components/dailybackupschemedatabase/dailybackupschemedatabase.component';
+import { DefaultSettingsDatabaseComponent } from './components/defaultsettingsdatabase/defaultsettingsdatabase.component';
+import { MonthlybackupschemeDatabaseComponent } from './components/monthlybackupschemedatabase/monthlybackupschemedatabase.component';
+import { OnetimebackupschemeDatabaseComponent } from './components/onetimebackupschemedatabase/onetimebackupschemedatabase.component';
+import { WeeklybackupschemenewDatabaseComponent } from './components/weeklybackupschemedatabase/weeklybackupschemenewdatabase.component';
+
 
 
 @NgModule({
@@ -46,6 +55,14 @@ import { SettingsDatabaseComponent } from './components/settingsdatabase/setting
         ReportComponent,
         DefaultSettingsComponent,
         SettingsDatabaseComponent,
+        SettingsDatabaseComponent,
+        BackupSettingsDatabaseComponent,
+        BackupschemeDatabaseComponent,
+        DailybackupschemeDatabaseComponent,
+        DefaultSettingsDatabaseComponent,
+        MonthlybackupschemeDatabaseComponent,
+        OnetimebackupschemeDatabaseComponent,
+        WeeklybackupschemenewDatabaseComponent,
    
     ],
     imports: [
@@ -90,15 +107,15 @@ import { SettingsDatabaseComponent } from './components/settingsdatabase/setting
                                 children: [
                                     {
                                         path: 'scheme',
-                                        component: BackupschemeComponent,
+                                        component: BackupschemeDatabaseComponent,
                                         children: [
-                                            { path: 'daily', component: DailybackupschemeComponent },
-                                            { path: 'weekly', component: WeeklybackupschemenewComponent },
-                                            { path: 'onetime', component: OnetimebackupschemeComponent },
-                                            { path: 'monthly', component: MonthlybackupschemeComponent }
+                                            { path: 'daily', component: DailybackupschemeDatabaseComponent },
+                                            { path: 'weekly', component: WeeklybackupschemenewDatabaseComponent },
+                                            { path: 'onetime', component: OnetimebackupschemeDatabaseComponent },
+                                            { path: 'monthly', component: MonthlybackupschemeDatabaseComponent }
                                         ]
                                     },
-                                    { path: 'settings', component: BackupSettingsComponent },
+                                    { path: 'settings', component: BackupSettingsDatabaseComponent },
                                     { path: '**', redirectTo: 'settings', pathMatch: 'full' },
                                 ]
                             },
@@ -123,6 +140,32 @@ import { SettingsDatabaseComponent } from './components/settingsdatabase/setting
                                         ]
                                     },
                                     { path: 'settings', component: BackupSettingsComponent },
+                                    { path: '**', redirectTo: 'settings', pathMatch: 'full' },
+                                ]
+                            },
+
+
+                        ]
+                    },
+                    {
+                        path: 'defaultdatabase',
+                        component: DefaultSettingsDatabaseComponent,
+                        children: [
+                            {
+                                path: 'defaultdatabase',
+                                component: SettingsDatabaseComponent,
+                                children: [
+                                    {
+                                        path: 'schemedatabase',
+                                        component: BackupschemeDatabaseComponent,
+                                        children: [
+                                            { path: 'dailydatabase', component: DailybackupschemeDatabaseComponent },
+                                            { path: 'weeklydatabase', component: WeeklybackupschemenewDatabaseComponent },
+                                            { path: 'onetimedatabase', component: OnetimebackupschemeDatabaseComponent },
+                                            { path: 'monthlydatabase', component: MonthlybackupschemeDatabaseComponent }
+                                        ]
+                                    },
+                                    { path: 'settings', component: BackupSettingsDatabaseComponent },
                                     { path: '**', redirectTo: 'settings', pathMatch: 'full' },
                                 ]
                             },

@@ -32,6 +32,8 @@ namespace REST_API
                     return typeof(ListSettingsData);
                 case "Settings":
                     return typeof(Settings);
+                case "SettingsDatabase":
+                    return typeof(SettingsDatabase);
                 case "EmailSettings":
                     return typeof(EmailSettings);
                 case "ListEmailSettingsData":

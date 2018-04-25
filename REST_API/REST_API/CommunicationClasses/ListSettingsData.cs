@@ -10,5 +10,6 @@ namespace REST_API.CommunicationClasses
     {
         public List<Daemon> ListDaemons {get;set;}
         public Settings DefaultSettings { get; set; }
+        public SettingsDatabase DefaultSettingsDatabase { get; set; }
     }
 }
