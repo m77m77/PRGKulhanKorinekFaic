@@ -10,6 +10,8 @@ namespace DaemonTest.Models.Settings
     {
         public int DaemonID { get; set; }
         public string DaemonName { get; set; }
+        public int UpdateTime { get; set; }
         public List<Settings> Settings { get; set; }
+        public List<SettingsDatabase> SettingsDatabase { get; set; }
     }
 }
