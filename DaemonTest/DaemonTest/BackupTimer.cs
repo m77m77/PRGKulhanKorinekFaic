@@ -26,16 +26,19 @@ namespace DaemonTest
         {
             
             Console.WriteLine(DateTime.Now.ToShortTimeString() + " Tick - Remaining: " +checkSettingsRemaining);
-            if(checkSettingsRemaining <= 0)
+            if(this.checkSettingsRemaining <= 0)
             {
-                checkSettingsRemaining = checkSettings;
+                this.checkSettingsRemaining = this.checkSettings;
 
                 Response response = await ServerAccess.GetNewSettings();
                 Console.WriteLine(response.Status + " " + response.Error);
 
                 if (response.Status == "OK")
                 {
-                    currentDaemon = (Daemon) response.Data;
+                    this.currentDaemon = (Daemon) response.Data;
+                    this.checkSettings = this.currentDaemon.UpdateTime;
+                    this.checkSettingsRemaining = this.currentDaemon.UpdateTime;
+
                 }
             }else
             {

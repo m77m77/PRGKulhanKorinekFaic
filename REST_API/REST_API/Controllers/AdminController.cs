@@ -35,12 +35,24 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT daemons.id AS DaemonID,daemonsSettings.id,daemonsSettings.settings,daemons.name,daemons.updateTime FROM daemonsSettings RIGHT JOIN daemons ON daemons.id = daemonsSettings.idDaemon ORDER BY daemons.id"; //WHERE @id = id";
+            Query.CommandText = "SELECT * " +
+                                "FROM " +
+                                "( " +
+                                "SELECT daemons.id AS DaemonID, daemonsSettings.id, daemonsSettings.settings, daemons.name, daemons.updateTime, 'FILE' AS typ FROM daemons LEFT JOIN daemonsSettings ON daemons.id = daemonsSettings.idDaemon " +
+                                "UNION " +
+                                "SELECT daemons.id AS DaemonID, daemonsSettingsDatabase.id, daemonsSettingsDatabase.settings, daemons.name, daemons.updateTime, 'DATABASE' AS typ FROM daemons " +
+                                "INNER JOIN daemonsSettingsDatabase ON daemons.id = daemonsSettingsDatabase.idDaemon " +
+                                ") AS a " +
+                                "ORDER BY DaemonID";
 
 
             MySqlCommand defaultSettingsQuery = Connection.CreateCommand();
 
             defaultSettingsQuery.CommandText = "SELECT value FROM systemSettings WHERE name='defaultDaemonSettings'";
+
+            MySqlCommand defaultSettingsDatabaseQuery = Connection.CreateCommand();
+
+            defaultSettingsDatabaseQuery.CommandText = "SELECT value FROM systemSettings WHERE name='defaultDaemonSettingsDatabase'";
 
             //Query.Parameters.AddWithValue("@id", id);
 
@@ -58,114 +70,6 @@ namespace REST_API.Controllers
 
                 Daemon daemon = new Daemon();
                 daemon.Settings = new List<Settings>();
-                while (Reader.Read())
-                {
-                    int dId = Convert.ToInt32(Reader["DaemonID"]);
-                    int sId = 0;
-                    object sSettings = Reader["settings"];
-
-                    Settings settings = null;
-
-                    if (sSettings != DBNull.Value)
-                    {
-                        sId = Convert.ToInt32(Reader["id"]);
-                        settings = JsonConvert.DeserializeObject<Settings>(sSettings.ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-                    }
-                    string name = Reader["name"].ToString();
-                    int updateTime = Convert.ToInt32(Reader["updateTime"].ToString());
-
-                    if (daemon.DaemonID == 0)
-                    {
-                        daemon.DaemonID = dId;
-                        daemon.DaemonName = name;
-                        daemon.UpdateTime = updateTime;
-                    }
-
-                    if (daemon.DaemonID == dId)
-                    {
-                        if (settings != null)
-                        {
-                            settings.SettingsID = sId;
-                            daemon.Settings.Add(settings);
-                        }
-                    }
-                    else
-                    {
-                        data.ListDaemons.Add(daemon);
-                        daemon = new Daemon();
-                        daemon.Settings = new List<Settings>();
-                        daemon.DaemonID = dId;
-                        daemon.DaemonName = name;
-                        daemon.UpdateTime = updateTime;
-
-                        if (settings != null)
-                        {
-                            settings.SettingsID = sId;
-                            daemon.Settings.Add(settings);
-                        }
-                    }
-                }
-
-                data.ListDaemons.Add(daemon);
-                Reader.Close();
-
-                string defaultSettingsJson = defaultSettingsQuery.ExecuteScalar().ToString();
-                data.DefaultSettingsDatabase = JsonConvert.DeserializeObject<SettingsDatabase>(defaultSettingsJson, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-
-            }
-            catch (Exception ex)
-            {
-                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
-            }
-            Connection.Close();
-
-            if (r.Status == null)
-                r.Status = "OK";
-
-            return r;
-        }
-        /*******/
-        [Route("api/admin/database/{token}")]
-        public Response GetDatabase(string token)
-        {
-            MySqlConnection Connection = WebApiConfig.Connection();
-
-            Token t = Token.Exists(token);
-            if (t == null)
-            {
-                //token není v databázi  
-                return new Response("ERROR", "TokenNotFound", null, null);
-            }
-            if (!t.IsAdmin)
-            {
-                //token nepatří adminovi  
-                return new Response("ERROR", "TokenIsNotMatched", null, null);
-            }
-
-            MySqlCommand Query = Connection.CreateCommand();
-
-            Query.CommandText = "SELECT daemons.id AS DaemonID,daemonsSettingsDatabase.id,daemonsSettingsDatabase.settings,daemons.name,daemons.updateTime FROM daemonsSettingsDatabase RIGHT JOIN daemons ON daemons.id = daemonsSettingsDatabase.idDaemon ORDER BY daemons.id"; //WHERE @id = id";
-
-
-            MySqlCommand defaultSettingsQuery = Connection.CreateCommand();
-
-            defaultSettingsQuery.CommandText = "SELECT value FROM systemSettings WHERE name='defaultDaemonSettingsDatabase'";
-
-            //Query.Parameters.AddWithValue("@id", id);
-
-            Response r = new Response();
-
-            ListSettingsData data = new ListSettingsData();
-            data.ListDaemons = new List<Daemon>();
-            r.Data = data;
-
-
-            try
-            {
-                Connection.Open();
-                MySqlDataReader Reader = Query.ExecuteReader();
-
-                Daemon daemon = new Daemon();
                 daemon.SettingsDatabase = new List<SettingsDatabase>();
                 while (Reader.Read())
                 {
@@ -173,12 +77,17 @@ namespace REST_API.Controllers
                     int sId = 0;
                     object sSettings = Reader["settings"];
 
-                    SettingsDatabase settingsdatabase = null;
+                    Settings settings = null;
+                    SettingsDatabase settingsDatabase = null;
 
                     if (sSettings != DBNull.Value)
                     {
                         sId = Convert.ToInt32(Reader["id"]);
-                        settingsdatabase = JsonConvert.DeserializeObject<SettingsDatabase>(sSettings.ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        string typ = Reader["typ"].ToString();
+                        if(typ == "FILE")
+                            settings = JsonConvert.DeserializeObject<Settings>(sSettings.ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        else if(typ == "DATABASE")
+                            settingsDatabase = JsonConvert.DeserializeObject<SettingsDatabase>(sSettings.ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
                     }
                     string name = Reader["name"].ToString();
                     int updateTime = Convert.ToInt32(Reader["updateTime"].ToString());
@@ -192,34 +101,48 @@ namespace REST_API.Controllers
 
                     if (daemon.DaemonID == dId)
                     {
-                        if (settingsdatabase != null)
+                        if (settings != null)
                         {
-                            settingsdatabase.SettingsID = sId;
-                            daemon.SettingsDatabase.Add(settingsdatabase);
+                            settings.SettingsID = sId;
+                            daemon.Settings.Add(settings);
+                        }
+                        if (settingsDatabase != null)
+                        {
+                            settingsDatabase.SettingsID = sId;
+                            daemon.SettingsDatabase.Add(settingsDatabase);
                         }
                     }
                     else
                     {
                         data.ListDaemons.Add(daemon);
                         daemon = new Daemon();
+                        daemon.Settings = new List<Settings>();
                         daemon.SettingsDatabase = new List<SettingsDatabase>();
                         daemon.DaemonID = dId;
                         daemon.DaemonName = name;
                         daemon.UpdateTime = updateTime;
 
-                        if (settingsdatabase != null)
+                        if (settings != null)
                         {
-                            settingsdatabase.SettingsID = sId;
-                            daemon.SettingsDatabase.Add(settingsdatabase);
+                            settings.SettingsID = sId;
+                            daemon.Settings.Add(settings);
+                        }
+                        if (settingsDatabase != null)
+                        {
+                            settingsDatabase.SettingsID = sId;
+                            daemon.SettingsDatabase.Add(settingsDatabase);
                         }
                     }
                 }
 
                 data.ListDaemons.Add(daemon);
                 Reader.Close();
-                
+
                 string defaultSettingsJson = defaultSettingsQuery.ExecuteScalar().ToString();
                 data.DefaultSettings = JsonConvert.DeserializeObject<Settings>(defaultSettingsJson, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+
+                string defaultSettingsDatabaseJson = defaultSettingsQuery.ExecuteScalar().ToString();
+                data.DefaultSettingsDatabase = JsonConvert.DeserializeObject<SettingsDatabase>(defaultSettingsDatabaseJson, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
 
             }
             catch (Exception ex)
@@ -233,7 +156,6 @@ namespace REST_API.Controllers
 
             return r;
         }
-        /*******/
 
         [Route("api/admin/{token}")]
         public Response Post(string token, [FromBody]Daemon value)
