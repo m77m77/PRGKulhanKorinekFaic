@@ -1,0 +1,13 @@
+﻿<div class="paneldiv">
+    <nav>
+        <ul class="sectionul">
+            <a [routerLink]="['onetime']" [routerLinkActive]="['link-active']"><li class="sectionulli">One-time</li></a>
+            <a [routerLink]="['daily']" [routerLinkActive]="['link-active']"><li class="sectionulli">Daily</li></a>
+            <a [routerLink]="['weekly']" [routerLinkActive]="['link-active']"><li class="sectionulli">Weekly</li></a>
+            <a [routerLink]="['monthly']" [routerLinkActive]="['link-active']"><li class="sectionulli">Monthly</li></a>
+
+        </ul>
+    </nav>
+</div>
+
+<router-outlet></router-outlet>
