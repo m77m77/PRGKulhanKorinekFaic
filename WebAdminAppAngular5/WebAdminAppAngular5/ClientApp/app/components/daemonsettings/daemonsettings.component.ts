@@ -193,7 +193,7 @@ export class DaemonsettingsComponent {
 
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        this.http.post('http://localhost:63058/api/newsettings/' + sessionStorage.getItem('token'), { "DaemonID": DaemonID, "DaemonName": null, "Settings": null }, { headers: headers }).toPromise()
+        this.http.post('http://localhost:63058/api/newsettings/file' + sessionStorage.getItem('token'), { "DaemonID": DaemonID, "DaemonName": null, "Settings": null }, { headers: headers }).toPromise()
             .then((response: Response) => {
                 let NewSettings = response.json();
                 if (NewSettings && "OK" == NewSettings.Status) {

@@ -12,7 +12,7 @@ import 'rxjs/add/operator/toPromise';
 
 })
 export class BackupSettingsDatabaseComponent {
-    sources: any;
+    databaseinfo: any;
 
     destCount: number;
     destinations: any;
@@ -100,11 +100,6 @@ export class BackupSettingsDatabaseComponent {
             dest.sftpPath = destination.Path;
         }
 
-        if (destination.SaveFormat == 'PLAIN')
-            dest.plainSelected = 'selected';
-        else if (destination.SaveFormat == 'ZIP')
-            dest.zipSelected = 'selected';
-
         return dest;
     }
 
@@ -145,8 +140,6 @@ export class BackupSettingsDatabaseComponent {
             dest.Password = (<HTMLInputElement>destination.querySelector('.SFTPpassword')).value;
             dest.Path = (<HTMLInputElement>destination.querySelector('.SFTPpath')).value;
         }
-        var formatSelect = (<HTMLSelectElement>destination.querySelector('.FormatSelect'));
-        dest.SaveFormat = formatSelect.options[formatSelect.selectedIndex].value;
 
         settings.Destinations.push(dest);
         console.log(settings.Destinations);
@@ -163,14 +156,32 @@ export class BackupSettingsDatabaseComponent {
             try {
                 var settings = null;
                 if (daemonID == "default") {
-                    settings = data.DefaultSettings;
+                    settings = data.DefaultSettingsDatabase;
                 } else {
-                    settings = listDaemons[daemonID].Settings[settingsID];
+                    settings = listDaemons[daemonID].SettingsDatabase[settingsID];
                 }
 
-                this.sources = settings.BackupSources;
 
                 this.destinations = [];
+                this.databaseinfo = [];
+
+                var database = '';
+                var server = '';
+                var username = '';
+                var password = '';
+                for (var i = 0; i < settings.length; i++) {
+                    database = settings[i].Database
+                    server = settings[i].Server
+                    username = settings[i].Username
+                    password = settings[i].Password
+
+                    this.databaseinfo.push({
+                        Database: database,
+                        Server: server,
+                        Username: username,
+                        Password: password,
+                    });
+                }
 
                 for (var i = 0; i < settings.Destinations.length; i++) {
                     this.destinations.push(this.deserializeDestination(settings,i));
@@ -239,15 +250,20 @@ export class BackupSettingsDatabaseComponent {
             try {
                 var settings = null;
                 if (daemonID == "default") {
-                    settings = data.DefaultSettings;
+                    settings = data.DefaultSettingsDatabase;
                 } else {
-                    settings = listDaemons[daemonID].Settings[settingsID];
+                    settings = listDaemons[daemonID].SettingsDatabase[settingsID];
                 }
 
                 if (unSavedData.indexOf(daemonID) <= -1) {
                     unSavedData.push(daemonID);
                 }
-
+                /**/
+                settings.Database = (<HTMLInputElement>document.getElementById('Database')).value;
+                settings.Server = (<HTMLInputElement>document.getElementById('Server')).value;
+                settings.Username = (<HTMLInputElement>document.getElementById('Username')).value;
+                settings.Password = (<HTMLInputElement>document.getElementById('Password')).value;
+                /**/
                 var sources = (<HTMLDivElement>document.getElementById("backupSetting")).querySelectorAll('.OnebackupSetting');
                 settings.BackupSources = [];
 
@@ -278,41 +294,4 @@ export class BackupSettingsDatabaseComponent {
         }
     }
 
-     addBackupSource() {
-
-        var backups = <HTMLDivElement>document.getElementById("backupSetting");
-
-        var newBackupSetting = this.renderer.createElement('div');
-        newBackupSetting.className = 'OnebackupSetting';
-         
-
-        var input = this.renderer.createElement('input');
-        input.type = 'text';
-        input.placeholder = 'C:\\DATA';
-        input.className = 'pathtextselect';
-
-        var button = this.renderer.createElement('button');
-        button.className = 'btnRemove';
-        button.innerHTML = '-';
-       
-        this.renderer.listen(button, 'click', (evn) => this.deleteBackupSource(evn));
-        this.renderer.listen(input, 'input', (evn) => this.saveSettings());
-        this.renderer.appendChild(newBackupSetting, input);
-       
-        this.renderer.appendChild(backups, newBackupSetting);
-        this.renderer.appendChild(newBackupSetting, button);
-
-        this.saveSettings();
-    }
-
-     deleteBackupSource(event: any) {
-
-         var target = event.target || event.srcElement || event.currentTarget;
-
-         var backups = <HTMLDivElement>document.getElementById("backupSetting");
-
-         this.renderer.removeChild(backups, target.parentNode);
-
-         this.saveSettings();
-     }
 }

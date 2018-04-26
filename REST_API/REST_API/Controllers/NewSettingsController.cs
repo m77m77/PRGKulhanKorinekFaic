@@ -13,7 +13,7 @@ namespace REST_API.Controllers
 {
     public class NewSettingsController : ApiController
     {
-        [Route("api/newsettings/{token}")]
+        [Route("api/newsettings/file/{token}")]
         public Response Post(string token, [FromBody] Daemon daemon)
         {
             Token t = Token.Exists(token);
@@ -54,7 +54,7 @@ namespace REST_API.Controllers
 
             return response;
         }
-        [Route("api/newsettingsdatabase/{token}")]
+        [Route("api/newsettings/database/{token}")]
         public Response PostDatabase(string token, [FromBody] Daemon daemon)
         {
             Token t = Token.Exists(token);
