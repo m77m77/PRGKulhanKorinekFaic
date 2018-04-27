@@ -28,9 +28,9 @@ export class BackupschemeDatabaseComponent {
             try {
                 var settings = null;
                 if (daemonID == "default") {
-                    settings = data.DefaultSettings;
+                    settings = data.DefaultSettingsDatabase;
                 } else {
-                    settings = listDaemons[daemonID].Settings[settingsID];
+                    settings = listDaemons[daemonID].SettingsDatabase[settingsID];
                 }
 
                 var schemeType = settings.BackupScheme.Type;

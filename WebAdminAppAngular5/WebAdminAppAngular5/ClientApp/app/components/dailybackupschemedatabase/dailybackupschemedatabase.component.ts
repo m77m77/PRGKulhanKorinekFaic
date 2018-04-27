@@ -33,9 +33,9 @@ export class DailybackupschemeDatabaseComponent {
             try {
                 var settings = null;
                 if (daemonID == "default") {
-                    settings = data.DefaultSettings;
+                    settings = data.DefaultSettingsDatabase;
                 } else {
-                    settings = listDaemons[daemonID].Settings[settingsID];
+                    settings = listDaemons[daemonID].SettingsDatabase[settingsID];
                 }
 
                 if (settings.BackupScheme.Type != 'DAILY') {
@@ -60,9 +60,6 @@ export class DailybackupschemeDatabaseComponent {
 
                     this.backups.push({
                         Time: bcTime.Time,
-                        FullSelected: bcTime.Type == 'FULL' ? 'selected' : '',
-                        DiffSelected: bcTime.Type == 'DIFF' ? 'selected' : '',
-                        IncSelected: bcTime.Type == 'INC' ? 'selected' : ''
                     });
                 }
 
@@ -87,9 +84,9 @@ export class DailybackupschemeDatabaseComponent {
             try {
                 var settings = null;
                 if (daemonID == "default") {
-                    settings = data.DefaultSettings;
+                    settings = data.DefaultSettingsDatabase;
                 } else {
-                    settings = listDaemons[daemonID].Settings[settingsID];
+                    settings = listDaemons[daemonID].SettingsDatabase[settingsID];
                 }
 
                 settings.BackupScheme.MaxBackups = +(<HTMLInputElement>document.getElementById('idnumberbackups')).value;
@@ -101,10 +98,8 @@ export class DailybackupschemeDatabaseComponent {
                 for (var i = 0; i < elements.length; i++) {
                     var el = elements[i];
                     var timeInput = <HTMLInputElement>el.querySelector('input.time');
-                    var select = <HTMLSelectElement>el.querySelector('select.backupType');
                     
                     settings.BackupScheme.BackupTimes.push({
-                        Type: select.options[select.selectedIndex].value,
                         Time: timeInput.value,
                         DayNumber: 0
                     });
@@ -135,8 +130,6 @@ export class DailybackupschemeDatabaseComponent {
         for (var i = 0; i < elements.length; i++) {
             var el = elements[i];
             var timeInput = <HTMLInputElement>el.querySelector('input.time');
-            var select = <HTMLSelectElement>el.querySelector('select.backupType');
-            select.disabled = false;
             timeInput.parentNode
             if (first == null) {
                 first = timeInput;
@@ -146,16 +139,6 @@ export class DailybackupschemeDatabaseComponent {
             }
 
         }
-        if (first != null) {
-            var parent = <HTMLDivElement>first.parentNode;
-            if (parent != null) {
-                var select = <HTMLSelectElement>parent.querySelector('select.backupType');
-                select.selectedIndex = 0;
-                select.disabled = true;
-            }
-                
-        }
-        //var select = <HTMLSelectElement>first.querySelector('select.backupType');
     }
 
     addBackup() {
@@ -173,12 +156,6 @@ export class DailybackupschemeDatabaseComponent {
         input.value = '00:00'
         input.required = true;
 
-        var select = this.renderer.createElement('select');
-        select.className = 'backupType';
-        select.innerHTML = 
-            '<option value="FULL" > Full </option>' +
-            '<option value= "DIFF"> Differential </option>' +
-            '<option value= "INC"> Incremental </option>';
 
         var button = this.renderer.createElement('button');
         button.className = 'btnRemove';
@@ -187,11 +164,9 @@ export class DailybackupschemeDatabaseComponent {
 
         this.renderer.listen(button, 'click', (evn) => this.deleteBackup(evn));
         this.renderer.listen(input, 'change', (evn) => { this.validate(); this.saveDaily(); });
-        this.renderer.listen(select, 'change', (evn) => { this.validate(); this.saveDaily(); });
 
         this.renderer.appendChild(newBackup, input);
         this.renderer.appendChild(newBackup, br1);
-        this.renderer.appendChild(newBackup, select);
         this.renderer.appendChild(newBackup, br2);
         this.renderer.appendChild(newBackup, button);
 

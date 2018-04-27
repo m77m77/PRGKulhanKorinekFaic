@@ -37,8 +37,8 @@ export class DefaultSettingsDatabaseComponent {
             .then((response: Response) => {
                 let mailSettings = response.json();
                 if (mailSettings && "OK" == mailSettings.Status) {
-                    sessionStorage.setItem('daemonsDataDatabase', JSON.stringify(mailSettings.Data));
-                    sessionStorage.setItem('daemonsUnsaveDatabase', JSON.stringify([]));
+                    sessionStorage.setItem('daemonsData', JSON.stringify(mailSettings.Data));
+                    sessionStorage.setItem('daemonsUnsave', JSON.stringify([]));
 
                     
 
@@ -55,7 +55,7 @@ export class DefaultSettingsDatabaseComponent {
     }
 
     sendDaemon() {
-        var daemonsData = sessionStorage.getItem('daemonsDataDatabase');
+        var daemonsData = sessionStorage.getItem('daemonsData');
         var daemonID = sessionStorage.getItem('daemonID');
         if (daemonsData != null && daemonID != null) {
             var data = JSON.parse(daemonsData);
