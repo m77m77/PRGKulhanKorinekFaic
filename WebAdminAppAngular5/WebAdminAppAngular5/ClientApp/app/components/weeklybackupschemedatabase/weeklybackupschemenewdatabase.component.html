@@ -5,11 +5,6 @@
             <div class="weeklyBackups">
                 <div class="weeklyOneBackup" *ngFor="let b of d.Backups">
                     <input type="time" class="time" (change)="validate(); saveWeekly();" value="{{b.Time}}" required>
-                    <select class="backupType" (change)="validate(); saveWeekly();">
-                        <option value="FULL" selected="{{b.FullSelected}}"> Full </option>
-                        <option value="DIFF" selected="{{b.DiffSelected}}"> Differential </option>
-                        <option value="INC" selected="{{b.IncSelected}}"> Incremental </option>
-                    </select>
                     <button class="btnRemove" (click)="deleteBackup($event)">-</button>
                 </div>
             </div>
@@ -18,4 +13,3 @@
     </div>
 </div>
 <p id="keepingbackups"> Keep <input id="idnumberbackups" (change)="saveWeekly()" type="number" min="0" value="{{keepBackups}}"> backups</p>
-<p id="keepingbackups">First must be FULL method</p>

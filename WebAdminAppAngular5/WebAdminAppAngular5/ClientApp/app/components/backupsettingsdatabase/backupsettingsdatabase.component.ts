@@ -294,4 +294,78 @@ export class BackupSettingsDatabaseComponent {
         }
     }
 
+
+    addBackupSource() {
+
+        var backups = <HTMLDivElement>document.getElementById("backupSetting");
+
+        var newBackupSetting = this.renderer.createElement('div');
+        newBackupSetting.className = 'OnebackupSetting';
+
+
+        var inputDatabase = this.renderer.createElement('input');
+        inputDatabase.type = 'text';
+        inputDatabase.placeholder = 'Database name';
+        inputDatabase.className = 'pathtextselect';
+
+        var button = this.renderer.createElement('button');
+        button.className = 'btnRemove';
+        button.innerHTML = '-';
+        //*****************************
+        var inputServer = this.renderer.createElement('input');
+        inputServer.type = 'text';
+        inputServer.placeholder = 'Server address';
+        inputServer.className = 'pathtextselect';
+
+        var button = this.renderer.createElement('button');
+        button.className = 'btnRemove';
+        button.innerHTML = '-';
+        //*****************************
+        var inputUsername = this.renderer.createElement('input');
+        inputUsername.type = 'text';
+        inputUsername.placeholder = 'Username';
+        inputUsername.className = 'pathtextselect';
+
+        var button = this.renderer.createElement('button');
+        button.className = 'btnRemove';
+        button.innerHTML = '-';
+        //*****************************
+        var inputPassword = this.renderer.createElement('input');
+        inputPassword.type = 'password';
+        inputPassword.placeholder = 'Password';
+        inputPassword.className = 'pathtextselect';
+
+        var button = this.renderer.createElement('button');
+        button.className = 'btnRemove';
+        button.innerHTML = '-';
+        //*****************************
+
+        this.renderer.listen(button, 'click', (evn) => this.deleteBackupSource(evn));
+        this.renderer.listen(inputDatabase, 'input', (evn) => this.saveSettings());
+        this.renderer.listen(inputServer, 'input', (evn) => this.saveSettings());
+        this.renderer.listen(inputUsername, 'input', (evn) => this.saveSettings());
+        this.renderer.listen(inputPassword, 'input', (evn) => this.saveSettings());
+
+        this.renderer.appendChild(newBackupSetting, inputDatabase);
+        this.renderer.appendChild(newBackupSetting, inputServer);
+        this.renderer.appendChild(newBackupSetting, inputUsername);
+        this.renderer.appendChild(newBackupSetting, inputPassword);
+
+        this.renderer.appendChild(backups, newBackupSetting);
+        this.renderer.appendChild(newBackupSetting, button);
+
+        this.saveSettings();
+    }
+
+    deleteBackupSource(event: any) {
+
+        var target = event.target || event.srcElement || event.currentTarget;
+
+        var backups = <HTMLDivElement>document.getElementById("backupSetting");
+
+        this.renderer.removeChild(backups, target.parentNode);
+
+        this.saveSettings();
+    }
+
 }

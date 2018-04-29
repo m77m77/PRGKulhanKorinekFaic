@@ -41,9 +41,9 @@ export class WeeklybackupschemenewDatabaseComponent{
             try {
                 var settings = null;
                 if (daemonID == "default") {
-                    settings = data.DefaultSettings;
+                    settings = data.DefaultSettingsDatabase;
                 } else {
-                    settings = listDaemons[daemonID].Settings[settingsID];
+                    settings = listDaemons[daemonID].SettingsDatabase[settingsID];
                 }
 
                 if (settings.BackupScheme.Type != 'WEEKLY') {
@@ -67,9 +67,6 @@ export class WeeklybackupschemenewDatabaseComponent{
                     this.days[bcTime.DayNumber].Class = 'weeklyOneDayButton active';
                     this.days[bcTime.DayNumber].Backups.push({
                         Time: bcTime.Time,
-                        FullSelected: bcTime.Type == 'FULL' ? 'selected' : '',
-                        DiffSelected: bcTime.Type == 'DIFF' ? 'selected' : '',
-                        IncSelected: bcTime.Type == 'INC' ? 'selected' : ''
                     });
                 }
 
@@ -100,13 +97,6 @@ export class WeeklybackupschemenewDatabaseComponent{
         input.value = '00:00'
         input.required = true;
 
-        var select = this.renderer.createElement('select');
-        select.className = 'backupType';
-        select.innerHTML =
-            '<option value="FULL" > Full </option>' +
-            '<option value= "DIFF"> Differential </option>' +
-            '<option value= "INC"> Incremental </option>';
-
         var button = this.renderer.createElement('button');
         button.className = 'btnRemove';
         button.innerHTML = '-';
@@ -114,10 +104,8 @@ export class WeeklybackupschemenewDatabaseComponent{
 
         this.renderer.listen(button, 'click', (evn) => this.deleteBackup(evn));
         this.renderer.listen(input, 'change', (evn) => { this.validate(); this.saveWeekly(); });
-        this.renderer.listen(select, 'change', (evn) => { this.validate(); this.saveWeekly(); });
 
         this.renderer.appendChild(newBackup, input);
-        this.renderer.appendChild(newBackup, select);
         this.renderer.appendChild(newBackup, button);
 
 
@@ -168,9 +156,9 @@ export class WeeklybackupschemenewDatabaseComponent{
             try {
                 var settings = null;
                 if (daemonID == "default") {
-                    settings = data.DefaultSettings;
+                    settings = data.DefaultSettingsDatabase;
                 } else {
-                    settings = listDaemons[daemonID].Settings[settingsID];
+                    settings = listDaemons[daemonID].SettingsDatabase[settingsID];
                 }
 
                 settings.BackupScheme.MaxBackups = +(<HTMLInputElement>document.getElementById('idnumberbackups')).value;
@@ -186,10 +174,8 @@ export class WeeklybackupschemenewDatabaseComponent{
                         var el = backups[k];
 
                         var timeInput = <HTMLInputElement>el.querySelector('input.time');
-                        var select = <HTMLSelectElement>el.querySelector('select.backupType');
 
                         settings.BackupScheme.BackupTimes.push({
-                            Type: select.options[select.selectedIndex].value,
                             Time: timeInput.value,
                             DayNumber: i
                         });
@@ -249,8 +235,6 @@ export class WeeklybackupschemenewDatabaseComponent{
 
                     for (var k = 0; k < backups.length; k++) {
                         var backup = backups[k];
-                        var select = <HTMLSelectElement>backup.querySelector('select.backupType');
-                        select.disabled = false;
                         if (first == null) {
                             first = backup;
                         } else {
@@ -263,13 +247,6 @@ export class WeeklybackupschemenewDatabaseComponent{
                             }
 
                         }
-                    }
-
-                    if (first != null) {
-                        var select = <HTMLSelectElement>first.querySelector('select.backupType');
-                        select.selectedIndex = 0;
-                        select.disabled = true;
-                        found = true;
                     }
                 }
             } else {

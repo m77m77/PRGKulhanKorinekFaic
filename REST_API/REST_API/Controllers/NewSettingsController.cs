@@ -78,7 +78,7 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                    string sqlDatabase = "INSERT INTO daemonsSettingsDatabase(idDaemon,settings) SELECT value FROM systemSettings WHERE name='defaultDaemonSettingsDatabase'";
+                    string sqlDatabase = "INSERT INTO daemonsSettingsDatabase(idDaemon,settings) SELECT @idDaemon,value FROM systemSettings WHERE name='defaultDaemonSettingsDatabase'";
                     MySqlCommand queryDatabase = new MySqlCommand(sqlDatabase, connection);
                     queryDatabase.Parameters.AddWithValue("@idDaemon", daemon.DaemonID);
 

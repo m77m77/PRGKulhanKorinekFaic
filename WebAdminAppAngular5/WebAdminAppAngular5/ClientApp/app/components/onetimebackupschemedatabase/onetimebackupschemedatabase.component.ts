@@ -30,9 +30,9 @@ export class OnetimebackupschemeDatabaseComponent {
             try {
                 var settings = null;
                 if (daemonID == "default") {
-                    settings = data.DefaultSettings;
+                    settings = data.DefaultSettingsDatabase;
                 } else {
-                    settings = listDaemons[daemonID].Settings[settingsID];
+                    settings = listDaemons[daemonID].SettingsDatabase[settingsID];
                 }
 
 
@@ -75,9 +75,9 @@ export class OnetimebackupschemeDatabaseComponent {
             try {
                 var settings = null;
                 if (daemonID == "default") {
-                    settings = data.DefaultSettings;
+                    settings = data.DefaultSettingsDatabase;
                 } else {
-                    settings = listDaemons[daemonID].Settings[settingsID];
+                    settings = listDaemons[daemonID].SettingsDatabase[settingsID];
                 }
 
                 settings.BackupScheme.OneTimeBackup.When = (<HTMLInputElement>document.getElementById('oneTimeWhen')).value;

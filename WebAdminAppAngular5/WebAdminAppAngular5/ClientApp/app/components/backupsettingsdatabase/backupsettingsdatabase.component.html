@@ -1,91 +1,84 @@
 ﻿
-        <p class="tucne"> Select what will you backup </p>
-        <div id="backupSetting">
-            <div class="OnebackupSetting" *ngFor="let s of sources">
-                <input type="text" (input)="saveSettings()" class="pathtextselect" placeholder="C:\DATA" value="{{s}}">
-                
-            </div>
-        </div>
+<p class="tucne"> Select what will you backup </p>
+<div id="backupSetting">
+    <div class="OnebackupSetting" *ngFor="let s of sources">
+        <button (click)="deleteBackupSource($event)" class="btnRemove">-</button>
+    </div>
 
-        <div class="DatabaseInfo" *ngFor="let x of databaseinfo">
-            
-                <input type="text" id="Database" (input)="saveSettings()" placeholder="Database" value="{{x.Database}}">
-                <input type="text" id="Server" (input)="saveSettings()" placeholder="Server" value="{{x.Server}}">
-                <input type="text" id="Username" (input)="saveSettings()" placeholder="Username" value="{{x.Username}}">
-                <input type="password" id="Password" (input)="saveSettings()" placeholder="Password" value="{{x.Password}}">
-        </div>
+</div>
+<button class="btnAddBackupSetting" (click)="addBackupSource()">+</button>
 
-            <p class="tucne">Destination</p>
-            <div id="destinationsDiv">
-                <table *ngFor="let dest of destinations" class="oneDestination" id="{{dest.id}}" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>
-                                <label class="container">
-                                    Local/network drives
-                                    <input type="radio" class="radioLND" name="{{dest.id}}" (change)="saveSettings()" (click)="enableLocal(dest.id); showHideDestination(dest.id,false)" checked="{{dest.localChecked}}">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </th>
-                            <th>
-                                <label class="container">
-                                    FTP
-                                    <input type="radio" class="radioFTP" (change)="saveSettings()" (click)="enableFtp(dest.id); showHideDestination(dest.id,false)" name="{{dest.id}}" checked="{{dest.ftpChecked}}">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </th>
-                            <th>
-                                <label class="container">
-                                    SFTP
-                                    <input type="radio" class="radioSFTP" (change)="saveSettings()" (click)="enableSftp(dest.id); showHideDestination(dest.id,false)" name="{{dest.id}}" checked="{{dest.sftpChecked}}">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </th>
-                        </tr>
+<p class="tucne">Destination</p>
+<div id="destinationsDiv">
+    <table *ngFor="let dest of destinations" class="oneDestination" id="{{dest.id}}" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    <label class="container">
+                        Local/network drives
+                        <input type="radio" class="radioLND" name="{{dest.id}}" (change)="saveSettings()" (click)="enableLocal(dest.id); showHideDestination(dest.id,false)" checked="{{dest.localChecked}}">
+                        <span class="checkmark"></span>
+                    </label>
+                </th>
+                <th>
+                    <label class="container">
+                        FTP
+                        <input type="radio" class="radioFTP" (change)="saveSettings()" (click)="enableFtp(dest.id); showHideDestination(dest.id,false)" name="{{dest.id}}" checked="{{dest.ftpChecked}}">
+                        <span class="checkmark"></span>
+                    </label>
+                </th>
+                <th>
+                    <label class="container">
+                        SFTP
+                        <input type="radio" class="radioSFTP" (change)="saveSettings()" (click)="enableSftp(dest.id); showHideDestination(dest.id,false)" name="{{dest.id}}" checked="{{dest.sftpChecked}}">
+                        <span class="checkmark"></span>
+                    </label>
+                </th>
+            </tr>
 
-                    </thead>
-                    <tbody style="display:none">
-                        <tr>
-                            <td><input type="text" (input)="saveSettings()" class="pathtextdestination LNDpath" placeholder="D:\Backup" disabled="{{dest.localDisabled}}" value="{{dest.localPath}}"></td>
-                            <td><input type="text" (input)="saveSettings()" class="pathtext FTPserver" placeholder="Server address" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpAddress}}"></td>
-                            <td><input type="text" (input)="saveSettings()" class="pathtext SFTPserver" placeholder="Server address" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpAddress}}"></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="text" (input)="saveSettings()" class="pathtext FTPport" placeholder="Port" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpPort}}"></td>
-                            <td><input type="text" (input)="saveSettings()" class="pathtext SFTPport" placeholder="Port" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpPort}}"></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="text" (input)="saveSettings()" class="pathtext FTPusername" placeholder="Username" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpUsername}}"></td>
-                            <td><input type="text" (input)="saveSettings()" class="pathtext SFTPusername" placeholder="Username" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpUsername}}"></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="Password" (input)="saveSettings()" class="pathtext FTPpassword" placeholder="Password" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpPassword}}"></td>
-                            <td><input type="Password" (input)="saveSettings()" class="pathtext SFTPpassword" placeholder="Password" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpPassword}}"></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="text" (input)="saveSettings()" class="pathtext FTPpath" placeholder="Path" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpPath}}"></td>
-                            <td><input type="text" (input)="saveSettings()" class="pathtext SFTPpath" placeholder="Path" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpPath}}"></td>
-                        </tr>
-                        <tr>
-                            <th colspan="3" class="btnAddBackupSetting" (click)="deleteDestination(dest.id)">-</th>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th colspan="3" class="btnAddBackupSetting showHideArrow" (click)="showHideDestination(dest.id,true)">▼</th>
-                        </tr>
-                    </tfoot>
-                </table>
-                <br />
-                <table style="width:100%">
-                    <thead>
-                        <tr>
-                            <th class="btnAddBackupSetting" (click)="addNewDestination()">+</th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+        </thead>
+        <tbody style="display:none">
+            <tr>
+                <td><input type="text" (input)="saveSettings()" class="pathtextdestination LNDpath" placeholder="D:\Backup" disabled="{{dest.localDisabled}}" value="{{dest.localPath}}"></td>
+                <td><input type="text" (input)="saveSettings()" class="pathtext FTPserver" placeholder="Server address" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpAddress}}"></td>
+                <td><input type="text" (input)="saveSettings()" class="pathtext SFTPserver" placeholder="Server address" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpAddress}}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" (input)="saveSettings()" class="pathtext FTPport" placeholder="Port" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpPort}}"></td>
+                <td><input type="text" (input)="saveSettings()" class="pathtext SFTPport" placeholder="Port" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpPort}}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" (input)="saveSettings()" class="pathtext FTPusername" placeholder="Username" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpUsername}}"></td>
+                <td><input type="text" (input)="saveSettings()" class="pathtext SFTPusername" placeholder="Username" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpUsername}}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="Password" (input)="saveSettings()" class="pathtext FTPpassword" placeholder="Password" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpPassword}}"></td>
+                <td><input type="Password" (input)="saveSettings()" class="pathtext SFTPpassword" placeholder="Password" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpPassword}}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" (input)="saveSettings()" class="pathtext FTPpath" placeholder="Path" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpPath}}"></td>
+                <td><input type="text" (input)="saveSettings()" class="pathtext SFTPpath" placeholder="Path" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpPath}}"></td>
+            </tr>
+            <tr>
+                <th colspan="3" class="btnAddBackupSetting" (click)="deleteDestination(dest.id)">-</th>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3" class="btnAddBackupSetting showHideArrow" (click)="showHideDestination(dest.id,true)">▼</th>
+            </tr>
+        </tfoot>
+    </table>
+    <br />
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th class="btnAddBackupSetting" (click)="addNewDestination()">+</th>
+            </tr>
+        </thead>
+    </table>
+</div>

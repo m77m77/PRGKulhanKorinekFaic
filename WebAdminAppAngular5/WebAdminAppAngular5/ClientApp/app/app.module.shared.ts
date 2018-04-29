@@ -156,13 +156,13 @@ import { WeeklybackupschemenewDatabaseComponent } from './components/weeklybacku
                                 component: SettingsDatabaseComponent,
                                 children: [
                                     {
-                                        path: 'schemedatabase',
+                                        path: 'scheme',
                                         component: BackupschemeDatabaseComponent,
                                         children: [
-                                            { path: 'dailydatabase', component: DailybackupschemeDatabaseComponent },
-                                            { path: 'weeklydatabase', component: WeeklybackupschemenewDatabaseComponent },
-                                            { path: 'onetimedatabase', component: OnetimebackupschemeDatabaseComponent },
-                                            { path: 'monthlydatabase', component: MonthlybackupschemeDatabaseComponent }
+                                            { path: 'daily', component: DailybackupschemeDatabaseComponent },
+                                            { path: 'weekly', component: WeeklybackupschemenewDatabaseComponent },
+                                            { path: 'onetime', component: OnetimebackupschemeDatabaseComponent },
+                                            { path: 'monthly', component: MonthlybackupschemeDatabaseComponent }
                                         ]
                                     },
                                     { path: 'settings', component: BackupSettingsDatabaseComponent },

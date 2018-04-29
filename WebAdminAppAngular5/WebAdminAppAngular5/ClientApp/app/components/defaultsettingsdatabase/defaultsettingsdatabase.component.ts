@@ -19,7 +19,7 @@ export class DefaultSettingsDatabaseComponent {
 
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
-        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { sessionStorage.setItem('daemonID', 'default'); sessionStorage.setItem('settingsID', 'default');} });
+        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { sessionStorage.setItem('daemonID', 'defaultdatabase'); sessionStorage.setItem('settingsID', 'defaultdatabase');} });
 
         if (typeof window !== 'undefined') {
             if (sessionStorage.getItem('daemonsData') == null) {
@@ -33,12 +33,12 @@ export class DefaultSettingsDatabaseComponent {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
-        this.http.get('http://localhost:63058/api/admin/database/' + sessionStorage.getItem('token'), { headers: headers }).toPromise()
+        this.http.get('http://localhost:63058/api/admin/' + sessionStorage.getItem('token'), { headers: headers }).toPromise()
             .then((response: Response) => {
                 let mailSettings = response.json();
                 if (mailSettings && "OK" == mailSettings.Status) {
-                    sessionStorage.setItem('daemonsDataDatabase', JSON.stringify(mailSettings.Data));
-                    sessionStorage.setItem('daemonsUnsaveDatabase', JSON.stringify([]));
+                    sessionStorage.setItem('daemonsData', JSON.stringify(mailSettings.Data));
+                    sessionStorage.setItem('daemonsUnsave', JSON.stringify([]));
 
                     
 
@@ -55,7 +55,7 @@ export class DefaultSettingsDatabaseComponent {
     }
 
     sendDaemon() {
-        var daemonsData = sessionStorage.getItem('daemonsDataDatabase');
+        var daemonsData = sessionStorage.getItem('daemonsData');
         var daemonID = sessionStorage.getItem('daemonID');
         if (daemonsData != null && daemonID != null) {
             var data = JSON.parse(daemonsData);

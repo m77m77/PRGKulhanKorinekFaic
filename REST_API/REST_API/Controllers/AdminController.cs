@@ -183,18 +183,28 @@ namespace REST_API.Controllers
                 foreach (Settings item in value.Settings)
                 {
                     MySqlCommand Query = Connection.CreateCommand();
-                    Query.CommandText = "UPDATE daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon inner join daemonsSettingsDatabase dsd on daemons.id = dsd.idDaemon SET daemonsSettings.settings = @value,daemons.name = @name,daemons.updateTime = @time, dsd.settings = @DatabaseSettings WHERE daemonsSettings.id = @SettingsID AND daemonsSettings.idDaemon = @DaemonID ";
+                    Query.CommandText = "UPDATE daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon SET daemonsSettings.settings = @value,daemons.name = @name,daemons.updateTime = @time WHERE daemonsSettings.id = @SettingsID AND daemonsSettings.idDaemon = @DaemonID ";
                     Query.Parameters.AddWithValue("@SettingsID", item.SettingsID);
                     Query.Parameters.AddWithValue("@DaemonID", value.DaemonID);
                     Query.Parameters.AddWithValue("@name", value.DaemonName);
                     Query.Parameters.AddWithValue("@time", value.UpdateTime);
 
-                    Query.Parameters.AddWithValue("@DatabaseSettings", value.SettingsDatabase);
-
-
                     item.SettingsID = 0;
                     Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(item, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
                     Query.ExecuteNonQuery();
+                }
+                foreach (SettingsDatabase item in value.SettingsDatabase)
+                {
+                    MySqlCommand QueryDatabase = Connection.CreateCommand();
+                    QueryDatabase.CommandText = "UPDATE daemonsSettingsDatabase INNER JOIN daemons ON daemons.id = daemonsSettingsDatabase.idDaemon SET daemonsSettingsDatabase.settings = @value,daemons.name = @name,daemons.updateTime = @time WHERE daemonsSettingsDatabase.id = @SettingsID AND daemonsSettingsDatabase.idDaemon = @DaemonID ";
+                    QueryDatabase.Parameters.AddWithValue("@SettingsID", item.SettingsID);
+                    QueryDatabase.Parameters.AddWithValue("@DaemonID", value.DaemonID);
+                    QueryDatabase.Parameters.AddWithValue("@name", value.DaemonName);
+                    QueryDatabase.Parameters.AddWithValue("@time", value.UpdateTime);
+
+                    item.SettingsID = 0;
+                    QueryDatabase.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(item, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));
+                    QueryDatabase.ExecuteNonQuery();
                 }
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
