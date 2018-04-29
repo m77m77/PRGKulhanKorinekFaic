@@ -7,7 +7,7 @@ using System.Web;
 
 namespace DaemonTest.Models.Settings
 {
-    public class Settings : IData
+    public class Settings : IData,ISettings
     {
         public int SettingsID { get; set; }
         public string BackupSourcePath { get; set; }

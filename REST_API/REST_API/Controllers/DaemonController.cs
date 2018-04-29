@@ -33,8 +33,15 @@ namespace REST_API.Controllers
             }
 
             MySqlCommand Query = Connection.CreateCommand();
-
-            Query.CommandText = "SELECT daemonsSettings.id,daemonsSettings.settings,daemons.name,daemons.updateTime FROM daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon WHERE daemons.id = @idDaemon";
+            Query.CommandText = "SELECT daemonsSettingsDatabase.id,daemonsSettingsDatabase.settings,'DATABASE' AS typ,daemons.name,daemons.updateTime " +
+                                "FROM daemonsSettingsDatabase " +
+                                "INNER JOIN daemons ON daemons.id = daemonsSettingsDatabase.idDaemon "+
+                                "WHERE daemons.id = @idDaemon " +
+                                "UNION "+
+                                "SELECT daemonsSettings.id,daemonsSettings.settings,'FILE' AS typ, daemons.name,daemons.updateTime " +
+                                "FROM daemonsSettings "+
+                                "INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon "+
+                                "WHERE daemons.id = @idDaemon ";
 
             Query.Parameters.AddWithValue("@idDaemon", t.DaemonID);
 
@@ -42,6 +49,7 @@ namespace REST_API.Controllers
             Daemon daemon = new Daemon();
             daemon.DaemonID = t.DaemonID;
             daemon.Settings = new List<Settings>();
+            daemon.SettingsDatabase = new List<SettingsDatabase>();
 
             try
             {
@@ -50,11 +58,23 @@ namespace REST_API.Controllers
 
                 while (Reader.Read())
                 {
-                    Settings s = JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-                    s.SettingsID = Convert.ToInt32(Reader["id"].ToString());
+                    string typ = Reader["typ"].ToString();
+
+                    if(typ == "DATABASE")
+                    {
+                        SettingsDatabase sd = JsonConvert.DeserializeObject<SettingsDatabase>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        sd.SettingsID = Convert.ToInt32(Reader["id"].ToString());
+                        daemon.SettingsDatabase.Add(sd);
+                    }
+                    else if(typ == "FILE")
+                    {
+                        Settings s = JsonConvert.DeserializeObject<Settings>(Reader["settings"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+                        s.SettingsID = Convert.ToInt32(Reader["id"].ToString());
+                        daemon.Settings.Add(s);
+                    }
                     daemon.DaemonName = Reader["name"].ToString();
                     daemon.UpdateTime = Convert.ToInt32(Reader["updateTime"].ToString());
-                    daemon.Settings.Add(s);
+                    
                 }
                 Reader.Close();
 

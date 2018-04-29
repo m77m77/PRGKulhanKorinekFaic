@@ -36,6 +36,10 @@ namespace DaemonTest
             {
                 return new IncrementalBackupMethod(this);
             }
+            else if(type == "DATABASE")
+            {
+                
+            }
 
             return null;
         }
