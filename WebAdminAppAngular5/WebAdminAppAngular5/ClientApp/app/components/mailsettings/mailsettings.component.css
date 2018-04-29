@@ -1,12 +1,4 @@
-﻿@media (max-width: 960px) {
-    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
-
-
-
-}
-
-
-
+﻿
 .arc {
     margin: 7% 15% 10% 30%;
     border: none;
@@ -151,4 +143,17 @@ h1
 .smtplabels
 {
     font-size: 23px;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .arc {
+        margin: 500px 0px 0px 0px;
+        width: 675px;
+    }
+
+    .sectionclass {
+        margin: 0px;
+        width: 675px;
+    }
 }

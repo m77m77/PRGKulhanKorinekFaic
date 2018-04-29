@@ -8,7 +8,7 @@ nav ul {
     nav ul li {
         float: left;
         padding: 0px 35px 0px 35px;
-        margin: 0 5px;
+        margin: 0 2px;
         font-size: 22px;
         height: 60px;
         line-height: 3em;
@@ -38,7 +38,7 @@ nav ul a.link-active li {
         background: #555;
         font-size: 22px;
         color: whitesmoke;
-        height: 75px;
+
     }
 
 nav ul li:hover, .aktivni {
@@ -46,13 +46,13 @@ nav ul li:hover, .aktivni {
     box-shadow: 10px #555;
     font-size: 22px;
     color: whitesmoke;
-    height: 75px;
+
 }
 
 
 
 header {
-    height: 75px;
+   
     position: fixed;
     top: 0px;
     left: 0px;
@@ -60,6 +60,7 @@ header {
     width: 100%;
     font-family: 'Segoe UI';
     z-index: 1001;
+    overflow: auto;
 }
 
 
@@ -79,4 +80,19 @@ nav a {
     font-size: 23px;
 }
 
+@media only screen and (max-width: 1200px) {
+    nav ul li {
+        height: 60px;
+        width: 1200px;
+    }
+
+
+    .rightalign {
+        height: 60px;
+        width: 50px;
+        float: left;
+        padding: 0px;
+    }
+    
+}
 
