@@ -16,6 +16,7 @@ export class DaemonsettingsComponent {
     name: string;
     daemons: any;
     settings: any;
+    settingsdatabase: any;
     daemonID: string;
     defaultChanged: string;
 
@@ -89,6 +90,10 @@ export class DaemonsettingsComponent {
                     this.settings = []
                     for (var k = 0; k < daemon.Settings.length; k++) {
                         this.settings.push({ I: k, Route: '../' + i + '/file/' + k });
+                    }
+                    this.settingsdatabase = []
+                    for (var k = 0; k < daemon.SettingsDatabase.length; k++) {
+                        this.settingsdatabase.push({ I: k, Route: '../' + i + '/database/' + k });
                     }
                 }
                 
@@ -193,7 +198,7 @@ export class DaemonsettingsComponent {
 
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        this.http.post('http://localhost:63058/api/newsettings/file' + sessionStorage.getItem('token'), { "DaemonID": DaemonID, "DaemonName": null, "Settings": null }, { headers: headers }).toPromise()
+        this.http.post('http://localhost:63058/api/newsettings/file/' + sessionStorage.getItem('token'), { "DaemonID": DaemonID, "DaemonName": null, "Settings": null }, { headers: headers }).toPromise()
             .then((response: Response) => {
                 let NewSettings = response.json();
                 if (NewSettings && "OK" == NewSettings.Status) {
@@ -205,6 +210,23 @@ export class DaemonsettingsComponent {
             })
             .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
         
+    }
+    public PostNewSettingsDatabase(DaemonID: string) {
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        this.http.post('http://localhost:63058/api/newsettings/database/' + sessionStorage.getItem('token'), { "DaemonID": DaemonID, "DaemonName": null, "SettingsDatabase": null }, { headers: headers }).toPromise()
+            .then((response: Response) => {
+                let NewSettings = response.json();
+                if (NewSettings && "OK" == NewSettings.Status) {
+                    this.getDaemons();
+                } else {
+                    sessionStorage.clear();
+                    this.router.navigate(['/login'], {})
+                }
+            })
+            .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
+
     }
     
     public DeleteSettings() {
