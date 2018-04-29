@@ -14,15 +14,17 @@
         </ul>
 
     </div>
+    <p class="fileset">File settings</p>
     <div class="settinglist">
-        <ul class="settinglist">
+        <ul>
             <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of settings"><li>Set {{s.I}}</li></a>
             <a class="add" (click)="PostNewSettings(daemonID)"><li>+</li></a>
         </ul>
     </div>
     <div></div>
-    <div class="settinglist">
-        <ul class="settinglist">
+    <p class="fileset">Database settings</p>
+    <div class="settinglist1">
+        <ul>
             <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of settingsdatabase"><li>Set {{s.I}}</li></a>
             <a class="add" (click)="PostNewSettingsDatabase(daemonID)"><li>+</li></a>
         </ul>

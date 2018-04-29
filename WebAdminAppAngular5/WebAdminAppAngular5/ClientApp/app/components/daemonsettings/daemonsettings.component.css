@@ -91,6 +91,7 @@ nav a {
     color: #0a294b;
     list-style-type: none;
     text-decoration: none;
+    margin: 5px;
 }
 
 .archeaderul {
@@ -166,7 +167,7 @@ div .archeader li a:hover {
 }
 
 .settinglist {
-    /*width: 250px;*/
+    width: 650px;
     float: left;
     position: static;
     background: none;
@@ -177,7 +178,8 @@ div .archeader li a:hover {
 }
 
 
- div .settinglist ul a li  {
+
+div .settinglist ul a li {
     font-family: "Segoe UI";
     text-decoration: none;
     list-style-type: none;
@@ -202,5 +204,44 @@ a {
     text-decoration: none;
     list-style-type: none;
 }
+
+.fileset {
+    font-family: 'Segoe UI';
+    font-size: 23px;
+    margin: 5px 5px 5px 50px;
+}
+.settinglist1 {
+    width: 650px;
+    float: left;
+    position: static;
+    background: none;
+    font-size: 20px;
+    color: #0a294b;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+
+
+div .settinglist1 ul a li {
+    font-family: "Segoe UI";
+    text-decoration: none;
+    list-style-type: none;
+    background-color: whitesmoke;
+    color: darkgrey;
+    height: 50px;
+    float: left;
+    margin: 4px;
+    width: 50px;
+}
+
+    div .settinglist1 ul a li.link-active {
+        background: #555;
+    }
+
+    div .settinglist1 ul a li:hover {
+        background: #555;
+        color: whitesmoke;
+    }
 
 

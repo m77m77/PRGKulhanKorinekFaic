@@ -1,13 +1,14 @@
-﻿<div class="sc">
+﻿
+    <div class="sectionclass">
+        <div class="divsec">
+            <nav>
+                <ul class="sectionul">
+                    <a [routerLink]="['settings']" [routerLinkActive]="['link-active']"><li class="sectionulli">Backup settings</li></a>
+                    <a [routerLink]="['scheme']" [routerLinkActive]="['link-active']"><li class="sectionulli">Backup scheme</li></a>
 
-<div class="divsec">
-    <nav>
-        <ul class="sectionul">
-            <a [routerLink]="['settings']" [routerLinkActive]="['link-active']"><li class="sectionulli">Backup settings</li></a>
-            <a [routerLink]="['scheme']" [routerLinkActive]="['link-active']"><li class="sectionulli">Backup scheme</li></a>
+                </ul>
+            </nav>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
 
-        </ul>
-    </nav>
-</div>
-<router-outlet></router-outlet>
-</div>
