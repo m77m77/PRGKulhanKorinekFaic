@@ -15,15 +15,18 @@ namespace DaemonTest
 {
     public class SettingsManager
     {
-        public Settings CurrentSettings { get; private set; }
+        public ISettings CurrentSettings { get; private set; }
 
-        public SettingsManager(Settings settings)
+        public SettingsManager(ISettings settings)
         {
             this.CurrentSettings = settings;
         }
 
         public IBackupMethod GetBackupMethod(string type)
         {
+            if (this.CurrentSettings is SettingsDatabase)
+                return new DatabaseBackupMethod(this);
+
             if(type == "FULL")
             {
                 return new FullBackupMethod(this);
@@ -35,44 +38,6 @@ namespace DaemonTest
             else if(type == "INC")
             {
                 return new IncrementalBackupMethod(this);
-            }
-            else if(type == "DATABASE")
-            {
-                
-            }
-
-            return null;
-        }
-
-        public ISaveMethod GetSaveMethod()
-        {
-            string saveFormat = CurrentSettings.SaveFormat;
-            if (saveFormat == "ZIP")
-            {
-                return new ZipSaveMethod(this);
-            }
-            else if (saveFormat == "PLAIN")
-            {
-                return new PlainSaveMethod(this);
-            }
-
-            return null;
-        }
-
-        public IDestinationManager GetDestinationManager()
-        {
-            string destType = CurrentSettings.Destination.Type;
-            if (destType == "LOCAL_NETWORK")
-            {
-                return new LocalNetworkDestinationManager((LocalNetworkDestination)CurrentSettings.Destination, this);
-            }
-            else if(destType == "FTP")
-            {
-                return new FTPDestinationManager((FTPDestination)CurrentSettings.Destination,this);
-            }
-            else if(destType == "SFTP")
-            {
-                return new SFTPDestinationManager((SFTPDestination)CurrentSettings.Destination,this);
             }
 
             return null;

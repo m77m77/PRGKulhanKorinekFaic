@@ -1,12 +1,9 @@
 ﻿
 <p class="tucne"> Select what will you backup </p>
-<div id="backupSetting">
-    <div class="OnebackupSetting" *ngFor="let s of sources">
-        <button (click)="deleteBackupSource($event)" class="btnRemove">-</button>
-    </div>
-
-</div>
-<button class="btnAddBackupSetting" (click)="addBackupSource()">+</button>
+    <input type="text" class="pathtextselect" id="Server" placeholder="Server address" (change)="saveSettings()" value="{{server}}" />
+    <input type="text" class="pathtextselect" id="Username" placeholder="Username" (change)="saveSettings()" value="{{username}}" />
+    <input type="password" class="pathtextselect" id="Password" placeholder="Password" (change)="saveSettings()" value="{{password}}"/>
+    <input type="text" class="pathtextselect" id="Database" placeholder="Database name" (change)="saveSettings()" value="{{database}}" />
 
 <p class="tucne">Destination</p>
 <div id="destinationsDiv">

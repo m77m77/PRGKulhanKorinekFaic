@@ -14,6 +14,11 @@ import 'rxjs/add/operator/toPromise';
 export class BackupSettingsDatabaseComponent {
     databaseinfo: any;
 
+    database: string;
+    server: string;
+    username: string;
+    password: string;
+
     destCount: number;
     destinations: any;
 
@@ -113,7 +118,7 @@ export class BackupSettingsDatabaseComponent {
             Port: '',
             Username: '',
             Password: '',
-            SaveFormat: ''
+            SaveFormat: 'PLAIN'
         };
         console.log(destination);
         if ((<HTMLInputElement>destination.querySelector('.radioLND')).checked) {
@@ -162,26 +167,14 @@ export class BackupSettingsDatabaseComponent {
                 }
 
 
+                
+
+                this.database = settings.Database;
+                this.server = settings.Server;
+                this.username = settings.Username;
+                this.password = settings.Password;
+
                 this.destinations = [];
-                this.databaseinfo = [];
-
-                var database = '';
-                var server = '';
-                var username = '';
-                var password = '';
-                for (var i = 0; i < settings.length; i++) {
-                    database = settings[i].Database
-                    server = settings[i].Server
-                    username = settings[i].Username
-                    password = settings[i].Password
-
-                    this.databaseinfo.push({
-                        Database: database,
-                        Server: server,
-                        Username: username,
-                        Password: password,
-                    });
-                }
 
                 for (var i = 0; i < settings.Destinations.length; i++) {
                     this.destinations.push(this.deserializeDestination(settings,i));
@@ -264,14 +257,6 @@ export class BackupSettingsDatabaseComponent {
                 settings.Username = (<HTMLInputElement>document.getElementById('Username')).value;
                 settings.Password = (<HTMLInputElement>document.getElementById('Password')).value;
                 /**/
-                var sources = (<HTMLDivElement>document.getElementById("backupSetting")).querySelectorAll('.OnebackupSetting');
-                settings.BackupSources = [];
-
-                for (var i = 0; i < sources.length; i++) {
-                    var source = sources[i];
-                    var val = (<HTMLInputElement>source.querySelector('.pathtextselect')).value;
-                    settings.BackupSources.push(val);
-                }
 
                 settings.Destinations = [];
 

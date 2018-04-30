@@ -68,27 +68,36 @@ namespace DaemonTest
 
                 foreach (Settings item in this.currentDaemon.Settings)
                 {
-                    string type = this.CheckIfSettingsShouldRun(item);
-                    if(type != null)
-                    {
-                        Console.WriteLine(type);
-                        SettingsManager settingsManager = new SettingsManager(item);
-                        IBackupMethod backupMethod = settingsManager.GetBackupMethod(type);
-                        BackupStatus status = backupMethod.Backup();
-
-                        Response response = await ServerAccess.SendBackupStatus(status);
-                        
-
-                        if(response.Status != "OK")
-                        {
-                            this.unsendStatuses.Add(status);
-                        }
-                    }
+                    this.Backup(item);
+                }
+                foreach (SettingsDatabase item in this.currentDaemon.SettingsDatabase)
+                {
+                    this.Backup(item);
                 }
             }
         }
 
-        private string CheckIfSettingsShouldRun(Settings settings)
+        private async void Backup(ISettings item)
+        {
+            string type = this.CheckIfSettingsShouldRun(item);
+            if (type != null)
+            {
+                Console.WriteLine(type);
+                SettingsManager settingsManager = new SettingsManager(item);
+                IBackupMethod backupMethod = settingsManager.GetBackupMethod(type);
+                BackupStatus status = backupMethod.Backup();
+
+                Response response = await ServerAccess.SendBackupStatus(status);
+
+
+                if (response.Status != "OK")
+                {
+                    this.unsendStatuses.Add(status);
+                }
+            }
+        }
+
+        private string CheckIfSettingsShouldRun(ISettings settings)
         {
             string result = null;
 
@@ -100,30 +109,33 @@ namespace DaemonTest
                 DateTime when = scheme.OneTimeBackup.When;
                 if(when.Date == DateTime.Now.Date && when.Hour == DateTime.Now.Hour && when.Minute == DateTime.Now.Minute)
                 {
-                    result = "FULL";
+                    if (settings is SettingsDatabase)
+                        result = "DATABASE";
+                    else
+                        result = "FULL";
                 }
             }
             else if (type == "DAILY")
             {
-                result = this.ListBackupTimes(scheme.BackupTimes, 0);
+                result = this.ListBackupTimes(scheme.BackupTimes, 0, settings is SettingsDatabase);
             }
             else if (type == "WEEKLY")
             {
                 int dayNumber = (7 + (int) DateTime.Now.DayOfWeek - 1) % 7;
 
-                result = this.ListBackupTimes(scheme.BackupTimes, dayNumber);
+                result = this.ListBackupTimes(scheme.BackupTimes, dayNumber, settings is SettingsDatabase);
             }
             else if (type == "MONTHLY")
             {
                 int dayNumber = DateTime.Now.Day - 1;
 
-                result = this.ListBackupTimes(scheme.BackupTimes, dayNumber);
+                result = this.ListBackupTimes(scheme.BackupTimes, dayNumber, settings is SettingsDatabase);
             }
 
             return result;
         }
 
-        private string ListBackupTimes(List<BackupTime> times,int dayNumber)
+        private string ListBackupTimes(List<BackupTime> times,int dayNumber,bool isDatabase)
         {
             string result = null;
 
@@ -131,7 +143,10 @@ namespace DaemonTest
             {
                 if (item.DayNumber == dayNumber && item.Time.Hours == DateTime.Now.Hour && item.Time.Minutes == DateTime.Now.Minute)
                 {
-                    result = item.Type;
+                    if (isDatabase)
+                        result = "DATABASE";
+                    else
+                        result = item.Type;
                 }
             }
 

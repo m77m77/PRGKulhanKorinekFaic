@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using DaemonTest.DestinationManagers;
 using DaemonTest.Models;
+using DaemonTest.Models.Settings;
 using DaemonTest.SaveMethods;
 
 namespace DaemonTest.BackupMethods
@@ -22,7 +23,7 @@ namespace DaemonTest.BackupMethods
 
             this.sourcesDirs = new List<DirectoryInfo>();
 
-            foreach (string item in SettingsManager.CurrentSettings.BackupSources)
+            foreach (string item in (SettingsManager.CurrentSettings as Settings).BackupSources)
             {
                 this.sourcesDirs.Add(new DirectoryInfo(item));
             }
