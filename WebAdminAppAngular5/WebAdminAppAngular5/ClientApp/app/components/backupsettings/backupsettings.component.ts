@@ -1,4 +1,4 @@
-﻿import { Component, Renderer2 } from '@angular/core';
+﻿import { Component, Renderer2, Input } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';

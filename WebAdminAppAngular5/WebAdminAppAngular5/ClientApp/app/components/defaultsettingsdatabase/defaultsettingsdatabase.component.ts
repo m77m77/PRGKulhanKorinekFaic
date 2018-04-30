@@ -19,7 +19,7 @@ export class DefaultSettingsDatabaseComponent {
 
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
-        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { sessionStorage.setItem('daemonID', 'defaultdatabase'); sessionStorage.setItem('settingsID', 'defaultdatabase');} });
+        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { sessionStorage.setItem('daemonID', 'default'); sessionStorage.setItem('settingsID', 'default');} });
 
         if (typeof window !== 'undefined') {
             if (sessionStorage.getItem('daemonsData') == null) {
