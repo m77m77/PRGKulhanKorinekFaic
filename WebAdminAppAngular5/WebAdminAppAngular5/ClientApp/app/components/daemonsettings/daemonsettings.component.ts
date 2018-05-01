@@ -229,12 +229,14 @@ export class DaemonsettingsComponent {
 
     }
     
-    public DeleteSettings(type:string) {
+    public DeleteSettings() {
         var daemonsData = sessionStorage.getItem('daemonsData');
         var daemonID = sessionStorage.getItem('daemonID');
         var settingsrow = sessionStorage.getItem('settingsID');
         var SettingsIDfile;
         var SettingsIDdatabase;
+
+        var SettingsType = sessionStorage.getItem('SettingsType');
 
         if (daemonsData != null && daemonID != null && settingsrow != null) {
             var data = JSON.parse(daemonsData);
@@ -243,12 +245,13 @@ export class DaemonsettingsComponent {
             SettingsIDdatabase = listDaemons[daemonID].SettingsDatabase[settingsrow].SettingsID;
         }
 
-        if (SettingsIDfile != 'default' || type == 'file') {
+        if (SettingsIDfile != 'default' && SettingsType == 'file') {
             this.http.delete('http://localhost:63058/api/newsettings/delete/file/' + sessionStorage.getItem('token') + '/' + SettingsIDfile).toPromise()
                 .then((response: Response) => {
                     let res = response.json();
                     if (res && "OK" == res.Status) {
                         this.getDaemons();
+                        console.log(SettingsType + 'deleted');
                     } else {
                         sessionStorage.clear();
                         this.router.navigate(['/login'], {})
@@ -256,12 +259,13 @@ export class DaemonsettingsComponent {
                 })
                 .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
         }
-        if (SettingsIDdatabase != 'default' || type == 'database') {
+        if (SettingsIDdatabase != 'default' && SettingsType == 'database') {
             this.http.delete('http://localhost:63058/api/newsettings/delete/database/' + sessionStorage.getItem('token') + '/' + SettingsIDdatabase).toPromise()
                 .then((response: Response) => {
                     let res = response.json();
                     if (res && "OK" == res.Status) {
                         this.getDaemons();
+                        console.log(SettingsType + 'deleted');
                     } else {
                         sessionStorage.clear();
                         this.router.navigate(['/login'], {})
@@ -270,5 +274,4 @@ export class DaemonsettingsComponent {
                 .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
         }
     }
-
 }
