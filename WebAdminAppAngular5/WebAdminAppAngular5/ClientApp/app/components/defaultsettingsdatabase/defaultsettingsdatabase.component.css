@@ -7,6 +7,7 @@
     font-family: 'Segoe UI';
 }
 
+
 .tucne {
     font-size: 25px;
     font-weight: bold;
@@ -36,12 +37,19 @@ nav ul {
         text-decoration: none;
     }
 
-        nav ul li:hover {
+        nav ul li :hover {
             background: #555;
             box-shadow: 10px #555;
             font-size: 22px;
             color: whitesmoke;
         }
+
+.settinglist ul a.link-active li, .settinglist1 ul a.link-active li {
+    background: #555;
+    font-weight: bold;
+    font-size: 21px;
+}
+
 
 div .dropdown > a {
     display: block;
@@ -57,7 +65,7 @@ nav a {
 }
 
 .dname {
-    margin: 0;
+    margin: 0% 0% 0% 27%;
 }
 
 .textto {
@@ -86,6 +94,7 @@ nav a {
     color: #0a294b;
     list-style-type: none;
     text-decoration: none;
+    margin: 5px;
 }
 
 .archeaderul {
@@ -94,12 +103,13 @@ nav a {
     padding: 0;
     width: 250px;
     background-color: whitesmoke;
+    color: whitesmoke;
 }
 
 
 div .archeader li a {
     display: block;
-    color: #555;
+    color: darkgrey;
     padding: 13px 16px;
     text-decoration: none;
     width: 220px;
@@ -115,6 +125,11 @@ div .archeader li a {
         color: whitesmoke;
     }
 
+.dropdown a.link-active {
+    background-color: #555;
+    color: blue;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
@@ -126,7 +141,6 @@ div .archeader li a {
     background-color: whitesmoke;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     width: 250px;
-    z-index: 1;
 }
 
 .dropdown:hover .dropdown-content {
@@ -135,18 +149,100 @@ div .archeader li a {
     background-color: whitesmoke;
 }
 
-#btnSave {
+.btnSaveDel {
     width: 150px;
     height: 60px;
-    margin: 20px 100px 30px 10px;
+    margin: 25px 30px 30px 10px;
     font-size: 20px;
     color: whitesmoke;
     background-color: rgb(81, 168, 240);
     font-weight: bold;
     border: none;
-    float: left;
+    float: right;
+    display: inline;
+    cursor: pointer;
 }
 
-    #btnSave:hover {
+    .btnSaveDel:hover {
         background: #555;
+    }
+
+.settinglist {
+    width: 650px;
+    float: left;
+    position: static;
+    background: none;
+    font-size: 20px;
+    color: #0a294b;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+
+
+div .settinglist ul a li {
+    font-family: "Segoe UI";
+    text-decoration: none;
+    list-style-type: none;
+    background-color: whitesmoke;
+    color: darkgrey;
+    height: 50px;
+    float: left;
+    margin: 4px;
+    width: 50px;
+}
+
+    div .settinglist ul a li.link-active {
+        background: #555;
+    }
+
+    div .settinglist ul a li:hover {
+        background: #555;
+        color: whitesmoke;
+    }
+
+a {
+    color: darkgrey;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.fileset {
+    font-family: 'Segoe UI';
+    font-size: 23px;
+    margin: 5px 5px 5px 50px;
+}
+
+.settinglist1 {
+    width: 650px;
+    float: left;
+    position: static;
+    background: none;
+    font-size: 20px;
+    color: #0a294b;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+
+
+div .settinglist1 ul a li {
+    font-family: "Segoe UI";
+    text-decoration: none;
+    list-style-type: none;
+    background-color: whitesmoke;
+    color: darkgrey;
+    height: 50px;
+    float: left;
+    margin: 4px;
+    width: 50px;
+}
+
+    div .settinglist1 ul a li.link-active {
+        background: #555;
+    }
+
+    div .settinglist1 ul a li:hover {
+        background: #555;
+        color: whitesmoke;
     }

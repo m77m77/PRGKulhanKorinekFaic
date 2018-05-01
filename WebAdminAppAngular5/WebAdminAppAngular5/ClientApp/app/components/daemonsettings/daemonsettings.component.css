@@ -38,19 +38,24 @@ nav ul {
         text-decoration: none;
     }
 
-        nav ul li:hover {
+        nav ul li :hover {
             background: #555;
             box-shadow: 10px #555;
             font-size: 22px;
             color: whitesmoke;
         }
+.settinglist ul a.link-active li, .settinglist1 ul a.link-active li {
+    background: #555;
+    font-weight: bold;
+    font-size: 21px;
+}
+
 
 div .dropdown > a {
     display: block;
     color: #555;
     padding: 13px 16px;
     text-decoration: none;
-    
     list-style-type: none;
 }
 
