@@ -17,8 +17,8 @@ export class SettingsComponent{
     display: string;
     
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
-        sessionStorage.setItem('SettingsType', 'file')
-        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { this.display = 'display:none'; sessionStorage.setItem('settingsID', params.settingsID); } });
+        
+        this.route.params.subscribe(params => { if (typeof (window) !== 'undefined') { this.display = 'display:none'; sessionStorage.setItem('settingsID', params.settingsID);sessionStorage.setItem('SettingsType', 'file') } });
 
     }
 }

@@ -147,7 +147,6 @@ export class BackupSettingsDatabaseComponent {
         }
 
         settings.Destinations.push(dest);
-        console.log(settings.Destinations);
     }
 
     loadSettings() {
