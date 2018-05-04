@@ -9,5 +9,6 @@ namespace REST_API.CommunicationClasses
     {
         public string Token { get; set; }
         public int Id { get; set; }
+        public DateTime Expiration { get; set; }
     }
 }

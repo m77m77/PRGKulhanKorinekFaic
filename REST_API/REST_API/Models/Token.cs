@@ -214,15 +214,18 @@ namespace REST_API.Models
                     string newToken = Token.GenerateNewToken();
                     connection.Open();
 
-                        string sqlInsertIntoTokens =
-                        "INSERT INTO tokens(token,status) VALUES(@token,'initialize');" +
+                    DateTime expirationdate = DateTime.Now.AddDays(1).Date;
+
+                    string sqlInsertIntoTokens =
+                        "INSERT INTO tokens(token,status,expiration) VALUES(@token,'initialize',@expirationdate);" +
                         "SELECT last_insert_id();";
 
                         MySqlCommand queryInsertIntoTokens = new MySqlCommand(sqlInsertIntoTokens, connection);
                         queryInsertIntoTokens.Parameters.AddWithValue("@token", newToken);
+                        queryInsertIntoTokens.Parameters.AddWithValue("@expirationdate", expirationdate);
 
 
-                        int id = Convert.ToInt32(queryInsertIntoTokens.ExecuteScalar());
+                    int id = Convert.ToInt32(queryInsertIntoTokens.ExecuteScalar());
 
                         result = new Token(newToken, id, 0, 0, 0);
                 }
