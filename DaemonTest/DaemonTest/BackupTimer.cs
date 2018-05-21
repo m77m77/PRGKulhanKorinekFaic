@@ -20,6 +20,11 @@ namespace DaemonTest
         {
             this.unsendStatuses = new List<BackupStatus>();
             ServerAccess.Config.Load();
+
+            if (String.IsNullOrWhitespace(ServerAccess.Config.Token))
+            {
+
+            }
         }
 
         public async void Tick(object state)
