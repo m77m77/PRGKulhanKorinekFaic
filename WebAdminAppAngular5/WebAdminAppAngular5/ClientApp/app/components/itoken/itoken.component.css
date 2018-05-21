@@ -67,7 +67,7 @@ h1 {
 }
 
 #btncopyitoken {
-    width: 130px;
+    width: 90px;
     height: 30px;
     border: none;
     background-color: gray;
@@ -78,7 +78,7 @@ h1 {
 }
 
 #btndeleteitoken {
-    width: 130px;
+    width: 90px;
     height: 30px;
     border: none;
     background-color: gray;
