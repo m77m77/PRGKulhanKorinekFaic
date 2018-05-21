@@ -38,9 +38,9 @@ namespace REST_API.Controllers
             Query.CommandText = "SELECT * " +
                                 "FROM " +
                                 "( " +
-                                "SELECT daemons.id AS DaemonID, daemonsSettings.id, daemonsSettings.settings, daemons.name, daemons.updateTime, 'FILE' AS typ FROM daemons LEFT JOIN daemonsSettings ON daemons.id = daemonsSettings.idDaemon " +
+                                "SELECT daemons.id AS DaemonID, daemonsSettings.id, daemonsSettings.settings, daemons.name, daemons.updateTime,daemons.enabled, 'FILE' AS typ FROM daemons LEFT JOIN daemonsSettings ON daemons.id = daemonsSettings.idDaemon " +
                                 "UNION " +
-                                "SELECT daemons.id AS DaemonID, daemonsSettingsDatabase.id, daemonsSettingsDatabase.settings, daemons.name, daemons.updateTime, 'DATABASE' AS typ FROM daemons " +
+                                "SELECT daemons.id AS DaemonID, daemonsSettingsDatabase.id, daemonsSettingsDatabase.settings, daemons.name, daemons.updateTime,daemons.enabled, 'DATABASE' AS typ FROM daemons " +
                                 "INNER JOIN daemonsSettingsDatabase ON daemons.id = daemonsSettingsDatabase.idDaemon " +
                                 ") AS a " +
                                 "ORDER BY DaemonID";
@@ -91,12 +91,14 @@ namespace REST_API.Controllers
                     }
                     string name = Reader["name"].ToString();
                     int updateTime = Convert.ToInt32(Reader["updateTime"].ToString());
+                    bool enabled = Convert.ToBoolean(Reader["enabled"]);
 
                     if (daemon.DaemonID == 0)
                     {
                         daemon.DaemonID = dId;
                         daemon.DaemonName = name;
                         daemon.UpdateTime = updateTime;
+                        daemon.Enabled = enabled;
                     }
 
                     if (daemon.DaemonID == dId)
@@ -121,6 +123,7 @@ namespace REST_API.Controllers
                         daemon.DaemonID = dId;
                         daemon.DaemonName = name;
                         daemon.UpdateTime = updateTime;
+                        daemon.Enabled = enabled;
 
                         if (settings != null)
                         {
@@ -183,11 +186,12 @@ namespace REST_API.Controllers
                 foreach (Settings item in value.Settings)
                 {
                     MySqlCommand Query = Connection.CreateCommand();
-                    Query.CommandText = "UPDATE daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon SET daemonsSettings.settings = @value,daemons.name = @name,daemons.updateTime = @time WHERE daemonsSettings.id = @SettingsID AND daemonsSettings.idDaemon = @DaemonID ";
+                    Query.CommandText = "UPDATE daemonsSettings INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon SET daemonsSettings.settings = @value,daemons.name = @name,daemons.updateTime = @time,daemons.enabled = @enabled WHERE daemonsSettings.id = @SettingsID AND daemonsSettings.idDaemon = @DaemonID ";
                     Query.Parameters.AddWithValue("@SettingsID", item.SettingsID);
                     Query.Parameters.AddWithValue("@DaemonID", value.DaemonID);
                     Query.Parameters.AddWithValue("@name", value.DaemonName);
                     Query.Parameters.AddWithValue("@time", value.UpdateTime);
+                    Query.Parameters.AddWithValue("@enabled", value.Enabled);
 
                     item.SettingsID = 0;
                     Query.Parameters.AddWithValue("@value", JsonConvert.SerializeObject(item, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() }));

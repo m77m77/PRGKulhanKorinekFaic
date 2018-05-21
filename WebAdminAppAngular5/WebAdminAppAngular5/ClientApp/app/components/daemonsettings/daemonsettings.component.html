@@ -3,6 +3,7 @@
     <div class="dname">
         <p class="pname" id="dName">Name <input type="text" class="textto" id="daemonName" value="{{name}}" (input)="saveDaemon()"></p>
         <div> Update time <input type="number" class="textinputformat" id="updatetime" value="{{updatetime}}" placeholder="minutes" (input)="saveDaemon()" /></div>
+        <div> Enable daemon <input id="enabled" type="checkbox" checked="{{enabled}}" (input)="saveDaemon()" /></div>
     </div>
     <div class="archeader">
 
