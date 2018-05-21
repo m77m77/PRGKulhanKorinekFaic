@@ -52,6 +52,9 @@ namespace DaemonTest
 
             if(this.currentDaemon != null)
             {
+                if (!this.currentDaemon.Enabled)
+                    return;
+
                 if(this.unsendStatuses.Count > 0)
                 {
                     List<BackupStatus> sentSuccesfully = new List<BackupStatus>();
