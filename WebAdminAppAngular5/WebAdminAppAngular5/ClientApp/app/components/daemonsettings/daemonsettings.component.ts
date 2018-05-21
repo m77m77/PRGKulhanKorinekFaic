@@ -14,6 +14,7 @@ import 'rxjs/add/operator/toPromise';
 export class DaemonsettingsComponent {
 
     name: string;
+    updatetime: number;
     daemons: any;
     settings: any;
     settingsdatabase: any;
@@ -70,6 +71,7 @@ export class DaemonsettingsComponent {
                     if (document.getElementById('dName') != null)
                         (<HTMLElement>document.getElementById("dName")).style.display = 'block';
                     this.name = listDaemons[daemonID].DaemonName;
+                    this.updatetime = listDaemons[daemonID].UpdateTime;
                 }  
             } catch (e) {
 
@@ -119,6 +121,7 @@ export class DaemonsettingsComponent {
                     
                 } else {
                     listDaemons[daemonID].DaemonName = (<HTMLInputElement>document.getElementById("daemonName")).value;
+                    listDaemons[daemonID].UpdateTime = (<HTMLInputElement>document.getElementById("updatetime")).value;
                 }
             } catch (e) {
 
