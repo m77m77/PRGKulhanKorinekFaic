@@ -25,32 +25,19 @@ nav ul {
 }
 
 
-    nav ul li {
-      
-        
-        float: left;
-        padding: 0px 35px 0px 35px;
-        margin: 0 5px;
-        font-size: 22px;
-        height: 60px;
-        line-height: 3em;
-        color: whitesmoke;
-        text-decoration: none;
-    }
+ 
+.settinglist ul a.link-active li, .settinglist1 ul a.link-active li {
+    background: #555;
+    font-weight: bold;
+    font-size: 21px;
+}
 
-        nav ul li:hover {
-            background: #555;
-            box-shadow: 10px #555;
-            font-size: 22px;
-            color: whitesmoke;
-        }
 
 div .dropdown > a {
     display: block;
     color: #555;
     padding: 13px 16px;
     text-decoration: none;
-    
     list-style-type: none;
 }
 
@@ -166,7 +153,7 @@ div .archeader li a:hover {
     background: #555;
 }
 
-.settinglist {
+.settinglist, .settinglist1 {
     width: 650px;
     float: left;
     position: static;
@@ -189,11 +176,10 @@ div .settinglist ul a li {
     float: left;
     margin: 4px;
     width: 50px;
+    text-align:center;
+    line-height: 50px;
 }
 
-div .settinglist ul a li.link-active {
-    background: #555;
-}
 
 div .settinglist ul a li:hover {
     background: #555;
@@ -210,38 +196,6 @@ a {
     font-size: 23px;
     margin: 5px 5px 5px 50px;
 }
-.settinglist1 {
-    width: 650px;
-    float: left;
-    position: static;
-    background: none;
-    font-size: 20px;
-    color: #0a294b;
-    list-style-type: none;
-    text-decoration: none;
-}
 
-
-
-div .settinglist1 ul a li {
-    font-family: "Segoe UI";
-    text-decoration: none;
-    list-style-type: none;
-    background-color: whitesmoke;
-    color: darkgrey;
-    height: 50px;
-    float: left;
-    margin: 4px;
-    width: 50px;
-}
-
-    div .settinglist1 ul a li.link-active {
-        background: #555;
-    }
-
-    div .settinglist1 ul a li:hover {
-        background: #555;
-        color: whitesmoke;
-    }
 
 

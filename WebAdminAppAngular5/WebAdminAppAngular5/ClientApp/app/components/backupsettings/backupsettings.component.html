@@ -11,7 +11,8 @@
 
 <p class="tucne">Destination</p>
 <div id="destinationsDiv">
-    <table *ngFor="let dest of destinations" class="oneDestination" id="{{dest.id}}" style="width:100%">
+    <table *ngFor="let dest of destinations" (loaded)="saveSettings()" class="oneDestination" id="{{dest.id}}" style="width:100%">
+        {{saveSettings()}}
         <thead>
             <tr>
                 <th>
@@ -36,13 +37,13 @@
                     </label>
                 </th>
             </tr>
-            
+
         </thead>
         <tbody style="display:none">
             <tr>
-                <td><input type="text"  (input)="saveSettings()" class="pathtextdestination LNDpath" placeholder="D:\Backup" disabled="{{dest.localDisabled}}" value="{{dest.localPath}}"></td>
-                <td><input type="text"  (input)="saveSettings()" class="pathtext FTPserver" placeholder="Server address" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpAddress}}"></td>
-                <td><input type="text"  (input)="saveSettings()" class="pathtext SFTPserver" placeholder="Server address" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpAddress}}"></td>
+                <td><input type="text" (input)="saveSettings()" class="pathtextdestination LNDpath" placeholder="D:\Backup" disabled="{{dest.localDisabled}}" value="{{dest.localPath}}"></td>
+                <td><input type="text" (input)="saveSettings()" class="pathtext FTPserver" placeholder="Server address" disabled="{{dest.ftpDisabled}}" value="{{dest.ftpAddress}}"></td>
+                <td><input type="text" (input)="saveSettings()" class="pathtext SFTPserver" placeholder="Server address" disabled="{{dest.sftpDisabled}}" value="{{dest.sftpAddress}}"></td>
             </tr>
             <tr>
                 <td></td>

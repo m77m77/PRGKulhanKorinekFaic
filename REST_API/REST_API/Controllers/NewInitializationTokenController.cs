@@ -31,7 +31,7 @@ namespace REST_API.Controllers
 
             MySqlCommand Query = Connection.CreateCommand();
 
-            Query.CommandText = "SELECT id, token FROM tokens where status='initialize'";
+            Query.CommandText = "SELECT id, token,expiration FROM tokens where status='initialize'";
 
             Response r = new Response();
             ListInicializationTokenData litd = new ListInicializationTokenData();
@@ -48,6 +48,7 @@ namespace REST_API.Controllers
                     litd.ListInicializationToken.Add(new InicializationToken());
                     litd.ListInicializationToken[i].Token = Reader["token"].ToString();
                     litd.ListInicializationToken[i].Id = Convert.ToInt32(Reader["id"]);
+                    litd.ListInicializationToken[i].Expiration = Convert.ToDateTime(Reader["expiration"]);
                     i++;
                 }
                 Reader.Close();

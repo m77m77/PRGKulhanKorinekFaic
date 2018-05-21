@@ -10,12 +10,14 @@
                         <table id="table1" class="tableTokens">
                             <tr class="firstrowtok">
                                 <th>Token</th>
+                                <th>Expiration</th>
                                 <th>Copy</th>
                                 <th>Delete</th>
                             </tr>
 
                             <tr *ngFor="let b of itokens">
                                 <td class="tok">{{b.Token}}</td>
+                                <td class="tok">{{b.Expiration}}</td>
                                 <td><button class="btn btn-primary" (click)="copyTextToClipboard(b.Token)" id="btncopyitoken">Copy</button></td>
                                 <td><button class="btn btn-primary" (click)="DeleteToken(b.Id)" id="btndeleteitoken">Delete</button></td>
                         </table>

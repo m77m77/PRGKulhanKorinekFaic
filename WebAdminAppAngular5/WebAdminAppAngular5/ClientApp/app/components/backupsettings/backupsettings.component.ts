@@ -1,4 +1,4 @@
-﻿import { Component, Renderer2 } from '@angular/core';
+﻿import { Component, Renderer2, Input } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
@@ -120,7 +120,6 @@ export class BackupSettingsComponent {
             Password: '',
             SaveFormat: ''
         };
-        console.log(destination);
         if ((<HTMLInputElement>destination.querySelector('.radioLND')).checked) {
             dest.$type = 'LocalNetworkDestination';
             dest.Type = 'LOCAL_NETWORK';
@@ -149,7 +148,6 @@ export class BackupSettingsComponent {
         dest.SaveFormat = formatSelect.options[formatSelect.selectedIndex].value;
 
         settings.Destinations.push(dest);
-        console.log(settings.Destinations);
     }
 
     loadSettings() {
