@@ -103,6 +103,7 @@ namespace REST_API.Controllers
                         {
                             string deleteSQL = "DELETE FROM tokens WHERE id = @id";
                             MySqlCommand deleteQuery = new MySqlCommand(deleteSQL, connection);
+                            deleteQuery.Parameters.AddWithValue("@id", idToken);
 
                             deleteQuery.ExecuteNonQuery();
 
