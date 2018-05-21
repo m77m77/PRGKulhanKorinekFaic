@@ -46,16 +46,20 @@ export class ITokenComponent {
         }
         var itoken = '';
         var iditoken = '';
+        var Expiration = '';
 
         var count = data.ListInicializationToken.length;
         this.itokens = [];
 
         for (var n = 0; n < count; n++) {
             itoken = data.ListInicializationToken[n].Token;
-            iditoken = data.ListInicializationToken[n].Id
+            iditoken = data.ListInicializationToken[n].Id;
+            Expiration = data.ListInicializationToken[n].Expiration;
+
             this.itokens.push({
                 Token: itoken,
                 Id: iditoken,
+                Expiration: Expiration,
             });
         }
     }

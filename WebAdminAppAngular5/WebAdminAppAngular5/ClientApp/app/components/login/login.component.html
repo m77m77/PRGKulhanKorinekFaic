@@ -2,7 +2,7 @@
 <article>
     <header><h1 class="h1r">Login</h1></header>
     <section>
-        <table>
+        <table (keyup.enter)="login()">
             <tr></tr>
             <tr><td><input type="text" class="textinputformat" id="username" placeholder="Username" /></td></tr>
             <tr></tr>
@@ -10,6 +10,7 @@
             <tr>
 
                 <td><a (click)="login()" class="loginlink">Login</a></td>
+
             </tr>
 
         </table>
