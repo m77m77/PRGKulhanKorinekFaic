@@ -93,7 +93,7 @@ namespace REST_API.Controllers
                     MySqlDataReader reader = query.ExecuteReader();
                     if (reader.Read())
                     {
-                        //int idToken = 
+                        int idToken = Convert.ToInt32(reader["id"]);
                         reader.Close();
                         string insertDaemonsSQL = "INSERT INTO daemons(name, updateTime,enabled) VALUES ('New daemon',60,0);SELECT last_insert_id();";
                         MySqlCommand insertDaemonsQuery = new MySqlCommand(insertDaemonsSQL, connection);
@@ -101,6 +101,10 @@ namespace REST_API.Controllers
 
                         if(idDaemon > 0)
                         {
+                            string deleteSQL = "DELETE FROM tokens WHERE id = @id";
+                            MySqlCommand deleteQuery = new MySqlCommand(deleteSQL, connection);
+
+                            deleteQuery.ExecuteNonQuery();
 
                             Token newToken = Token.GenerateNewTokenForDaemon(idDaemon);
 
