@@ -15,8 +15,8 @@ namespace DaemonTest.Config
         public bool Load()
         {
             this.Server = "http://localhost:63058";
-            this.Token = "zZn4L8,WKTb6iEPonSEa5vP3dEsHQZmk";
-            this.InitializationToken = "";
+            this.Token = "";// "zZn4L8,WKTb6iEPonSEa5vP3dEsHQZmk";
+            this.InitializationToken = "lkbb3aIX0SwFTCDziyBVzNdOHL3ovr8g";
             return true;
         }
 

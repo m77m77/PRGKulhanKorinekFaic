@@ -13,9 +13,6 @@ namespace DaemonTest
 {
     public static class ServerAccess
     {
-        private static string serverAddress;
-        private static string token;
-
         public static IConfig Config { get; private set; }
 
         static ServerAccess()
@@ -31,30 +28,31 @@ namespace DaemonTest
             string newToken = response.NewToken;
             if(!String.IsNullOrWhiteSpace(newToken))
             {
-                ServerAccess.token = newToken;
+                ServerAccess.Config.Token = newToken;
+                ServerAccess.Config.InitializationToken = "";
+                ServerAccess.Config.Save();
             }
         }
 
-        public async static Task<bool> Connect(string serverAddress, string token)
+        public async static Task<Response> GetToken()
         {
             HttpClient client = new HttpClient();
+            Response response = new Response();
+            StringContent sc = new StringContent("{Token:\""+ServerAccess.Config.InitializationToken+"\"}", Encoding.UTF8, "application/json");
 
             try
             {
-                HttpResponseMessage httpResponse = await client.GetAsync(serverAddress);
-
-                if (!httpResponse.IsSuccessStatusCode)
-                    return false;
+                HttpResponseMessage httpResponse = await client.PostAsync(ServerAccess.Config.Server + "/api/newtoken/daemon/", sc);
+                response = JsonSerializationUtility.Deserialize<Response>(await httpResponse.Content.ReadAsStringAsync());
             }
             catch (Exception)
             {
-                return false;
+                response = new Response("ERROR", "ConnectionError", null, null);
             }
 
-            ServerAccess.serverAddress = serverAddress;
-            ServerAccess.token = token;
+            ServerAccess.CheckNewToken(response);
 
-            return true;
+            return response;
         }
 
         public async static Task<Response> GetNewSettings()
