@@ -71,9 +71,60 @@ namespace REST_API.Controllers
 
         //POST api/newtoken/admin
         [Route("api/newtoken/daemon")]
-        public Response PostDaemon([FromBody] string value)
+        public Response PostDaemon([FromBody] InicializationToken token)
         {
-            return new Response("ERROR", "NotYetImplemented", null, null);
+            string value = token.Token;
+            Response response;
+
+            using (MySqlConnection connection = WebApiConfig.Connection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    string sql =
+                    "SELECT id " + 
+                    "FROM tokens " +
+                    "WHERE token = @token AND status = 'initialize' AND expiration > NOW()";
+
+                    MySqlCommand query = new MySqlCommand(sql, connection);
+                    query.Parameters.AddWithValue("@token", value);
+
+                    MySqlDataReader reader = query.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        //int idToken = 
+                        reader.Close();
+                        string insertDaemonsSQL = "INSERT INTO daemons(name, updateTime,enabled) VALUES ('New daemon',60,0);SELECT last_insert_id();";
+                        MySqlCommand insertDaemonsQuery = new MySqlCommand(insertDaemonsSQL, connection);
+                        int idDaemon = Convert.ToInt32(insertDaemonsQuery.ExecuteScalar());
+
+                        if(idDaemon > 0)
+                        {
+
+                            Token newToken = Token.GenerateNewTokenForDaemon(idDaemon);
+
+                            if (newToken != null)
+                                response = new Response("OK", null, newToken.Value, null);
+                            else
+                                response = new Response("ERROR", "TokenGenerationFailed", null, null);
+                        }
+                        else
+                        {
+                            response = new Response("ERROR", "DatabaseProblem", null, null);
+                        }
+                    }
+                    else
+                        response = new Response("ERROR", "BadInitializationToken", null, null);
+                }
+                catch (Exception)
+                {
+                    response = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+                }
+            }
+
+            return response;
+            //return new Response("ERROR", "NotYetImplemented", null, null);
         }
     }
 }

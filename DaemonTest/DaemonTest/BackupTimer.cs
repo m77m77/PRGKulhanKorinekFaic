@@ -5,6 +5,7 @@ using DaemonTest.Models.Settings;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DaemonTest
 {
@@ -20,16 +21,15 @@ namespace DaemonTest
         {
             this.unsendStatuses = new List<BackupStatus>();
             ServerAccess.Config.Load();
-
-            if (String.IsNullOrWhitespace(ServerAccess.Config.Token))
-            {
-
-            }
         }
 
         public async void Tick(object state)
         {
-            
+            if (String.IsNullOrWhiteSpace(ServerAccess.Config.Token))
+            {
+                Response newTokenRes = await ServerAccess.GetToken();
+            }
+
             Console.WriteLine(DateTime.Now.ToShortTimeString() + " Tick - Remaining: " +checkSettingsRemaining);
             if(this.checkSettingsRemaining <= 0)
             {
@@ -52,6 +52,9 @@ namespace DaemonTest
 
             if(this.currentDaemon != null)
             {
+                if (!this.currentDaemon.Enabled)
+                    return;
+
                 if(this.unsendStatuses.Count > 0)
                 {
                     List<BackupStatus> sentSuccesfully = new List<BackupStatus>();
