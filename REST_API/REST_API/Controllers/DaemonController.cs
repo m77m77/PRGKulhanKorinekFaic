@@ -33,12 +33,12 @@ namespace REST_API.Controllers
             }
 
             MySqlCommand Query = Connection.CreateCommand();
-            Query.CommandText = "SELECT daemonsSettingsDatabase.id,daemonsSettingsDatabase.settings,'DATABASE' AS typ,daemons.name,daemons.updateTime " +
+            Query.CommandText = "SELECT daemonsSettingsDatabase.id,daemonsSettingsDatabase.settings,'DATABASE' AS typ,daemons.name,daemons.updateTime,daemons.enabled " +
                                 "FROM daemonsSettingsDatabase " +
                                 "INNER JOIN daemons ON daemons.id = daemonsSettingsDatabase.idDaemon "+
                                 "WHERE daemons.id = @idDaemon " +
                                 "UNION "+
-                                "SELECT daemonsSettings.id,daemonsSettings.settings,'FILE' AS typ, daemons.name,daemons.updateTime " +
+                                "SELECT daemonsSettings.id,daemonsSettings.settings,'FILE' AS typ, daemons.name,daemons.updateTime,daemons.enabled " +
                                 "FROM daemonsSettings "+
                                 "INNER JOIN daemons ON daemons.id = daemonsSettings.idDaemon "+
                                 "WHERE daemons.id = @idDaemon ";
@@ -74,7 +74,7 @@ namespace REST_API.Controllers
                     }
                     daemon.DaemonName = Reader["name"].ToString();
                     daemon.UpdateTime = Convert.ToInt32(Reader["updateTime"].ToString());
-                    
+                    daemon.Enabled = Convert.ToBoolean(Reader["enabled"]);
                 }
                 Reader.Close();
 

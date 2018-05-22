@@ -38,7 +38,8 @@ namespace DaemonTest
         {
             HttpClient client = new HttpClient();
             Response response = new Response();
-            StringContent sc = new StringContent("{Token:\""+ServerAccess.Config.InitializationToken+"\"}", Encoding.UTF8, "application/json");
+            NewDaemon newDaemon = new NewDaemon() { Name = Environment.MachineName, Token = ServerAccess.Config.InitializationToken }; 
+            StringContent sc = new StringContent(JsonSerializationUtility.Serialize(newDaemon), Encoding.UTF8, "application/json");
 
             try
             {

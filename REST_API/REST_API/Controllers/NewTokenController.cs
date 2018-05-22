@@ -71,9 +71,9 @@ namespace REST_API.Controllers
 
         //POST api/newtoken/admin
         [Route("api/newtoken/daemon")]
-        public Response PostDaemon([FromBody] InicializationToken token)
+        public Response PostDaemon([FromBody] NewDaemon newDaemon)
         {
-            string value = token.Token;
+            string value = newDaemon.Token;
             Response response;
 
             using (MySqlConnection connection = WebApiConfig.Connection())
@@ -95,8 +95,9 @@ namespace REST_API.Controllers
                     {
                         int idToken = Convert.ToInt32(reader["id"]);
                         reader.Close();
-                        string insertDaemonsSQL = "INSERT INTO daemons(name, updateTime,enabled) VALUES ('New daemon',60,0);SELECT last_insert_id();";
+                        string insertDaemonsSQL = "INSERT INTO daemons(name, updateTime,enabled) VALUES (@name,60,0);SELECT last_insert_id();";
                         MySqlCommand insertDaemonsQuery = new MySqlCommand(insertDaemonsSQL, connection);
+                        insertDaemonsQuery.Parameters.AddWithValue("@name", newDaemon.Name);
                         int idDaemon = Convert.ToInt32(insertDaemonsQuery.ExecuteScalar());
 
                         if(idDaemon > 0)

@@ -16,7 +16,7 @@ namespace DaemonTest.Config
         {
             this.Server = "http://localhost:63058";
             this.Token = "";// "zZn4L8,WKTb6iEPonSEa5vP3dEsHQZmk";
-            this.InitializationToken = "lkbb3aIX0SwFTCDziyBVzNdOHL3ovr8g";
+            this.InitializationToken = "lL0KJqv3dv,TVHR7hwGgBzUGf6TkgNh4";
             return true;
         }
 
