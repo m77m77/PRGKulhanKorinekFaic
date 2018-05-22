@@ -15,6 +15,7 @@
         </ul>
     </div>
     <div class="divupd"> Update time <input type="number" class="textinputformat" id="updatetime" value="{{updatetime}}" placeholder="minutes" (input)="saveDaemon()" /></div>
+    <div> Enable daemon <input id="enabled" type="checkbox" checked="{{enabled}}" (input)="saveDaemon()" /></div>
     <p class="fileset">File settings</p>
     <div class="settinglist">
         <ul>
