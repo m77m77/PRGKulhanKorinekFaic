@@ -52,8 +52,8 @@ namespace DaemonTest
 
             if(this.currentDaemon != null)
             {
-                //if (!this.currentDaemon.Enabled)
-                    //return;
+                if (!this.currentDaemon.Enabled)
+                    return;
 
                 if(this.unsendStatuses.Count > 0)
                 {
