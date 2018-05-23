@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace CronApp
 {
-    public class EmailTask : ITask
+    public class EmailTask : TimeTask
     {
-        int curr = 0;
-        public void Run()
+        public EmailTask(params TimeSpan[] times) : base(times)
         {
-            Console.WriteLine((char)curr);
-            curr++;
+
+        }
+
+        public override void RunInTime(TimeSpan time)
+        {
+            Console.WriteLine("NOW");
         }
     }
 }
