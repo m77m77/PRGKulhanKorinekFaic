@@ -116,4 +116,22 @@ export class ITokenComponent {
         document.body.removeChild(txtArea);
         return false;
     }
+    public GenerateConfigFile() {
+        //var fileContents = "Hello world!";
+        //var filename = "hello.txt";
+        //var filetype = "text/plain";
+
+        //var a = document.createElement("a");
+        //dataURI = "data:" + filetype +
+        //    ";base64," + btoa(fileContents);
+        //a.href = dataURI;
+        //a['download'] = filename;
+        //var e = document.createEvent("MouseEvents");
+        //// Use of deprecated function to satisfy TypeScript.
+        //e.initMouseEvent("click", true, false,
+        //    document.defaultView, 0, 0, 0, 0, 0,
+        //    false, false, false, false, 0, null);
+        //a.dispatchEvent(e);
+        //a.removeNode();
+    }
 }
