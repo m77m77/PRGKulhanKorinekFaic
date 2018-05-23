@@ -77,7 +77,18 @@ h1 {
     cursor: pointer;
 }
 
+
 #btndeleteitoken {
+    width: 90px;
+    height: 30px;
+    border: none;
+    background-color: gray;
+    color: white;
+    font-size: 21px;
+    font-family: 'Segoe UI';
+    cursor: pointer;
+}
+#btngeneratefile {
     width: 90px;
     height: 30px;
     border: none;
@@ -93,6 +104,9 @@ h1 {
 }
 
 #btndeleteitoken:hover {
+    background-color: rgb(81, 168, 240);
+}
+#btngeneratefile:hover {
     background-color: rgb(81, 168, 240);
 }
 
