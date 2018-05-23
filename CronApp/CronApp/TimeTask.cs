@@ -8,10 +8,25 @@ namespace CronApp
 {
     public abstract class TimeTask : ITask
     {
+        private List<TimeSpan> runAt;
+
+        public TimeTask(params TimeSpan[] times)
+        {
+            this.runAt = times.ToList();
+        }
+
 
         public void Run()
         {
-            throw new NotImplementedException();
+            foreach (TimeSpan item in this.runAt)
+            {
+                if (item.Hours == DateTime.Now.TimeOfDay.Hours && item.Minutes == DateTime.Now.TimeOfDay.Minutes && item.Seconds == DateTime.Now.TimeOfDay.Seconds)
+                {
+                    this.RunInTime(item);
+                }
+            }
         }
+
+        public abstract void RunInTime(TimeSpan time);
     }
 }
