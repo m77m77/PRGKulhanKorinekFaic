@@ -144,7 +144,7 @@ namespace REST_API.Controllers
                 string defaultSettingsJson = defaultSettingsQuery.ExecuteScalar().ToString();
                 data.DefaultSettings = JsonConvert.DeserializeObject<Settings>(defaultSettingsJson, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
 
-                string defaultSettingsDatabaseJson = defaultSettingsQuery.ExecuteScalar().ToString();
+                string defaultSettingsDatabaseJson = defaultSettingsDatabaseQuery.ExecuteScalar().ToString();
                 data.DefaultSettingsDatabase = JsonConvert.DeserializeObject<SettingsDatabase>(defaultSettingsDatabaseJson, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
 
             }
