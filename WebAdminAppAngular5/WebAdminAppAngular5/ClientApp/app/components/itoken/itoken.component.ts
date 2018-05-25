@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, ResponseContentType } from '@angular/http';
 import { NgModule, ElementRef, Renderer2 } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
@@ -18,6 +18,7 @@ import { NgForOf } from '@angular/common';
 })
 export class ITokenComponent {
     itokens: any;
+    lastitoken: string;
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
         if (typeof window !== 'undefined') {
             this.LoadITokens();
@@ -63,16 +64,31 @@ export class ITokenComponent {
             });
         }
     }
-    AddNewIToken() {
+    async AddNewIToken() {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        this.http.post('http://localhost:63058/api/newinitializationtoken/' + sessionStorage.getItem('token'), { headers: headers }).toPromise()
+        await this.http.post('http://localhost:63058/api/newinitializationtoken/' + sessionStorage.getItem('token'), { headers: headers }).toPromise()
             .then((response: Response) => {
                 let InitializationTokens = response.json();
                 if (InitializationTokens && "OK" == InitializationTokens.Status) {
                     this.LoadITokens();
                     this.WriteITokens();
+                    this.lastitoken = InitializationTokens.NewToken;
+                    //sessionStorage.setItem('lastitoken', InitializationTokens.NewToken)
                     window.prompt('New initialization token', InitializationTokens.NewToken )
+                } else {
+                    sessionStorage.clear();
+                    this.router.navigate(['/login'], {})
+                }
+            })
+            .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
+        /*********************************************************/
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        this.http.post('http://localhost:63058/api/xmlfile/' + sessionStorage.getItem('token') + '/' + this.lastitoken, { headers: headers }).toPromise()
+            .then((response: Response) => {
+                let InitializationTokens = response.json();
+                if (InitializationTokens && "OK" == InitializationTokens.Status) {
                 } else {
                     sessionStorage.clear();
                     this.router.navigate(['/login'], {})
@@ -116,22 +132,29 @@ export class ITokenComponent {
         document.body.removeChild(txtArea);
         return false;
     }
-    public GenerateConfigFile() {
-        //var fileContents = "Hello world!";
-        //var filename = "hello.txt";
-        //var filetype = "text/plain";
+    public DownloadConfigFile() {
+        //this.http.get('http://localhost:63058/api/xmlfile/' + sessionStorage.getItem('token') + '/' +'N5AMXxowC1q08dzxDIqnj9c-VtALlCvG').toPromise()
+        //    .then((response: Response) => {
+        //        let InitializationTokens = response.json();
+        //        console.log(InitializationTokens.Data);
+        //        if (InitializationTokens && "OK" == InitializationTokens.Status) {
 
-        //var a = document.createElement("a");
-        //dataURI = "data:" + filetype +
-        //    ";base64," + btoa(fileContents);
-        //a.href = dataURI;
-        //a['download'] = filename;
-        //var e = document.createEvent("MouseEvents");
-        //// Use of deprecated function to satisfy TypeScript.
-        //e.initMouseEvent("click", true, false,
-        //    document.defaultView, 0, 0, 0, 0, 0,
-        //    false, false, false, false, 0, null);
-        //a.dispatchEvent(e);
-        //a.removeNode();
+                    
+
+        //        } else {
+        //            sessionStorage.clear();
+        //            this.router.navigate(['/login'], {})
+        //        }
+        //    })
+        //    .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}); })
+
+
+        //this.http.get(this.url, {
+        //    headers: this.headers,
+        //    params: filters,
+        //    responseType: ResponseContentType.Blob
+        //})
+        //    .toPromise()
+        //    .then(response => this.saveAsBlob(response))
     }
 }

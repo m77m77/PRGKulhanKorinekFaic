@@ -203,9 +203,11 @@
     <Compile Include="CommunicationClasses\ListBackupStatusName.cs" />
     <Compile Include="CommunicationClasses\ListInicializationTokenData.cs" />
     <Compile Include="CommunicationClasses\NewDaemon.cs" />
+    <Compile Include="Controllers\XMLFileController.cs" />
     <Compile Include="Controllers\ExpirationTokenDeleteController.cs" />
     <Compile Include="Controllers\NewSettingsController.cs" />
     <Compile Include="Models\BackupInfo\BackupStatusName.cs" />
+    <Compile Include="Models\Config.cs" />
     <Compile Include="Models\EmailSettings\EmailDaemonName.cs" />
     <Compile Include="Models\EmailSettings\EmailInfo.cs" />
     <Compile Include="Models\InicializationToken\InicializationToken.cs" />
