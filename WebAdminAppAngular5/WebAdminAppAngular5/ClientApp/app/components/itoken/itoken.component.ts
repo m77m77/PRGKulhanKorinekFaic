@@ -136,17 +136,17 @@ export class ITokenComponent {
         return false;
     }
 
-    public downloadfile2(runname: string, type: string) {
+    public downloadfile2(runname: string, type: string,itoken:string) {
         var headers = new Headers();
         headers.append('responseType', 'arraybuffer');
-        return this.http.get('http://localhost:63058/api/xmlfile/' + sessionStorage.getItem('token') + '/' + 'N5AMXxowC1q08dzxDIqnj9c-VtALlCvG')
+        return this.http.get('http://localhost:63058/api/xmlfile/' + sessionStorage.getItem('token') + '/' + itoken)
             .map(response => new Blob([response.json().Data.XMLConfig], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }))
         
     }
 
-    downloadfile(type: string) {
+    downloadfile(type: string,itoken:string) {
         var reader = new FileReader();
-        this.downloadfile2('pes', 'xml')
+        this.downloadfile2('pes', 'xml',itoken)
             .subscribe(res => reader.readAsDataURL(res),
             error => console.log("Error downloading the file."),
             () => console.log('Completed file download.'));
