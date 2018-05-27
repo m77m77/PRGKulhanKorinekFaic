@@ -111,12 +111,17 @@ namespace REST_API.Controllers
             Query.CommandText = "SELECT configXML FROM configs where idConfig = (select id from tokens where token = @itoken)";
             Query.Parameters.AddWithValue("@itoken", initializationtoken);
 
+            Config c = new Config();
             Response r = new Response();
-
+            r.Data = c;
             try
             {
                 Connection.Open();
                 MySqlDataReader Reader = Query.ExecuteReader();
+                c.Token = "sssss";
+                c.Server = "sssss";
+                c.InitializationToken = "sssss";
+                r.Data = c;
                 Reader.Close();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

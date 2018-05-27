@@ -1,13 +1,16 @@
 ﻿import { Component } from '@angular/core';
-import { Http, Headers, Response, ResponseContentType } from '@angular/http';
+import { Http, Headers, Response, ResponseContentType, RequestOptions } from '@angular/http';
 import { NgModule, ElementRef, Renderer2 } from '@angular/core';
 import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 import { NgForOf } from '@angular/common';
+import { Observable } from 'rxjs/Observable';
 //import { ClipboardModule } from 'ngx-clipboard';
+import 'rxjs/add/operator/map';
 
-
-
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import 'file-saver';
 
 @Component({
     selector: 'itoken',
@@ -132,29 +135,24 @@ export class ITokenComponent {
         document.body.removeChild(txtArea);
         return false;
     }
-    public DownloadConfigFile() {
-        //this.http.get('http://localhost:63058/api/xmlfile/' + sessionStorage.getItem('token') + '/' +'N5AMXxowC1q08dzxDIqnj9c-VtALlCvG').toPromise()
-        //    .then((response: Response) => {
-        //        let InitializationTokens = response.json();
-        //        console.log(InitializationTokens.Data);
-        //        if (InitializationTokens && "OK" == InitializationTokens.Status) {
 
-                    
+    public downloadfile2(runname: string, type: string) {
+        var headers = new Headers();
+        headers.append('responseType', 'arraybuffer');
+        return this.http.get('http://localhost:63058/api/xmlfile/' + sessionStorage.getItem('token') + '/' + 'N5AMXxowC1q08dzxDIqnj9c-VtALlCvG')
+            .map(response => new Blob([response.json().Data.XMLConfig], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }))
+        
+    }
 
-        //        } else {
-        //            sessionStorage.clear();
-        //            this.router.navigate(['/login'], {})
-        //        }
-        //    })
-        //    .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}); })
+    downloadfile(type: string) {
+        var reader = new FileReader();
+        this.downloadfile2('pes', 'xml')
+            .subscribe(res => reader.readAsDataURL(res),
+            error => console.log("Error downloading the file."),
+            () => console.log('Completed file download.'));
 
-
-        //this.http.get(this.url, {
-        //    headers: this.headers,
-        //    params: filters,
-        //    responseType: ResponseContentType.Blob
-        //})
-        //    .toPromise()
-        //    .then(response => this.saveAsBlob(response))
+        reader.onloadend = function (e) {
+            window.open(reader.result, 'xml', 'width=20,height=10,toolbar=0,menubar=0,scrollbars=no');
+        }
     }
 }

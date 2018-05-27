@@ -21,7 +21,7 @@
                                 <td class="tok">{{b.Expiration}}</td>
                                 <td><button class="btn btn-primary" (click)="copyTextToClipboard(b.Token)" id="btncopyitoken">Copy</button></td>
                                 <td><button class="btn btn-primary" (click)="DeleteToken(b.Id)" id="btndeleteitoken">Delete</button></td>
-                                <td><button class="btn btn-primary" (click)="DownloadConfigFile()" id="btndownloadfile">Download</button></td>
+                                <td><button class="btn btn-primary" (click)="downloadfile('xml')" id="btndownloadfile">Download</button></td>
                         </table>
                         <button class="btn btn-primary" (click)="AddNewIToken()" id="btnadditoken">New Initialization Token</button>
                     </div>
