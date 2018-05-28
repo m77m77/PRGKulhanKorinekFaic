@@ -1109,3 +1109,4 @@ C:\PRG_KulhanKorinekFaic_2\REST_API\REST_API\obj\Debug\REST_API.csproj.CoreCompi
 C:\PRG_KulhanKorinekFaic_2\REST_API\REST_API\obj\Debug\REST_API.csproj.CopyComplete
 C:\PRG_KulhanKorinekFaic_2\REST_API\REST_API\obj\Debug\REST_API.dll
 C:\PRG_KulhanKorinekFaic_2\REST_API\REST_API\obj\Debug\REST_API.pdb
+D:\Projekty\PRG_KulhanKořínekFaic_8\REST_API\REST_API\obj\Debug\REST_API.csprojResolveAssemblyReference.cache

@@ -5,12 +5,9 @@ import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/toPromise';
 import { NgForOf } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
+import { SafeUrl } from '@angular/platform-browser';
 //import { ClipboardModule } from 'ngx-clipboard';
-import 'rxjs/add/operator/map';
 
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
-import 'file-saver';
 
 @Component({
     selector: 'itoken',
@@ -136,23 +133,18 @@ export class ITokenComponent {
         return false;
     }
 
-    public downloadfile2(runname: string, type: string,itoken:string) {
-        var headers = new Headers();
-        headers.append('responseType', 'arraybuffer');
-        return this.http.get('http://localhost:63058/api/xmlfile/' + sessionStorage.getItem('token') + '/' + itoken)
-            .map(response => new Blob([response.json().Data.XMLConfig], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }))
-        
-    }
-
-    downloadfile(type: string,itoken:string) {
-        var reader = new FileReader();
-        this.downloadfile2('pes', 'xml',itoken)
-            .subscribe(res => reader.readAsDataURL(res),
-            error => console.log("Error downloading the file."),
-            () => console.log('Completed file download.'));
-
-        reader.onloadend = function (e) {
-            window.open(reader.result, 'xml', 'width=20,height=10,toolbar=0,menubar=0,scrollbars=no');
+    downloadconfigfile(token: string) {
+        var config = {
+            Server: 'http://localhost:63058', InitializeToken: token
         }
+        var sJson = JSON.stringify(config);
+        var element = document.createElement('a');
+        element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(sJson));
+        element.setAttribute('download', "primer-server-task.json");
+        element.style.display = 'none';
+        document.body.appendChild(element);
+        element.click(); // simulate click
+        document.body.removeChild(element);
     }
+    
 }
