@@ -2,7 +2,7 @@
 .arc {
     margin: 7% 15% 10% 30%;
     border: none;
-    background-color: white;
+    
     width: 930px;
     font-family: 'Segoe UI';
 }
@@ -25,11 +25,12 @@ nav ul {
 }
 
 
- 
+
 .settinglist ul a.link-active li, .settinglist1 ul a.link-active li {
-    background: #555;
+    background: #0a294b;
     font-weight: bold;
     font-size: 21px;
+
 }
 
 
@@ -41,10 +42,7 @@ div .dropdown > a {
     list-style-type: none;
 }
 
-nav a {
-    color: whitesmoke;
-    text-decoration: none;
-}
+
 
 .dname
 {
