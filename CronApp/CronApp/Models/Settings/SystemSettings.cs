@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace CronApp.Models.Settings
 {
-    public interface IDestination
+    class SystemSettings
     {
-        string Path { get; set; }
-        string Type { get; set; }
-        string SaveFormat { get; set; }
     }
 }

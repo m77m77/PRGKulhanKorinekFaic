@@ -15,5 +15,6 @@ namespace CronApp.Models.Settings
 
         public string Path { get; set; }
         public string Type { get => "SFTP"; set { } }
+        public string SaveFormat { get; set; }
     }
 }

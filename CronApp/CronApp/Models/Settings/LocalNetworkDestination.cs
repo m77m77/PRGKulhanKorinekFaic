@@ -10,5 +10,7 @@ namespace CronApp.Models.Settings
     {
         public string Path { get; set; }
         public string Type { get => "LOCAL_NETWORK"; set { } }
+
+        public string SaveFormat { get; set; }
     }
 }

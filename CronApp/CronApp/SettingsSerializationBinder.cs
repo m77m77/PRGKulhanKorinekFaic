@@ -33,6 +33,8 @@ namespace CronApp
                     return typeof(ListSettingsData);
                 case "Settings":
                     return typeof(Settings);
+                case "SettingsDatabase":
+                    return typeof(SettingsDatabase);
                 case "EmailSettings":
                     return typeof(EmailSettings);
                 case "ListEmailSettingsData":
@@ -43,6 +45,8 @@ namespace CronApp
                     return typeof(BackupStatus);
                 case "Errors":
                     return typeof(BackupError);
+                case "Daemon":
+                    return typeof(Daemon);
             }
 
             return null;

@@ -9,14 +9,11 @@ namespace CronApp.Models.Settings
 {
     public class Settings : IData
     {
-        public int DaemonID { get; set; }
-        public string DaemonName { get; set; }
-        public string BackupSourcePath { get; set; }
+        public int SettingsID { get; set; }
+        public List<string> BackupSources { get; set; }
         public string ActionAfterBackup { get; set; }
-        public string SaveFormat { get; set; }
         public BackupScheme BackupScheme { get; set; }
-
-        public IDestination Destination { get; set; }
+        public List<IDestination> Destinations { get; set; }
 
     }
 }

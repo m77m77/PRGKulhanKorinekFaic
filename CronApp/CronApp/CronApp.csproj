@@ -59,12 +59,15 @@
     <Compile Include="Models\EmailSettings\EmailSettings.cs" />
     <Compile Include="Models\Settings\BackupScheme.cs" />
     <Compile Include="Models\Settings\BackupTime.cs" />
+    <Compile Include="Models\Settings\Daemon.cs" />
     <Compile Include="Models\Settings\FTPDestination.cs" />
     <Compile Include="Models\Settings\IDestination.cs" />
     <Compile Include="Models\Settings\LocalNetworkDestination.cs" />
     <Compile Include="Models\Settings\OneTimeBackup.cs" />
     <Compile Include="Models\Settings\Settings.cs" />
+    <Compile Include="Models\Settings\SettingsDatabase.cs" />
     <Compile Include="Models\Settings\SFTPDestination.cs" />
+    <Compile Include="Models\Settings\SystemSettings.cs" />
     <Compile Include="SettingsSerializationBinder.cs" />
     <Compile Include="ITask.cs" />
     <Compile Include="Program.cs" />
