@@ -140,10 +140,10 @@ export class ITokenComponent {
         var sJson = JSON.stringify(config);
         var element = document.createElement('a');
         element.setAttribute('href', "data:text/json;charset=UTF-8," + encodeURIComponent(sJson));
-        element.setAttribute('download', "primer-server-task.json");
+        element.setAttribute('download', "new_daemon_config.json");
         element.style.display = 'none';
         document.body.appendChild(element);
-        element.click(); // simulate click
+        element.click();
         document.body.removeChild(element);
     }
     

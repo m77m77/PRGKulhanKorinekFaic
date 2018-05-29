@@ -258,6 +258,7 @@ export class DaemonsettingsComponent {
                     if (res && "OK" == res.Status) {
                         this.getDaemons();
                         console.log(SettingsType + 'deleted');
+                        sessionStorage.removeItem('SettingsType');
                     } else {
                         sessionStorage.clear();
                         this.router.navigate(['/login'], {})
@@ -272,6 +273,7 @@ export class DaemonsettingsComponent {
                     if (res && "OK" == res.Status) {
                         this.getDaemons();
                         console.log(SettingsType + 'deleted');
+                        sessionStorage.removeItem('SettingsType');
                     } else {
                         sessionStorage.clear();
                         this.router.navigate(['/login'], {})
