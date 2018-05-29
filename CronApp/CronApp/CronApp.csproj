@@ -50,7 +50,6 @@
     <Compile Include="CommunicationClasses\ListEmailSettingsData.cs" />
     <Compile Include="CommunicationClasses\ListSettingsData.cs" />
     <Compile Include="CommunicationClasses\Response.cs" />
-    <Compile Include="CommunicationClasses\TaskClass.cs" />
     <Compile Include="CronTimer.cs" />
     <Compile Include="EmailTask.cs" />
     <Compile Include="HttpRequests\EmailRequests.cs" />

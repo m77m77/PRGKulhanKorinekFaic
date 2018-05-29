@@ -11,5 +11,6 @@ namespace CronApp.CommunicationClasses
     {
         public List<Settings> ListSettings { get; set; }
         public Settings DefaultSettings { get; set; }
+        public SettingsDatabase DefaultSettingsDatabase { get; set; }
     }
 }
