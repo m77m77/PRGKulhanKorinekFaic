@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,8 +45,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommunicationClasses\IData.cs" />
+    <Compile Include="CommunicationClasses\ListDaemonBackupInfoData.cs" />
+    <Compile Include="CommunicationClasses\ListEmailSettingsData.cs" />
+    <Compile Include="CommunicationClasses\ListSettingsData.cs" />
+    <Compile Include="CommunicationClasses\Response.cs" />
+    <Compile Include="CommunicationClasses\TaskClass.cs" />
     <Compile Include="CronTimer.cs" />
     <Compile Include="EmailTask.cs" />
+    <Compile Include="HttpRequests\EmailRequests.cs" />
+    <Compile Include="Models\BackupInfo\BackupError.cs" />
+    <Compile Include="Models\BackupInfo\BackupStatus.cs" />
+    <Compile Include="Models\EmailSettings\EmailSettings.cs" />
+    <Compile Include="Models\Settings\BackupScheme.cs" />
+    <Compile Include="Models\Settings\BackupTime.cs" />
+    <Compile Include="Models\Settings\FTPDestination.cs" />
+    <Compile Include="Models\Settings\IDestination.cs" />
+    <Compile Include="Models\Settings\LocalNetworkDestination.cs" />
+    <Compile Include="Models\Settings\OneTimeBackup.cs" />
+    <Compile Include="Models\Settings\Settings.cs" />
+    <Compile Include="Models\Settings\SFTPDestination.cs" />
+    <Compile Include="SettingsSerializationBinder.cs" />
     <Compile Include="ITask.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,6 +73,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
