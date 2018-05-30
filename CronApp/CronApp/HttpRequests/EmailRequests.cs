@@ -40,24 +40,7 @@ namespace CronApp.HttpRequests
             return response;
         }
 
-        public async Task<Response> GetAllDaemonSettings()
-        {
-
-            HttpClient http = new HttpClient();
-            Response response;
-
-            try
-            {
-                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/admin/" + this.Token);
-                response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
-            }
-            catch
-            {
-                response = new Response("ERROR", "ConnectionError", null, null);
-            }
-
-            return response;
-        }
+        
         public async Task<Response> GetAllDaemonBackupInfo()
         {
             HttpClient http = new HttpClient();
