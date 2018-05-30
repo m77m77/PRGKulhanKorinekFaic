@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Rebex.Net;
 
 namespace DaemonTest.DestinationManagers
 {
@@ -23,7 +24,7 @@ namespace DaemonTest.DestinationManagers
             this.SettingsManager = settingsManager;
             this.destination = destination;
 
-            this.tempDir = Path.Combine(Path.GetTempPath(), "PRGKulhanKorinekFaic", "SFTP");
+            this.tempDir = Path.Combine(Path.GetTempPath(), "PRGKulhanKorinekFaic", "FTP");
 
             string saveFormatSettings = this.destination.SaveFormat;
             if (saveFormatSettings == "ZIP")
@@ -34,16 +35,33 @@ namespace DaemonTest.DestinationManagers
             {
                 this.SaveMethod = new PlainSaveMethod(this.SettingsManager);
             }
+
+            Directory.CreateDirectory(this.tempDir);
         }
 
         public string GetPath()
         {
-            throw new NotImplementedException();
+            return this.tempDir;
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            using (var sftp = new Sftp())
+            {
+                //sftp.Connect(hostname);
+
+                // authenticate
+                //sftp.Login(username, password);
+
+                //sftp.Upload(@"C:\MyData\file1.txt", "/MyData");
+                //sftp.Download("/MyData/file2.txt", @"C:\MyData");
+
+                // disconnect (not required, but polite)
+                sftp.Disconnect();
+            }
+
+            if (Directory.Exists(this.tempDir))
+                Directory.Delete(this.tempDir, true);
         }
     }
 }
