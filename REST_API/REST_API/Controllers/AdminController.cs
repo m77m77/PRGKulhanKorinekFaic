@@ -267,5 +267,46 @@ namespace REST_API.Controllers
 
             return r;
         }
+        [Route("api/admin/{token}/{id}")]
+        public Response Delete(string token,int id)
+        {
+            Token t = Token.Exists(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            if (!t.IsAdmin)
+            {
+                //token nepatří adminovi  
+                return new Response("ERROR", "TokenIsNotMatched", null, null);
+            }
+
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            Response r = new Response();
+
+            try
+            {
+                Connection.Open();
+
+                MySqlCommand query = Connection.CreateCommand();
+                query.CommandText = "DELETE FROM daemons WHERE @id = id;DELETE FROM daemonsSettings WHERE @id = idDaemon;DELETE FROM daemonsSettingsDatabase WHERE @id = idDaemon";
+
+                query.Parameters.AddWithValue("@id", id);
+
+                query.ExecuteNonQuery();
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
     }
 }

@@ -43,6 +43,7 @@ export class LoginComponent {
                             console.log(AdminInfo.Data);
                             if (AdminInfo && "OK" == AdminInfo.Status) {
                                 sessionStorage.setItem('AdminInfo', JSON.stringify(AdminInfo.Data));
+                                console.log(sessionStorage.getItem('AdminInfo'));
                             } else {
                                 sessionStorage.removeItem('token');
                                 this.router.navigate(['/login'], {})

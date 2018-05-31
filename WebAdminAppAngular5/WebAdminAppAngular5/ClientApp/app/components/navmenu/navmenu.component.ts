@@ -8,14 +8,10 @@ import { RouterModule, Routes, Router, ActivatedRoute } from '@angular/router';
 })
 export class NavMenuComponent {
     constructor(private router: Router, private route: ActivatedRoute) {
-
     }
 
     logOut() {
-        sessionStorage.removeItem('token');
-        sessionStorage.removeItem('daemonsData');
-        sessionStorage.removeItem('daemonsUnsave');
-        sessionStorage.removeItem('mailData');
+        sessionStorage.clear();
         this.router.navigate(['/login'], {})
     }
 }

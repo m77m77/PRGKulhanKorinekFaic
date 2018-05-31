@@ -282,4 +282,19 @@ export class DaemonsettingsComponent {
                 .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
         }
     }
+    public DeleteDaemon() {
+        if (window.confirm('Are you sure you want to delete this daemon?') == true) {
+            this.http.delete('http://localhost:63058/api/admin/' + sessionStorage.getItem('token') + '/' + this.daemonID).toPromise()
+                .then((response: Response) => {
+                    let res = response.json();
+                    if (res && "OK" == res.Status) {
+                        this.getDaemons();
+                    } else {
+                        sessionStorage.clear();
+                        this.router.navigate(['/login'], {})
+                    }
+                })
+                .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
+    }
+    }
 }
