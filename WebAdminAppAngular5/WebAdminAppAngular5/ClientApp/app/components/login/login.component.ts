@@ -42,7 +42,7 @@ export class LoginComponent {
                             let AdminInfo = response.json();
                             console.log(AdminInfo.Data);
                             if (AdminInfo && "OK" == AdminInfo.Status) {
-                                sessionStorage.setItem('AdminInfo', JSON.stringify(AdminInfo.Data));
+                                sessionStorage.setItem('AdminInfo', JSON.stringify(AdminInfo.Data.Type));
                                 console.log(sessionStorage.getItem('AdminInfo'));
                             } else {
                                 sessionStorage.removeItem('token');

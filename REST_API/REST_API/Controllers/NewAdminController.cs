@@ -30,10 +30,10 @@ namespace REST_API.Controllers
                 //token nepatří adminovi  
                 return new Response("ERROR", "TokenIsNotMatched", null, null);
             }
-            if(t.AdminType != "master")
-            {
-                return new Response("ERROR", "AdminIsNotMaster", null, null);
-            }
+            //if(t.AdminType != "master")
+            //{
+            //    return new Response("ERROR", "AdminIsNotMaster", null, null);
+            //}
 
             MySqlConnection Connection = WebApiConfig.Connection();
 
@@ -87,10 +87,10 @@ namespace REST_API.Controllers
                 //token nepatří adminovi  
                 return new Response("ERROR", "TokenIsNotMatched", null, null);
             }
-            if (t.AdminType != "master")
-            {
-                return new Response("ERROR", "AdminIsNotMaster", null, null);
-            }
+            //if (t.AdminType != "master")
+            //{
+            //    return new Response("ERROR", "AdminIsNotMaster", null, null);
+            //}
 
             MySqlConnection Connection = WebApiConfig.Connection();
 
@@ -136,10 +136,10 @@ namespace REST_API.Controllers
                 //token nepatří adminovi  
                 return new Response("ERROR", "TokenIsNotMatched", null, null);
             }
-            if (t.AdminType != "master")
-            {
-                return new Response("ERROR", "AdminIsNotMaster", null, null);
-            }
+            //if (t.AdminType != "master")
+            //{
+            //    return new Response("ERROR", "AdminIsNotMaster", null, null);
+            //}
 
             MySqlConnection Connection = WebApiConfig.Connection();
 

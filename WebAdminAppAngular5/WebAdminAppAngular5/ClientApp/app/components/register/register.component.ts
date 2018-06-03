@@ -25,7 +25,7 @@ export class RegisterComponent {
         if (typeof window !== 'undefined') {
 
             //if (sessionStorage.getItem('AdminPost') != null) {
-                this.getAdmins();
+            this.getAdmins();
             //}
             //this.WriteAdmins();
         }
@@ -59,7 +59,7 @@ export class RegisterComponent {
             var info = data.Info;
 
         }
-        
+
         var ok = true;
         var count = data.ListAdmin.length;
 
@@ -75,6 +75,10 @@ export class RegisterComponent {
 
     }
     private PostNewAdmin() {
+        if (sessionStorage.getItem('AdminInfo') !== '"master"') {
+            window.alert('You are not allowed to create admin!')
+            return;
+        }
         var username = (<HTMLInputElement>document.getElementById('username')).value;
         var password = (<HTMLInputElement>document.getElementById('password')).value;
         var typeSelect = (<HTMLSelectElement>document.getElementById('type'));
@@ -88,7 +92,8 @@ export class RegisterComponent {
 
             var headers = new Headers();
             headers.append('Content-Type', 'application/json');
-            this.http.post('http://localhost:63058/api/newadmin/' + sessionStorage.getItem('token'), { "Name": username, "Password": password, "Type": type}, { headers: headers }).toPromise()
+
+            this.http.post('http://localhost:63058/api/newadmin/' + sessionStorage.getItem('token'), { "Name": username, "Password": password, "Type": type }, { headers: headers }).toPromise()
                 .then((response: Response) => {
                     let AdminPost = response.json();
                     console.log(AdminPost);
@@ -102,8 +107,8 @@ export class RegisterComponent {
                 })
                 .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
         }
-
     }
+
     public Validation() {
         this.getAdmins();
         var username = (<HTMLInputElement>document.getElementById('username'));
@@ -153,7 +158,10 @@ export class RegisterComponent {
         }
     }
     public Delete(adminId: any) {
-        
+        if (sessionStorage.getItem('AdminInfo') !== '"master"') {
+            window.alert('You are not allowed to delete admin!')
+            return;
+        }
             if (window.confirm('Are you sure you want to delete this admin') == true) {
                 this.http.delete('http://localhost:63058/api/newadmin/delete/' + sessionStorage.getItem('token') + '/' + adminId).toPromise()
                     .then((response: Response) => {
@@ -166,8 +174,10 @@ export class RegisterComponent {
                         }
                     })
                     .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}) })
-        }
-        
+            }
     }
-
 }
+
+
+            
+        
