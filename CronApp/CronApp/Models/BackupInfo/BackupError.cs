@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace REST_API.Models.BackupInfo
+namespace CronApp.Models.BackupInfo
 {
     public class BackupError
     {

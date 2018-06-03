@@ -20,7 +20,7 @@ namespace CronApp
         {
             foreach (TimeSpan item in this.runAt)
             {
-                if (item.Hours == DateTime.Now.TimeOfDay.Hours && item.Minutes == DateTime.Now.TimeOfDay.Minutes && item.Seconds == DateTime.Now.TimeOfDay.Seconds)
+                if (item.Hours == DateTime.Now.TimeOfDay.Hours && item.Minutes == DateTime.Now.TimeOfDay.Minutes)
                 {
                     this.RunInTime(item);
                 }

@@ -12,20 +12,16 @@ namespace REST_API.Controllers
 {
     public class ExpirationTokenDeleteController : ApiController
     {
-        [Route("api/expirationtokendelete/{token}/{id}")]
+        [Route("api/expirationtokendelete/{token}")]
         public Response Delete(string token)
         {
-            Token t = Token.Exists(token);
+            Token t = Token.ExistsEmail(token);
             if (t == null)
             {
                 //token není v databázi  
                 return new Response("ERROR", "TokenNotFound", null, null);
             }
-            if (!t.IsAdmin)
-            {
-                //token nepatří adminovi  
-                return new Response("ERROR", "TokenIsNotMatched", null, null);
-            }
+            
 
             MySqlConnection Connection = WebApiConfig.Connection();
 

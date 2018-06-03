@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using CronApp.Models.BackupInfo;
+//using CronApp.Models.BackupInfo;
 using CronApp.Models.EmailSettings;
 using CronApp.Models.Settings;
 using CronApp.CommunicationClasses;
@@ -16,20 +15,20 @@ using System.Net.Http;
 
 namespace CronApp.HttpRequests
 {
-    public class EmailRequests
+    public static class EmailRequests
     {
-        public string Server { get; private set; } = "http://localhost:63058";
+        public static string Server { get; private set; } = "http://localhost:63058";
 
-        public string Token { get; private set; } = "PiS-TGP018dizhga6Wkqy6PbtgrwtMi,";
+        public static string Token { get; private set; } = "PiS-TGP018dizhga6Wkqy6PbtgrwtMi,";
 
-        public async Task<Response> GetEmailSettings()
+        public static async Task<Response> ExpireTokens()
         {
             HttpClient http = new HttpClient();
             Response response;
 
             try
             {
-                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/email/" + this.Token);
+                HttpResponseMessage res = await http.DeleteAsync(EmailRequests.Server + "/api/expirationtokendelete/" + EmailRequests.Token);
                 response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
             }
             catch
@@ -40,15 +39,14 @@ namespace CronApp.HttpRequests
             return response;
         }
 
-        
-        public async Task<Response> GetAllDaemonBackupInfo()
+        public static async Task<Response> GetEmailSettings()
         {
             HttpClient http = new HttpClient();
             Response response;
 
             try
             {
-                HttpResponseMessage res = await http.GetAsync(this.Server + "/api/backupstatus/email/" + this.Token + "/MONTHLY");
+                HttpResponseMessage res = await http.GetAsync(EmailRequests.Server + "/api/email/" + EmailRequests.Token);
                 response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
             }
             catch
@@ -59,5 +57,58 @@ namespace CronApp.HttpRequests
             return response;
         }
 
+        public static async Task<Response> GetBackupInfoMonthly()
+        {
+            HttpClient http = new HttpClient();
+            Response response;
+
+            try
+            {
+                HttpResponseMessage res = await http.GetAsync(EmailRequests.Server + "/api/backupstatus/email/" + EmailRequests.Token + "/MONTHLY");
+                response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            }
+            catch
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            return response;
+        }
+
+        public static async Task<Response> GetBackupInfoWeekly()
+        {
+            HttpClient http = new HttpClient();
+            Response response;
+
+            try
+            {
+                HttpResponseMessage res = await http.GetAsync(EmailRequests.Server + "/api/backupstatus/email/" + EmailRequests.Token + "/WEEKLY");
+                response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            }
+            catch
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            return response;
+        }
+
+        public static async Task<Response> GetBackupInfoDaily()
+        {
+            HttpClient http = new HttpClient();
+            Response response;
+
+            try
+            {
+                HttpResponseMessage res = await http.GetAsync(EmailRequests.Server + "/api/backupstatus/email/" + EmailRequests.Token + "/DAILY");
+                response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            }
+            catch
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            return response;
+        }
     }
 }

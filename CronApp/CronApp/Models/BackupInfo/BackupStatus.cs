@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using REST_API.CommunicationClasses;
+using CronApp.CommunicationClasses;
 
-namespace REST_API.Models.BackupInfo
+namespace CronApp.Models.BackupInfo
 {
     public class BackupStatus : IData
     {
