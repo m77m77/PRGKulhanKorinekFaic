@@ -291,7 +291,7 @@ namespace REST_API.Controllers
                 Connection.Open();
 
                 MySqlCommand query = Connection.CreateCommand();
-                query.CommandText = "DELETE FROM daemons WHERE @id = id;DELETE FROM daemonsSettings WHERE @id = idDaemon;DELETE FROM daemonsSettingsDatabase WHERE @id = idDaemon";
+                query.CommandText = "DELETE FROM daemons WHERE @id = id;DELETE FROM daemonsSettings WHERE @id = idDaemon;DELETE FROM daemonsSettingsDatabase WHERE @id = idDaemon;DELETE FROM tokensDaemons where idDaemon = @id";
 
                 query.Parameters.AddWithValue("@id", id);
 
