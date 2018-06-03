@@ -13,6 +13,7 @@ namespace CronApp
             CronTimer timer = new CronTimer(TimeSpan.Zero,new TimeSpan(0,0,1));
 
             timer.AddTask(new EmailTask(new TimeSpan(8,39,0),new TimeSpan(8, 39, 20)));
+            timer.AddTask(new TokenTask());
 
             Console.ReadLine();
         }
