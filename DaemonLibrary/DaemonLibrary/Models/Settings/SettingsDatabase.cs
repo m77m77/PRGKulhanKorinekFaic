@@ -14,6 +14,8 @@ namespace DaemonLibrary.Models.Settings
         public string Server { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public string ActionAfterBackup { get; set; }
+        public string ActionBeforeBackup { get; set; }
         public BackupScheme BackupScheme { get; set; }
         public List<IDestination> Destinations { get; set; }
     }

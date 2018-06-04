@@ -4,6 +4,7 @@ using DaemonLibrary.Models;
 using DaemonLibrary.Models.Settings;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -93,7 +94,16 @@ namespace DaemonLibrary
                 Console.WriteLine(type);
                 SettingsManager settingsManager = new SettingsManager(item);
                 IBackupMethod backupMethod = settingsManager.GetBackupMethod(type);
+
+                if(!String.IsNullOrWhiteSpace(item.ActionBeforeBackup))
+                {
+                    Process.Start(item.ActionBeforeBackup);
+                }
                 BackupStatus status = backupMethod.Backup();
+                if (!String.IsNullOrWhiteSpace(item.ActionAfterBackup))
+                {
+                    Process.Start(item.ActionAfterBackup);
+                }
 
                 Response response = await ServerAccess.SendBackupStatus(status);
 

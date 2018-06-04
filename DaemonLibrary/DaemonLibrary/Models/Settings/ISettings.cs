@@ -9,5 +9,7 @@ namespace DaemonLibrary.Models.Settings
         int SettingsID { get; set; }
         BackupScheme BackupScheme { get; set; }
         List<IDestination> Destinations { get; set; }
+        string ActionAfterBackup { get; set; }
+        string ActionBeforeBackup { get; set; }
     }
 }
