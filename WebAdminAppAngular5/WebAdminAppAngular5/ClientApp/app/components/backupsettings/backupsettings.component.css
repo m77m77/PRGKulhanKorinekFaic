@@ -264,3 +264,15 @@ div .archeader li a {
 .btnRemove:hover {
     background-color: rgb(38, 82, 130);
 }
+
+.abck {
+    width: 320px;
+    height: 30px;
+    font-size: 23px;
+    border: none;
+    margin: 6px;
+}
+
+.bckcom {
+    margin: 10px;
+}
