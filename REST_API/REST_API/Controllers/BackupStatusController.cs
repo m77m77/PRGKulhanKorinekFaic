@@ -248,6 +248,10 @@ namespace REST_API.Controllers
             {
                 date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             }
+            else if(type == "ALL")
+            {
+                date = new DateTime(1900,1,1);
+            }
 
             using (MySqlConnection connection = WebApiConfig.Connection())
             {
