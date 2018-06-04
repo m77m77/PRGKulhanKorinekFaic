@@ -40,7 +40,7 @@ export class LoginComponent {
                     this.http.get('http://localhost:63058/api/newadmin/type/' + sessionStorage.getItem('token')).toPromise()
                         .then((response: Response) => {
                             let AdminInfo = response.json();
-                            console.log(AdminInfo.Data);
+                            //console.log(AdminInfo.Data);
                             if (AdminInfo && "OK" == AdminInfo.Status) {
                                 sessionStorage.setItem('AdminInfo', JSON.stringify(AdminInfo.Data.Type));
                                 console.log(sessionStorage.getItem('AdminInfo'));
