@@ -16,10 +16,23 @@ export class ReportComponent {
 
     constructor(private http: Http, private router: Router, private route: ActivatedRoute) {
         if (typeof window !== 'undefined') {
-            this.WriteReports('MONTHLY');
+            this.WriteReports('ALL');
         }
     }
+    async getReportsAll() {
+        await this.http.get('http://localhost:63058/api/backupstatus/daemon/' + sessionStorage.getItem('token') + '/ALL').toPromise()
+            .then((response: Response) => {
+                let Reports = response.json();
+                if (Reports && "OK" == Reports.Status) {
+                    sessionStorage.setItem('Reports', JSON.stringify(Reports.Data));
+                } else {
+                    sessionStorage.clear();
+                    this.router.navigate(['/login'], {})
+                }
+            })
+            .catch((msg: any) => { sessionStorage.clear(); this.router.navigate(['/login'], {}); });
 
+    }
     async getReportsMonthly() {
         await this.http.get('http://localhost:63058/api/backupstatus/daemon/' + sessionStorage.getItem('token') + '/MONTHLY').toPromise()
             .then((response: Response) => {
@@ -69,13 +82,15 @@ export class ReportComponent {
             await this.getReportsWeekly();
         else if (type === 'DAILY')
             await this.getReportsDaily();
+        else if (type === 'ALL')
+            await this.getReportsAll();
 
         var Reports = sessionStorage.getItem('Reports');
         if (Reports != null) {
             var data = JSON.parse(Reports);
             var info = data.Info;
         }
-
+        console.log(Reports)
         var Status = '';
         var Datef = '';
         var Type = '';
