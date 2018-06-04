@@ -172,7 +172,7 @@ export class BackupSettingsComponent {
 
                 var actionAfter = settings.ActionAfterBackup;
                 var actionBefore = settings.ActionAfterBackup;
-
+                console.log(actionAfter);
                 this.actionAfter = actionAfter;
                 this.actionBefore = actionBefore;
                 //this.nothingSelected = action == 'NOTHING' ? 'selected' : '';

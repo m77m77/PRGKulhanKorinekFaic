@@ -99,7 +99,7 @@
         <td class="bckcom">After backup</td>
     </tr>
     <tr>
-        <td><input type="text" class="abck" id="afterBackup"/></td>
-        <td><input type="text"  class="abck" id="beforeBackup"/></td>
+        <td><input type="text" class="abck" (change)="saveSettings()" placeholder="C:\scripts\file.bat" value="{{actionAfter}}" id="afterBackup"/></td>
+        <td><input type="text"  class="abck" (change)="saveSettings()" placeholder="C:\scripts\file.bat" value="{{actionBefore}}" id="beforeBackup"/></td>
     </tr>
 </table>
