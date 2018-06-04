@@ -95,17 +95,11 @@
 
 <table>
     <tr>
-        <th class="tablethalign"> After backup </th>
-       
+        <td class="bckcom">Before backup</td>
+        <td class="bckcom">After backup</td>
     </tr>
     <tr>
-        <td>
-            <select class="selectafterbackup" id="afterBackup" (change)="saveSettings()">
-                <option value="NOTHING" selected="{{nothingSelected}}">Nothing</option>
-                <option value="RESTART" selected="{{restartSelected}}">Restart</option>
-                <option value="TURN OFF" selected="{{turnoffSelected}}">Turn off</option>
-                <option value="SLEEP" selected="{{sleepSelected}}">Sleep mode</option>
-            </select>
-        </td>
+        <td><input type="text" class="abck" id="afterBackup"/></td>
+        <td><input type="text"  class="abck" id="beforeBackup"/></td>
     </tr>
 </table>
