@@ -172,3 +172,7 @@ div .archeader li a {
     .btnSaveDel:hover {
         background: #555;
     }
+
+.space {
+    margin: 10px 10px 10px 5px;
+}

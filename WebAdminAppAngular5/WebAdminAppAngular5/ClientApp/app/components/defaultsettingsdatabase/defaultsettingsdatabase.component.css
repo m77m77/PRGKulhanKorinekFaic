@@ -249,3 +249,7 @@ div .settinglist1 ul a li {
         background: #555;
         color: whitesmoke;
     }
+
+.space {
+    margin: 10px 10px 10px 5px;
+}

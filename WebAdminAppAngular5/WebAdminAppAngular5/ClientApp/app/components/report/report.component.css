@@ -22,6 +22,7 @@ article {
     margin: 200px 0px 0px 25%;
     float: left;
     background-color: whitesmoke;
+    padding: 10px;
 }
 
 .report tr td {
@@ -106,7 +107,8 @@ h1 {
     background-color: rgb(81, 168, 240);
     color: white;
     font-size: 25px;
-    font-weight: bold;
+    margin: 30px;
+
 }
 
 #btndelete {
@@ -124,54 +126,12 @@ h1 {
         background-color: rgb(81, 168, 240);
     }
 
-#btnmonthly {
-    width: 419px;
-    height: 70px;
-    border: none;
-    background-color: gray;
-    color: white;
-    font-size: 23px;
-    font-family: 'Segoe UI';
-    cursor: pointer;
-    margin: 3px 0px 0px 0px;
-}
-    #btnmonthly:hover {
-        background-color: rgb(81, 168, 240);
-    }
-
-#btnweekly {
-    width: 419px;
-    height: 70px;
-    border: none;
-    background-color: gray;
-    color: white;
-    font-size: 23px;
-    font-family: 'Segoe UI';
-    cursor: pointer;
-    margin: 3px 0px 0px 0px;
-}
 
     #btnweekly:hover {
         background-color: rgb(81, 168, 240);
     }
-#btndaily {
-    width: 419px;
-    height: 70px;
-    border: none;
-    background-color: gray;
-    color: white;
-    font-size: 23px;
-    font-family: 'Segoe UI';
-    cursor: pointer;
-    margin: 3px 0px 0px 0px;
-}
-
-#btndaily:hover {
-        background-color: rgb(81, 168, 240);
-}
-
-#btnfiltr {
-    width: 627px;
+#btnfrequency {
+    width: 313px;
     height: 50px;
     border: none;
     background-color: gray;
@@ -179,7 +139,23 @@ h1 {
     font-size: 23px;
     font-family: 'Segoe UI';
     cursor: pointer;
-    margin: 3px;
+    margin: 3px 0px 0px 0px;
+}
+
+    #btnfrequency:hover {
+        background-color: rgb(81, 168, 240);
+    }
+
+#btnfiltr {
+    width: 637px;
+    height: 50px;
+    border: none;
+    background-color: gray;
+    color: white;
+    font-size: 23px;
+    font-family: 'Segoe UI';
+    cursor: pointer;
+ 
 }
     #btnfiltr:hover {
         background-color: rgb(81, 168, 240);
