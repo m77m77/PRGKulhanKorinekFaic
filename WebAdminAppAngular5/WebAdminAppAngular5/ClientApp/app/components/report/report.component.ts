@@ -117,7 +117,7 @@ export class ReportComponent {
                 this.reports.push({
                     Status: Status == "SUCCESS" ? require("./success.png") : require("./error.png"),
                     Date: new Date(Datef).toLocaleString(),
-                    Type: Type == "FULL" ? "Full": Type == "DIFF" ? "Differential" : "Incremental",
+                    Type: Type == "FULL" ? "Full" : Type == "DIFF" ? "Differential" : Type == "INC" ? "Incremental" : "DATABASE",
                     Message: Message,
                     Name: Name
                 });
@@ -132,7 +132,7 @@ export class ReportComponent {
             this.reports.push({
                 Status: Status == "SUCCESS" ? require("./success.png") : require("./error.png"),
                 Date: new Date(Datef).toLocaleString(),
-                Type: Type == "FULL" ? "Full" : Type == "DIFF" ? "Differential" : "Incremental",
+                Type: Type == "FULL" ? "Full" : Type == "DIFF" ? "Differential" : Type == "INC" ? "Incremental" : "DATABASE",
                 Message: Message,
                 Name:Name
             });
