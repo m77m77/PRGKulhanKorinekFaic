@@ -47,6 +47,8 @@ namespace CronApp
                     return typeof(BackupError);
                 case "Daemon":
                     return typeof(Daemon);
+                case "ListBackupInfoDaemonInfo":
+                    return typeof(ListBackupInfoDaemonInfo);
             }
 
             return null;

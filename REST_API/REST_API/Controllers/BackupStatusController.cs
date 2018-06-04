@@ -48,18 +48,24 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                    string sql = "SELECT idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo WHERE backupDate >= @date ORDER BY backupDate";
+                    string sql = "SELECT d.id,d.name,idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo  bi inner join daemonsSettings ds on bi.idSettings = ds.id inner join daemons d on ds.idDaemon = d.id WHERE bi.backupType != 'DATABASE' AND backupDate >= @date " +
+                                 "UNION " +
+                                 "SELECT d.id,d.name,idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo bi inner join daemonsSettingsDatabase ds on bi.idSettings = ds.id inner join daemons d on ds.idDaemon = d.id WHERE bi.backupType = 'DATABASE' AND backupDate >= @date ORDER BY backupDate DESC ";
 
                     MySqlCommand query = new MySqlCommand(sql, connection);
                     query.Parameters.AddWithValue("@date", date);
 
                     MySqlDataReader reader = query.ExecuteReader();
 
-                    ListDaemonBackupInfoData data = new ListDaemonBackupInfoData();
-                    data.ListDaemonBackupInfo = new List<BackupStatus>();
+                    ListBackupInfoDaemonInfo data = new ListBackupInfoDaemonInfo();
+                    data.Infos = new List<BackupStatusDaemonInfo>();
 
                     while (reader.Read())
                     {
+                        BackupStatusDaemonInfo info = new BackupStatusDaemonInfo();
+                        info.DaemonID = Convert.ToInt32(reader["id"]);
+                        info.DaemonName = reader["name"].ToString();
+
                         BackupStatus bs = new BackupStatus();
                         bs.SettingsID = Convert.ToInt32(reader["idSettings"]);
                         bs.Status = reader["backupStatus"].ToString();
@@ -71,7 +77,8 @@ namespace REST_API.Controllers
                         bs.Files = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
                         bs.RemovedFiles = JsonConvert.DeserializeObject<Dictionary<string, DateTime>>(reader["backupRemovedFiles"].ToString(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
 
-                        data.ListDaemonBackupInfo.Add(bs);
+                        info.BackupStatus = bs;
+                        data.Infos.Add(info);
                     }
 
                     result = new Response("OK", null, null, data);
