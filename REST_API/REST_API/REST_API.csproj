@@ -205,6 +205,7 @@
     <Compile Include="CommunicationClasses\NewDaemon.cs" />
     <Compile Include="Controllers\ExpirationTokenDeleteController.cs" />
     <Compile Include="Controllers\NewSettingsController.cs" />
+    <Compile Include="Models\BackupInfo\BackupStatusDaemonInfo.cs" />
     <Compile Include="Models\BackupInfo\BackupStatusName.cs" />
     <Compile Include="Models\EmailSettings\EmailDaemonName.cs" />
     <Compile Include="Models\EmailSettings\EmailInfo.cs" />

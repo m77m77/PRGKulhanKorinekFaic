@@ -48,7 +48,7 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                    string sql = "SELECT idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo WHERE backupDate >= @date";
+                    string sql = "SELECT idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo WHERE backupDate >= @date ORDER BY backupDate";
 
                     MySqlCommand query = new MySqlCommand(sql, connection);
                     query.Parameters.AddWithValue("@date", date);
@@ -124,7 +124,7 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                    string sql = "SELECT backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo WHERE idSettings = @idSettings AND backupStatus = 'SUCCESS' AND backupDate >= @date";
+                    string sql = "SELECT backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo WHERE idSettings = @idSettings AND backupStatus = 'SUCCESS' AND backupDate >= @date ORDER BY backupDate";
 
                     MySqlCommand query = new MySqlCommand(sql, connection);
                     query.Parameters.AddWithValue("@idSettings", settingsID);
@@ -248,7 +248,9 @@ namespace REST_API.Controllers
                 {
                     connection.Open();
 
-                    string sql = "SELECT d.name,idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo  bi inner join daemonsSettings ds on bi.idSettings = ds.id inner join daemons d on ds.idDaemon = d.id WHERE backupDate >= @date";
+                    string sql = "SELECT d.name,idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo  bi inner join daemonsSettings ds on bi.idSettings = ds.id inner join daemons d on ds.idDaemon = d.id WHERE bi.backupType != 'DATABASE' AND backupDate >= @date ORDER BY backupDate " +
+                                 "UNION " +
+                                 "SELECT d.name,idSettings, backupStatus, backupDate, backupType, backupFailMessage, backupErrors, backupFiles,backupRemovedFiles FROM backupsInfo bi inner join daemonsSettingsDatabase ds on bi.idSettings = ds.id inner join daemons d on ds.idDaemon = d.id WHERE bi.backupType = 'DATABASE' AND backupDate >= @date ORDER BY backupDate";
 
                     MySqlCommand query = new MySqlCommand(sql, connection);
                     query.Parameters.AddWithValue("@date", date);
