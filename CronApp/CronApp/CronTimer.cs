@@ -35,6 +35,7 @@ namespace CronApp
 
         private void Tick(object state)
         {
+            Console.WriteLine(DateTime.Now.ToShortTimeString());
             foreach (ITask item in this.tasks)
             {
                 item.Run();

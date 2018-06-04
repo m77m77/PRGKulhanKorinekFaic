@@ -39,6 +39,26 @@ namespace CronApp.HttpRequests
             return response;
         }
 
+        
+        public static async Task<Response> GetTemplate()
+        {
+            HttpClient http = new HttpClient();
+            Response response;
+
+            try
+            {
+                HttpResponseMessage res = await http.GetAsync(EmailRequests.Server + "/api/email/template/" + EmailRequests.Token);
+                response = JsonConvert.DeserializeObject<Response>(await res.Content.ReadAsStringAsync(), new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, SerializationBinder = new SettingsSerializationBinder() });
+            }
+            catch
+            {
+                response = new Response("ERROR", "ConnectionError", null, null);
+            }
+
+            return response;
+        }
+
+
         public static async Task<Response> GetEmailSettings()
         {
             HttpClient http = new HttpClient();

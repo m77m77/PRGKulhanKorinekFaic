@@ -70,6 +70,63 @@ namespace REST_API.Controllers
             return r;
         }
 
+        [Route("api/email/template/{token}")]
+        public Response GetTemplate(string token)
+        {
+            MySqlConnection Connection = WebApiConfig.Connection();
+
+            Token t = Token.ExistsEmail(token);
+            if (t == null)
+            {
+                //token není v databázi  
+                return new Response("ERROR", "TokenNotFound", null, null);
+            }
+            //if (!t.IsAdmin)
+            //{
+            //    //token nepatří adminovi  
+            //    return new Response("ERROR", "TokenIsNotMatched", null, null);
+            //}
+
+            MySqlCommand Query = Connection.CreateCommand();
+
+            Query.CommandText = "SELECT id, backups, daemons, body FROM emailTemplates";
+
+            Response r = new Response();
+
+            ListTemplates list = new ListTemplates();
+            list.Templates = new List<EmailTemplate>();
+
+            try
+            {
+                Connection.Open();
+                MySqlDataReader Reader = Query.ExecuteReader();
+
+                while (Reader.Read())
+                {
+                    EmailTemplate template = new EmailTemplate();
+                    template.ID = Convert.ToInt32(Reader["id"]);
+                    template.Backups = Reader["backups"].ToString();
+                    template.Daemons = Reader["daemons"].ToString();
+                    template.Body = Reader["body"].ToString();
+
+                    list.Templates.Add(template);
+                }
+                Reader.Close();
+
+                r.Data = list;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                r = new Response("ERROR", "ConnectionWithDatabaseProblem", null, null);
+            }
+            Connection.Close();
+
+            if (r.Status == null)
+                r.Status = "OK";
+
+            return r;
+        }
+
         [Route("api/email/{token}")]
         public Response Post(string token, [FromBody]EmailSettings value)
         {

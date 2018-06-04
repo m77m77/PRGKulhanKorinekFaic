@@ -9,11 +9,11 @@
                     <div id="tablediv">
                         <table id="table1" class="tableTokens">
                             <tr class="firstrowtok">
-                                <th>Token</th>
-                                <th>Expiration</th>
-                                <th>Copy</th>
-                                <th>Delete</th>
-                                <th>Download config</th>
+                                <td>Token</td>
+                                <td>Expiration</td>
+                                <td>Copy</td>
+                                <td>Delete</td>
+                                <td>Download config</td>
                             </tr>
 
                             <tr *ngFor="let b of itokens">
@@ -22,7 +22,7 @@
                                 <td><button class="btn btn-primary" (click)="copyTextToClipboard(b.Token)" id="btncopyitoken">Copy</button></td>
                                 <td><button class="btn btn-primary" (click)="DeleteToken(b.Id)" id="btndeleteitoken">Delete</button></td>
                                 <td><button class="btn btn-primary" (click)="downloadconfigfile(b.Token)" id="btndownloadfile">Download</button></td>
-                                </table>
+                        </table>
                         <button class="btn btn-primary" (click)="AddNewIToken()" id="btnadditoken">New Initialization Token</button>
                     </div>
                 </div>

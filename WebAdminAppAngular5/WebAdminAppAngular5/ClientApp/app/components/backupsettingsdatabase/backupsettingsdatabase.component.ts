@@ -22,10 +22,12 @@ export class BackupSettingsDatabaseComponent {
     destCount: number;
     destinations: any;
 
-    nothingSelected: string;
-    restartSelected: string;
-    turnoffSelected: string;
-    sleepSelected: string;
+    actionAfter: any;
+    actionBefore: any;
+    //nothingSelected: string;
+    //restartSelected: string;
+    //turnoffSelected: string;
+    //sleepSelected: string;
 
     constructor(private http: Http, private renderer: Renderer2, private router: Router, private route: ActivatedRoute) {
         var parent = this.route.parent;
@@ -173,6 +175,12 @@ export class BackupSettingsDatabaseComponent {
                 this.username = settings.Username;
                 this.password = settings.Password;
 
+                var actionAfter = settings.ActionAfterBackup;
+                var actionBefore = settings.ActionAfterBackup;
+
+                this.actionAfter = actionAfter;
+                this.actionBefore = actionBefore;
+
                 this.destinations = [];
 
                 for (var i = 0; i < settings.Destinations.length; i++) {
@@ -256,6 +264,10 @@ export class BackupSettingsDatabaseComponent {
                 settings.Username = (<HTMLInputElement>document.getElementById('Username')).value;
                 settings.Password = (<HTMLInputElement>document.getElementById('Password')).value;
                 /**/
+                var afterBackup = (<HTMLSelectElement>document.getElementById('afterBackup')).value;
+                var beforeBackup = (<HTMLSelectElement>document.getElementById('beforeBackup')).value;
+                settings.ActionAfterBackup = afterBackup;
+                settings.ActionBeforeBackup = beforeBackup;
 
                 settings.Destinations = [];
 

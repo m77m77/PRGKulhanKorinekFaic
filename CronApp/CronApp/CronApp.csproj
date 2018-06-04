@@ -50,6 +50,7 @@
     <Compile Include="CommunicationClasses\ListDaemonBackupInfoData.cs" />
     <Compile Include="CommunicationClasses\ListEmailSettingsData.cs" />
     <Compile Include="CommunicationClasses\ListSettingsData.cs" />
+    <Compile Include="CommunicationClasses\ListTemplates.cs" />
     <Compile Include="CommunicationClasses\Response.cs" />
     <Compile Include="CronTimer.cs" />
     <Compile Include="EmailTask.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Models\BackupInfo\BackupStatus.cs" />
     <Compile Include="Models\BackupInfo\BackupStatusDaemonInfo.cs" />
     <Compile Include="Models\EmailSettings\EmailSettings.cs" />
+    <Compile Include="Models\EmailSettings\EmailTemplate.cs" />
     <Compile Include="Models\Settings\BackupScheme.cs" />
     <Compile Include="Models\Settings\BackupTime.cs" />
     <Compile Include="Models\Settings\Daemon.cs" />

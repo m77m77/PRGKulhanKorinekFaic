@@ -1,36 +1,36 @@
 ﻿
-<p class="tucne"> Select what will you backup </p>
+<p class="space"> Select what will you backup </p>
     <input type="text" class="pathtextselect" id="Server" placeholder="Server address" (change)="saveSettings()" value="{{server}}" />
     <input type="text" class="pathtextselect" id="Username" placeholder="Username" (change)="saveSettings()" value="{{username}}" />
     <input type="password" class="pathtextselect" id="Password" placeholder="Password" (change)="saveSettings()" value="{{password}}"/>
     <input type="text" class="pathtextselect" id="Database" placeholder="Database name" (change)="saveSettings()" value="{{database}}" />
 
-<p class="tucne">Destination</p>
+<p class="space"> Destination</p>
 <div id="destinationsDiv">
     <table *ngFor="let dest of destinations" class="oneDestination" id="{{dest.id}}" style="width:100%">
         <thead>
             <tr>
-                <th>
+                <td>
                     <label class="container">
                         Local/network drives
                         <input type="radio" class="radioLND" name="{{dest.id}}" (change)="saveSettings()" (click)="enableLocal(dest.id); showHideDestination(dest.id,false)" checked="{{dest.localChecked}}">
                         <span class="checkmark"></span>
                     </label>
-                </th>
-                <th>
+                </td>
+                <td>
                     <label class="container">
                         FTP
                         <input type="radio" class="radioFTP" (change)="saveSettings()" (click)="enableFtp(dest.id); showHideDestination(dest.id,false)" name="{{dest.id}}" checked="{{dest.ftpChecked}}">
                         <span class="checkmark"></span>
                     </label>
-                </th>
-                <th>
+                </td>
+                <td>
                     <label class="container">
                         SFTP
                         <input type="radio" class="radioSFTP" (change)="saveSettings()" (click)="enableSftp(dest.id); showHideDestination(dest.id,false)" name="{{dest.id}}" checked="{{dest.sftpChecked}}">
                         <span class="checkmark"></span>
                     </label>
-                </th>
+                </td>
             </tr>
 
         </thead>
@@ -78,4 +78,15 @@
             </tr>
         </thead>
     </table>
+    <table>
+        <tr>
+            <td class="bckcom">Before backup</td>
+            <td class="bckcom">After backup</td>
+        </tr>
+        <tr>
+            <td><input type="text" class="abck" (change)="saveSettings()" placeholder="C:\scripts\file.bat" value="{{actionAfter}}" id="afterBackup" /></td>
+            <td><input type="text" class="abck" (change)="saveSettings()" placeholder="C:\scripts\file.bat" value="{{actionBefore}}" id="beforeBackup" /></td>
+        </tr>
+    </table>
+
 </div>

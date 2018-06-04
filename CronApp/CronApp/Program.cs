@@ -10,9 +10,9 @@ namespace CronApp
     {
         static void Main(string[] args)
         {
-            CronTimer timer = new CronTimer(TimeSpan.Zero,new TimeSpan(0,0,1));
+            CronTimer timer = new CronTimer(TimeSpan.Zero,new TimeSpan(0,1,0));
 
-            timer.AddTask(new EmailTask(new TimeSpan(8,39,0),new TimeSpan(8, 39, 20)));
+            timer.AddTask(new EmailTask(new TimeSpan(22,37,0),new TimeSpan(22,36, 0)));
             timer.AddTask(new TokenTask());
 
             Console.ReadLine();
