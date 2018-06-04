@@ -66,6 +66,7 @@ div .dropdown > a {
 .kkt {
     text-decoration: none;
     list-style-type: none;
+
 }
 
 .archeader {
@@ -95,7 +96,7 @@ div .archeader li a {
     color: #555;
     padding: 13px 16px;
     text-decoration: none;
-    width: 220px;
+    width: 218px;
     cursor: pointer;
 }
 
@@ -106,12 +107,14 @@ div .archeader li a.add {
 div .archeader li a:hover {
     background-color: #555;
     color: whitesmoke;
+
 }
 
 .dropdown a.link-active {
     background-color: whitesmoke;
     color: #555;
     font-weight: bold;
+
 }
 
 .dropdown {

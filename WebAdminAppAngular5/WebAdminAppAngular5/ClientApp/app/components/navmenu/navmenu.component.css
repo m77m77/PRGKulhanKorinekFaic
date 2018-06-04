@@ -38,7 +38,7 @@ nav ul a.link-active li {
         background: #555;
         font-size: 22px;
         color: whitesmoke;
-
+        height: 64px;
     }
 
 nav ul li:hover, .aktivni {
@@ -46,6 +46,7 @@ nav ul li:hover, .aktivni {
     box-shadow: 10px #555;
     font-size: 22px;
     color: whitesmoke;
+    height: 64px;
 
 }
 
@@ -64,6 +65,7 @@ header {
     font-family: 'Segoe UI';
     z-index: 1001;
     overflow: auto;
+   
 }
 
 
