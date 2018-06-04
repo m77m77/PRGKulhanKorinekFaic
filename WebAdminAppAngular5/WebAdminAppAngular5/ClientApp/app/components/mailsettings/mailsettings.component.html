@@ -1,5 +1,5 @@
 ﻿<div class="arc">
-    <h1>Email settings</h1>
+    <p class="nadpises">Email settings</p>
     <div class="sectionclass">
         <label class="containeremail">
             <p class="tucne">Send emails</p>
@@ -13,35 +13,35 @@
             <span class="checkmarkemail"></span>
         </label>
         <table id="table1" class="tableTokens">
-        <tr>
-            <td>
-                <p class="smtplabels">Port</p>
-            </td>
-            <td>
-                <input type="text" class="SMTPtext" id="smtpPort" placeholder="port" value="{{SmtpPort}}" />
-            </td>
-            <td>
-                <p class="smtplabels">Host name</p>
-            </td>
-            <td>
-                <input type="text" class="SMTPtext" id="HostName" placeholder="name" value="{{HostName}}" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p class="smtplabels">Username</p>
-            </td>
-            <td>
-                <input type="text" class="SMTPtext" id="username" placeholder="username" value="{{Username}}" />
-            </td>
-            <td>
-                <p class="smtplabels">Password</p>
-            </td>
-            <td>
-                <input type="password" class="SMTPtext" id="password" placeholder="password" value="{{Password}}" />
-            </td>
-        </tr>
-      
+            <tr>
+                <td>
+                    <p class="smtplabels">Port</p>
+                </td>
+                <td>
+                    <input type="text" class="SMTPtext" id="smtpPort" placeholder="port" value="{{SmtpPort}}" />
+                </td>
+                <td>
+                    <p class="smtplabels">Host name</p>
+                </td>
+                <td>
+                    <input type="text" class="SMTPtext" id="HostName" placeholder="name" value="{{HostName}}" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p class="smtplabels">Username</p>
+                </td>
+                <td>
+                    <input type="text" class="SMTPtext" id="username" placeholder="username" value="{{Username}}" />
+                </td>
+                <td>
+                    <p class="smtplabels">Password</p>
+                </td>
+                <td>
+                    <input type="password" class="SMTPtext" id="password" placeholder="password" value="{{Password}}" />
+                </td>
+            </tr>
+
         </table>
         <p> To <input type="text" class="textto" id="idemailTo" placeholder="example@example.com" value="{{mailAddress}}" /></p>
         <p>
@@ -51,48 +51,52 @@
             </select>
         </p>
         <table>
-            <caption>Daemons</caption>
-           
-            <tr class="dailytr">
-                <th>Daily</th>
-                <th id="mailDaemonsDaily">
+            <p class="tucner">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Daemons </p>
+
+            <tr>
+                <div  class="daemonstr">
+                <td>&nbsp;Daily&nbsp;</td>
+                <td id="mailDaemonsDaily">
                     <label class="containeremail" *ngFor="let dd of daily">
-                        <p class="tucne">{{dd.Name}}</p>
+                        <p>{{dd.Name}}</p>
                         <input type="checkbox" checked="{{dd.Selected}}" value="{{dd.Id}}" />
                         <span class="checkmarkemail"></span>
                     </label>
-                </th>
-                <th>    </th>
-            </tr>
-            <tr>
-                <th>Weekly</th>
+                </td>
+                <td>    </td>
+                </div>
+          </tr>
+    <tr>
+        <div class="daemonstr">
+            <td>&nbsp;Weekly&nbsp;</td>
 
-                <th id="mailDaemonsWeekly">
-                    <label class="containeremail" *ngFor="let ww of weekly">
-                        <p class="tucne">{{ww.Name}}</p>
-                        <input type="checkbox" checked="{{ww.Selected}}" value="{{ww.Id}}" />
-                        <span class="checkmarkemail"></span>
-                    </label>
-                </th>
-                <th>
+            <td id="mailDaemonsWeekly">
+                <label class="containeremail" *ngFor="let ww of weekly">
+                    <p class="tucne">{{ww.Name}}</p>
+                    <input type="checkbox" checked="{{ww.Selected}}" value="{{ww.Id}}" />
+                    <span class="checkmarkemail"></span>
+                </label>
+            </td>
+            <td></td>
+        </div>
+</tr>
+    <tr>
+        <div class="daemonstr">
+            <td>&nbsp;Monthly&nbsp;</td>
+            <td id="mailDaemonsMonthly">
+                <label class="containeremail" *ngFor="let mm of monthly">
+                    <p class="tucne">{{mm.Name}}</p>
+                    <input type="checkbox" checked="{{mm.Selected}}" value="{{mm.Id}}" />
+                    <span class="checkmarkemail"></span>
+                </label>
+            </td>
+            <td></td>
+        </div>
+    </tr>
 
-                </th>
-            </tr>
-            <tr>
-                <th>Monthly</th>
-                <th id="mailDaemonsMonthly">
-                    <label class="containeremail" *ngFor="let mm of monthly">
-                        <p class="tucne">{{mm.Name}}</p>
-                        <input type="checkbox" checked="{{mm.Selected}}" value="{{mm.Id}}" />
-                        <span class="checkmarkemail"></span>
-                    </label>
-                </th>
-                <th></th>
-            </tr>
+    </table>
 
-        </table>
-
-    </div>
+</div>
     <div class="dname">
         <button id="btnSave" (click)="saveMailData(); sendMailData();">SAVE</button>
     </div>

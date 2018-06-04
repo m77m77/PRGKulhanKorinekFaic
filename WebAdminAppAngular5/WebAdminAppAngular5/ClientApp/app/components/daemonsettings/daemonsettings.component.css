@@ -7,7 +7,7 @@
     font-family: 'Segoe UI';
 }
 
-.tucne {
+.tucner {
     font-size: 25px;
     font-weight: bold;
     margin: 10px;
@@ -141,13 +141,30 @@ div .archeader li a:hover {
     font-size: 20px;
     color: whitesmoke;
     background-color: rgb(81, 168, 240);
-    font-weight: bold;
+   
     border: none;
     float: right;
     display: inline;
     cursor: pointer;
 }
 
+.btnDelD {
+    width: 180px;
+    height: 60px;
+    margin: 40px 30px 30px 5px;
+    font-size: 20px;
+    color: whitesmoke;
+    background-color: rgb(81, 168, 240);
+    
+    border: none;
+
+    display: inline;
+    cursor: pointer;
+}
+
+.btnDelD:hover {
+    background: #555;
+}
 .btnSaveDel:hover {
     background: #555;
 }
@@ -156,7 +173,7 @@ div .archeader li a:hover {
     width: 650px;
     float: left;
     position: static;
-    
+    margin: 0px 0px 0px 215px;
     font-size: 20px;
     color: #0a294b;
    
@@ -208,4 +225,67 @@ a {
 
 }
 
+.containeremail {
+   
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+    .containeremail input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+
+.checkmarkemail {
+    position: absolute;
+  
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+
+.containeremail:hover input ~ .checkmarkemail {
+    background-color: #ccc;
+}
+
+
+.containeremail input:checked ~ .checkmarkemail {
+    background-color: rgb(38, 82, 130);
+}
+
+
+.checkmarkemail:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+.containeremail input:checked ~ .checkmarkemail:after {
+    display: block;
+}
+
+
+.containeremail .checkmarkemail:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
 

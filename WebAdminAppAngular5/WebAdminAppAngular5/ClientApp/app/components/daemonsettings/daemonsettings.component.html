@@ -15,19 +15,26 @@
         </ul>
     </div>
     <div class="divupd"> Update time <input type="number" class="textinputformat" id="updatetime" value="{{updatetime}}" placeholder="minutes" (input)="saveDaemon()" /></div>
-    <div> Enable daemon <input id="enabled" type="checkbox" checked="{{enabled}}" (input)="saveDaemon()" /></div>
-    <button id="btnDeleteSettings" class="btnSaveDel" (click)="DeleteDaemon()">Delete Daemon</button>
+    <label class="containeremail">
+        <p>Enable daemon</p>
+        <input id="enabled" type="checkbox" checked="{{enabled}}" (input)="saveDaemon()" />
+        <span class="checkmarkemail"></span>
+    </label>
+ 
+    <button id="btnDeleteSettings" class="btnDelD" (click)="DeleteDaemon()">Delete Daemon</button>
+ 
 
-    <p class="fileset">File settings</p>
     <div class="settinglist">
+        <p class="fileset">File settings</p>
         <ul>
             <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of settings"><li>{{s.I}}</li></a>
             <a class="add" (click)="PostNewSettings(daemonID)"><li>+</li></a>
         </ul>
     </div>
-   
-    <p class="fileset">Database settings</p>
+
+
     <div class="settinglist">
+        <p class="fileset">Database settings</p>
         <ul>
             <a [routerLink]="s.Route" [routerLinkActive]="['link-active']" *ngFor="let s of settingsdatabase"><li>{{s.I}}</li></a>
             <a class="add" (click)="PostNewSettingsDatabase(daemonID)"><li>+</li></a>

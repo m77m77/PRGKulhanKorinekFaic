@@ -5,7 +5,10 @@
     width: 930px;
     font-family: 'Segoe UI';
 }
-
+.nadpises {
+    font-family: "Segoe UI";
+    font-size: 30px;
+}
 .sectionclass {
     margin: 0px 0px 0px 250px;
     width: 850px;
