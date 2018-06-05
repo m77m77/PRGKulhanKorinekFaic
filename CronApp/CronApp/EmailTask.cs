@@ -14,7 +14,7 @@ namespace CronApp
 {
     public class EmailTask : TimeTask
     {
-        public EmailTask(params TimeSpan[] times) : base(times)
+        public EmailTask() : base(new TimeSpan(23,59,0))
         {
 
         }
